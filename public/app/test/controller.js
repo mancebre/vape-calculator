@@ -1,5 +1,5 @@
-angular.module('agileApp.test', []);
+angular.module('gelApp.test', []);
 
-angular.module('agileApp.test').controller('testCtrl', ['$scope', function ($scope) {
+angular.module('gelApp.test').controller('testCtrl', ['$scope', function ($scope) {
 	$scope.something = ["one", "two"];
 }]);

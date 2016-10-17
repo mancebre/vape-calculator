@@ -1,8 +1,8 @@
-var App = angular.module("agileApp", [
+var App = angular.module("gelApp", [
 	'ngRoute',
-	'agileApp.home',
-	'agileApp.test',
-	'agileApp.plans'
+	'gelApp.home',
+	'gelApp.test',
+	'gelApp.plans'
 ]);
 
 App.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {

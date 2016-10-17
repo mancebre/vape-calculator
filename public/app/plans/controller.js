@@ -1,5 +1,5 @@
-angular.module('agileApp.plans', []);
+angular.module('gelApp.plans', []);
 
-angular.module('agileApp.plans').controller('plansCtrl', ['$scope', function ($scope) {
+angular.module('gelApp.plans').controller('plansCtrl', ['$scope', function ($scope) {
 	
 }]);

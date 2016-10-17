@@ -1,5 +1,5 @@
-angular.module('agileApp.home', []);
+angular.module('gelApp.home', []);
 
-angular.module('agileApp.home').controller('homeCtrl', ['$scope', function ($scope) {
+angular.module('gelApp.home').controller('homeCtrl', ['$scope', function ($scope) {
 	
 }]);
