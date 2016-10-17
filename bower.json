@@ -1,0 +1,19 @@
+{
+  "name": "gel_front",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Djordje Mancovic <dj.mancovic@gmail.com>"
+  ],
+  "license": "",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.4.8",
+    "angular-route": "~1.4.8",
+    "jquery": "~2.1.4",
+    "angular-ui-bootstrap-bower": "0.13.4",
+    "font-awesome": "^4.6.3"
+  }
+}
