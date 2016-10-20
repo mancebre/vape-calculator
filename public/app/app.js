@@ -2,7 +2,8 @@ var App = angular.module("gelApp", [
 	'ngRoute',
 	'gelApp.home',
 	'gelApp.test',
-	'gelApp.plans'
+	'gelApp.plans',
+	'gelApp.global'
 ]);
 
 App.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
