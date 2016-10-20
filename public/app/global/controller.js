@@ -4,8 +4,14 @@ angular.module('gelApp.global', []);
  * Place for all global objects and methods.
  */
 
-angular.module('gelApp.global').controller('homeCtrl', ['$rootScope', '$scope', function ($rootScope, $scope) {
+angular.module('gelApp.global').controller('homeCtrl', ['$rootScope', function ($rootScope) {
     $rootScope.testFunc = function () {
-        $rootScope.something = [1, 2, 3];
+        if($rootScope.toggle) {
+            $rootScope.something = ["one", "two"];
+            $rootScope.toggle = false;
+        } else {
+            $rootScope.something = [1, 2, 3];
+            $rootScope.toggle = true;
+        }
     }
 }]);
