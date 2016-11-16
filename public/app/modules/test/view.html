@@ -5,5 +5,17 @@
 </ul>
 
 <div>
-    <button ng-click="testFunc()">Click</button>
+    <button ng-click="testFunc()">Test</button>
 </div>
+
+<div>
+    <button ng-click="runPost()">ADD POST</button>
+</div>
+
+<ul>
+    <li ng-repeat="post in posts">
+        <span>{{post.title}}</span>
+        <button ng-click="runDelete(post.id)">Delete</button>
+        <button ng-click="runPut(post.id)">Update</button>
+    </li>
+</ul>

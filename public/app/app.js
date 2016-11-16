@@ -1,7 +1,6 @@
 var App = angular.module("gelApp", [
-	'ngRoute',
+    'ngRoute',
 	'gelApp.home',
 	'gelApp.test',
 	'gelApp.plans'
 ]);
-

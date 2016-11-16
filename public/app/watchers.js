@@ -1,5 +1,5 @@
 /**
- * On each route change change page title.
+ * On each route change, change page title.
  */
 App.run(['$rootScope', '$route', function($rootScope, $route) {
     $rootScope.$on('$routeChangeSuccess', function() {

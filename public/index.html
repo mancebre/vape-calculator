@@ -16,16 +16,18 @@
         <script type="text/javascript" src="components/jquery/dist/jquery.min.js"></script>
 
         <!-- APP FILES -->
-        <script type="text/javascript" src="app/modules/home/controller.js"></script>
-        <script type="text/javascript" src="app/modules/plans/controller.js"></script>
-        <script type="text/javascript" src="app/modules/test/controller.js"></script>
         <script type="text/javascript" src="app/app.js"></script>
         <script type="text/javascript" src="app/router.js"></script>
         <script type="text/javascript" src="app/watchers.js"></script>
         <script type="text/javascript" src="app/services/myServices.js"></script>
         <script type="text/javascript" src="app/global.js"></script>
+        <script type="text/javascript" src="app/modules/home/controller.js"></script>
+        <script type="text/javascript" src="app/modules/plans/controller.js"></script>
+        <script type="text/javascript" src="app/modules/test/controller.js"></script>
     </head>
     <body>
+        <div ng-show="loading" id="loader"></div>
+
         <h1>Landing page!</h1>
         <p>
             <a class="button" href="/">Home</a>

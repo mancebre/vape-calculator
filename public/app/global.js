@@ -1,7 +1,7 @@
 
 /* GLOBALS */
 
-App.run(function($rootScope) {
+App.run(function($rootScope, $http) {
     $rootScope.testFunc = function () {
         if($rootScope.toggle) {
             $rootScope.something = ["one", "two"];
@@ -10,5 +10,25 @@ App.run(function($rootScope) {
             $rootScope.something = [1, 2, 3];
             $rootScope.toggle = true;
         }
-    }
+    };
+
+    // // API url INTERNAL for testing only!
+    $rootScope.apiUrl = 'http://localhost:3000/posts';
+    // API url EXTERNAL for testing only! Most of this do not work with external API :(
+    // $rootScope.apiUrl = 'https://jsonplaceholder.typicode.com/posts';
+
+    // Basic API config
+    $rootScope.apiConfig = {
+        headers: {'Authorization': 'Token token=xxxxYYYYZzzz'}
+    };
+
+    /* Loading animation */
+    $rootScope.loading = false;
+
+    // If there is any pending request keep loader open.
+    $rootScope.$watch(function() {
+        return $http.pendingRequests.length > 0;
+    }, function(hasPending) {
+        $rootScope.loading = hasPending ? true : false;
+    });
 });
