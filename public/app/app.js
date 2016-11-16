@@ -2,8 +2,7 @@ var App = angular.module("gelApp", [
 	'ngRoute',
 	'gelApp.home',
 	'gelApp.test',
-	'gelApp.plans',
-	'gelApp.global'
+	'gelApp.plans'
 ]);
 
 App.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
@@ -12,13 +11,13 @@ App.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 
 	$routeProvider.when('/', {
 		controller: 'homeCtrl',
-		templateUrl: '/app/home/view.html'
+		templateUrl: '/app/modules/home/view.html'
 	}).when('/test', {
 		controller: 'testCtrl',
-		templateUrl: '/app/test/view.html'
+		templateUrl: '/app/modules/test/view.html'
 	}).when('/plans', {
 		controller: 'plansCtrl',
-		templateUrl: '/app/plans/view.html'
+		templateUrl: '/app/modules/plans/view.html'
 	}).otherwise({ redirectTo: '/' });
 
 }]);
