@@ -11,5 +11,9 @@
     "grunt-contrib-connect": "^1.0.1",
     "grunt-contrib-jshint": "^1.0.1",
     "grunt-contrib-watch": "^1.0.0"
+  },
+  "dependencies": {
+    "animate-sass": "^0.6.6",
+    "grunt-contrib-compass": "^1.1.1"
   }
 }

@@ -15,24 +15,35 @@ module.exports = function(grunt) {
 		},
 		watch: {
 			files: [
-						'Gruntfile.js', 
-						'<%= jshint.files %>', 
-						'public/index.html', 
-						'public/stylesheets/*.css',
-						'public/app/*.js',
-						'public/app/**/*.*',
+                'Gruntfile.js',
+                '<%= jshint.files %>',
+                'public/index.html',
+                'public/stylesheets/*.css',
+                'public/app/*.js',
+                'public/app/**/*.*',
+                'public/stylesheets/*.scss',
 					],
-			tasks: ['jshint'],
+			tasks: ['jshint', 'compass'],
 			options: {
 				livereload: true
 			}
-		}
+		},
+        compass: {
+            dist: {
+                options: {
+                    sassDir: 'public/stylesheets',
+                    cssDir: 'public/stylesheets'
+                }
+            }
+        }
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-connect');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
-	grunt.registerTask('default', ['jshint', 'connect', 'watch']);
+    grunt.loadNpmTasks('grunt-contrib-compass');
+
+	grunt.registerTask('default', ['jshint', 'connect', 'watch', 'compass']);
 
 };
