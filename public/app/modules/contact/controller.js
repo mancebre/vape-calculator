@@ -14,8 +14,8 @@ angular.module('gelApp.contact').controller('contactCtrl', ['$scope', '$http', f
         chemistry: true
     };
 
-    //4. copy originalStudent to student. student will be bind to a form
-    $scope.student = angular.copy($scope.originalStudent);
+    //4. copy originalStudent to liquid. liquid will be bind to a form
+    $scope.liquid = angular.copy($scope.originalStudent);
 
     //5. create submitStudentForm() function. This will be called when user submits the form
     $scope.submitStudnetForm = function () {
@@ -28,7 +28,7 @@ angular.module('gelApp.contact').controller('contactCtrl', ['$scope', '$http', f
             alert('Error occured.');
         }
 
-        $http.post('/student/submitData', { student:$scope.student })
+        $http.post('/liquid/submitData', { liquid:$scope.liquid })
             .success(onSuccess)
             .error(onError);
 
@@ -36,6 +36,6 @@ angular.module('gelApp.contact').controller('contactCtrl', ['$scope', '$http', f
 
     //6. create resetForm() function. This will be called on Reset button click.
     $scope.resetForm = function () {
-        $scope.student = angular.copy($scope.OriginalStudent);
+        $scope.liquid = angular.copy($scope.OriginalStudent);
     };
 }]);

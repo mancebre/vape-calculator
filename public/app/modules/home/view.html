@@ -1,68 +1,97 @@
 <h2>In home</h2>
 
 <div class="col-sm-12">
-    <form class="form-horizontal" ng-submit="submitStudnetForm()" role="form">
-        <div class="form-group">
-            <label for="firstName" class="col-sm-3 control-label">First Name</label>
-            <div class="col-sm-6">
-                <input type="text" id="firstName" class="form-control" ng-model="student.firstName" />
+    <div class="col-sm-6">
+        <form class="form-horizontal" ng-submit="submitStudnetForm()" role="form">
+            <div class="form-group">
+                <label for="amount" class="col-sm-3 control-label">Amount to make</label>
+                <div class="col-sm-6">
+                    <input type="number" id="amount" class="form-control" ng-model="liquid.amount" />
+                </div>
+                <div class="col-sm-3"></div>
+
             </div>
-            <div class="col-sm-3"></div>
+            <div class="form-group">
+                <label for="desired_strength" class="col-sm-3 control-label">Desired strength</label>
+                <div class="col-sm-6">
+                    <input type="number" id="desired_strength" class="form-control" ng-model="liquid.desired_strength" />
+                </div>
+                <div class="col-sm-3"></div>
+
+            </div>
+            <div class="form-group">
+                <label for="wvpga" class="col-sm-3 control-label">Water/Vodka/PGA</label>
+                <div class="col-sm-6">
+                    <input type="number" id="wvpga" class="form-control" ng-model="liquid.wvpga" />
+                </div>
+                <div class="col-sm-3"></div>
+
+            </div>
+            <div class="form-group">
+                <label for="pg" class="col-sm-3 control-label">Desired PG</label>
+                <div class="col-sm-6">
+                    <input type="number" max="100" min="0" id="pg" class="form-control" ng-model="liquid.pg" />
+                </div>
+                <div class="col-sm-3"></div>
+
+            </div>
+            <div class="form-group">
+                <label for="vg" class="col-sm-3 control-label">Desired VG</label>
+                <div class="col-sm-6">
+                    <input type="number" max="100" min="0" id="vg" class="form-control" ng-model="liquid.vg" />
+                </div>
+                <div class="col-sm-3"></div>
+
+            </div>
+            <div class="form-group">
+                <label for="nicotine_strength" class="col-sm-3 control-label">Nicotine strength</label>
+                <div class="col-sm-6">
+                    <input type="number" id="nicotine_strength" class="form-control" ng-model="liquid.nicotine.strength" />
+                </div>
+                <div class="col-sm-3"></div>
+
+            </div>
+            <div class="form-group">
+                <label for="pg_nicotine" class="col-sm-3 control-label">PG-content of nicotine</label>
+                <div class="col-sm-6">
+                    <input type="number" max="100" min="0" id="pg_nicotine" class="form-control" ng-model="liquid.nicotine.pg" />
+                </div>
+                <div class="col-sm-3"></div>
+
+            </div>
+            <div class="form-group">
+                <label for="vg_nicotine" class="col-sm-3 control-label">VG-content of nicotine</label>
+                <div class="col-sm-6">
+                    <input type="number" max="100" min="0" id="vg_nicotine" class="form-control" ng-model="liquid.nicotine.vg" />
+                </div>
+                <div class="col-sm-3"></div>
+
+            </div>
+            <div class="form-group">
+                <label for="sleep_time" class="col-sm-3 control-label">Suggested steep time</label>
+                <div class="col-sm-6">
+                    <input type="number" id="sleep_time" class="form-control" ng-model="liquid.sleep_time" />
+                </div>
+                <div class="col-sm-3"></div>
+
+            </div>
+
+            <input type="submit" value="Save" class="btn btn-primary col-sm-offset-3" />
+            <input type="reset" value="Reset" ng-click="resetForm()">
+        </form>
+    </div>
+
+        <div  class="col-sm-6">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Name</th><th>ML</th>
+                </tr>
+                <tr ng-repeat="(key, value) in ingridients">
+                    <td> {{key}} </td> <td> {{ value }} </td>
+                </tr>
+            </table>
 
         </div>
-        <div class="form-group">
-            <label for="lastName" class="col-sm-3 control-label">Last Name</label>
-            <div class="col-sm-6">
-                <input type="text" id="lastName" class="form-control" ng-model="student.lastName" />
-            </div>
-            <div class="col-sm-3"></div>
-        </div>
+    </div>
 
-        <div class="form-group">
-            <label for="dob" class="col-sm-3 control-label">DoB</label>
-            <div class="col-sm-2">
-                <input type="date" id="dob" class="form-control" ng-model="student.DoB" />
-            </div>
-            <div class="col-sm-7"></div>
-        </div>
-
-        <div class="form-group">
-            <label for="gender" class="col-sm-3 control-label">Gender</label>
-            <div class="col-sm-2">
-                <select id="gender" class="form-control" ng-model="student.gender">
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                </select>
-            </div>
-            <div class="col-sm-7"></div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-sm-3"></div>
-            <div class="col-sm-2">
-                <span><b>Training Location</b></span>
-                <div class="radio">
-                    <label><input value="online" type="radio" name="training" ng-model="student.trainingType" />Online</label>
-                </div>
-                <div class="radio">
-                    <label><input value="onsite" type="radio" name="training" ng-model="student.trainingType" />OnSite</label>
-                </div>
-            </div>
-            <div class="col-sm-7">
-                <span><b>Main Subjects</b></span>
-                <div class="checkbox">
-                    <label><input type="checkbox" ng-model="student.maths" />Maths</label>
-                </div>
-                <div class="checkbox">
-                    <label><input type="checkbox" ng-model="student.physics" />Physics</label>
-                </div>
-                <div class="checkbox">
-                    <label><input type="checkbox"  ng-model="student.chemistry" />Chemistry</label>
-                </div>
-            </div>
-        </div>
-
-        <input type="submit" value="Save" class="btn btn-primary col-sm-offset-3" />
-        <input type="reset" value="Reset" ng-click="resetForm()"
-    </form>
 </div>
