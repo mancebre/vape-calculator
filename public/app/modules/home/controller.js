@@ -30,6 +30,7 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', functio
 
     //5. create submitStudentForm() function. This will be called when user submits the form
     $scope.submitLiquidForm = function () {
+        console.log($scope.liquid);
 
         var onSuccess = function (data, status, headers, config) {
             alert('Student saved successfully.');
@@ -46,9 +47,10 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', functio
     };
 
     //6. create resetForm() function. This will be called on Reset button click.
-    $scope.resetForm = function () {
-        $scope.liquid = angular.copy($scope.originalLiquid);
-    };
+    // Reset button is not working right, maybe I don't need it at all!
+    // $scope.resetForm = function () {
+    //     $scope.liquid = angular.copy($scope.originalLiquid);
+    // };
 
     /* Liquid calculator watcher */
 
@@ -97,9 +99,6 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', functio
         // Remove dilutant from pg and vg
         $scope.ingridients.vg_dilutant = $scope.ingridients.vg_dilutant - (($scope.ingridients.vg_dilutant / 100) * $scope.liquid.wvpga);
         $scope.ingridients.pg_dilutant = $scope.ingridients.pg_dilutant - (($scope.ingridients.pg_dilutant / 100) * $scope.liquid.wvpga);
-
-
-        console.log($scope.liquid);
     }
 }]);
 
