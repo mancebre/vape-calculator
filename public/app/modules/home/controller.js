@@ -82,6 +82,7 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', functio
         // we need to add 10 ml of nicotine juice to have 10 mg strength.
         var totalNicJuicePercentage = $scope.liquid.desired_strength * ($scope.liquid.nicotine.strength / 100);
         $scope.ingridients.nicotine_juice = (totalNicJuicePercentage / 100) * $scope.liquid.amount;
+        $scope.ingridients.wvpga = ($scope.liquid.wvpga / 100) * $scope.liquid.amount;
 
 
         // Determent how much to remove from base
@@ -92,6 +93,10 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', functio
         // Remove PG and VG from base ingredients.
         $scope.ingridients.vg_dilutant = $scope.ingridients.vg_dilutant - removeFromBase.vg;
         $scope.ingridients.pg_dilutant = $scope.ingridients.pg_dilutant - removeFromBase.pg;
+
+        // Remove dilutant from pg and vg
+        $scope.ingridients.vg_dilutant = $scope.ingridients.vg_dilutant - (($scope.ingridients.vg_dilutant / 100) * $scope.liquid.wvpga);
+        $scope.ingridients.pg_dilutant = $scope.ingridients.pg_dilutant - (($scope.ingridients.pg_dilutant / 100) * $scope.liquid.wvpga);
 
 
         console.log($scope.liquid);
