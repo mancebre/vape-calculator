@@ -2,7 +2,6 @@ angular.module('gelApp.home', []);
 
 angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', function ($scope, $http) {
 
-    //3. attach originalStudent model object
     $scope.originalLiquid = {
         amount:             100,
         desired_strength:   6,
@@ -23,13 +22,14 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', functio
         nicotine_juice: 0,
         pg_dilutant:    0,
         vg_dilutant:    0,
+        wvpga:          0
     };
 
     //4. copy originalLiquid to liquid. liquid will be bind to a form
     $scope.liquid = angular.copy($scope.originalLiquid);
 
     //5. create submitStudentForm() function. This will be called when user submits the form
-    $scope.submitStudnetForm = function () {
+    $scope.submitLiquidForm = function () {
 
         var onSuccess = function (data, status, headers, config) {
             alert('Student saved successfully.');
@@ -37,7 +37,7 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', functio
 
         var onError = function (data, status, headers, config) {
             alert('Error occured.');
-        }
+        };
 
         $http.post('/liquid/submitData', { liquid:$scope.liquid })
             .success(onSuccess)
@@ -82,7 +82,7 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', functio
         // we need to add 10 ml of nicotine juice to have 10 mg strength.
         var totalNicJuicePercentage = $scope.liquid.desired_strength * ($scope.liquid.nicotine.strength / 100);
         $scope.ingridients.nicotine_juice = (totalNicJuicePercentage / 100) * $scope.liquid.amount;
-        // $scope.ingridients.nicotine_juice
+
 
         // Determent how much to remove from base
         var removeFromBase = {
