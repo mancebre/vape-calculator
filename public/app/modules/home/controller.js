@@ -13,7 +13,9 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', functio
             pg:         100,
             vg:         0
         },
-        sleep_time:         7
+        flavor:             [],
+        sleep_time:         7,
+        comment:            ""
 
     };
 
@@ -23,6 +25,14 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', functio
         pg_dilutant:    0,
         vg_dilutant:    0,
         wvpga:          0
+    };
+
+    $scope.flavorsCount = 1;
+    $scope.flavorFields = [];
+
+    $scope.addField = function(){
+        $scope.flavorFields.push($scope.flavorsCount);
+        $scope.flavorsCount++
     };
 
     //4. copy originalLiquid to liquid. liquid will be bind to a form

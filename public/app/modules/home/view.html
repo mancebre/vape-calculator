@@ -14,7 +14,7 @@
             <div class="form-group">
                 <label for="desired_strength" class="col-sm-3 control-label">Desired strength</label>
                 <div class="col-sm-6">
-                    <input type="number" id="desired_strength" class="form-control" ng-model="liquid.desired_strength" />
+                    <input type="number" max="100" min="0" id="desired_strength" class="form-control" ng-model="liquid.desired_strength" />
                 </div>
                 <div class="col-sm-3"></div>
 
@@ -22,7 +22,7 @@
             <div class="form-group">
                 <label for="wvpga" class="col-sm-3 control-label">Water / Vodka / PGA</label>
                 <div class="col-sm-6">
-                    <input type="number" id="wvpga" class="form-control" ng-model="liquid.wvpga" />
+                    <input type="number" max="100" min="0" id="wvpga" class="form-control" ng-model="liquid.wvpga" />
                 </div>
                 <div class="col-sm-3"></div>
 
@@ -38,7 +38,7 @@
             <div class="form-group">
                 <label for="vg" class="col-sm-3 control-label">Desired VG</label>
                 <div class="col-sm-6">
-                    <input type="number" max="100" min="0" id="vg" class="form-control" ng-model="liquid.vg" />
+                    <input type="number" max="100" min="0" id="vg" class="form-control" placeholder="%" ng-model="liquid.vg" />
                 </div>
                 <div class="col-sm-3"></div>
 
@@ -46,7 +46,7 @@
             <div class="form-group">
                 <label for="nicotine_strength" class="col-sm-3 control-label">Nicotine strength</label>
                 <div class="col-sm-6">
-                    <input type="number" id="nicotine_strength" class="form-control" ng-model="liquid.nicotine.strength" />
+                    <input type="number" max="100" min="0" id="nicotine_strength" class="form-control" placeholder="%" ng-model="liquid.nicotine.strength" />
                 </div>
                 <div class="col-sm-3"></div>
 
@@ -54,7 +54,7 @@
             <div class="form-group">
                 <label for="pg_nicotine" class="col-sm-3 control-label">PG-content of nicotine</label>
                 <div class="col-sm-6">
-                    <input type="number" max="100" min="0" id="pg_nicotine" class="form-control" ng-model="liquid.nicotine.pg" />
+                    <input type="number" max="100" min="0" id="pg_nicotine" class="form-control" placeholder="%" ng-model="liquid.nicotine.pg" />
                 </div>
                 <div class="col-sm-3"></div>
 
@@ -62,7 +62,7 @@
             <div class="form-group">
                 <label for="vg_nicotine" class="col-sm-3 control-label">VG-content of nicotine</label>
                 <div class="col-sm-6">
-                    <input type="number" max="100" min="0" id="vg_nicotine" class="form-control" ng-model="liquid.nicotine.vg" />
+                    <input type="number" max="100" min="0" id="vg_nicotine" class="form-control" placeholder="%" ng-model="liquid.nicotine.vg" />
                 </div>
                 <div class="col-sm-3"></div>
 
@@ -70,13 +70,42 @@
             <div class="form-group">
                 <label for="sleep_time" class="col-sm-3 control-label">Suggested steep time</label>
                 <div class="col-sm-6">
-                    <input type="number" id="sleep_time" class="form-control" ng-model="liquid.sleep_time" />
+                    <input type="number" id="sleep_time" class="form-control" placeholder="Days..." ng-model="liquid.sleep_time" />
                 </div>
                 <div class="col-sm-3"></div>
 
             </div>
 
-            <input type="submit" value="Save" class="btn btn-primary col-sm-offset-3" />
+            <div class="addcontend">
+                <div ng-repeat="item in flavorFields">
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <input type="text" id="{{item}}_text" class="form-control" ng-model="liquid.flavor[item]['name']" placeholder="Flavor {{item}} name" />
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="number" max="100" min="0" id="{{item}}_number" class="form-control" placeholder="%" ng-model="liquid.flavor[item]['percentage']" />
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="radio">
+                                <label><input type="radio" name="{{item}}_radio" value="pg" ng-model="liquid.flavor[item]['type']">PG</label>
+                            </div>
+                            <div class="radio">
+                                <label><input type="radio" name="{{item}}_radio" value="vg" ng-model="liquid.flavor[item]['type']">VG</label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <input type="button" value="Add flavor" class="btn btn-primary col-sm-offset-6" ng-click="addField();" />
+
+            <div class="form-group">
+                <label for="comment">Comment:</label>
+                <textarea class="form-control" rows="5" id="comment" ng-model="liquid.comment" placeholder="Write everything relevant, like where to get the flavors."></textarea>
+            </div>
+
+            <input type="submit" value="Save" class="btn btn-primary col-sm-offset-6" />
             <!--<input type="reset" value="Reset" ng-click="resetForm()">-->
         </form>
     </div>
