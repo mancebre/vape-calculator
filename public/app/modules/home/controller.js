@@ -24,7 +24,9 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', functio
         nicotine_juice: 0,
         pg_dilutant:    0,
         vg_dilutant:    0,
-        wvpga:          0
+        wvpga:          0,
+        flavor:         [],
+        amountMl:       0
     };
 
     $scope.flavorsCount = 1;
@@ -82,19 +84,21 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', functio
 
     $scope.$watch('liquid', function(newVal, oldVal){
         $scope.calculateIngredients();
+        $scope.calculateTotal();
     }, true);
 
     $scope.calculateIngredients = function () {
-        $scope.ingridients.vg_dilutant = ($scope.liquid.vg / 100) * $scope.liquid.amount;
-        $scope.ingridients.pg_dilutant = ($scope.liquid.pg / 100) * $scope.liquid.amount;
+        $scope.ingridients.vg_dilutant = $scope.getAmountFromPercentage($scope.liquid.vg);
+        $scope.ingridients.pg_dilutant = $scope.getAmountFromPercentage($scope.liquid.pg);
 
         // Calculate nicotine juice.
 
         // If we have 100 mg of nicotine in 100 ml of nicotine juice
         // we need to add 10 ml of nicotine juice to have 10 mg strength.
-        var totalNicJuicePercentage = $scope.liquid.desired_strength * ($scope.liquid.nicotine.strength / 100);
-        $scope.ingridients.nicotine_juice = (totalNicJuicePercentage / 100) * $scope.liquid.amount;
-        $scope.ingridients.wvpga = ($scope.liquid.wvpga / 100) * $scope.liquid.amount;
+        $scope.ingridients.nicotine_juice = $scope.liquid.desired_strength / ($scope.liquid.nicotine.strength / 100);
+
+        // Calculate water amount
+        $scope.ingridients.wvpga = $scope.getAmountFromPercentage($scope.liquid.wvpga);
 
 
         // Determent how much to remove from base
@@ -106,9 +110,37 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', functio
         $scope.ingridients.vg_dilutant = $scope.ingridients.vg_dilutant - removeFromBase.vg;
         $scope.ingridients.pg_dilutant = $scope.ingridients.pg_dilutant - removeFromBase.pg;
 
-        // Remove dilutant from pg and vg
+        // Remove diluent from pg and vg
         $scope.ingridients.vg_dilutant = $scope.ingridients.vg_dilutant - (($scope.ingridients.vg_dilutant / 100) * $scope.liquid.wvpga);
         $scope.ingridients.pg_dilutant = $scope.ingridients.pg_dilutant - (($scope.ingridients.pg_dilutant / 100) * $scope.liquid.wvpga);
+
+        // Remove diluent from pg and vg
+        angular.forEach($scope.liquid.flavor, function (val, key) {
+            if(val.type === "vg") {
+                var removeFromVg = ($scope.ingridients.vg_dilutant / 100) * val.percentage;
+                $scope.ingridients.vg_dilutant = $scope.ingridients.vg_dilutant - removeFromVg;
+            } else if(val.type === "pg") {
+                var removeFromPg = ($scope.ingridients.pg_dilutant / 100) * val.percentage;
+                $scope.ingridients.pg_dilutant = $scope.ingridients.pg_dilutant - removeFromPg;
+            }
+            $scope.ingridients.flavor[key] = {
+                name: val.name,
+                amount: $scope.getAmountFromPercentage(val.percentage), //TODO make some calculation to make mililites from this!
+                type: val.type
+            }
+
+        });
+    };
+
+    $scope.getAmountFromPercentage = function (percentage) {
+        return ($scope.liquid.amount / 100) * percentage;
+    };
+
+    $scope.calculateTotal = function () {
+        $scope.ingridients.amountMl = $scope.ingridients.pg_dilutant
+            + $scope.ingridients.vg_dilutant
+            + $scope.ingridients.nicotine_juice
+            + $scope.ingridients.wvpga;
     }
 }]);
 
