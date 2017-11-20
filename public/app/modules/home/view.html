@@ -86,7 +86,7 @@
                             <input type="number" max="100" min="0" id="{{item}}_number" class="form-control" placeholder="%" ng-model="liquid.flavor[item]['percentage']" />
                         </div>
                         <div class="col-sm-3">
-                            <div class="radio">
+                            <div ng-init="liquid.flavor[item]['type']='pg'" class="radio">
                                 <label><input type="radio" name="{{item}}_radio" value="pg" ng-model="liquid.flavor[item]['type']">PG</label>
                             </div>
                             <div class="radio">

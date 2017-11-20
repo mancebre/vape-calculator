@@ -111,20 +111,21 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', functio
         $scope.ingridients.pg_dilutant = $scope.ingridients.pg_dilutant - removeFromBase.pg;
 
         // Remove diluent from pg and vg
-        $scope.ingridients.vg_dilutant = $scope.ingridients.vg_dilutant - (($scope.ingridients.vg_dilutant / 100) * $scope.liquid.wvpga);
-        $scope.ingridients.pg_dilutant = $scope.ingridients.pg_dilutant - (($scope.ingridients.pg_dilutant / 100) * $scope.liquid.wvpga);
+        $scope.ingridients.vg_dilutant = $scope.ingridients.vg_dilutant - (($scope.liquid.amount / 2 / 100) * $scope.liquid.wvpga);
+        $scope.ingridients.pg_dilutant = $scope.ingridients.pg_dilutant - (($scope.liquid.amount / 2 / 100) * $scope.liquid.wvpga);
 
-        // Remove diluent from pg and vg
+        // Remove flavor from pg and vg
         angular.forEach($scope.liquid.flavor, function (val, key) {
             if(val.type === "vg") {
-                var removeFromVg = ($scope.ingridients.vg_dilutant / 100) * val.percentage;
+                var removeFromVg = ($scope.liquid.amount / 100) * val.percentage;
                 $scope.ingridients.vg_dilutant = $scope.ingridients.vg_dilutant - removeFromVg;
             } else if(val.type === "pg") {
-                var removeFromPg = ($scope.ingridients.pg_dilutant / 100) * val.percentage;
+                var removeFromPg = ($scope.liquid.amount / 100) * val.percentage;
                 $scope.ingridients.pg_dilutant = $scope.ingridients.pg_dilutant - removeFromPg;
             }
             $scope.ingridients.flavor[key] = {
                 name: val.name,
+                percentage: val.percentage,
                 amount: $scope.getAmountFromPercentage(val.percentage), //TODO make some calculation to make mililites from this!
                 type: val.type
             }
@@ -141,6 +142,10 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', functio
             + $scope.ingridients.vg_dilutant
             + $scope.ingridients.nicotine_juice
             + $scope.ingridients.wvpga;
+
+        angular.forEach($scope.ingridients.flavor, function (val, key) {
+            $scope.ingridients.amountMl += val.amount;
+        })
     }
 }]);
 
