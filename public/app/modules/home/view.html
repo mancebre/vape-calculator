@@ -1,125 +1,126 @@
-<h2>In home</h2>
+<h2>Recipe</h2>
 
 <div class="col-sm-12">
     <div class="col-sm-6">
         <form class="form-horizontal" ng-submit="submitLiquidForm()" role="form">
             <div class="form-group">
-                <label for="amount" class="col-sm-3 control-label">Amount to make</label>
-                <div class="col-sm-6">
+                <label for="amount" class="col-sm-7 control-label" title="Amount to make">Amount:</label>
+                <div class="col-sm-5 recipe-input">
                     <input type="number" id="amount" class="form-control" ng-model="liquid.amount" />
+                    <span class="input-group-addon">ml</span>
                 </div>
-                <div class="col-sm-3">ml</div>
 
             </div>
             <div class="form-group">
-                <label for="desired_strength" class="col-sm-3 control-label">Desired strength</label>
-                <div class="col-sm-6">
+                <label for="desired_strength" class="col-sm-7 control-label">Desired strength</label>
+                <div class="col-sm-5 recipe-input">
                     <input type="number" max="100" min="0" id="desired_strength" class="form-control" ng-model="liquid.desired_strength" />
+                    <span class="input-group-addon">mg</span>
                 </div>
-                <div class="col-sm-3">mg</div>
 
             </div>
             <div class="form-group">
-                <label for="wvpga" class="col-sm-3 control-label">Water / Vodka / PGA</label>
-                <div class="col-sm-6">
+                <label for="wvpga" class="col-sm-7 control-label">Diluent</label>
+                <div class="col-sm-5 recipe-input">
                     <input type="number" max="100" min="0" id="wvpga" class="form-control" ng-model="liquid.wvpga" />
+                    <span class="input-group-addon">%</span>
                 </div>
-                <div class="col-sm-3">%</div>
 
             </div>
             <div class="form-group">
-                <label for="pg" class="col-sm-3 control-label">Desired PG</label>
-                <div class="col-sm-6">
+                <label for="pg" class="col-sm-7 control-label">Desired PG</label>
+                <div class="col-sm-5 recipe-input">
                     <input type="number" max="100" min="0" id="pg" class="form-control" ng-model="liquid.pg" />
+                    <span class="input-group-addon">%</span>
                 </div>
-                <div class="col-sm-3">%</div>
 
             </div>
             <div class="form-group">
-                <label for="vg" class="col-sm-3 control-label">Desired VG</label>
-                <div class="col-sm-6">
+                <label for="vg" class="col-sm-7 control-label">Desired VG</label>
+                <div class="col-sm-5 recipe-input">
                     <input type="number" max="100" min="0" id="vg" class="form-control" placeholder="%" ng-model="liquid.vg" />
+                    <span class="input-group-addon">%</span>
                 </div>
-                <div class="col-sm-3">%</div>
 
             </div>
             <div class="form-group">
-                <label for="nicotine_strength" class="col-sm-3 control-label">Nicotine strength</label>
-                <div class="col-sm-6">
+                <label for="nicotine_strength" class="col-sm-7 control-label">Nicotine strength</label>
+                <div class="col-sm-5 recipe-input">
                     <input type="number" max="100" min="0" id="nicotine_strength" class="form-control" placeholder="%" ng-model="liquid.nicotine.strength" />
+                    <span class="input-group-addon">mg</span>
                 </div>
-                <div class="col-sm-3">mg</div>
 
             </div>
             <div class="form-group">
-                <label for="pg_nicotine" class="col-sm-3 control-label">PG-content of nicotine</label>
-                <div class="col-sm-6">
+                <label for="pg_nicotine" class="col-sm-7 control-label">PG-content of nicotine</label>
+                <div class="col-sm-5 recipe-input">
                     <input type="number" max="100" min="0" id="pg_nicotine" class="form-control" placeholder="%" ng-model="liquid.nicotine.pg" />
+                    <span class="input-group-addon">%</span>
                 </div>
-                <div class="col-sm-3">%</div>
 
             </div>
             <div class="form-group">
-                <label for="vg_nicotine" class="col-sm-3 control-label">VG-content of nicotine</label>
-                <div class="col-sm-6">
+                <label for="vg_nicotine" class="col-sm-7 control-label">VG-content of nicotine</label>
+                <div class="col-sm-5 recipe-input">
                     <input type="number" max="100" min="0" id="vg_nicotine" class="form-control" placeholder="%" ng-model="liquid.nicotine.vg" />
+                    <span class="input-group-addon">%</span>
                 </div>
-                <div class="col-sm-3">%</div>
 
             </div>
             <div class="form-group">
-                <label for="sleep_time" class="col-sm-3 control-label">Suggested steep time</label>
-                <div class="col-sm-6">
+                <label for="sleep_time" class="col-sm-7 control-label">Suggested steep time</label>
+                <div class="col-sm-5 recipe-input">
                     <input type="number" id="sleep_time" class="form-control" placeholder="Days..." ng-model="liquid.sleep_time" />
+                    <span class="input-group-addon">days</span>
                 </div>
-                <div class="col-sm-3">days</div>
 
             </div>
 
-            <div class="addcontend">
+            <div class="flavor-fields">
                 <div ng-repeat="item in flavorFields">
                     <div class="form-group">
-                        <div class="col-sm-6">
-                            <input type="text" id="{{item}}_text" class="form-control" ng-model="liquid.flavor[item]['name']" placeholder="Flavor {{item}} name" />
+                        <div class="col-sm-1">
+                            <i class="fa fa-trash-o" aria-hidden="true"></i>
                         </div>
                         <div class="col-sm-3">
-                            <input type="number" max="100" min="0" id="{{item}}_number" class="form-control" placeholder="%" ng-model="liquid.flavor[item]['percentage']" />
+                            <input type="text" id="{{item}}_text" class="form-control" ng-model="liquid.flavor[item]['name']" placeholder="Flavor {{item}}" />
                         </div>
-                        <div class="col-sm-3">
-                            <div ng-init="liquid.flavor[item]['type']='pg'" class="radio">
-                                <label><input type="radio" name="{{item}}_radio" value="pg" ng-model="liquid.flavor[item]['type']">PG</label>
-                            </div>
-                            <div class="radio">
-                                <label><input type="radio" name="{{item}}_radio" value="vg" ng-model="liquid.flavor[item]['type']">VG</label>
-                            </div>
+                        <div class="col-sm-4 recipe-input">
+                            <input type="number" max="100" min="0" id="{{item}}_number" class="form-control" ng-model="liquid.flavor[item]['percentage']" />
+                            <span class="input-group-addon">%</span>
                         </div>
-
+                        <div class="col-sm-4">
+                            <select class="form-control" ng-model="liquid.flavor[item]['type']">
+                                <option value="pg">PG</option>
+                                <option value="vg">VG</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <input type="button" value="Add flavor" class="btn btn-primary col-sm-offset-6" ng-click="addField();" />
+            <input type="button" value="Add flavor" class="btn btn-primary col-sm-offset-9" ng-click="addField();" />
 
-            <div class="form-group">
-                <label for="comment">Comment:</label>
-                <textarea class="form-control" rows="5" id="comment" ng-model="liquid.comment" placeholder="Write everything relevant, like where to get the flavors."></textarea>
-            </div>
+            <!--<div class="col-sm-12 form-group">-->
+                <!--<label for="comment">Comment:</label>-->
+                <!--<textarea class="form-control" rows="5" id="comment" ng-model="liquid.comment" placeholder="Write everything relevant, like where to get the flavors."></textarea>-->
+            <!--</div>-->
 
-            <input type="submit" value="Save" class="btn btn-primary col-sm-offset-6" />
+            <!--<input type="submit" value="Save" class="btn btn-primary col-sm-offset-9" />-->
             <!--<input type="reset" value="Reset" ng-click="resetForm()">-->
         </form>
     </div>
 
         <div  class="col-sm-6">
-            <h3>Original Liquid</h3>
-            <table class="table table-bordered">
-                <tr>
-                    <th>Name</th><th>ML</th>
-                </tr>
-                <tr ng-repeat="(key, value) in liquid">
-                    <td> {{key}} </td> <td> {{ value }} </td>
-                </tr>
-            </table>
+            <!--<h3>Original Liquid</h3>-->
+            <!--<table class="table table-bordered">-->
+                <!--<tr>-->
+                    <!--<th>Name</th><th>ML</th>-->
+                <!--</tr>-->
+                <!--<tr ng-repeat="(key, value) in liquid">-->
+                    <!--<td> {{key}} </td> <td> {{ value }} </td>-->
+                <!--</tr>-->
+            <!--</table>-->
 
             <h3>Ingredients</h3>
             <table class="table table-bordered">

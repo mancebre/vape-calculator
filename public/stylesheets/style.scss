@@ -3,6 +3,19 @@ $secondaryColor: #c0c600;
 $loader: '/app/images/loading.gif';
 
 body {
+    .flavor-fields {
+        .col-sm-4 {
+            padding-left: 6px;
+            padding-right: 6px;
+        }
+    }
+    .input-group-addon {
+        font-size: 12px;
+        padding: 6px 5px;
+    }
+    .recipe-input {
+        display: table;
+    }
     background: $primaryColor;
     .button {
         display: inline-block;

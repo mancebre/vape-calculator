@@ -34,6 +34,12 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', functio
 
     $scope.addField = function(){
         $scope.flavorFields.push($scope.flavorsCount);
+        $scope.liquid.flavor[$scope.flavorsCount] = {
+            percentage: 0,
+            amount:     0,
+            type:       'pg',
+            name:       'Flavor ' + $scope.flavorsCount
+        }
         $scope.flavorsCount++
     };
 
