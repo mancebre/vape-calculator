@@ -3,6 +3,9 @@ $secondaryColor: #c0c600;
 $loader: '/app/images/loading.gif';
 
 body {
+  .link {
+    cursor: pointer;
+  }
   fieldset {
     border: 1px groove #ddd !important;
     padding: 0 1.4em 1.4em 1.4em !important;

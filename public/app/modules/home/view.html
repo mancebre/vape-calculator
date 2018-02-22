@@ -83,20 +83,20 @@
             </fieldset>
 
             <div class="flavor-fields">
-                <div ng-repeat="item in flavorFields">
+                <div ng-repeat="(key, value) in liquid.flavor">
                     <div class="form-group">
-                        <div class="col-sm-1">
+                        <div class="col-sm-1 link" ng-click="removeField(key, value);">
                             <i class="fa fa-trash-o" aria-hidden="true"></i>
                         </div>
                         <div class="col-sm-3">
-                            <input type="text" id="{{item}}_text" class="form-control" ng-model="liquid.flavor[item]['name']" placeholder="Flavor {{item}}" />
+                            <input type="text" id="{{key}}_text" class="form-control" ng-model="liquid.flavor[key]['name']" placeholder="Flavor {{key}}" />
                         </div>
                         <div class="col-sm-4 recipe-input">
-                            <input type="number" max="100" min="0" id="{{item}}_number" class="form-control" ng-model="liquid.flavor[item]['percentage']" />
+                            <input type="number" max="100" min="0" id="{{key}}_number" class="form-control" ng-model="liquid.flavor[key]['percentage']" />
                             <span class="input-group-addon">%</span>
                         </div>
                         <div class="col-sm-4">
-                            <select class="form-control" ng-model="liquid.flavor[item]['type']">
+                            <select class="form-control" ng-model="liquid.flavor[key]['type']">
                                 <option value="pg">PG</option>
                                 <option value="vg">VG</option>
                             </select>

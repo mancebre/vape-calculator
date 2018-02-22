@@ -29,7 +29,7 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', functio
         amountMl:       0
     };
 
-    $scope.flavorsCount = 1;
+    $scope.flavorsCount = 0;
     $scope.flavorFields = [];
 
     $scope.addField = function(){
@@ -41,6 +41,13 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', functio
             name:       'Flavor ' + $scope.flavorsCount
         };
         $scope.flavorsCount++
+    };
+
+    $scope.removeField = function (id, value) {
+        $scope.flavorFields.splice(id, 1);
+        $scope.ingridients.flavor.splice(id, 1);
+        $scope.liquid.flavor.splice(id, 1);
+        $scope.flavorsCount--
     };
 
     //4. copy originalLiquid to liquid. liquid will be bind to a form
@@ -132,7 +139,7 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', functio
             $scope.ingridients.flavor[key] = {
                 name: val.name,
                 percentage: val.percentage,
-                amount: $scope.getAmountFromPercentage(val.percentage), //TODO make some calculation to make mililites from this!
+                amount: $scope.getAmountFromPercentage(val.percentage), //TODO make some calculation to make milliliters from this!
                 type: val.type
             }
 
