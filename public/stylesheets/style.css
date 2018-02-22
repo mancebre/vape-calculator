@@ -2,21 +2,42 @@
 body {
   background: #e2e2e2;
 }
-/* line 7, style.scss */
+/* line 6, style.scss */
+body fieldset {
+  border: 1px groove #ddd !important;
+  padding: 0 1.4em 1.4em 1.4em !important;
+  margin: 0 0 1.5em 0 !important;
+  -webkit-box-shadow: 0px 0px 0px 0px #000;
+  box-shadow: 0px 0px 0px 0px #000;
+}
+/* line 13, style.scss */
+body fieldset legend {
+  font-size: 1.2em !important;
+  font-weight: bold !important;
+  text-align: left !important;
+  width: auto;
+  padding: 0 10px;
+  border-bottom: none;
+}
+/* line 22, style.scss */
+body h2 {
+  text-align: center;
+}
+/* line 26, style.scss */
 body .flavor-fields .col-sm-4 {
   padding-left: 6px;
   padding-right: 6px;
 }
-/* line 12, style.scss */
+/* line 31, style.scss */
 body .input-group-addon {
   font-size: 12px;
   padding: 6px 5px;
 }
-/* line 16, style.scss */
+/* line 35, style.scss */
 body .recipe-input {
   display: table;
 }
-/* line 20, style.scss */
+/* line 39, style.scss */
 body .button {
   display: inline-block;
   width: 115px;
@@ -27,7 +48,7 @@ body .button {
   color: white;
   font-weight: bold;
 }
-/* line 31, style.scss */
+/* line 50, style.scss */
 body #loader {
   position: fixed;
   left: 0;

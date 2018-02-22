@@ -3,78 +3,84 @@
 <div class="col-sm-12">
     <div class="col-sm-6">
         <form class="form-horizontal" ng-submit="submitLiquidForm()" role="form">
-            <div class="form-group">
-                <label for="amount" class="col-sm-7 control-label" title="Amount to make">Amount:</label>
-                <div class="col-sm-5 recipe-input">
-                    <input type="number" id="amount" class="form-control" ng-model="liquid.amount" />
-                    <span class="input-group-addon">ml</span>
-                </div>
+            <fieldset>
+                <legend>Target</legend>
+                <div class="form-group">
+                    <label for="amount" class="col-sm-7 control-label" title="Amount to make">Amount:</label>
+                    <div class="col-sm-5 recipe-input">
+                        <input type="number" id="amount" class="form-control" ng-model="liquid.amount" />
+                        <span class="input-group-addon">ml</span>
+                    </div>
 
-            </div>
-            <div class="form-group">
-                <label for="desired_strength" class="col-sm-7 control-label">Desired strength</label>
-                <div class="col-sm-5 recipe-input">
-                    <input type="number" max="100" min="0" id="desired_strength" class="form-control" ng-model="liquid.desired_strength" />
-                    <span class="input-group-addon">mg</span>
                 </div>
+                <div class="form-group">
+                    <label for="desired_strength" class="col-sm-7 control-label">Desired strength</label>
+                    <div class="col-sm-5 recipe-input">
+                        <input type="number" max="100" min="0" id="desired_strength" class="form-control" ng-model="liquid.desired_strength" />
+                        <span class="input-group-addon">mg</span>
+                    </div>
 
-            </div>
-            <div class="form-group">
-                <label for="wvpga" class="col-sm-7 control-label">Diluent</label>
-                <div class="col-sm-5 recipe-input">
-                    <input type="number" max="100" min="0" id="wvpga" class="form-control" ng-model="liquid.wvpga" />
-                    <span class="input-group-addon">%</span>
                 </div>
+                <div class="form-group">
+                    <label for="pg" class="col-sm-7 control-label">Desired PG</label>
+                    <div class="col-sm-5 recipe-input">
+                        <input type="number" max="100" min="0" id="pg" class="form-control" ng-model="liquid.pg" />
+                        <span class="input-group-addon">%</span>
+                    </div>
 
-            </div>
-            <div class="form-group">
-                <label for="pg" class="col-sm-7 control-label">Desired PG</label>
-                <div class="col-sm-5 recipe-input">
-                    <input type="number" max="100" min="0" id="pg" class="form-control" ng-model="liquid.pg" />
-                    <span class="input-group-addon">%</span>
                 </div>
+                <div class="form-group">
+                    <label for="vg" class="col-sm-7 control-label">Desired VG</label>
+                    <div class="col-sm-5 recipe-input">
+                        <input type="number" max="100" min="0" id="vg" class="form-control" placeholder="%" ng-model="liquid.vg" />
+                        <span class="input-group-addon">%</span>
+                    </div>
 
-            </div>
-            <div class="form-group">
-                <label for="vg" class="col-sm-7 control-label">Desired VG</label>
-                <div class="col-sm-5 recipe-input">
-                    <input type="number" max="100" min="0" id="vg" class="form-control" placeholder="%" ng-model="liquid.vg" />
-                    <span class="input-group-addon">%</span>
                 </div>
+            </fieldset>
+            <fieldset>
+                <legend>Base</legend>
+                <div class="form-group">
+                    <label for="wvpga" class="col-sm-7 control-label">Diluent</label>
+                    <div class="col-sm-5 recipe-input">
+                        <input type="number" max="100" min="0" id="wvpga" class="form-control" ng-model="liquid.wvpga" />
+                        <span class="input-group-addon">%</span>
+                    </div>
 
-            </div>
-            <div class="form-group">
-                <label for="nicotine_strength" class="col-sm-7 control-label">Nicotine strength</label>
-                <div class="col-sm-5 recipe-input">
-                    <input type="number" max="100" min="0" id="nicotine_strength" class="form-control" placeholder="%" ng-model="liquid.nicotine.strength" />
-                    <span class="input-group-addon">mg</span>
                 </div>
+                <div class="form-group">
+                    <label for="nicotine_strength" class="col-sm-7 control-label">Nicotine strength</label>
+                    <div class="col-sm-5 recipe-input">
+                        <input type="number" max="100" min="0" id="nicotine_strength" class="form-control" placeholder="%" ng-model="liquid.nicotine.strength" />
+                        <span class="input-group-addon">mg</span>
+                    </div>
 
-            </div>
-            <div class="form-group">
-                <label for="pg_nicotine" class="col-sm-7 control-label">PG-content of nicotine</label>
-                <div class="col-sm-5 recipe-input">
-                    <input type="number" max="100" min="0" id="pg_nicotine" class="form-control" placeholder="%" ng-model="liquid.nicotine.pg" />
-                    <span class="input-group-addon">%</span>
                 </div>
+                <div class="form-group">
+                    <label for="pg_nicotine" class="col-sm-7 control-label">PG-content of nicotine</label>
+                    <div class="col-sm-5 recipe-input">
+                        <input type="number" max="100" min="0" id="pg_nicotine" class="form-control" placeholder="%" ng-model="liquid.nicotine.pg" />
+                        <span class="input-group-addon">%</span>
+                    </div>
 
-            </div>
-            <div class="form-group">
-                <label for="vg_nicotine" class="col-sm-7 control-label">VG-content of nicotine</label>
-                <div class="col-sm-5 recipe-input">
-                    <input type="number" max="100" min="0" id="vg_nicotine" class="form-control" placeholder="%" ng-model="liquid.nicotine.vg" />
-                    <span class="input-group-addon">%</span>
                 </div>
+                <div class="form-group">
+                    <label for="vg_nicotine" class="col-sm-7 control-label">VG-content of nicotine</label>
+                    <div class="col-sm-5 recipe-input">
+                        <input type="number" max="100" min="0" id="vg_nicotine" class="form-control" placeholder="%" ng-model="liquid.nicotine.vg" />
+                        <span class="input-group-addon">%</span>
+                    </div>
 
-            </div>
-            <div class="form-group">
-                <label for="sleep_time" class="col-sm-7 control-label">Suggested steep time</label>
-                <div class="col-sm-5 recipe-input">
-                    <input type="number" id="sleep_time" class="form-control" placeholder="Days..." ng-model="liquid.sleep_time" />
-                    <span class="input-group-addon">days</span>
                 </div>
+                <div class="form-group">
+                    <label for="sleep_time" class="col-sm-7 control-label">Suggested steep time</label>
+                    <div class="col-sm-5 recipe-input">
+                        <input type="number" id="sleep_time" class="form-control" placeholder="Days..." ng-model="liquid.sleep_time" />
+                        <span class="input-group-addon">days</span>
+                    </div>
 
-            </div>
+                </div>
+            </fieldset>
 
             <div class="flavor-fields">
                 <div ng-repeat="item in flavorFields">
