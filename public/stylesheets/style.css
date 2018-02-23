@@ -2,11 +2,15 @@
 body {
   background: #e2e2e2;
 }
-/* line 6, style.scss */
+/* line 7, style.scss */
+body .flavor-fields .form-group {
+  margin: 15px 0;
+}
+/* line 11, style.scss */
 body .link {
   cursor: pointer;
 }
-/* line 9, style.scss */
+/* line 14, style.scss */
 body fieldset {
   border: 1px groove #ddd !important;
   padding: 0 1.4em 1.4em 1.4em !important;
@@ -14,7 +18,7 @@ body fieldset {
   -webkit-box-shadow: 0px 0px 0px 0px #000;
   box-shadow: 0px 0px 0px 0px #000;
 }
-/* line 16, style.scss */
+/* line 21, style.scss */
 body fieldset legend {
   font-size: 1.2em !important;
   font-weight: bold !important;
@@ -23,25 +27,25 @@ body fieldset legend {
   padding: 0 10px;
   border-bottom: none;
 }
-/* line 25, style.scss */
+/* line 30, style.scss */
 body h2 {
   text-align: center;
 }
-/* line 29, style.scss */
+/* line 34, style.scss */
 body .flavor-fields .col-sm-4 {
   padding-left: 6px;
   padding-right: 6px;
 }
-/* line 34, style.scss */
+/* line 39, style.scss */
 body .input-group-addon {
   font-size: 12px;
   padding: 6px 5px;
 }
-/* line 38, style.scss */
+/* line 43, style.scss */
 body .recipe-input {
   display: table;
 }
-/* line 42, style.scss */
+/* line 47, style.scss */
 body .button {
   display: inline-block;
   width: 115px;
@@ -52,7 +56,7 @@ body .button {
   color: white;
   font-weight: bold;
 }
-/* line 53, style.scss */
+/* line 58, style.scss */
 body #loader {
   position: fixed;
   left: 0;

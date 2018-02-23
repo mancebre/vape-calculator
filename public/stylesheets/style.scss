@@ -3,6 +3,11 @@ $secondaryColor: #c0c600;
 $loader: '/app/images/loading.gif';
 
 body {
+  .flavor-fields {
+    .form-group {
+      margin: 15px 0;
+    }
+  }
   .link {
     cursor: pointer;
   }

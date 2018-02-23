@@ -109,7 +109,7 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', functio
         // If we have 100 mg of nicotine in 100 ml of nicotine juice
         // we need to add 10 ml of nicotine juice to have 10 mg strength.
         var nicotine_juice_procentage = $scope.liquid.desired_strength / ($scope.liquid.nicotine.strength / 100);
-        $scope.ingridients.nicotine_juice = (nicotine_juice_procentage / 100) * $scope.liquid.amount;
+        $scope.ingridients.nicotine_juice = $scope.getAmountFromPercentage(nicotine_juice_procentage);
 
         // Calculate water amount
         $scope.ingridients.wvpga = $scope.getAmountFromPercentage($scope.liquid.wvpga);
