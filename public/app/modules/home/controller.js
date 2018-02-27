@@ -38,7 +38,7 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', functio
             percentage: 0,
             amount:     0,
             type:       'pg',
-            name:       'Flavor ' + $scope.flavorsCount
+            name:       'Flavor ' + ($scope.flavorsCount + 1)
         };
         $scope.flavorsCount++
     };
