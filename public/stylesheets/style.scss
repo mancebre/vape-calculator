@@ -3,13 +3,21 @@ $secondaryColor: #c0c600;
 $loader: '/app/images/loading.gif';
 
 body {
+  .add-flavor {
+    margin-bottom: 25px;
+  }
   .flavor-fields {
-    .form-group {
-      margin: 15px 0;
+    fieldset {
+      position: relative;
     }
   }
   .link {
     cursor: pointer;
+    text-align: right;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: red;
   }
   fieldset {
     border: 1px groove #ddd !important;

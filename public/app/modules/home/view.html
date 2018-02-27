@@ -83,29 +83,37 @@
             </fieldset>
 
             <div class="flavor-fields">
-                <div ng-repeat="(key, value) in liquid.flavor">
+                <fieldset ng-repeat="(key, value) in liquid.flavor">
+                    <legend>{{liquid.flavor[key]['name']}}</legend>
                     <div class="form-group">
-                        <div class="col-sm-1 link" ng-click="removeField(key, value);">
-                            <i class="fa fa-trash-o" aria-hidden="true"></i>
-                        </div>
-                        <div class="col-sm-3">
+                        <label class="col-sm-7 control-label">Name</label>
+                        <div class="col-sm-5">
                             <input type="text" id="{{key}}_text" class="form-control" ng-model="liquid.flavor[key]['name']" placeholder="Flavor {{key}}" />
                         </div>
-                        <div class="col-sm-4 recipe-input">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-7 control-label">Percentage</label>
+                        <div class="col-sm-5 recipe-input">
                             <input type="number" max="100" min="0" id="{{key}}_number" class="form-control" ng-model="liquid.flavor[key]['percentage']" />
                             <span class="input-group-addon">%</span>
                         </div>
-                        <div class="col-sm-4">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-7 control-label">Flavor type</label>
+                        <div class="col-sm-5">
                             <select class="form-control" ng-model="liquid.flavor[key]['type']">
                                 <option value="pg">PG</option>
                                 <option value="vg">VG</option>
                             </select>
                         </div>
                     </div>
-                </div>
+                    <div class="form-group link" ng-click="removeField(key, value);">
+                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    </div>
+                </fieldset>
             </div>
 
-            <input type="button" value="Add flavor" class="btn btn-primary col-sm-offset-9" ng-click="addField();" />
+            <input type="button" value="Add flavor" class="add-flavor btn btn-primary col-sm-offset-9" ng-click="addField();" />
 
             <!--<div class="col-sm-12 form-group">-->
                 <!--<label for="comment">Comment:</label>-->
