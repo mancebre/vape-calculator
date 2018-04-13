@@ -4,3 +4,4 @@ public/components
 *.css.map
 /public/stylesheets/.sass-cache/
 .sass-cache/
+build
