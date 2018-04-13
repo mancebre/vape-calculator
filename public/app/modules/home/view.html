@@ -144,11 +144,14 @@
                     </tr>
                     <tr ng-if="key !== 'flavor'" ng-repeat="(key, value) in ingridients">
                         <td> {{ niceNames[key] }} </td>
-                        <td> {{ value }} </td>
+                        <td> {{ value | number : 2 }} </td>
+                    </tr>
+                    <tr ng-if="ingridients.flavor.length">
+                        <th>Flavor name</th><th>ML</th>
                     </tr>
                     <tr ng-repeat="flavor in ingridients.flavor">
                         <td> {{ flavor.name }} </td>
-                        <td> {{ flavor.amount }} </td>
+                        <td> {{ flavor.amount | number : 2 }} </td>
                     </tr>
                 </table>
             </fieldset>
