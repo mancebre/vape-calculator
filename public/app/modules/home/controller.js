@@ -29,6 +29,15 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', functio
         amountMl:       0
     };
 
+    // Nice names for ingredients
+    $scope.niceNames ={
+        nicotine_juice: "Nicotine",
+        pg_dilutant:    "PG",
+        vg_dilutant:    "VG",
+        wvpga:          "Dilutant",
+        amountMl:       "Total amount"
+    };
+
     $scope.flavorsCount = 0;
     $scope.flavorFields = [];
 

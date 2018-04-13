@@ -143,7 +143,7 @@
                         <th>Name</th><th>ML</th>
                     </tr>
                     <tr ng-if="key !== 'flavor'" ng-repeat="(key, value) in ingridients">
-                        <td> {{ key }} </td>
+                        <td> {{ niceNames[key] }} </td>
                         <td> {{ value }} </td>
                     </tr>
                     <tr ng-repeat="flavor in ingridients.flavor">
