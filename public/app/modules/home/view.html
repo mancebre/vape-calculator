@@ -153,7 +153,7 @@
                         <th>Name</th><th>ML</th>
                     </tr>
                     <tr ng-show="vapeReady">
-                        <td>{{ niceNames['base'] }}</td>
+                        <td>{{ niceNames['base'] }} <br>(Nicotine: {{liquid.nicotine.strength}} mg, PG/VG: {{liquid.nicotine.pg}}/{{liquid.nicotine.vg}})</td>
                         <td>{{ ingridients.base | number : 2 }}</td>
                     </tr>
                     <tr ng-hide="vapeReady">

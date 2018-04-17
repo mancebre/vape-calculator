@@ -110,6 +110,19 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', functio
         $scope.liquid.nicotine.vg = 100 - $scope.liquid.nicotine.pg;
     }, true);
 
+    // Vape- omly users don't need 100% PG base!
+    $scope.$watch('vapeReady', function(newVal, oldVal){
+        if($scope.vapeReady) {
+            $scope.liquid.nicotine.vg = 50;
+            $scope.liquid.nicotine.pg = 50;
+            $scope.liquid.nicotine.strength = 6;
+        } else {
+            $scope.liquid.nicotine.vg = 0;
+            $scope.liquid.nicotine.pg = 100;
+            $scope.liquid.nicotine.strength = 100;
+        }
+    }, true);
+
     $scope.$watch('liquid', function(newVal, oldVal){
         $scope.calculateIngredients();
         $scope.calculateTotal();
