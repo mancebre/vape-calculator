@@ -13,6 +13,7 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', functio
             pg:         100,
             vg:         0
         },
+        base:               0,
         flavor:             [],
         sleep_time:         7,
         comment:            ""
@@ -21,6 +22,7 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', functio
 
     // Ingredients to be calculated
     $scope.ingridients = {
+        base:           0,
         nicotine_juice: 0,
         pg_dilutant:    0,
         vg_dilutant:    0,
@@ -35,11 +37,14 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', functio
         pg_dilutant:    "PG",
         vg_dilutant:    "VG",
         wvpga:          "Dilutant",
+        base:           "Base",
         amountMl:       "Total amount"
     };
 
     $scope.flavorsCount = 0;
     $scope.flavorFields = [];
+    // Use vape-ready nicotine base
+    $scope.vapeReady = false;
 
     $scope.addField = function(){
         $scope.flavorFields.push($scope.flavorsCount);
@@ -90,6 +95,7 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', functio
 
     $scope.$watch('liquid.vg', function(newVal, oldVal){
         $scope.liquid.pg = 100 - $scope.liquid.vg;
+        $scope.liquid.base = $scope.liquid.pg + $scope.liquid.vg;
     }, true);
 
     $scope.$watch('liquid.pg', function(newVal, oldVal){
@@ -154,6 +160,9 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', functio
             }
 
         });
+
+        // Calculate vape-base
+        $scope.ingridients.base = $scope.ingridients.vg_dilutant + $scope.ingridients.pg_dilutant + $scope.ingridients.nicotine_juice;
     };
 
     $scope.getAmountFromPercentage = function (percentage) {
