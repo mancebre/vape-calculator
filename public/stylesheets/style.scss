@@ -74,4 +74,25 @@ body {
     opacity: 0.7;
     background: #333 url($loader) no-repeat center center;
   }
+
+  .form-group {
+    input[type="checkbox"] {
+      display: none;
+    }
+    input[type="checkbox"] + .btn-group > label span {
+      width: 20px;
+    }
+    input[type="checkbox"] + .btn-group > label span:first-child {
+      display: none;
+    }
+    input[type="checkbox"] + .btn-group > label span:last-child {
+      display: inline-block;
+    }
+    input[type="checkbox"]:checked + .btn-group > label span:first-child {
+      display: inline-block;
+    }
+    input[type="checkbox"]:checked + .btn-group > label span:last-child {
+      display: none;
+    }
+  }
 }
