@@ -8,7 +8,7 @@
                 <div class="form-group">
                     <label for="fancy-checkbox-default" class="col-sm-7 control-label active">Use vape-ready nicotine base</label>
                     <input type="checkbox" name="fancy-checkbox-default" id="fancy-checkbox-default" autocomplete="off" ng-model="vapeReady" />
-                    <div class="col-sm-5 recipe-input btn-group">
+                    <div class="col-sm-5 btn-group">
                         <label for="fancy-checkbox-default" class="btn btn-default">
                             <span class="glyphicon glyphicon-ok"></span>
                             <span> </span>
@@ -31,19 +31,26 @@
                     </div>
 
                 </div>
+
                 <div class="form-group" ng-hide="vapeReady">
-                    <label for="pg" class="col-sm-7 control-label">Desired PG</label>
-                    <div class="col-sm-5 recipe-input">
-                        <input type="number" max="100" min="0" id="pg" class="form-control" ng-model="liquid.pg" />
-                        <span class="input-group-addon">%</span>
+                    <label class="col-sm-7 control-label">Desired PG (%)</label>
+                    <div class="col-sm-5">
+                        <rzslider
+                                rz-slider-model="liquid.pg"
+                                rz-slider-options="slider.options">
+
+                        </rzslider>
                     </div>
 
                 </div>
                 <div class="form-group" ng-hide="vapeReady">
-                    <label for="vg" class="col-sm-7 control-label">Desired VG</label>
-                    <div class="col-sm-5 recipe-input">
-                        <input type="number" max="100" min="0" id="vg" class="form-control" placeholder="%" ng-model="liquid.vg" />
-                        <span class="input-group-addon">%</span>
+                    <label class="col-sm-7 control-label">Desired VG (%)</label>
+                    <div class="col-sm-5">
+                        <rzslider
+                                rz-slider-model="liquid.vg"
+                                rz-slider-options="slider.options">
+
+                        </rzslider>
                     </div>
 
                 </div>
@@ -51,34 +58,46 @@
             <fieldset>
                 <legend>Base</legend>
                 <div class="form-group">
-                    <label for="nicotine_strength" class="col-sm-7 control-label">Nicotine strength</label>
-                    <div class="col-sm-5 recipe-input">
-                        <input type="number" max="100" min="0" id="nicotine_strength" class="form-control" placeholder="%" ng-model="liquid.nicotine.strength" />
-                        <span class="input-group-addon">mg</span>
+                    <label class="col-sm-7 control-label">Nicotine strength (mg)</label>
+                    <div class="col-sm-5">
+                        <rzslider
+                                rz-slider-model="liquid.nicotine.strength"
+                                rz-slider-options="slider.options">
+
+                        </rzslider>
                     </div>
 
                 </div>
                 <div class="form-group">
-                    <label for="pg_nicotine" class="col-sm-7 control-label">PG-content of nicotine</label>
-                    <div class="col-sm-5 recipe-input">
-                        <input type="number" max="100" min="0" id="pg_nicotine" class="form-control" placeholder="%" ng-model="liquid.nicotine.pg" />
-                        <span class="input-group-addon">%</span>
+                    <label class="col-sm-7 control-label">PG-content of nicotine (%)</label>
+                    <div class="col-sm-5">
+                        <rzslider
+                                rz-slider-model="liquid.nicotine.pg"
+                                rz-slider-options="slider.options">
+
+                        </rzslider>
                     </div>
 
                 </div>
                 <div class="form-group">
-                    <label for="vg_nicotine" class="col-sm-7 control-label">VG-content of nicotine</label>
-                    <div class="col-sm-5 recipe-input">
-                        <input type="number" max="100" min="0" id="vg_nicotine" class="form-control" placeholder="%" ng-model="liquid.nicotine.vg" />
-                        <span class="input-group-addon">%</span>
+                    <label class="col-sm-7 control-label">VG-content of nicotine (%)</label>
+                    <div class="col-sm-5">
+                        <rzslider
+                                rz-slider-model="liquid.nicotine.vg"
+                                rz-slider-options="slider.options">
+
+                        </rzslider>
                     </div>
 
                 </div>
                 <div class="form-group">
-                    <label for="wvpga" class="col-sm-7 control-label">Diluent</label>
-                    <div class="col-sm-5 recipe-input">
-                        <input type="number" max="100" min="0" id="wvpga" class="form-control" ng-model="liquid.wvpga" />
-                        <span class="input-group-addon">%</span>
+                    <label class="col-sm-7 control-label">Diluent</label>
+                    <div class="col-sm-5">
+                        <rzslider
+                                rz-slider-model="liquid.wvpga"
+                                rz-slider-options="slider.options">
+
+                        </rzslider>
                     </div>
 
                 </div>
@@ -103,9 +122,12 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-7 control-label">Percentage</label>
-                        <div class="col-sm-5 recipe-input">
-                            <input type="number" max="100" min="0" id="{{key}}_number" class="form-control" ng-model="liquid.flavor[key]['percentage']" />
-                            <span class="input-group-addon">%</span>
+                        <div class="col-sm-5">
+                            <rzslider
+                                    rz-slider-model="liquid.flavor[key]['percentage']"
+                                    rz-slider-options="slider.options">
+
+                            </rzslider>
                         </div>
                     </div>
                     <div class="form-group">

@@ -67,6 +67,14 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', functio
     //4. copy originalLiquid to liquid. liquid will be bind to a form
     $scope.liquid = angular.copy($scope.originalLiquid);
 
+    $scope.slider = {
+        value: $scope.liquid.pg,
+        options: {
+            floor: 0,
+            ceil: 100
+        }
+    };
+
     //5. create submitStudentForm() function. This will be called when user submits the form
     $scope.submitLiquidForm = function () {
         console.log($scope.liquid);
