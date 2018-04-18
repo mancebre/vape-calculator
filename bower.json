@@ -16,5 +16,7 @@
     "font-awesome": "^4.6.3",
     "angular-bootstrap": "^2.5.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "angular-translate": "^2.17.1"
+  }
 }

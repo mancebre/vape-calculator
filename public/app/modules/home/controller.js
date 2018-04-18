@@ -1,6 +1,10 @@
 angular.module('gelApp.home', []);
 
-angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', function ($scope, $http) {
+angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$translate', function ($scope, $http, $translate) {
+
+    $scope.changeLanguage = function (langKey) {
+        $translate.use(langKey);
+    };
 
     $scope.originalLiquid = {
         amount:             100,

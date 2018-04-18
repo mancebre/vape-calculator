@@ -1,12 +1,12 @@
-<h2>Recipe</h2>
+<h2 translate="HEADLINE"></h2>
 
 <div class="col-sm-12">
     <div class="col-sm-6">
         <form class="form-horizontal" ng-submit="submitLiquidForm()" role="form">
             <fieldset>
-                <legend>Target</legend>
+                <legend translate="TARGET">Target</legend>
                 <div class="form-group">
-                    <label for="fancy-checkbox-default" class="col-sm-7 control-label active">Use vape-ready nicotine base</label>
+                    <label for="fancy-checkbox-default" class="col-sm-7 control-label active" translate="USE_VAPE_READY">Use vape-ready nicotine base</label>
                     <input type="checkbox" name="fancy-checkbox-default" id="fancy-checkbox-default" autocomplete="off" ng-model="vapeReady" />
                     <div class="col-sm-5 recipe-input btn-group">
                         <label for="fancy-checkbox-default" class="btn btn-default">
@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="amount" class="col-sm-7 control-label" title="Amount to make">Amount:</label>
+                    <label for="amount" class="col-sm-7 control-label" title="Amount to make" translate="AMOUNT">Amount</label>
                     <div class="col-sm-5 recipe-input">
                         <input type="number" id="amount" class="form-control" ng-model="liquid.amount" />
                         <span class="input-group-addon">ml</span>
@@ -24,7 +24,7 @@
 
                 </div>
                 <div class="form-group" ng-hide="vapeReady">
-                    <label for="desired_strength" class="col-sm-7 control-label">Desired strength</label>
+                    <label for="desired_strength" class="col-sm-7 control-label" translate="DESIRED_STRENGTH">Desired strength</label>
                     <div class="col-sm-5 recipe-input">
                         <input type="number" max="100" min="0" id="desired_strength" class="form-control" ng-model="liquid.desired_strength" />
                         <span class="input-group-addon">mg</span>
@@ -32,7 +32,7 @@
 
                 </div>
                 <div class="form-group" ng-hide="vapeReady">
-                    <label for="pg" class="col-sm-7 control-label">Desired PG</label>
+                    <label for="pg" class="col-sm-7 control-label" translate="DESIRED_PG">Desired PG</label>
                     <div class="col-sm-5 recipe-input">
                         <input type="number" max="100" min="0" id="pg" class="form-control" ng-model="liquid.pg" />
                         <span class="input-group-addon">%</span>
@@ -40,7 +40,7 @@
 
                 </div>
                 <div class="form-group" ng-hide="vapeReady">
-                    <label for="vg" class="col-sm-7 control-label">Desired VG</label>
+                    <label for="vg" class="col-sm-7 control-label" translate="DESIRED_VG">Desired VG</label>
                     <div class="col-sm-5 recipe-input">
                         <input type="number" max="100" min="0" id="vg" class="form-control" placeholder="%" ng-model="liquid.vg" />
                         <span class="input-group-addon">%</span>
@@ -49,9 +49,9 @@
                 </div>
             </fieldset>
             <fieldset>
-                <legend>Base</legend>
+                <legend translate="BASE">Base</legend>
                 <div class="form-group">
-                    <label for="nicotine_strength" class="col-sm-7 control-label">Nicotine strength</label>
+                    <label for="nicotine_strength" class="col-sm-7 control-label" translate="NICOTINE_STRENGTH">Nicotine strength</label>
                     <div class="col-sm-5 recipe-input">
                         <input type="number" max="100" min="0" id="nicotine_strength" class="form-control" placeholder="%" ng-model="liquid.nicotine.strength" />
                         <span class="input-group-addon">mg</span>
@@ -59,7 +59,7 @@
 
                 </div>
                 <div class="form-group">
-                    <label for="pg_nicotine" class="col-sm-7 control-label">PG-content of nicotine</label>
+                    <label for="pg_nicotine" class="col-sm-7 control-label" translate="PG_CONTENT_OF_NICOTINE">PG-content of nicotine</label>
                     <div class="col-sm-5 recipe-input">
                         <input type="number" max="100" min="0" id="pg_nicotine" class="form-control" placeholder="%" ng-model="liquid.nicotine.pg" />
                         <span class="input-group-addon">%</span>
@@ -67,7 +67,7 @@
 
                 </div>
                 <div class="form-group">
-                    <label for="vg_nicotine" class="col-sm-7 control-label">VG-content of nicotine</label>
+                    <label for="vg_nicotine" class="col-sm-7 control-label" translate="VG_CONTENT_OF_NICOTINE">VG-content of nicotine</label>
                     <div class="col-sm-5 recipe-input">
                         <input type="number" max="100" min="0" id="vg_nicotine" class="form-control" placeholder="%" ng-model="liquid.nicotine.vg" />
                         <span class="input-group-addon">%</span>
@@ -75,7 +75,7 @@
 
                 </div>
                 <div class="form-group">
-                    <label for="wvpga" class="col-sm-7 control-label">Diluent</label>
+                    <label for="wvpga" class="col-sm-7 control-label" translate="DILUENT">Diluent</label>
                     <div class="col-sm-5 recipe-input">
                         <input type="number" max="100" min="0" id="wvpga" class="form-control" ng-model="liquid.wvpga" />
                         <span class="input-group-addon">%</span>
@@ -83,7 +83,7 @@
 
                 </div>
                 <div class="form-group">
-                    <label for="sleep_time" class="col-sm-7 control-label">Suggested steep time</label>
+                    <label for="sleep_time" class="col-sm-7 control-label" translate="SUGGESTED_STEP_TIME">Suggested steep time</label>
                     <div class="col-sm-5 recipe-input">
                         <input type="number" id="sleep_time" class="form-control" placeholder="Days..." ng-model="liquid.sleep_time" />
                         <span class="input-group-addon">days</span>
@@ -96,20 +96,20 @@
                 <fieldset ng-repeat="(key, value) in liquid.flavor">
                     <legend>{{liquid.flavor[key]['name']}}</legend>
                     <div class="form-group">
-                        <label class="col-sm-7 control-label">Name</label>
+                        <label class="col-sm-7 control-label" translate="NAME">Name</label>
                         <div class="col-sm-5">
                             <input type="text" id="{{key}}_text" class="form-control" ng-model="liquid.flavor[key]['name']" placeholder="Flavor {{key}}" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-7 control-label">Percentage</label>
+                        <label class="col-sm-7 control-label" translate="PERCENTAGE">Percentage</label>
                         <div class="col-sm-5 recipe-input">
                             <input type="number" max="100" min="0" id="{{key}}_number" class="form-control" ng-model="liquid.flavor[key]['percentage']" />
                             <span class="input-group-addon">%</span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-7 control-label">Flavor type</label>
+                        <label class="col-sm-7 control-label" translate="FLAVOR_TYPE">Flavor type</label>
                         <div class="col-sm-5">
                             <select class="form-control" ng-model="liquid.flavor[key]['type']">
                                 <option value="pg">PG</option>
@@ -123,7 +123,7 @@
                 </fieldset>
             </div>
 
-            <input type="button" value="Add flavor" class="add-flavor btn btn-primary col-sm-offset-9" ng-click="addField();" />
+            <input type="button" value="Add flavor" class="add-flavor btn btn-primary col-sm-offset-9" ng-click="addField();" translate="BUTTON_ADD_FLAVOR" />
 
             <!--<div class="col-sm-12 form-group">-->
                 <!--<label for="comment">Comment:</label>-->
@@ -147,29 +147,29 @@
             <!--</table>-->
 
             <fieldset>
-                <legend>Ingredients</legend>
+                <legend translate="INGREDIENTS">Ingredients</legend>
                 <table class="table">
                     <tr>
-                        <th>Name</th><th>ML</th>
+                        <th translate="NAME">Name</th><th>ML</th>
                     </tr>
                     <tr ng-show="vapeReady">
-                        <td>{{ niceNames['base'] }} <br>(Nicotine: {{liquid.nicotine.strength}} mg, PG/VG: {{liquid.nicotine.pg}}/{{liquid.nicotine.vg}})</td>
+                        <td>{{ niceNames['base'] }} <br>(<span translate="NICOTINE">Nicotine</span>: {{liquid.nicotine.strength}} mg, PG/VG: {{liquid.nicotine.pg}}/{{liquid.nicotine.vg}})</td>
                         <td>{{ ingridients.base | number : 2 }}</td>
                     </tr>
                     <tr ng-hide="vapeReady">
-                        <td>{{ niceNames['nicotine_juice'] }}</td>
+                        <td translate="NICOTINE">{{ niceNames['nicotine_juice'] }}</td>
                         <td>{{ ingridients.nicotine_juice | number : 2 }}</td>
                     </tr>
                     <tr ng-hide="vapeReady">
-                        <td>{{ niceNames['pg_dilutant'] }}</td>
+                        <td translate="PG">{{ niceNames['pg_dilutant'] }}</td>
                         <td>{{ ingridients.pg_dilutant | number : 2 }}</td>
                     </tr>
                     <tr ng-hide="vapeReady">
-                        <td>{{ niceNames['vg_dilutant'] }}</td>
+                        <td translate="VG">{{ niceNames['vg_dilutant'] }}</td>
                         <td>{{ ingridients.vg_dilutant | number : 2 }}</td>
                     </tr>
                     <tr>
-                        <td>{{ niceNames['wvpga'] }}</td>
+                        <td translate="DILUENT">{{ niceNames['wvpga'] }}</td>
                         <td>{{ ingridients.wvpga | number : 2 }}</td>
                     </tr>
                     <tr ng-if="ingridients.flavor.length">
@@ -180,11 +180,17 @@
                         <td> {{ flavor.amount | number : 2 }} </td>
                     </tr>
                     <tr>
-                        <td>{{ niceNames['amountMl'] }}</td>
+                        <td translate="TOTAL_AMOUNT">{{ niceNames['amountMl'] }}</td>
                         <td>{{ ingridients.amountMl | number : 2 }}</td>
                     </tr>
                 </table>
             </fieldset>
+                <legend translate="TRANSLATE">Translate</legend>
+
+                <fieldset>
+                    <button class="btn btn-primary" ng-click="changeLanguage('rs')" translate="BUTTON_LANG_RS"></button>
+                    <button class="btn btn-primary" ng-click="changeLanguage('en')" translate="BUTTON_LANG_EN"></button>
+                </fieldset>
         </div>
     </div>
 </div>
