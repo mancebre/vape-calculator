@@ -36,25 +36,29 @@ body fieldset legend {
   padding: 0 10px;
   border-bottom: none;
 }
-/* line 38, style.scss */
+/* line 39, style.scss */
+body fieldset .rzslider .rz-pointer {
+  background-color: #eeeeee;
+}
+/* line 44, style.scss */
 body h2 {
   text-align: center;
 }
-/* line 42, style.scss */
+/* line 48, style.scss */
 body .flavor-fields .col-sm-4 {
   padding-left: 6px;
   padding-right: 6px;
 }
-/* line 47, style.scss */
+/* line 53, style.scss */
 body .input-group-addon {
   font-size: 12px;
   padding: 6px 5px;
 }
-/* line 51, style.scss */
+/* line 57, style.scss */
 body .recipe-input {
   display: table;
 }
-/* line 55, style.scss */
+/* line 61, style.scss */
 body .button {
   display: inline-block;
   width: 115px;
@@ -65,7 +69,7 @@ body .button {
   color: white;
   font-weight: bold;
 }
-/* line 66, style.scss */
+/* line 72, style.scss */
 body #loader {
   position: fixed;
   left: 0;
@@ -77,27 +81,27 @@ body #loader {
   opacity: 0.7;
   background: #333 url("/app/images/loading.gif") no-repeat center center;
 }
-/* line 79, style.scss */
+/* line 85, style.scss */
 body .form-group input[type="checkbox"] {
   display: none;
 }
-/* line 82, style.scss */
+/* line 88, style.scss */
 body .form-group input[type="checkbox"] + .btn-group > label span {
   width: 20px;
 }
-/* line 85, style.scss */
+/* line 91, style.scss */
 body .form-group input[type="checkbox"] + .btn-group > label span:first-child {
   display: none;
 }
-/* line 88, style.scss */
+/* line 94, style.scss */
 body .form-group input[type="checkbox"] + .btn-group > label span:last-child {
   display: inline-block;
 }
-/* line 91, style.scss */
+/* line 97, style.scss */
 body .form-group input[type="checkbox"]:checked + .btn-group > label span:first-child {
   display: inline-block;
 }
-/* line 94, style.scss */
+/* line 100, style.scss */
 body .form-group input[type="checkbox"]:checked + .btn-group > label span:last-child {
   display: none;
 }
