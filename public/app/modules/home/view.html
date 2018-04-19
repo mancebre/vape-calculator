@@ -58,13 +58,10 @@
             <fieldset>
                 <legend>Base</legend>
                 <div class="form-group">
-                    <label class="col-sm-7 control-label">Nicotine strength (mg)</label>
-                    <div class="col-sm-5">
-                        <rzslider
-                                rz-slider-model="liquid.nicotine.strength"
-                                rz-slider-options="slider.options">
-
-                        </rzslider>
+                    <label for="nicotine_strength" class="col-sm-7 control-label">Nicotine strength</label>
+                    <div class="col-sm-5 recipe-input">
+                        <input type="number" max="100" min="0" id="nicotine_strength" class="form-control" placeholder="%" ng-model="liquid.nicotine.strength" />
+                        <span class="input-group-addon">mg</span>
                     </div>
 
                 </div>
