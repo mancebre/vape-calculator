@@ -1,6 +1,9 @@
 $primaryColor: #e2e2e2;
 $secondaryColor: #c0c600;
 $loader: '/app/images/loading.gif';
+$navBackgroundColor1: #eee;
+$navBackgroundColor2: grey;
+$navColor: #464646;
 
 body {
   .add-flavor {
@@ -101,4 +104,79 @@ body {
       display: none;
     }
   }
+
+  // pen STYLES
+
+  .navbar-default {
+    background-color: $navBackgroundColor1;
+    border: none;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.175);
+    .btn-default {
+      color: $navBackgroundColor1;
+      &:hover {
+        background-color: $navBackgroundColor2;
+      }
+    }
+    .dropdown-menu {
+      border: none;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.175);
+      li > a {
+        &:hover {
+          background-color: $navBackgroundColor2;
+        }
+      }
+    }
+    .navbar-brand {
+      color: $navColor;
+      &:hover {
+        color: #000;
+      }
+      &:focus {
+        color: $navBackgroundColor2;
+      }
+    }
+    .navbar-nav > li > a {
+      color: $navColor;
+    }
+    .navbar-nav > .active > a {
+      color: $navBackgroundColor1;
+      background-color: $navColor;
+    }
+    .navbar-nav > .active > a:focus {
+      color: $navBackgroundColor1;
+      background-color: $navColor;
+    }
+    .navbar-nav > .active > a:hover {
+      color: $navBackgroundColor1;
+      background-color: $navBackgroundColor2;
+    }
+    .navbar-nav > .open > a {
+      color: $navBackgroundColor1;
+      background-color: $navColor;
+    }
+    .navbar-nav > .open > a:focus {
+      color: $navBackgroundColor1;
+      background-color: $navColor;
+    }
+    .navbar-nav > .open > a:hover {
+      color: $navBackgroundColor1;
+      background-color: $navBackgroundColor2;
+    }
+    .navbar-toggle {
+      border-color: $navColor;
+      .icon-bar {
+        background-color: $navColor;
+      }
+      &:hover {
+        background-color: $navBackgroundColor2;
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    .navbar {
+      border-radius: 0;
+    }
+  }
+
 }

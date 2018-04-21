@@ -1,6 +1,10 @@
 angular.module('gelApp.home', []);
 
-angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', function ($scope, $http) {
+angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$translate', function ($scope, $http, $translate) {
+
+    $scope.changeLanguage = function (langKey) {
+        $translate.use(langKey);
+    };
 
     $scope.originalLiquid = {
         amount:             100,
@@ -77,6 +81,7 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', functio
 
     //5. create submitStudentForm() function. This will be called when user submits the form
     $scope.submitLiquidForm = function () {
+        return false; // For now
         console.log($scope.liquid);
 
         var onSuccess = function (data, status, headers, config) {
