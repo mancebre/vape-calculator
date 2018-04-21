@@ -4,5 +4,8 @@ var App = angular.module("gelApp", [
 	'gelApp.home',
     'gelApp.test',
     'gelApp.contact',
-	'gelApp.plans'
+    'gelApp.plans',
+    'gelApp.DropdownController',
+    'ngAnimate',
+    'ui.bootstrap'
 ]);

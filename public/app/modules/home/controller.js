@@ -73,6 +73,7 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
 
     //5. create submitStudentForm() function. This will be called when user submits the form
     $scope.submitLiquidForm = function () {
+        return false; // For now
         console.log($scope.liquid);
 
         var onSuccess = function (data, status, headers, config) {

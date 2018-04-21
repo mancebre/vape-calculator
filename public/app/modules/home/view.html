@@ -59,7 +59,7 @@
 
                 </div>
                 <div class="form-group">
-                    <label for="pg_nicotine" class="col-sm-7 control-label" translate="PG_CONTENT_OF_NICOTINE">PG-content of nicotine</label>
+                    <label for="pg_nicotine" class="col-sm-7 control-label" translate="PG">PG-content of nicotine</label>
                     <div class="col-sm-5 recipe-input">
                         <input type="number" max="100" min="0" id="pg_nicotine" class="form-control" placeholder="%" ng-model="liquid.nicotine.pg" />
                         <span class="input-group-addon">%</span>
@@ -67,7 +67,7 @@
 
                 </div>
                 <div class="form-group">
-                    <label for="vg_nicotine" class="col-sm-7 control-label" translate="VG_CONTENT_OF_NICOTINE">VG-content of nicotine</label>
+                    <label for="vg_nicotine" class="col-sm-7 control-label" translate="VG">VG-content of nicotine</label>
                     <div class="col-sm-5 recipe-input">
                         <input type="number" max="100" min="0" id="vg_nicotine" class="form-control" placeholder="%" ng-model="liquid.nicotine.vg" />
                         <span class="input-group-addon">%</span>
@@ -123,7 +123,7 @@
                 </fieldset>
             </div>
 
-            <input type="button" value="Add flavor" class="add-flavor btn btn-primary col-sm-offset-9" ng-click="addField();" translate="BUTTON_ADD_FLAVOR" />
+            <button class="add-flavor btn btn-primary col-sm-offset-9" ng-click="addField();" translate="BUTTON_ADD_FLAVOR">Add flavor</button>
 
             <!--<div class="col-sm-12 form-group">-->
                 <!--<label for="comment">Comment:</label>-->
@@ -185,12 +185,6 @@
                     </tr>
                 </table>
             </fieldset>
-                <legend translate="TRANSLATE">Translate</legend>
-
-                <fieldset>
-                    <button class="btn btn-primary" ng-click="changeLanguage('rs')" translate="BUTTON_LANG_RS"></button>
-                    <button class="btn btn-primary" ng-click="changeLanguage('en')" translate="BUTTON_LANG_EN"></button>
-                </fieldset>
         </div>
     </div>
 </div>

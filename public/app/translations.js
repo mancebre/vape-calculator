@@ -23,7 +23,8 @@ var translationsEN = {
     BUTTON_LANG_EN: 'English',
     TRANSLATE: 'Translate',
     PERCENTAGE: 'Percentage',
-    FLAVOR_TYPE: 'Flavor type'
+    FLAVOR_TYPE: 'Flavor type',
+    LANGUAGE: 'Language'
 };
 
 var translationsRS= {
@@ -34,8 +35,8 @@ var translationsRS= {
     DESIRED_PG: 'Željeni PG',
     DESIRED_VG: 'Željeni VG',
     NICOTINE_STRENGTH: 'Jačina nikotina',
-    PG_CONTENT_OF_NICOTINE: 'PG sadržaj nikotina',
-    VG_CONTENT_OF_NICOTINE: 'vG sadržaj nikotina',
+    PG_CONTENT_OF_NICOTINE: 'PG u nikotinu',
+    VG_CONTENT_OF_NICOTINE: 'VG u nikotinu',
     DILUENT: 'Rastvarač',
     SUGGESTED_STEP_TIME: 'Predloženo vreme sazrevanja',
     NICOTINE: 'Nikotin',
@@ -51,7 +52,8 @@ var translationsRS= {
     BUTTON_LANG_EN: 'Engleski',
     TRANSLATE: 'Prevod',
     PERCENTAGE: 'Procenat',
-    FLAVOR_TYPE: 'Tip arome'
+    FLAVOR_TYPE: 'Tip arome',
+    LANGUAGE: 'Jezik'
 };
 
 angular.module('gelApp.home').config(['$translateProvider', function ($translateProvider) {
