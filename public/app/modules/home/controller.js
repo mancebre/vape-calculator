@@ -1,9 +1,29 @@
 angular.module('gelApp.home', []);
 
-angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$translate', function ($scope, $http, $translate) {
+angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$translate', '$uibModal', function ($scope, $http, $translate, $uibModal) {
 
     $scope.changeLanguage = function (langKey) {
         $translate.use(langKey);
+    };
+
+    // How many grams there is in 1 ml
+    $scope.weights = {
+        pg: 1.04,
+        vg: 1.26,
+        flavor: 1.04,
+        diluent: 1
+
+    };
+
+    $scope.editWeight = function(item){
+
+        var itemToEdit = item;
+
+        $uibModal.open({
+            controller: 'editWeightsCtrl',
+            templateUrl: 'app/modules/modals/view.html',
+            resolve: {item: angular.copy(itemToEdit)}
+        });
     };
 
     $scope.originalLiquid = {
@@ -90,6 +110,10 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
         $scope.ingridients.flavor.splice(id, 1);
         $scope.liquid.flavor.splice(id, 1);
         $scope.flavorsCount--
+    };
+
+    $scope.openWeightSettings = function() {
+
     };
 
     //4. copy originalLiquid to liquid. liquid will be bind to a form

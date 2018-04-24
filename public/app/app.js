@@ -6,6 +6,7 @@ var App = angular.module("gelApp", [
     'gelApp.contact',
     'gelApp.plans',
     'gelApp.DropdownController',
+    'gelApp.editWeights',
     'ngAnimate',
     'ui.bootstrap',
     'rzModule'

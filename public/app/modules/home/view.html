@@ -136,7 +136,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group link" ng-click="removeField(key, value);">
+                    <div class="form-group link delete" ng-click="removeField(key, value);">
                         <i class="fa fa-trash-o" aria-hidden="true"></i>
                     </div>
                 </fieldset>
@@ -217,6 +217,9 @@
                         <td>{{ ingridients.amount.percentage | number : 2 }}</td>
                     </tr>
                 </table>
+                <div class="form-group link" ng-click="editWeight(key, value);">
+                    <i class="fa fa-cog" aria-hidden="true"></i>
+                </div>
             </fieldset>
         </div>
     </div>
