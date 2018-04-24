@@ -7,22 +7,27 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
     };
 
     // How many grams there is in 1 ml
-    $scope.weights = {
-        pg: 1.04,
-        vg: 1.26,
-        flavor: 1.04,
-        diluent: 1
+    if(localStorage.getItem('weights') !== null) {
+        $scope.weights = JSON.parse(localStorage.getItem('weights'));
+    } else {
+        $scope.weights = {
+            pg: 1.04,
+            vg: 1.26,
+            flavor: 1.04,
+            diluent: 1
+        };
+    }
 
-    };
-
-    $scope.editWeight = function(item){
-
-        var itemToEdit = item;
+    $scope.editWeight = function(){
 
         $uibModal.open({
             controller: 'editWeightsCtrl',
             templateUrl: 'app/modules/modals/view.html',
-            resolve: {item: angular.copy(itemToEdit)}
+            resolve: {
+                item: function () {
+                    return $scope.weights;
+                }
+            }
         });
     };
 
