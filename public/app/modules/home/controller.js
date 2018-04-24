@@ -10,25 +10,36 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
     if(localStorage.getItem('weights') !== null) {
         $scope.weights = JSON.parse(localStorage.getItem('weights'));
     } else {
+        // Default values
         $scope.weights = {
             pg: 1.04,
             vg: 1.26,
             flavor: 1.04,
             diluent: 1
         };
+        localStorage.setItem('weights', JSON.stringify($scope.weights));
     }
 
     $scope.editWeight = function(){
-
+        // Open modal to edit weights
         $uibModal.open({
             controller: 'editWeightsCtrl',
             templateUrl: 'app/modules/modals/view.html',
+            backdrop: false,
             resolve: {
                 item: function () {
                     return $scope.weights;
                 }
             }
-        });
+        })
+            .result.then(function(result){
+                if(result) {
+                    $scope.weights = result;
+                }
+            }, function(res){
+                console.log(res);
+            }
+        );
     };
 
     $scope.originalLiquid = {
@@ -104,6 +115,7 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
         $scope.liquid.flavor[$scope.flavorsCount] = {
             percentage: 0,
             amount:     0,
+            grams:      0,
             type:       'pg',
             name:       'Flavor ' + ($scope.flavorsCount + 1)
         };
@@ -191,6 +203,13 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
 
     $scope.$watch('liquid', function(newVal, oldVal){
         $scope.calculateIngredients();
+        $scope.calculateGrams();
+        $scope.calculateTotal();
+    }, true);
+
+    $scope.$watch('weights', function(newVal, oldVal){
+        $scope.calculateIngredients();
+        $scope.calculateGrams();
         $scope.calculateTotal();
     }, true);
 
@@ -202,8 +221,6 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
         $scope.ingridients.pg_dilutant.percentage = $scope.liquid.pg;
 
         // Calculate nicotine juice.
-
-        //TODO I don't think this is 100% accurate!!!
         // If we have 100 mg of nicotine in 100 ml of nicotine juice
         // we need to add 10 ml of nicotine juice to have 10 mg strength.
         var nicotine_juice_procentage = $scope.liquid.desired_strength / ($scope.liquid.nicotine.strength / 100);
@@ -237,15 +254,18 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
             if(val.type === "vg") {
                 var removeFromVg = ($scope.liquid.amount / 100) * val.percentage;
                 $scope.ingridients.vg_dilutant.ml = $scope.ingridients.vg_dilutant.ml - removeFromVg;
+                $scope.ingridients.vg_dilutant.percentage = $scope.ingridients.vg_dilutant.percentage - val.percentage;
             } else if(val.type === "pg") {
                 var removeFromPg = ($scope.liquid.amount / 100) * val.percentage;
                 $scope.ingridients.pg_dilutant.ml = $scope.ingridients.pg_dilutant.ml - removeFromPg;
+                $scope.ingridients.pg_dilutant.percentage = $scope.ingridients.pg_dilutant.percentage - val.percentage;
             }
             $scope.ingridients.flavor[key] = {
                 name: val.name,
                 percentage: val.percentage,
-                amount: $scope.getAmountFromPercentage(val.percentage), //TODO make some calculation to make milliliters from this!
-                type: val.type
+                amount: $scope.getAmountFromPercentage(val.percentage),
+                type: val.type,
+                grams: $scope.getAmountFromPercentage(val.percentage) * $scope.weights.flavor
             }
 
         });
@@ -259,14 +279,53 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
         return ($scope.liquid.amount / 100) * percentage;
     };
 
+    $scope.calculateGrams = function() {
+        $scope.ingridients.pg_dilutant.gr = $scope.ingridients.pg_dilutant.ml * $scope.weights.pg;
+        $scope.ingridients.vg_dilutant.gr = $scope.ingridients.vg_dilutant.ml * $scope.weights.vg;
+        $scope.ingridients.wvpga.gr = $scope.ingridients.wvpga.ml * $scope.weights.diluent;
+
+        // Nicotine percentage of PG and VG
+        var pgPercentage = $scope.liquid.nicotine.pg;
+        var vgPercentage = $scope.liquid.nicotine.vg;
+
+        // Milliliters of nicotine PG and VG
+        var pgOfNicMl = (pgPercentage / 100) * $scope.ingridients.nicotine_juice.ml;
+        var vgOfNicMl = (vgPercentage / 100) * $scope.ingridients.nicotine_juice.ml;
+
+        // Grams of nicotine PG and VG
+        var pgOfNicGr = pgOfNicMl * $scope.weights.pg;
+        var vgOfNicGr = vgOfNicMl * $scope.weights.vg;
+
+        // Total nicotine juice in grams
+        $scope.ingridients.nicotine_juice.gr = pgOfNicGr + vgOfNicGr;
+
+        // Vape ready
+        $scope.ingridients.base.gr = $scope.ingridients.vg_dilutant.gr + $scope.ingridients.pg_dilutant.gr + $scope.ingridients.nicotine_juice.gr;
+    };
+
     $scope.calculateTotal = function () {
+        // For milliliters
         $scope.ingridients.amount.ml = $scope.ingridients.pg_dilutant.ml
             + $scope.ingridients.vg_dilutant.ml
             + $scope.ingridients.nicotine_juice.ml
             + $scope.ingridients.wvpga.ml;
 
+        // For grams
+        $scope.ingridients.amount.gr = $scope.ingridients.pg_dilutant.gr
+            + $scope.ingridients.vg_dilutant.gr
+            + $scope.ingridients.nicotine_juice.gr
+            + $scope.ingridients.wvpga.gr;
+
+        // For percentage
+        $scope.ingridients.amount.percentage = $scope.ingridients.pg_dilutant.percentage
+            + $scope.ingridients.vg_dilutant.percentage
+            + $scope.ingridients.nicotine_juice.percentage
+            + $scope.ingridients.wvpga.percentage;
+
         angular.forEach($scope.ingridients.flavor, function (val, key) {
             $scope.ingridients.amount.ml += val.amount;
+            $scope.ingridients.amount.gr += val.grams;
+            $scope.ingridients.amount.percentage += val.percentage;
         })
     }
 }]);
