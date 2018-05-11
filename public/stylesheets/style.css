@@ -1,6 +1,6 @@
 /* line 8, style.scss */
 body {
-  background: #000;
+  background: #e2e2e2;
 }
 /* line 9, style.scss */
 body .add-flavor {
@@ -117,7 +117,7 @@ body .navbar-default .btn-default {
 }
 /* line 116, style.scss */
 body .navbar-default .btn-default:hover {
-  background-color: #fff;
+  background-color: grey;
 }
 /* line 120, style.scss */
 body .navbar-default .dropdown-menu {
@@ -126,11 +126,11 @@ body .navbar-default .dropdown-menu {
 }
 /* line 124, style.scss */
 body .navbar-default .dropdown-menu li > a:hover {
-  background-color: #fff;
+  background-color: grey;
 }
 /* line 129, style.scss */
 body .navbar-default .navbar-brand {
-  color: #fff;
+  color: #464646;
 }
 /* line 131, style.scss */
 body .navbar-default .navbar-brand:hover {
@@ -138,53 +138,53 @@ body .navbar-default .navbar-brand:hover {
 }
 /* line 134, style.scss */
 body .navbar-default .navbar-brand:focus {
-  color: #fff;
+  color: grey;
 }
 /* line 138, style.scss */
 body .navbar-default .navbar-nav > li > a {
-  color: #fff;
+  color: #464646;
 }
 /* line 141, style.scss */
 body .navbar-default .navbar-nav > .active > a {
   color: #eee;
-  background-color: #fff;
+  background-color: #464646;
 }
 /* line 145, style.scss */
 body .navbar-default .navbar-nav > .active > a:focus {
   color: #eee;
-  background-color: #fff;
+  background-color: #464646;
 }
 /* line 149, style.scss */
 body .navbar-default .navbar-nav > .active > a:hover {
   color: #eee;
-  background-color: #fff;
+  background-color: grey;
 }
 /* line 153, style.scss */
 body .navbar-default .navbar-nav > .open > a {
   color: #eee;
-  background-color: #fff;
+  background-color: #464646;
 }
 /* line 157, style.scss */
 body .navbar-default .navbar-nav > .open > a:focus {
   color: #eee;
-  background-color: #fff;
+  background-color: #464646;
 }
 /* line 161, style.scss */
 body .navbar-default .navbar-nav > .open > a:hover {
   color: #eee;
-  background-color: #fff;
+  background-color: grey;
 }
 /* line 165, style.scss */
 body .navbar-default .navbar-toggle {
-  border-color: #fff;
+  border-color: #464646;
 }
 /* line 167, style.scss */
 body .navbar-default .navbar-toggle .icon-bar {
-  background-color: #fff;
+  background-color: #464646;
 }
 /* line 170, style.scss */
 body .navbar-default .navbar-toggle:hover {
-  background-color: #fff;
+  background-color: grey;
 }
 @media (min-width: 768px) {
   /* line 177, style.scss */
