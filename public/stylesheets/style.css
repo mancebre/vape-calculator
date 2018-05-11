@@ -1,16 +1,16 @@
-/* line 5, style.scss */
+/* line 8, style.scss */
 body {
-  background: #e2e2e2;
+  background: #000;
 }
-/* line 6, style.scss */
+/* line 9, style.scss */
 body .add-flavor {
   margin-bottom: 25px;
 }
-/* line 10, style.scss */
+/* line 13, style.scss */
 body .flavor-fields fieldset {
   position: relative;
 }
-/* line 14, style.scss */
+/* line 17, style.scss */
 body .link {
   cursor: pointer;
   text-align: right;
@@ -19,7 +19,7 @@ body .link {
   right: 20px;
   color: red;
 }
-/* line 22, style.scss */
+/* line 25, style.scss */
 body fieldset {
   border: 1px groove #ddd !important;
   padding: 0 1.4em 1.4em 1.4em !important;
@@ -27,7 +27,7 @@ body fieldset {
   -webkit-box-shadow: 0px 0px 0px 0px #000;
   box-shadow: 0px 0px 0px 0px #000;
 }
-/* line 29, style.scss */
+/* line 32, style.scss */
 body fieldset legend {
   font-size: 1.2em !important;
   font-weight: bold !important;
@@ -36,29 +36,29 @@ body fieldset legend {
   padding: 0 10px;
   border-bottom: none;
 }
-/* line 39, style.scss */
+/* line 42, style.scss */
 body fieldset .rzslider .rz-pointer {
   background-color: #eeeeee;
 }
-/* line 44, style.scss */
+/* line 47, style.scss */
 body h2 {
   text-align: center;
 }
-/* line 48, style.scss */
+/* line 51, style.scss */
 body .flavor-fields .col-sm-4 {
   padding-left: 6px;
   padding-right: 6px;
 }
-/* line 53, style.scss */
+/* line 56, style.scss */
 body .input-group-addon {
   font-size: 12px;
   padding: 6px 5px;
 }
-/* line 57, style.scss */
+/* line 60, style.scss */
 body .recipe-input {
   display: table;
 }
-/* line 61, style.scss */
+/* line 64, style.scss */
 body .button {
   display: inline-block;
   width: 115px;
@@ -69,7 +69,7 @@ body .button {
   color: white;
   font-weight: bold;
 }
-/* line 72, style.scss */
+/* line 75, style.scss */
 body #loader {
   position: fixed;
   left: 0;
@@ -81,27 +81,114 @@ body #loader {
   opacity: 0.7;
   background: #333 url("/app/images/loading.gif") no-repeat center center;
 }
-/* line 85, style.scss */
+/* line 88, style.scss */
 body .form-group input[type="checkbox"] {
   display: none;
 }
-/* line 88, style.scss */
+/* line 91, style.scss */
 body .form-group input[type="checkbox"] + .btn-group > label span {
   width: 20px;
 }
-/* line 91, style.scss */
+/* line 94, style.scss */
 body .form-group input[type="checkbox"] + .btn-group > label span:first-child {
   display: none;
 }
-/* line 94, style.scss */
+/* line 97, style.scss */
 body .form-group input[type="checkbox"] + .btn-group > label span:last-child {
   display: inline-block;
 }
-/* line 97, style.scss */
+/* line 100, style.scss */
 body .form-group input[type="checkbox"]:checked + .btn-group > label span:first-child {
   display: inline-block;
 }
-/* line 100, style.scss */
+/* line 103, style.scss */
 body .form-group input[type="checkbox"]:checked + .btn-group > label span:last-child {
   display: none;
+}
+/* line 110, style.scss */
+body .navbar-default {
+  background-color: #eee;
+  border: none;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.175);
+}
+/* line 114, style.scss */
+body .navbar-default .btn-default {
+  color: #eee;
+}
+/* line 116, style.scss */
+body .navbar-default .btn-default:hover {
+  background-color: #fff;
+}
+/* line 120, style.scss */
+body .navbar-default .dropdown-menu {
+  border: none;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.175);
+}
+/* line 124, style.scss */
+body .navbar-default .dropdown-menu li > a:hover {
+  background-color: #fff;
+}
+/* line 129, style.scss */
+body .navbar-default .navbar-brand {
+  color: #fff;
+}
+/* line 131, style.scss */
+body .navbar-default .navbar-brand:hover {
+  color: #000;
+}
+/* line 134, style.scss */
+body .navbar-default .navbar-brand:focus {
+  color: #fff;
+}
+/* line 138, style.scss */
+body .navbar-default .navbar-nav > li > a {
+  color: #fff;
+}
+/* line 141, style.scss */
+body .navbar-default .navbar-nav > .active > a {
+  color: #eee;
+  background-color: #fff;
+}
+/* line 145, style.scss */
+body .navbar-default .navbar-nav > .active > a:focus {
+  color: #eee;
+  background-color: #fff;
+}
+/* line 149, style.scss */
+body .navbar-default .navbar-nav > .active > a:hover {
+  color: #eee;
+  background-color: #fff;
+}
+/* line 153, style.scss */
+body .navbar-default .navbar-nav > .open > a {
+  color: #eee;
+  background-color: #fff;
+}
+/* line 157, style.scss */
+body .navbar-default .navbar-nav > .open > a:focus {
+  color: #eee;
+  background-color: #fff;
+}
+/* line 161, style.scss */
+body .navbar-default .navbar-nav > .open > a:hover {
+  color: #eee;
+  background-color: #fff;
+}
+/* line 165, style.scss */
+body .navbar-default .navbar-toggle {
+  border-color: #fff;
+}
+/* line 167, style.scss */
+body .navbar-default .navbar-toggle .icon-bar {
+  background-color: #fff;
+}
+/* line 170, style.scss */
+body .navbar-default .navbar-toggle:hover {
+  background-color: #fff;
+}
+@media (min-width: 768px) {
+  /* line 177, style.scss */
+  body .navbar {
+    border-radius: 0;
+  }
 }
