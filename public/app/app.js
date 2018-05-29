@@ -1,6 +1,7 @@
 var App = angular.module("gelApp", [
     'ngRoute',
     'pascalprecht.translate',
+	'ngCookies',
 	'gelApp.home',
     'gelApp.test',
     'gelApp.contact',
@@ -9,5 +10,6 @@ var App = angular.module("gelApp", [
     'gelApp.editWeights',
     'ngAnimate',
     'ui.bootstrap',
-    'rzModule'
+    'rzModule',
+    '720kb.tooltips'
 ]);

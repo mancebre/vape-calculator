@@ -6,7 +6,10 @@
             <fieldset>
                 <legend translate="TARGET">Target</legend>
                 <div class="form-group">
-                    <label for="fancy-checkbox-default" class="col-sm-7 control-label active" translate="USE_VAPE_READY">Use vape-ready nicotine base</label>
+                    <label for="fancy-checkbox-default" class="col-sm-7 control-label active">
+                        <i class="fa fa-question-circle" tooltips tooltip-template="{{template123}}"></i>
+                        <span translate="USE_VAPE_READY">Use vape-ready nicotine base </span>
+                    </label>
                     <input type="checkbox" name="fancy-checkbox-default" id="fancy-checkbox-default" autocomplete="off" ng-model="vapeReady" />
                     <div class="col-sm-5 btn-group">
                         <label for="fancy-checkbox-default" class="btn btn-default">
@@ -16,7 +19,10 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="amount" class="col-sm-7 control-label" title="Amount to make" translate="AMOUNT">Amount</label>
+                    <label for="amount" class="col-sm-7 control-label" title="Amount to make">
+                        <i class="fa fa-question-circle" tooltips tooltip-template="tooltip"></i>
+                        <span translate="AMOUNT">Amount</span>
+                    </label>
                     <div class="col-sm-5 recipe-input">
                         <input type="number" id="amount" class="form-control" ng-model="liquid.amount" />
                         <span class="input-group-addon">ml</span>
@@ -24,7 +30,10 @@
 
                 </div>
                 <div class="form-group" ng-hide="vapeReady">
-                    <label for="desired_strength" class="col-sm-7 control-label" translate="DESIRED_STRENGTH">Desired strength</label>
+                    <label for="desired_strength" class="col-sm-7 control-label">
+                        <i class="fa fa-question-circle" tooltips tooltip-template="tooltip"></i>
+                        <span translate="DESIRED_STRENGTH">Desired strength</span>
+                    </label>
                     <div class="col-sm-5 recipe-input">
                         <input type="number" max="100" min="0" id="desired_strength" class="form-control" ng-model="liquid.desired_strength" />
                         <span class="input-group-addon">mg</span>
@@ -33,7 +42,10 @@
                 </div>
 
                 <div class="form-group" ng-hide="vapeReady">
-                    <label class="col-sm-7 control-label"><span translate="DESIRED_PG">Desired PG</span> (%)</label>
+                    <label class="col-sm-7 control-label">
+                        <i class="fa fa-question-circle" tooltips tooltip-template="tooltip"></i>
+                        <span translate="DESIRED_PG">Desired PG</span> (%)
+                    </label>
                     <div class="col-sm-5">
                         <rzslider
                                 rz-slider-model="liquid.pg"

@@ -58,6 +58,7 @@ var translationsRS= {
 
 angular.module('gelApp.home').config(['$translateProvider', function ($translateProvider) {
     // add translation tables
+    $translateProvider.useLocalStorage();
     $translateProvider.translations('en', translationsEN);
     $translateProvider.translations('rs', translationsRS);
     $translateProvider.fallbackLanguage('en');

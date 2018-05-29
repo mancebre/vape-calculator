@@ -6,6 +6,8 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
         $translate.use(langKey);
     };
 
+    $scope.template123 =  $translate.g
+
     // How many grams there is in 1 ml
     if(localStorage.getItem('weights') !== null) {
         $scope.weights = JSON.parse(localStorage.getItem('weights'));
