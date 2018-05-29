@@ -136,7 +136,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group link" ng-click="removeField(key, value);">
+                    <div class="form-group link delete" ng-click="removeField(key, value);">
                         <i class="fa fa-trash-o" aria-hidden="true"></i>
                     </div>
                 </fieldset>
@@ -169,41 +169,59 @@
                 <legend translate="INGREDIENTS">Ingredients</legend>
                 <table class="table">
                     <tr>
-                        <th translate="NAME">Name</th><th>ML</th>
+                        <th translate="NAME">Name</th><th>ML</th><th>grams</th><th>%</th>
                     </tr>
                     <tr ng-show="vapeReady">
                         <td>{{ niceNames['base'] }} <br>(<span translate="NICOTINE">Nicotine</span>: {{liquid.nicotine.strength}} mg, PG/VG: {{liquid.nicotine.pg}}/{{liquid.nicotine.vg}})</td>
-                        <td>{{ ingridients.base | number : 2 }}</td>
+                        <td>{{ ingridients.base.ml | number : 2 }}</td>
+                        <td>{{ ingridients.base.gr | number : 2 }}</td>
+                        <td>{{ ingridients.base.percentage | number : 2 }}</td>
                     </tr>
                     <tr ng-hide="vapeReady">
                         <td translate="NICOTINE">{{ niceNames['nicotine_juice'] }}</td>
-                        <td>{{ ingridients.nicotine_juice | number : 2 }}</td>
+                        <td>{{ ingridients.nicotine_juice.ml | number : 2 }}</td>
+                        <td>{{ ingridients.nicotine_juice.gr | number : 2 }}</td>
+                        <td>{{ ingridients.nicotine_juice.percentage | number : 2 }}</td>
                     </tr>
                     <tr ng-hide="vapeReady">
                         <td translate="PG">{{ niceNames['pg_dilutant'] }}</td>
-                        <td>{{ ingridients.pg_dilutant | number : 2 }}</td>
+                        <td>{{ ingridients.pg_dilutant.ml | number : 2 }}</td>
+                        <td>{{ ingridients.pg_dilutant.gr | number : 2 }}</td>
+                        <td>{{ ingridients.pg_dilutant.percentage | number : 2 }}</td>
                     </tr>
                     <tr ng-hide="vapeReady">
                         <td translate="VG">{{ niceNames['vg_dilutant'] }}</td>
-                        <td>{{ ingridients.vg_dilutant | number : 2 }}</td>
+                        <td>{{ ingridients.vg_dilutant.ml | number : 2 }}</td>
+                        <td>{{ ingridients.vg_dilutant.gr | number : 2 }}</td>
+                        <td>{{ ingridients.vg_dilutant.percentage | number : 2 }}</td>
                     </tr>
                     <tr>
                         <td translate="DILUENT">{{ niceNames['wvpga'] }}</td>
-                        <td>{{ ingridients.wvpga | number : 2 }}</td>
+                        <td>{{ ingridients.wvpga.ml | number : 2 }}</td>
+                        <td>{{ ingridients.wvpga.gr | number : 2 }}</td>
+                        <td>{{ ingridients.wvpga.percentage | number : 2 }}</td>
                     </tr>
                     <tr ng-if="ingridients.flavor.length">
-                        <th>Flavor name</th><th>ML</th>
+                        <th>Flavor name</th><th>ML</th><th>grams</th><th>%</th>
                     </tr>
                     <tr ng-repeat="flavor in ingridients.flavor">
                         <td> {{ flavor.name }} </td>
                         <td> {{ flavor.amount | number : 2 }} </td>
+                        <td> {{ flavor.grams | number : 2 }} </td>
+                        <td> {{ flavor.percentage | number : 2 }} </td>
                     </tr>
                     <tr>
-                        <td translate="TOTAL_AMOUNT">{{ niceNames['amountMl'] }}</td>
-                        <td>{{ ingridients.amountMl | number : 2 }}</td>
+                        <td translate="TOTAL_AMOUNT">{{ niceNames['amount'] }}</td>
+                        <td>{{ ingridients.amount.ml | number : 2 }}</td>
+                        <td>{{ ingridients.amount.gr | number : 2 }}</td>
+                        <td>{{ ingridients.amount.percentage | number : 2 }}</td>
                     </tr>
                 </table>
+                <div class="form-group link" ng-click="editWeight(key, value);">
+                    <i class="fa fa-cog" aria-hidden="true"></i>
+                </div>
             </fieldset>
+            {{item}}
         </div>
     </div>
 </div>

@@ -6,6 +6,15 @@ $navBackgroundColor2: grey;
 $navColor: #464646;
 
 body {
+  .attention {
+    border: solid 1px red;
+  }
+  .settings {
+    text-align: center;
+    input {
+      width: 100px;
+    }
+  }
   .add-flavor {
     margin-bottom: 25px;
   }
@@ -20,6 +29,8 @@ body {
     position: absolute;
     top: 15px;
     right: 20px;
+  }
+  .delete {
     color: red;
   }
   fieldset {
