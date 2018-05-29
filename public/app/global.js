@@ -1,7 +1,7 @@
 
 /* GLOBALS */
 
-App.run(function($rootScope, $http) {
+App.run(function($rootScope, $http, $translate) {
     $rootScope.testFunc = function () {
         if($rootScope.toggle) {
             $rootScope.something = ["one", "two"];
@@ -11,6 +11,8 @@ App.run(function($rootScope, $http) {
             $rootScope.toggle = true;
         }
     };
+
+    $rootScope.selectedLang = $translate.use(false);
 
     // // API url INTERNAL for testing only!
     $rootScope.apiUrl = 'http://localhost:3000/posts';

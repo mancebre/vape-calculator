@@ -1,12 +1,8 @@
 angular.module('gelApp.home', []);
 
-angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$translate', '$uibModal', function ($scope, $http, $translate, $uibModal) {
+angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$translate', '$uibModal', 'tooltipTranslations', '$rootScope', function ($scope, $http, $translate, $uibModal, tooltipTranslations, $rootScope) {
 
-    $scope.changeLanguage = function (langKey) {
-        $translate.use(langKey);
-    };
-
-    $scope.template123 =  $translate.g
+    $scope.tt = tooltipTranslations[$rootScope.selectedLang];
 
     // How many grams there is in 1 ml
     if(localStorage.getItem('weights') !== null) {
