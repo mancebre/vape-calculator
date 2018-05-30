@@ -2,6 +2,9 @@ angular.module('gelApp.home', []);
 
 angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$translate', '$uibModal', 'tooltipTranslations', '$rootScope', function ($scope, $http, $translate, $uibModal, tooltipTranslations, $rootScope) {
 
+    // This is true when attention popup is open.
+    $scope.attentionPopup = false;
+
     $scope.translateTootips = function () {
         $scope.tt = tooltipTranslations[$rootScope.selectedLang];
     };
@@ -40,6 +43,23 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
                 console.log(res);
             }
         );
+    };
+
+    $scope.openAttention = function() {
+        if(!$scope.attentionPopup) {
+            $scope.attentionPopup = true;
+            $uibModal.open({
+                controller: 'openAttentionCtrl',
+                templateUrl: 'app/modules/modals/attention/view.html',
+                backdrop: false
+            })
+                .result.then(function () {
+                    $scope.attentionPopup = false;
+                }, function (res) {
+                    console.log(res);
+                }
+            );
+        }
     };
 
     $scope.originalLiquid = {
@@ -274,6 +294,13 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
             }
 
         });
+
+        // Open attention popup if PG or VG is negative
+        // TODO 1. Log times when attrinutes values has changed last time
+        // TODO 2. Found last changed attribute and decrease his value so PG and VG be positive (Values can be PG, PV, nicotine PG, nicotine VG or flavor)
+        if($scope.ingridients.pg_dilutant.ml < 0 || $scope.ingridients.vg_dilutant.ml < 0) {
+            $scope.openAttention();
+        }
 
         // Calculate vape-base
         $scope.ingridients.base.ml = $scope.ingridients.vg_dilutant.ml + $scope.ingridients.pg_dilutant.ml + $scope.ingridients.nicotine_juice.ml;

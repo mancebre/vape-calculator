@@ -223,13 +223,13 @@
                         <td>{{ ingridients.nicotine_juice.gr | number : 2 }}</td>
                         <td>{{ ingridients.nicotine_juice.percentage | number : 2 }}</td>
                     </tr>
-                    <tr ng-hide="vapeReady">
+                    <tr ng-hide="vapeReady" ng-class="{attention: ingridients.pg_dilutant.ml < 0}">
                         <td translate="PG">{{ niceNames['pg_dilutant'] }}</td>
-                        <td>{{ ingridients.pg_dilutant.ml | number : 2 }}</td>
+                        <td ng-class="{attention: ingridients.pg_dilutant.ml < 0}">{{ ingridients.pg_dilutant.ml | number : 2 }}</td>
                         <td>{{ ingridients.pg_dilutant.gr | number : 2 }}</td>
                         <td>{{ ingridients.pg_dilutant.percentage | number : 2 }}</td>
                     </tr>
-                    <tr ng-hide="vapeReady">
+                    <tr ng-hide="vapeReady" ng-class="{attention: ingridients.vg_dilutant.ml < 0}">
                         <td translate="VG">{{ niceNames['vg_dilutant'] }}</td>
                         <td>{{ ingridients.vg_dilutant.ml | number : 2 }}</td>
                         <td>{{ ingridients.vg_dilutant.gr | number : 2 }}</td>
