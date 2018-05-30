@@ -4,6 +4,7 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
 
     // This is true when attention popup is open.
     $scope.attentionPopup = false;
+    $scope.history = [];
 
     $scope.translateTootips = function () {
         $scope.tt = tooltipTranslations[$rootScope.selectedLang];
@@ -27,7 +28,7 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
         // Open modal to edit weights
         $uibModal.open({
             controller: 'editWeightsCtrl',
-            templateUrl: 'app/modules/modals/view.html',
+            templateUrl: 'app/modules/modals/weight/view.html',
             backdrop: false,
             resolve: {
                 item: function () {
@@ -53,8 +54,14 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
                 templateUrl: 'app/modules/modals/attention/view.html',
                 backdrop: false
             })
-                .result.then(function () {
+                .result.then(function (result) {
                     $scope.attentionPopup = false;
+                    // if "revert" is clicked.
+                    if(result) {
+                        let tempLiquid = $scope.history.pop().liquid;
+                        $scope.liquid = tempLiquid;
+
+                    }
                 }, function (res) {
                     console.log(res);
                 }
@@ -234,7 +241,6 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
     }, true);
 
     $scope.$watch('selectedLang', function(newVal, oldVal){
-        console.log('I am watching you!!!');
         $scope.translateTootips();
     }, true);
 
@@ -296,10 +302,21 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
         });
 
         // Open attention popup if PG or VG is negative
-        // TODO 1. Log times when attrinutes values has changed last time
-        // TODO 2. Found last changed attribute and decrease his value so PG and VG be positive (Values can be PG, PV, nicotine PG, nicotine VG or flavor)
         if($scope.ingridients.pg_dilutant.ml < 0 || $scope.ingridients.vg_dilutant.ml < 0) {
             $scope.openAttention();
+        }
+
+        // Save good data history (try not to save data with negative values)
+        if($scope.ingridients.pg_dilutant.ml >= 0 && $scope.ingridients.vg_dilutant.ml >= 0) {
+
+            let tempIngredients = angular.copy($scope.ingridients);
+            let tempLiquid = angular.copy($scope.liquid);
+
+            $scope.history.push({
+                ingridients: tempIngredients,
+                liquid: tempLiquid,
+                time: new Date()
+            });
         }
 
         // Calculate vape-base

@@ -2,7 +2,13 @@ angular.module('gelApp.openAttention', []);
 
 angular.module('gelApp.openAttention').controller('openAttentionCtrl', ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
 
-    $scope.close = function(){
-        $uibModalInstance.close(undefined);
+    $scope.revert = function(){
+        $uibModalInstance.close(true);
     };
+
+    $scope.close = function(){
+        $uibModalInstance.close(false);
+    };
+
+    //TODO We need some texting here and translations also
 }]);
