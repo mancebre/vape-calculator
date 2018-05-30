@@ -7,7 +7,7 @@
                 <legend translate="TARGET">Target</legend>
                 <div class="form-group">
                     <label for="fancy-checkbox-default" class="col-sm-7 control-label active">
-                        <i class="fa fa-question-circle" tooltips tooltip-template="{{tt.test}}"></i>
+                        <i class="fa fa-question-circle" tooltips tooltip-template="{{tt.vape_ready}}"></i>
                         <span translate="USE_VAPE_READY">Use vape-ready nicotine base </span>
                     </label>
                     <input type="checkbox" name="fancy-checkbox-default" id="fancy-checkbox-default" autocomplete="off" ng-model="vapeReady" />
@@ -20,7 +20,7 @@
                 </div>
                 <div class="form-group">
                     <label for="amount" class="col-sm-7 control-label" title="Amount to make">
-                        <i class="fa fa-question-circle" tooltips tooltip-template="tooltip"></i>
+                        <i class="fa fa-question-circle" tooltips tooltip-template="{{tt.amount}}"></i>
                         <span translate="AMOUNT">Amount</span>
                     </label>
                     <div class="col-sm-5 recipe-input">
@@ -31,7 +31,7 @@
                 </div>
                 <div class="form-group" ng-hide="vapeReady">
                     <label for="desired_strength" class="col-sm-7 control-label">
-                        <i class="fa fa-question-circle" tooltips tooltip-template="tooltip"></i>
+                        <i class="fa fa-question-circle" tooltips tooltip-template="{{tt.desired_strength}}"></i>
                         <span translate="DESIRED_STRENGTH">Desired strength</span>
                     </label>
                     <div class="col-sm-5 recipe-input">
@@ -43,7 +43,7 @@
 
                 <div class="form-group" ng-hide="vapeReady">
                     <label class="col-sm-7 control-label">
-                        <i class="fa fa-question-circle" tooltips tooltip-template="tooltip"></i>
+                        <i class="fa fa-question-circle" tooltips tooltip-template="{{tt.desired_pg}}"></i>
                         <span translate="DESIRED_PG">Desired PG</span> (%)
                     </label>
                     <div class="col-sm-5">
@@ -56,7 +56,10 @@
 
                 </div>
                 <div class="form-group" ng-hide="vapeReady">
-                    <label class="col-sm-7 control-label"><span translate="DESIRED_VG">Desired VG</span> (%)</label>
+                    <label class="col-sm-7 control-label">
+                        <i class="fa fa-question-circle" tooltips tooltip-template="{{tt.desired_vg}}"></i>
+                        <span translate="DESIRED_VG">Desired VG</span> (%)
+                    </label>
                     <div class="col-sm-5">
                         <rzslider
                                 rz-slider-model="liquid.vg"
@@ -70,7 +73,11 @@
             <fieldset>
                 <legend translate="BASE">Base</legend>
                 <div class="form-group">
-                    <label for="nicotine_strength" class="col-sm-7 control-label" translate="NICOTINE_STRENGTH">Nicotine strength</label>
+                    <label for="nicotine_strength" class="col-sm-7 control-label">
+                        <i class="fa fa-question-circle" tooltips tooltip-template="{{tt.nicotine_content}}"></i>
+                        <span translate="NICOTINE_STRENGTH">Nicotine strength</span>
+
+                    </label>
                     <div class="col-sm-5 recipe-input">
                         <input type="number" max="100" min="0" id="nicotine_strength" class="form-control" placeholder="%" ng-model="liquid.nicotine.strength" />
                         <span class="input-group-addon">mg</span>
@@ -78,7 +85,10 @@
 
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-7 control-label"><span translate="PG">PG-content of nicotinee</span> (%)</label>
+                    <label class="col-sm-7 control-label">
+                        <i class="fa fa-question-circle" tooltips tooltip-template="{{tt.nicotine_pg}}"></i>
+                        <span translate="PG">PG-content of nicotinee</span> (%)
+                    </label>
                     <div class="col-sm-5">
                         <rzslider
                                 rz-slider-model="liquid.nicotine.pg"
@@ -89,7 +99,10 @@
 
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-7 control-label"><span translate="VG">VG-content of nicotine</span> (%)</label>
+                    <label class="col-sm-7 control-label">
+                        <i class="fa fa-question-circle" tooltips tooltip-template="{{tt.nicotine_vg}}"></i>
+                        <span translate="VG">VG-content of nicotine</span> (%)
+                    </label>
                     <div class="col-sm-5">
                         <rzslider
                                 rz-slider-model="liquid.nicotine.vg"
@@ -100,7 +113,10 @@
 
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-7 control-label"><span translate="DILUENT">Diluent</span> (%)</label>
+                    <label class="col-sm-7 control-label">
+                        <i class="fa fa-question-circle" tooltips tooltip-template="{{tt.diluent}}"></i>
+                        <span translate="DILUENT">Diluent</span> (%)
+                    </label>
                     <div class="col-sm-5">
                         <rzslider
                                 rz-slider-model="liquid.wvpga"
@@ -111,7 +127,10 @@
 
                 </div>
                 <div class="form-group">
-                    <label for="sleep_time" class="col-sm-7 control-label" translate="SUGGESTED_STEP_TIME">Suggested steep time</label>
+                    <label for="sleep_time" class="col-sm-7 control-label">
+                        <!--<i class="fa fa-question-circle" tooltips tooltip-template="{{tt.test}}"></i>-->
+                        <span translate="SUGGESTED_STEP_TIME">Suggested steep time</span>
+                    </label>
                     <div class="col-sm-5 recipe-input">
                         <input type="number" id="sleep_time" class="form-control" placeholder="Days..." ng-model="liquid.sleep_time" />
                         <span class="input-group-addon">days</span>
@@ -124,13 +143,19 @@
                 <fieldset ng-repeat="(key, value) in liquid.flavor">
                     <legend>{{liquid.flavor[key]['name']}}</legend>
                     <div class="form-group">
-                        <label class="col-sm-7 control-label" translate="NAME">Name</label>
+                        <label class="col-sm-7 control-label">
+                            <!--<i class="fa fa-question-circle" tooltips tooltip-template="{{tt.test}}"></i>-->
+                            <span translate="NAME">Name</span>
+                        </label>
                         <div class="col-sm-5">
                             <input type="text" id="{{key}}_text" class="form-control" ng-model="liquid.flavor[key]['name']" placeholder="Flavor {{key}}" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-7 control-label" translate="PERCENTAGE">Percentage</label>
+                        <label class="col-sm-7 control-label">
+                            <!--<i class="fa fa-question-circle" tooltips tooltip-template="{{tt.test}}"></i>-->
+                            <span translate="PERCENTAGE">Percentage</span>
+                        </label>
                         <div class="col-sm-5">
                             <rzslider
                                     rz-slider-model="liquid.flavor[key]['percentage']"
@@ -140,7 +165,10 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-7 control-label" translate="FLAVOR_TYPE">Flavor type</label>
+                        <label class="col-sm-7 control-label">
+                            <!--<i class="fa fa-question-circle" tooltips tooltip-template="{{tt.test}}"></i>-->
+                            <span translate="FLAVOR_TYPE">Flavor type</span>
+                        </label>
                         <div class="col-sm-5">
                             <select class="form-control" ng-model="liquid.flavor[key]['type']">
                                 <option value="pg">PG</option>
