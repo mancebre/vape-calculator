@@ -1,14 +1,14 @@
 <div class="modal-header">
-    <h1>Attention</h1>
+    <h1 translate="ATTENTION">Attention</h1>
 </div>
 <div style="clear: both"></div>
 <div class="modal-body">
-    <h3>Something is wrong with your recipe, some values are negative</h3>
-    <p>Click close to continue, or click fix to auto fix recipe</p>
+    <h3 translate="BAD_RECIPE_MSG">Something is wrong with your recipe, some values are negative</h3>
+    <p translate="BAD_RECIPE_DIRECTIONS">Click close to continue, or click fix to auto fix recipe</p>
 </div>
 <div style="clear: both"></div>
 <div class="modal-footer">
-    <button ng-click="close()" class="btn" ng-disabled="disableSave" >Close</button>
-    <button ng-click="fix()" class="btn btn-primary" >Fix</button>
+    <button ng-click="close()" class="btn" ng-disabled="disableSave" translate="CLOSE">Close</button>
+    <button ng-click="fix()" class="btn btn-primary" translate="FIX">Fix</button>
 </div>
 <div style="clear: both"></div>
