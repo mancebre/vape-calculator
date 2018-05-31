@@ -46,6 +46,9 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
         );
     };
 
+    /**
+     * Opens "bad calculation" attention modal.
+     */
     $scope.openAttention = function() {
         if(!$scope.attentionPopup) {
             $scope.attentionPopup = true;

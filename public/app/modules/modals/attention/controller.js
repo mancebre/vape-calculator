@@ -2,7 +2,7 @@ angular.module('gelApp.openAttention', []);
 
 angular.module('gelApp.openAttention').controller('openAttentionCtrl', ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
 
-    $scope.revert = function(){
+    $scope.fix = function(){
         $uibModalInstance.close(true);
     };
 

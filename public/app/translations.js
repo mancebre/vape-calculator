@@ -24,7 +24,11 @@ var translationsEN = {
     TRANSLATE: 'Translate',
     PERCENTAGE: 'Percentage',
     FLAVOR_TYPE: 'Flavor type',
-    LANGUAGE: 'Language'
+    LANGUAGE: 'Language',
+    ATTENTION: "Attention",
+    BAD_RECIPE_MSG: "Something is wrong with your recipe, some values are negative",
+    BAD_RECIPE_DIRECTIONS: "Click close to continue, or click fix to auto-fix recipe"
+
 };
 
 var translationsRS= {
@@ -53,7 +57,10 @@ var translationsRS= {
     TRANSLATE: 'Prevod',
     PERCENTAGE: 'Procenat',
     FLAVOR_TYPE: 'Tip arome',
-    LANGUAGE: 'Jezik'
+    LANGUAGE: 'Jezik',
+    ATTENTION: "Pažnja",
+    BAD_RECIPE_MSG: "Nešto nije u redu sa vašim receptom, neke vrednosti su negativne",
+    BAD_RECIPE_DIRECTIONS: "Kliknite blizu da nastavite, ili kliknite popravi za automatsko popravljanje recepta"
 };
 
 angular.module('gelApp.home').config(['$translateProvider', function ($translateProvider) {
