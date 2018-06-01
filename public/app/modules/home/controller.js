@@ -166,6 +166,7 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
     //4. copy originalLiquid to liquid. liquid will be bind to a form
     $scope.liquid = angular.copy($scope.originalLiquid);
 
+    // Slider options
     $scope.slider = {
         value: $scope.liquid.pg,
         options: {
@@ -174,10 +175,19 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
         }
     };
 
+    // Limited slider options
+    $scope.limitedSlider = {
+        options: {
+            floor: 0,
+            ceil: 35,
+            maxLimit: 35
+        }
+    };
+
     //5. create submitStudentForm() function. This will be called when user submits the form
     $scope.submitLiquidForm = function () {
         return false; // For now
-        console.log($scope.liquid);
+        // console.log($scope.liquid);
 
         let onSuccess = function (data, status, headers, config) {
             alert('Student saved successfully.');
@@ -366,12 +376,12 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
             + $scope.ingridients.nicotine_juice.gr
             + $scope.ingridients.wvpga.gr;
 
-        console.log(
-            $scope.ingridients.pg_dilutant.gr,
-            $scope.ingridients.vg_dilutant.gr,
-            $scope.ingridients.nicotine_juice.gr,
-            $scope.ingridients.wvpga.gr
-        );
+        // console.log(
+        //     $scope.ingridients.pg_dilutant.gr,
+        //     $scope.ingridients.vg_dilutant.gr,
+        //     $scope.ingridients.nicotine_juice.gr,
+        //     $scope.ingridients.wvpga.gr
+        // );
 
         // For percentage
         $scope.ingridients.amount.percentage =
@@ -390,13 +400,16 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
     $scope.recipeCalculation = function() {
         if($scope.vapeReady) {
             $scope.calculateIngredientsVapeOnly();
-            $scope.calculateGramsVapeOnly();
-            $scope.calculateTotalVapeOnly();
         } else {
             $scope.calculateIngredients();
             $scope.calculateGrams();
             $scope.calculateTotal();
         }
+
+        console.log(
+            $scope.limitedSlider.options,
+            $scope.ingridients.flavor.length
+        );
     };
 
     /**
@@ -404,32 +417,57 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
      */
 
     $scope.calculateIngredientsVapeOnly = function () {
-        // Calculate base
-        $scope.ingridients.base = {
-            ml: 0,
-            gr: 0,
-            percentage: 100 - $scope.liquid.wvpga
+
+        $scope.ingridients.wvpga = {
+            ml: $scope.getAmountFromPercentage($scope.liquid.wvpga),
+            gr: $scope.getAmountFromPercentage($scope.liquid.wvpga) * $scope.weights.diluent,
+            percentage: $scope.liquid.wvpga
         };
 
-        $scope.ingridients.diluent = {
-            ml: 0,
-            gr: 0,
-            percentage: 0
-        };
+        // Subtract diluent from base
+        $scope.ingridients.base.percentage = 100 - $scope.ingridients.wvpga.percentage;
+        $scope.ingridients.base.ml = $scope.getAmountFromPercentage($scope.ingridients.base.percentage);
+        $scope.ingridients.base.gr = $scope.calculateBaseWeight();
 
         $scope.ingridients.amount = {
-            ml: 0,
-            gr: 0,
-            percentage: 0
+            ml: $scope.ingridients.base.ml + $scope.ingridients.wvpga.ml,
+            gr: $scope.ingridients.base.gr + $scope.ingridients.wvpga.gr,
+            percentage: 100
         };
 
+        // Remove flavor from base
+        angular.forEach($scope.liquid.flavor, function (val, key) {
+            $scope.ingridients.base.percentage -= val.percentage;
+            $scope.ingridients.base.ml = $scope.getAmountFromPercentage($scope.ingridients.base.percentage);
+
+            $scope.ingridients.flavor[key] = {
+                name: val.name,
+                percentage: val.percentage,
+                amount: $scope.getAmountFromPercentage(val.percentage),
+                type: val.type,
+                grams: $scope.getAmountFromPercentage(val.percentage) * $scope.weights.flavor
+            };
+
+            $scope.ingridients.base.gr += $scope.ingridients.flavor[key].grams;
+
+            $scope.limitedSlider.options.maxLimit = Math.round($scope.limitedSlider.options.ceil / ($scope.ingridients.flavor.length + 1));
+        });
+
     };
 
-    $scope.calculateGramsVapeOnly = function() {
+    /**
+     * We already have percentage of PG and VG
+     * to get weights we first need to get milliliters
+     * then we get weight for PG and VG
+     * then return sum of those two.
+     */
+    $scope.calculateBaseWeight = function() {
+        let pgMilliliters = ($scope.ingridients.base.ml / 100) * $scope.liquid.nicotine.pg;
+        let vgMilliliters = ($scope.ingridients.base.ml / 100) * $scope.liquid.nicotine.vg;
 
+        let pgWeight = pgMilliliters * $scope.weights.pg;
+        let vgWeight = vgMilliliters * $scope.weights.vg;
+
+        return pgWeight + vgWeight;
     };
-
-    $scope.calculateTotalVapeOnly = function () {
-
-    }
 }]);

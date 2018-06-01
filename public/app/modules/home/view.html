@@ -117,10 +117,10 @@
                         <i class="fa fa-question-circle" tooltips tooltip-template="{{tt.diluent}}"></i>
                         <span translate="DILUENT">Diluent</span> (%)
                     </label>
-                    <div class="col-sm-5">
+                    <div class="col-sm-5" ng-class="{attention: limitedSlider.options.maxLimit < liquid.wvpga}">
                         <rzslider
                                 rz-slider-model="liquid.wvpga"
-                                rz-slider-options="slider.options">
+                                rz-slider-options="limitedSlider.options">
 
                         </rzslider>
                     </div>
@@ -156,10 +156,10 @@
                             <!--<i class="fa fa-question-circle" tooltips tooltip-template="{{tt.test}}"></i>-->
                             <span translate="PERCENTAGE">Percentage</span>
                         </label>
-                        <div class="col-sm-5">
+                        <div class="col-sm-5" ng-class="{attention: limitedSlider.options.maxLimit < liquid.flavor[key]['percentage']}">
                             <rzslider
                                     rz-slider-model="liquid.flavor[key]['percentage']"
-                                    rz-slider-options="slider.options">
+                                    rz-slider-options="limitedSlider.options">
 
                             </rzslider>
                         </div>
