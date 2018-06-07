@@ -26,6 +26,10 @@ App.run(function($rootScope, $http, $translate) {
 
     /* Loading animation */
     $rootScope.loading = false;
+    /**
+     * Maintenance mode
+     */
+    $rootScope.maintenanceMode = true;
 
     // If there is any pending request keep loader open.
     $rootScope.$watch(function() {

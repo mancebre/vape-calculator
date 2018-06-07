@@ -405,11 +405,6 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
             $scope.calculateGrams();
             $scope.calculateTotal();
         }
-
-        console.log(
-            $scope.limitedSlider.options,
-            $scope.ingridients.flavor.length
-        );
     };
 
     /**
