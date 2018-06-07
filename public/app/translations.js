@@ -27,7 +27,7 @@ var translationsEN = {
     LANGUAGE: 'Language',
     ATTENTION: "Attention",
     BAD_RECIPE_MSG: "Something is wrong with your recipe, some values are negative",
-    BAD_RECIPE_DIRECTIONS: "Click close to continue, or click fix to auto-fix recipe",
+    BAD_RECIPE_DIRECTIONS: "Click \"Close\" to continue, or click \"Fix\" to auto-fix recipe",
     CLOSE: "Close",
     FIX: "Fix"
 
@@ -62,7 +62,7 @@ var translationsRS= {
     LANGUAGE: 'Jezik',
     ATTENTION: "Pažnja",
     BAD_RECIPE_MSG: "Nešto nije u redu sa vašim receptom, neke vrednosti su negativne",
-    BAD_RECIPE_DIRECTIONS: "Kliknite blizu da nastavite, ili kliknite popravi za automatsko popravljanje recepta",
+    BAD_RECIPE_DIRECTIONS: "Kliknite \"Zatvori\" da nastavite, ili kliknite \"Ispravi\" za automatsko popravljanje recepta",
     CLOSE: "Zatvori",
     FIX: "Ispravi"
 };
