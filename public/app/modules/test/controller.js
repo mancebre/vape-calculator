@@ -1,6 +1,6 @@
 angular.module('gelApp.test', []);
 
-angular.module('gelApp.test').controller('testCtrl', ['$rootScope', '$scope', 'myService', '$http', function ($rootScope, $scope, myService, $http) {
+angular.module('gelApp.test').controller('testCtrl', ['$rootScope', '$scope', 'myService', '$http', 'AuthenticationService', function ($rootScope, $scope, myService, $http, AuthenticationService) {
     $rootScope.toggle = false;
 	$rootScope.something = ["one", "two"];
 
