@@ -12,8 +12,7 @@ angular.module('gelApp.user').controller('userCtrl', ['$rootScope', '$scope', 'A
 
         $scope.submitLoginForm= function () {
 
-            console.log("Login", $scope.loginCredentials);
-            AuthenticationService.Login($scope.loginCredentials.email, md5.createHash($scope.loginCredentials.password), $scope.redirectToHome());
+            AuthenticationService.Login($scope.loginCredentials.email, md5.createHash($scope.loginCredentials.password), $scope.redirectToHome);
 
         };
 

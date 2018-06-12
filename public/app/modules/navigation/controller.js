@@ -1,19 +1,25 @@
 angular.module('gelApp.DropdownController', []);
 
-angular.module('gelApp.DropdownController').controller('DropdownController', ['$scope', '$translate', '$rootScope', function ($scope, $translate, $rootScope) {
+angular.module('gelApp.DropdownController').controller('DropdownController', ['$scope', '$translate', '$rootScope', '$location',
+    function ($scope, $translate, $rootScope, $location) {
 
-    $scope.changeLanguage = function (langKey) {
-        $translate.use(langKey);
-        $rootScope.selectedLang = $translate.use(false);
-    };
+        $scope.changeLanguage = function (langKey) {
+            $translate.use(langKey);
+            $rootScope.selectedLang = $translate.use(false);
+        };
 
-    var vm = [];
+        $scope.getClass = function (path) {
 
-    vm.isCollapsed = true;
-    vm.status = {
-        isopen: false
-    };
+            return ($location.path().substr(0, path.length) === path) ? 'active' : '';
+        };
 
-    $scope.vm = vm;
+        let vm = [];
+
+        vm.isCollapsed = true;
+        vm.status = {
+            isopen: false
+        };
+
+        $scope.vm = vm;
 
 }]);
