@@ -4,8 +4,12 @@ $loader: '/app/images/loading.gif';
 $navBackgroundColor1: #eee;
 $navBackgroundColor2: grey;
 $navColor: #464646;
+$errorRed: #d83b3b;
 
 body {
+  .help-block {
+    color: $errorRed;
+  }
   .attention {
     //border: solid 3px red;
     background-color: pink;

@@ -18,6 +18,10 @@ App.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
         title: 'Contact',
         controller: 'contactCtrl',
         templateUrl: '/app/modules/contact/view.html'
+    }).when('/login', {
+        title: 'Contact',
+        controller: 'userCtrl',
+        templateUrl: '/app/modules/user/view.html'
     }).otherwise({
         redirectTo: '/'
     });

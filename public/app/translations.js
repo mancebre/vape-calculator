@@ -1,5 +1,5 @@
 var translationsEN = {
-    HEADLINE: 'Recipe',
+    RECIPE: 'Recipe',
     USE_VAPE_READY: 'Use vape-ready nicotine base!',
     AMOUNT: 'Amount',
     DESIRED_STRENGTH: 'Desired strength',
@@ -29,12 +29,16 @@ var translationsEN = {
     BAD_RECIPE_MSG: "Something is wrong with your recipe, some values are negative",
     BAD_RECIPE_DIRECTIONS: "Click \"Close\" to continue, or click \"Fix\" to auto-fix recipe",
     CLOSE: "Close",
-    FIX: "Fix"
+    FIX: "Fix",
+
+    PASSWORD: "Password:",
+    REMEMBER_ME: "Remember me:",
+    LOGIN: "Login"
 
 };
 
 var translationsRS= {
-    HEADLINE: 'Recept',
+    RECIPE: 'Recept',
     USE_VAPE_READY: 'Koristi gotovu aromu!',
     AMOUNT: 'Količina',
     DESIRED_STRENGTH: 'Željena jačina',
@@ -64,7 +68,11 @@ var translationsRS= {
     BAD_RECIPE_MSG: "Nešto nije u redu sa vašim receptom, neke vrednosti su negativne",
     BAD_RECIPE_DIRECTIONS: "Kliknite \"Zatvori\" da nastavite, ili kliknite \"Ispravi\" za automatsko popravljanje recepta",
     CLOSE: "Zatvori",
-    FIX: "Ispravi"
+    FIX: "Ispravi",
+
+    PASSWORD: "Lozinka:",
+    REMEMBER_ME: "Zapamti me:",
+    LOGIN: "Uloguj se"
 };
 
 angular.module('gelApp.home').config(['$translateProvider', function ($translateProvider) {

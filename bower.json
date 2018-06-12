@@ -21,7 +21,9 @@
     "angularjs-slider": "^6.5.1",
     "angular-tooltips": "^1.2.2",
     "angular-translate-storage-local": "^2.18.1",
-    "angular-translate-storage-cookie": "^2.18.1"
+    "angular-translate-storage-cookie": "^2.18.1",
+    "ngstorage": "^0.3.11",
+    "angular-md5": "^0.1.10"
   },
   "devDependencies": {
     "angular-translate": "^2.17.1"

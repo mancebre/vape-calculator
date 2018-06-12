@@ -35,6 +35,6 @@ App.run(function($rootScope, $http, $translate) {
     $rootScope.$watch(function() {
         return $http.pendingRequests.length > 0;
     }, function(hasPending) {
-        $rootScope.loading = hasPending ? true : false;
+        $rootScope.loading = !!hasPending;
     });
 });
