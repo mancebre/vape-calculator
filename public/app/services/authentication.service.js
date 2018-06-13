@@ -22,9 +22,8 @@
                     if (response.data.token) {
 
                         let token = response.data.token;
-                        let userData = response.data.userData;
                         // store email and token in local storage to keep user logged in between page refreshes
-                        $localStorage.currentUser = { userData: userData, token: token };
+                        $localStorage.currentUser = { token: token };
 
                         // add jwt token to auth header for all requests made by the $http service
                         $http.defaults.headers.common.Authorization = 'Token ' + token;
