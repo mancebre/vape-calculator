@@ -21,9 +21,16 @@
                     // login successful if there's a token in the response
                     if (response.data.token) {
 
+                        // Get user data from token
                         let token = response.data.token;
-                        // store email and token in local storage to keep user logged in between page refreshes
-                        $localStorage.currentUser = { token: token };
+                        // Token has 3 parts separated by "."
+                        // header.payload.signature we need payload
+                        let tokenArr = token.split(".");
+                        // Payload is base64 encoded json
+                        // Let's use "atob" to decode payload
+                        let userData = angular.fromJson(atob(tokenArr[1]));
+                        // Store user to local storage
+                        $localStorage.currentUser = userData;
 
                         // add jwt token to auth header for all requests made by the $http service
                         $http.defaults.headers.common.Authorization = 'Token ' + token;

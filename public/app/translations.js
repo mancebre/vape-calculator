@@ -33,7 +33,8 @@ var translationsEN = {
 
     PASSWORD: "Password:",
     REMEMBER_ME: "Remember me:",
-    LOGIN: "Login"
+    LOGIN: "Login",
+    LOGOUT: "Log out"
 
 };
 
@@ -72,7 +73,8 @@ var translationsRS= {
 
     PASSWORD: "Lozinka:",
     REMEMBER_ME: "Zapamti me:",
-    LOGIN: "Uloguj se"
+    LOGIN: "Uloguj se",
+    LOGOUT: "Izloguj se"
 };
 
 angular.module('gelApp.home').config(['$translateProvider', function ($translateProvider) {

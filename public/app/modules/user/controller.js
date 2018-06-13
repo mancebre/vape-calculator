@@ -11,13 +11,11 @@ angular.module('gelApp.user').controller('userCtrl', ['$rootScope', '$scope', 'A
         };
 
         $scope.submitLoginForm= function () {
-
             AuthenticationService.Login($scope.loginCredentials.email, md5.createHash($scope.loginCredentials.password), $scope.redirectToHome);
-
         };
 
         $scope.redirectToHome = function () {
-            // $window.location.href = '/';
+            $window.location.href = '/';
             console.log("Local user", $localStorage.currentUser);
         }
 

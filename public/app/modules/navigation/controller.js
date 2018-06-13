@@ -1,7 +1,14 @@
 angular.module('gelApp.DropdownController', []);
 
-angular.module('gelApp.DropdownController').controller('DropdownController', ['$scope', '$translate', '$rootScope', '$location',
-    function ($scope, $translate, $rootScope, $location) {
+angular.module('gelApp.DropdownController').controller('DropdownController', ['$scope', '$translate', '$rootScope', '$location', 'AuthenticationService',
+    function ($scope, $translate, $rootScope, $location, AuthenticationService) {
+
+        /**
+         * Delete local storage and redirect user to front page.
+         */
+        $scope.logoutUser = function() {
+            AuthenticationService.Logout();
+        };
 
         $scope.changeLanguage = function (langKey) {
             $translate.use(langKey);

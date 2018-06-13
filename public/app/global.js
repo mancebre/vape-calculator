@@ -1,7 +1,7 @@
 
 /* GLOBALS */
 
-App.run(function($rootScope, $http, $translate) {
+App.run(function($rootScope, $http, $translate, $localStorage) {
     $rootScope.testFunc = function () {
         if($rootScope.toggle) {
             $rootScope.something = ["one", "two"];
@@ -10,6 +10,10 @@ App.run(function($rootScope, $http, $translate) {
             $rootScope.something = [1, 2, 3];
             $rootScope.toggle = true;
         }
+    };
+
+    $rootScope.isLoggedIn = function() {
+        return $localStorage.currentUser;
     };
 
     $rootScope.selectedLang = $translate.use(false);

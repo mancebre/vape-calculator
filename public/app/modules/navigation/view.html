@@ -37,7 +37,12 @@
                     <!--<button type="submit" class="btn btn-default">Submit</button>-->
                 <!--</form>-->
                 <ul class="nav navbar-nav navbar-right">
-                    <li ng-class="getClass('/login')"><a href="/login"><span translate="LOGIN"></span> <span class="glyphicon glyphicon-log-in"></span></a></li>
+                    <li ng-hide="isLoggedIn()" ng-class="getClass('/login')">
+                        <a href="/login"><span translate="LOGIN"></span> <span class="glyphicon glyphicon-log-in"></span></a>
+                    </li>
+                    <li ng-show="isLoggedIn()" ng-class="getClass('/logout')">
+                        <a href="#" ng-click="logoutUser()"><span translate="LOGOUT"></span> <span class="glyphicon glyphicon-log-out"></span></a>
+                    </li>
                     <li class="dropdown" uib-dropdown>
                         <a href="#" class="dropdown-toggle" uib-dropdown-toggle data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span translate="LANGUAGE">Language</span> <span class="caret"></span></a>
                         <ul class="dropdown-menu" uib-dropdown-menu>
