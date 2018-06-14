@@ -2,6 +2,8 @@
 
 <div ng-app="gelApp.user" ng-controller="userCtrl" class="col-sm-12">
     <form class="form-horizontal" ng-submit="submitLoginForm()" role="form" name="loginForm" novalidate>
+        <p ng-show="showError" class="center-text attention" translate="SOMETHING_WENT_WRONG"></p>
+        <p ng-show="showBadCredentialsMsg" class="center-text attention" translate="BAD_CREDENTIALS"></p>
         <div class="form-group">
             <label class="control-label col-sm-2" for="email">Email:</label>
             <div class="col-sm-10">

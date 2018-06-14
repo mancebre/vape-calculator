@@ -7,6 +7,9 @@ $navColor: #464646;
 $errorRed: #d83b3b;
 
 body {
+  .center-text {
+    text-align: center;
+  }
   .help-block {
     color: $errorRed;
   }
