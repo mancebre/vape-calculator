@@ -19,9 +19,13 @@ App.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
         controller: 'contactCtrl',
         templateUrl: '/app/modules/contact/view.html'
     }).when('/login', {
-        title: 'Contact',
+        title: 'Login',
         controller: 'userCtrl',
         templateUrl: '/app/modules/user/view.html'
+    }).when('/registration', {
+        title: 'Signup',
+        controller: 'registrationCtrl',
+        templateUrl: '/app/modules/registration/view.html'
     }).otherwise({
         redirectTo: '/'
     });

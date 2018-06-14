@@ -9,6 +9,7 @@ var App = angular.module("gelApp", [
     '720kb.tooltips',
     'gelApp.home',
     'gelApp.user',
+    'gelApp.registration',
     'gelApp.test',
     'gelApp.contact',
     'gelApp.plans',

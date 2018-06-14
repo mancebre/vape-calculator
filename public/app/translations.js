@@ -32,11 +32,17 @@ var translationsEN = {
     FIX: "Fix",
 
     PASSWORD: "Password:",
+    REPASSWORD: "Re enter password:",
     REMEMBER_ME: "Remember me:",
     LOGIN: "Login",
     LOGOUT: "Log out",
     SOMETHING_WENT_WRONG: "Something went wrong. Please try again",
-    BAD_CREDENTIALS: "Email or/and password you entered doesn't match with anything we have in the database. Please try again"
+    BAD_CREDENTIALS: "Email or/and password you entered doesn't match with anything we have in the database. Please try again",
+    REGISTER: "Signup",
+    USERNAME: "Username",
+    FIRST_NAME: "First name",
+    LAST_NAME: "Last name",
+    NEWSLETTER: "Keep me updated"
 
 };
 
@@ -74,11 +80,17 @@ var translationsRS= {
     FIX: "Ispravi",
 
     PASSWORD: "Lozinka:",
+    REPASSWORD: "Ponovite lozinku:",
     REMEMBER_ME: "Zapamti me:",
     LOGIN: "Uloguj se",
     LOGOUT: "Izloguj se",
     SOMETHING_WENT_WRONG: "Nešto nije u redu. Molim vas, pokušajte ponovo",
-    BAD_CREDENTIALS: "Email i / ili lozinka koju ste uneli ne odgovara ni čemu što imamo u bazi podataka. Molim vas, pokušajte ponovo"
+    BAD_CREDENTIALS: "Email i / ili lozinka koju ste uneli ne odgovara ni čemu što imamo u bazi podataka. Molim vas, pokušajte ponovo",
+    REGISTER: "Prijavi se",
+    USERNAME: "Korisnicko ime",
+    FIRST_NAME: "Ime",
+    LAST_NAME: "Prezime",
+    NEWSLETTER: "Obaveštavaj me"
 };
 
 angular.module('gelApp.home').config(['$translateProvider', function ($translateProvider) {

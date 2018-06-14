@@ -215,3 +215,9 @@ body .navbar-default .navbar-toggle:hover {
     border-radius: 0;
   }
 }
+@media (min-width: 1200px) {
+  /* line 202, style.scss */
+  body .user-form {
+    padding: 0 350px;
+  }
+}
