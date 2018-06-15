@@ -3,34 +3,41 @@ body {
   background: #e2e2e2;
 }
 /* line 10, style.scss */
+body .notification {
+  border-radius: 25px;
+  background: #cdf0ce;
+  padding: 20px;
+  margin-bottom: 15px;
+}
+/* line 16, style.scss */
 body .center-text {
   text-align: center;
 }
-/* line 13, style.scss */
+/* line 19, style.scss */
 body .help-block {
   color: #d83b3b;
 }
-/* line 16, style.scss */
+/* line 22, style.scss */
 body .attention {
   background-color: pink;
 }
-/* line 20, style.scss */
+/* line 26, style.scss */
 body .settings {
   text-align: center;
 }
-/* line 22, style.scss */
+/* line 28, style.scss */
 body .settings input {
   width: 100px;
 }
-/* line 26, style.scss */
+/* line 32, style.scss */
 body .add-flavor {
   margin-bottom: 25px;
 }
-/* line 30, style.scss */
+/* line 36, style.scss */
 body .flavor-fields fieldset {
   position: relative;
 }
-/* line 34, style.scss */
+/* line 40, style.scss */
 body .link {
   cursor: pointer;
   text-align: right;
@@ -38,11 +45,11 @@ body .link {
   top: 15px;
   right: 20px;
 }
-/* line 41, style.scss */
+/* line 47, style.scss */
 body .delete {
   color: red;
 }
-/* line 44, style.scss */
+/* line 50, style.scss */
 body fieldset {
   border: 1px groove #ddd !important;
   padding: 0 1.4em 1.4em 1.4em !important;
@@ -50,7 +57,7 @@ body fieldset {
   -webkit-box-shadow: 0px 0px 0px 0px #000;
   box-shadow: 0px 0px 0px 0px #000;
 }
-/* line 51, style.scss */
+/* line 57, style.scss */
 body fieldset legend {
   font-size: 1.2em !important;
   font-weight: bold !important;
@@ -59,29 +66,29 @@ body fieldset legend {
   padding: 0 10px;
   border-bottom: none;
 }
-/* line 61, style.scss */
+/* line 67, style.scss */
 body fieldset .rzslider .rz-pointer {
   background-color: #eeeeee;
 }
-/* line 66, style.scss */
+/* line 72, style.scss */
 body h2 {
   text-align: center;
 }
-/* line 70, style.scss */
+/* line 76, style.scss */
 body .flavor-fields .col-sm-4 {
   padding-left: 6px;
   padding-right: 6px;
 }
-/* line 75, style.scss */
+/* line 81, style.scss */
 body .input-group-addon {
   font-size: 12px;
   padding: 6px 5px;
 }
-/* line 79, style.scss */
+/* line 85, style.scss */
 body .recipe-input {
   display: table;
 }
-/* line 83, style.scss */
+/* line 89, style.scss */
 body .button {
   display: inline-block;
   width: 115px;
@@ -92,7 +99,7 @@ body .button {
   color: white;
   font-weight: bold;
 }
-/* line 94, style.scss */
+/* line 100, style.scss */
 body #loader {
   position: fixed;
   left: 0;
@@ -104,119 +111,119 @@ body #loader {
   opacity: 0.7;
   background: #333 url("/app/images/loading.gif") no-repeat center center;
 }
-/* line 107, style.scss */
+/* line 113, style.scss */
 body .form-group input[type="checkbox"] {
   display: none;
 }
-/* line 110, style.scss */
+/* line 116, style.scss */
 body .form-group input[type="checkbox"] + .btn-group > label span {
   width: 20px;
 }
-/* line 113, style.scss */
+/* line 119, style.scss */
 body .form-group input[type="checkbox"] + .btn-group > label span:first-child {
   display: none;
 }
-/* line 116, style.scss */
+/* line 122, style.scss */
 body .form-group input[type="checkbox"] + .btn-group > label span:last-child {
   display: inline-block;
 }
-/* line 119, style.scss */
+/* line 125, style.scss */
 body .form-group input[type="checkbox"]:checked + .btn-group > label span:first-child {
   display: inline-block;
 }
-/* line 122, style.scss */
+/* line 128, style.scss */
 body .form-group input[type="checkbox"]:checked + .btn-group > label span:last-child {
   display: none;
 }
-/* line 129, style.scss */
+/* line 135, style.scss */
 body .navbar-default {
   background-color: #eee;
   border: none;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.175);
 }
-/* line 133, style.scss */
+/* line 139, style.scss */
 body .navbar-default .btn-default {
   color: #eee;
 }
-/* line 135, style.scss */
+/* line 141, style.scss */
 body .navbar-default .btn-default:hover {
   background-color: grey;
 }
-/* line 139, style.scss */
+/* line 145, style.scss */
 body .navbar-default .dropdown-menu {
   border: none;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.175);
 }
-/* line 143, style.scss */
+/* line 149, style.scss */
 body .navbar-default .dropdown-menu li > a:hover {
   background-color: grey;
 }
-/* line 148, style.scss */
+/* line 154, style.scss */
 body .navbar-default .navbar-brand {
   color: #464646;
 }
-/* line 150, style.scss */
+/* line 156, style.scss */
 body .navbar-default .navbar-brand:hover {
   color: #000;
 }
-/* line 153, style.scss */
+/* line 159, style.scss */
 body .navbar-default .navbar-brand:focus {
   color: grey;
 }
-/* line 157, style.scss */
+/* line 163, style.scss */
 body .navbar-default .navbar-nav > li > a {
   color: #464646;
 }
-/* line 160, style.scss */
+/* line 166, style.scss */
 body .navbar-default .navbar-nav > .active > a {
   color: #eee;
   background-color: #464646;
 }
-/* line 164, style.scss */
+/* line 170, style.scss */
 body .navbar-default .navbar-nav > .active > a:focus {
   color: #eee;
   background-color: #464646;
 }
-/* line 168, style.scss */
+/* line 174, style.scss */
 body .navbar-default .navbar-nav > .active > a:hover {
   color: #eee;
   background-color: grey;
 }
-/* line 172, style.scss */
+/* line 178, style.scss */
 body .navbar-default .navbar-nav > .open > a {
   color: #eee;
   background-color: #464646;
 }
-/* line 176, style.scss */
+/* line 182, style.scss */
 body .navbar-default .navbar-nav > .open > a:focus {
   color: #eee;
   background-color: #464646;
 }
-/* line 180, style.scss */
+/* line 186, style.scss */
 body .navbar-default .navbar-nav > .open > a:hover {
   color: #eee;
   background-color: grey;
 }
-/* line 184, style.scss */
+/* line 190, style.scss */
 body .navbar-default .navbar-toggle {
   border-color: #464646;
 }
-/* line 186, style.scss */
+/* line 192, style.scss */
 body .navbar-default .navbar-toggle .icon-bar {
   background-color: #464646;
 }
-/* line 189, style.scss */
+/* line 195, style.scss */
 body .navbar-default .navbar-toggle:hover {
   background-color: grey;
 }
 @media (min-width: 768px) {
-  /* line 196, style.scss */
+  /* line 202, style.scss */
   body .navbar {
     border-radius: 0;
   }
 }
 @media (min-width: 1200px) {
-  /* line 202, style.scss */
+  /* line 208, style.scss */
   body .user-form {
     padding: 0 350px;
   }

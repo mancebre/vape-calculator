@@ -1,10 +1,14 @@
 <h2 translate="REGISTER"></h2>
 
 <div class="col-sm-12 user-form">
-    <form class="form-horizontal" ng-submit="submitSignupForm()" role="form" name="signupForm" novalidate>
-        <p ng-show="showError" class="center-text attention" translate="SOMETHING_WENT_WRONG"></p>
-        <p ng-show="showBadCredentialsMsg" class="center-text attention" translate="BAD_CREDENTIALS"></p>
-        <p ng-show="showServerMsg" class="center-text attention">{{serverMessage}}</p>
+    <p ng-show="showError" class="center-text attention" translate="SOMETHING_WENT_WRONG"></p>
+    <p ng-show="showBadCredentialsMsg" class="center-text attention" translate="BAD_CREDENTIALS"></p>
+    <p ng-show="showServerMsg" class="center-text attention">{{serverMessage}}</p>
+    <div ng-show="signupSussesfull" class="center-text notification">
+        <p>Thank you, you have successfully signup!</p>
+        <p>Click <a href="/">here</a> to go to vape calculator. </p>
+    </div>
+    <form ng-hide="signupSussesfull" class="form-horizontal" ng-submit="submitSignupForm()" role="form" name="signupForm" novalidate>
         <div class="form-group">
             <label class="control-label col-sm-4" for="email">Email:</label>
             <div class="col-sm-8">

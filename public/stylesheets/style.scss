@@ -7,6 +7,12 @@ $navColor: #464646;
 $errorRed: #d83b3b;
 
 body {
+  .notification {
+    border-radius: 25px;
+    background: #cdf0ce;
+    padding: 20px;
+    margin-bottom: 15px;
+  }
   .center-text {
     text-align: center;
   }
