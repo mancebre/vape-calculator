@@ -20,7 +20,7 @@
                 lastname:   userData.lastname,
                 password:   userData.password,
                 username:   userData.username,
-                newsletter: userData.newsletter,
+                newsletter: userData.newsletter ? 1 : 0,
             })
                 .then(function (response) {
                     console.log('success', response);
