@@ -9,6 +9,8 @@ angular.module('gelApp.registration').controller('registrationCtrl', ['$scope', 
     {
         $scope.showError = false;
         $scope.showBadCredentialsMsg = false;
+        $scope.showServerMsg = false;
+        $scope.serverMessage = false;
 
         $scope.registration = {
             email: "",
@@ -27,16 +29,28 @@ angular.module('gelApp.registration').controller('registrationCtrl', ['$scope', 
             UserRegistration.RegisterUser($scope.userData, $scope.redirectToHome);
         };
 
-        $scope.redirectToHome = function (result) {
-            if (result === 200) {
+        $scope.redirectToHome = function (status, message) {
+            if (status === 201) {
                 $scope.showError = false;
                 $scope.showBadCredentialsMsg = false;
+                $scope.showServerMsg = false;
+                $scope.serverMessage = false;
                 // $window.location.href = '/';
-            } else if (result === 404) {
+            } else if (status === 400) {
+                $scope.showError = false;
+                $scope.showBadCredentialsMsg = false;
+                $scope.showServerMsg = true;
+                $scope.serverMessage = message;
+            } else if (status === 404) {
                 $scope.showError = false;
                 $scope.showBadCredentialsMsg = true;
+                $scope.showServerMsg = false;
+                $scope.serverMessage = false;
             } else {
                 $scope.showError = true;
+                $scope.showBadCredentialsMsg = false;
+                $scope.showServerMsg = true;
+                $scope.serverMessage = message;
             }
         };
 

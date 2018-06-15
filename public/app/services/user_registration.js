@@ -23,12 +23,13 @@
                 newsletter: userData.newsletter,
             })
                 .then(function (response) {
+                    console.log('success', response);
 
-                    callback(response.status);
+                    callback(response.status, response.data);
                 })
                 .catch(function(response) {
                     console.log('error', response);
-                    callback(response.status);
+                    callback(response.status, response.data);
                 });
         }
     }
