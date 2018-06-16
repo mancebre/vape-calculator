@@ -186,20 +186,21 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
 
     //5. create submitStudentForm() function. This will be called when user submits the form
     $scope.submitLiquidForm = function () {
-        return false; // For now
-        // console.log($scope.liquid);
+        // TODO This data should be parsed in one level object.
+        console.log($scope.liquid);
 
-        let onSuccess = function (data, status, headers, config) {
-            alert('Student saved successfully.');
-        };
-
-        let onError = function (data, status, headers, config) {
-            alert('Error occured.');
-        };
-
-        $http.post('/liquid/submitData', { liquid:$scope.liquid })
-            .success(onSuccess)
-            .error(onError);
+        // TODO I should probably made a service for this!
+        // let onSuccess = function (data, status, headers, config) {
+        //     alert('Student saved successfully.');
+        // };
+        //
+        // let onError = function (data, status, headers, config) {
+        //     alert('Error occured.');
+        // };
+        //
+        // $http.post('/liquid/submitData', { liquid:$scope.liquid })
+        //     .success(onSuccess)
+        //     .error(onError);
 
     };
 
