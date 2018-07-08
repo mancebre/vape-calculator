@@ -15,6 +15,7 @@ var App = angular.module("gelApp", [
     'gelApp.plans',
     'gelApp.DropdownController',
     'gelApp.editWeights',
+    'gelApp.loginWarning',
     'ngStorage',
     'gelApp.openAttention'
 ]);

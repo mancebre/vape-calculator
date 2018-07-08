@@ -13,7 +13,7 @@ App.run(function($rootScope, $http, $translate, $localStorage) {
     };
 
     $rootScope.isLoggedIn = function() {
-        return $localStorage.currentUser;
+        return $localStorage.currentUser ? true : false;
     };
 
     $rootScope.selectedLang = $translate.use(false);

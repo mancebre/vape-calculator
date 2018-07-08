@@ -1,6 +1,7 @@
 angular.module('gelApp.home', []);
 
-angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$translate', '$uibModal', 'tooltipTranslations', '$rootScope', function ($scope, $http, $translate, $uibModal, tooltipTranslations, $rootScope) {
+angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$translate', '$uibModal', 'tooltipTranslations', '$rootScope', '$window', 'RecipeService',
+    function ($scope, $http, $translate, $uibModal, tooltipTranslations, $rootScope, $window, RecipeService) {
 
     // This is true when attention popup is open.
     $scope.attentionPopup = false;
@@ -23,6 +24,24 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
         };
         localStorage.setItem('weights', JSON.stringify($scope.weights));
     }
+
+    $scope.loginWarning = function(){
+        // Open login warning modal
+        $uibModal.open({
+            controller: 'loginWarningCtrl',
+            templateUrl: 'app/modules/modals/login_warning/view.html',
+            // backdrop: false
+        })
+            .result.then(function(location){
+                if(location) {
+                    console.log("works", location);
+                    $window.location.href = '/' + location;
+                }
+            }, function(res){
+                console.log("ERROR", res);
+            }
+        );
+    };
 
     $scope.editWeight = function(){
         // Open modal to edit weights
@@ -187,7 +206,21 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
     //5. create submitStudentForm() function. This will be called when user submits the form
     $scope.submitLiquidForm = function () {
         // TODO This data should be parsed in one level object.
+        $scope.liquid.vapeReady = $scope.vapeReady;
+
+        console.log("logged in ??", $rootScope.isLoggedIn());
         console.log($scope.liquid);
+
+        // TODO If not logged in show popup with login and sign up button!
+        if ($scope.isLoggedIn()) {
+            // Save recipe
+            RecipeService.save($scope.liquid, function (res) {
+                console.log(res);
+            });
+        } else {
+            // Show popup.
+            $scope.loginWarning();
+        }
 
         // TODO I should probably made a service for this!
         // let onSuccess = function (data, status, headers, config) {
