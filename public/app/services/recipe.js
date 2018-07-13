@@ -15,6 +15,7 @@
         function save(recipeData, callback) {
             let apiUrl = $rootScope.apiUrl + 'recipe/';
             $http.post(apiUrl, {
+                name:               recipeData.name,
                 amount:             recipeData.amount,
                 base:               recipeData.base,
                 comment:            recipeData.comment,

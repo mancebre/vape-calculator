@@ -92,6 +92,7 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
     };
 
     $scope.originalLiquid = {
+        name:               "",
         amount:             100,
         desired_strength:   6,
         wvpga:              0,
@@ -439,6 +440,18 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
             $scope.calculateGrams();
             $scope.calculateTotal();
         }
+        $scope.generateLiquidName();
+    };
+
+    $scope.generateLiquidName = function() {
+        $scope.liquid.name = "";
+
+        angular.forEach($scope.liquid.flavor, function (val, key) {
+            $scope.liquid.name += val.name + ", ";
+        });
+
+        $scope.liquid.name += $scope.liquid.pg + "/" + $scope.liquid.vg + ", ";
+        $scope.liquid.name += $scope.liquid.desired_strength + " mg";
     };
 
     /**
