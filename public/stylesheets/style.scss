@@ -7,6 +7,12 @@ $navColor: #464646;
 $errorRed: #d83b3b;
 
 body {
+  .recipe-result {
+    background-color: $navBackgroundColor1;
+  }
+  .ingredients-form {
+    padding-bottom: 25px;
+  }
   .notification {
     border-radius: 25px;
     background: #cdf0ce;
