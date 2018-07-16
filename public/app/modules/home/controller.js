@@ -319,10 +319,10 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
         $scope.ingridients.pg_dilutant.ml = $scope.getAmountFromPercentage($scope.ingridients.pg_dilutant.percentage);
 
         // Remove diluent from pg and vg
-        $scope.ingridients.vg_dilutant.ml = $scope.ingridients.vg_dilutant.ml - (($scope.liquid.amount / 2 / 100) * $scope.liquid.wvpga);
-        $scope.ingridients.vg_dilutant.percentage = $scope.ingridients.vg_dilutant.percentage - (($scope.liquid.amount / 2 / 100) * $scope.liquid.wvpga);
-        $scope.ingridients.pg_dilutant.ml = $scope.ingridients.pg_dilutant.ml - (($scope.liquid.amount / 2 / 100) * $scope.liquid.wvpga);
-        $scope.ingridients.pg_dilutant.percentage = $scope.ingridients.pg_dilutant.percentage - (($scope.liquid.amount / 2 / 100) * $scope.liquid.wvpga);
+        $scope.ingridients.vg_dilutant.percentage = $scope.ingridients.vg_dilutant.percentage - ($scope.liquid.wvpga / 2);
+        $scope.ingridients.vg_dilutant.ml = $scope.getAmountFromPercentage($scope.ingridients.vg_dilutant.percentage);
+        $scope.ingridients.pg_dilutant.percentage = $scope.ingridients.pg_dilutant.percentage - ($scope.liquid.wvpga / 2);
+        $scope.ingridients.pg_dilutant.ml = $scope.getAmountFromPercentage($scope.ingridients.pg_dilutant.percentage);
 
         // Remove flavor from pg and vg
         angular.forEach($scope.liquid.flavor, function (val, key) {
