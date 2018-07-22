@@ -217,8 +217,16 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
         // TODO If not logged in show popup with login and sign up button!
         if ($scope.isLoggedIn()) {
             // Save recipe
-            RecipeService.save($scope.liquid, function (res) {
-                console.log(res);
+            RecipeService.save($scope.liquid, function (status, data) {
+
+                console.log({
+                    status: status,
+                    data:   data
+                });
+
+                if(status !== 200) {
+                    alert("Something went wrong, please try again.")
+                }
             });
         } else {
             // Show popup.
