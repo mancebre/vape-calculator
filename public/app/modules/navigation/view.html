@@ -37,6 +37,9 @@
                     <!--<button type="submit" class="btn btn-default">Submit</button>-->
                 <!--</form>-->
                 <ul class="nav navbar-nav navbar-right">
+                    <li ng-show="isLoggedIn()" ng-class="getClass('/my_recipes')">
+                        <a href="/my_recipes"><span translate="MY_RECIPES"></span> <span class="glyphicon glyphicon-book"></span></a>
+                    </li>
                     <li ng-hide="isLoggedIn()" ng-class="getClass('/registration')">
                         <a href="/registration"><span translate="REGISTER"></span> <span class="glyphicon glyphicon-user"></span></a>
                     </li>

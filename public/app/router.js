@@ -28,6 +28,10 @@ App.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
         title: 'Signup',
         controller: 'registrationCtrl',
         templateUrl: '/app/modules/registration/view.html'
+    }).when('/my_recipes', {
+        title: 'My Recipes',
+        controller: 'my_recipesCtrl',
+        templateUrl: '/app/modules/my_recipes/view.html'
     }).otherwise({
         redirectTo: '/'
     });
