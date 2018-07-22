@@ -1,11 +1,13 @@
 angular.module('gelApp.home', []);
 
-angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$translate', '$uibModal', 'tooltipTranslations', '$rootScope', '$window', 'RecipeService',
-    function ($scope, $http, $translate, $uibModal, tooltipTranslations, $rootScope, $window, RecipeService) {
+angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$translate', '$uibModal', 'tooltipTranslations', '$rootScope', '$window', 'RecipeService', '$routeParams',
+    function ($scope, $http, $translate, $uibModal, tooltipTranslations, $rootScope, $window, RecipeService, $routeParams) {
 
     // This is true when attention popup is open.
     $scope.attentionPopup = false;
     $scope.history = [];
+
+    console.log("recipe ID", $routeParams.recipe_id);
 
     $scope.translateTootips = function () {
         $scope.tt = tooltipTranslations[$rootScope.selectedLang];

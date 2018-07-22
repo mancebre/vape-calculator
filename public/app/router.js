@@ -1,8 +1,10 @@
 App.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
-    $locationProvider.html5Mode(true);
-
     $routeProvider.when('/', {
+        title: 'Home',
+        controller: 'homeCtrl',
+        templateUrl: '/app/modules/home/view.html'
+    }).when('/recipe/:recipe_id', {
         title: 'Home',
         controller: 'homeCtrl',
         templateUrl: '/app/modules/home/view.html'
@@ -29,5 +31,7 @@ App.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
     }).otherwise({
         redirectTo: '/'
     });
+
+    $locationProvider.html5Mode(true);
 
 }]);
