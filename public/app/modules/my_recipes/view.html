@@ -1,3 +1,17 @@
 
 <div class="col-sm-12">
+    <table class="table">
+        <thead>
+        <tr>
+            <th width="100px">Recipe Title</th>
+            <th>Comment</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="recipe in allUserRecipes">
+            <td><a href="/recipe/{{recipe.id}}">{{recipe.name}}</a></td>
+            <td>{{recipe.comment | limitTo: 120}}{{recipe.comment.length < 120 ? '' : '...'}}</td>
+        </tr>
+        </tbody>
+    </table>
 </div>

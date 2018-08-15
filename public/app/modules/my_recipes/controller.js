@@ -1,41 +1,61 @@
-angular.module('gelApp.contact', []);
+angular.module('gelApp.my_recipes', []);
 
-angular.module('gelApp.contact').controller('contactCtrl', ['$scope', '$http', function ($scope, $http) {
+angular.module('gelApp.my_recipes').controller('my_recipesCtrl', ['$scope', '$http', 'RecipeService', '$localStorage',
+    function ($scope, $http, RecipeService, $localStorage) {
 
-    //3. attach originalStudent model object
-    $scope.originalStudent = {
-        firstName: 'James',
-        lastName: 'Bond',
-        DoB: new Date('01/31/1980'),
-        gender: 'male',
-        trainingType: 'online',
-        maths: false,
-        physics: true,
-        chemistry: true
-    };
+    // TODO Dummy data, to be delted when service is created
+    $scope.allUserRecipes = [
+        {id: 1, name: "Recipe 1", comment: "Lorem ipsum dolor sit amet, detraxit dignissim qui at. Duo ut modus malorum civibus, mel solet reprimique ne. Mea in eius nobis constituam. Cum unum labitur senserit te, dolorum noluisse consequat in ius. Nam ne illum verear, vel in quando utamur, verterem suscipiantur ex sit."},
+        {id: 2, name: "Recipe 2", comment: "Lorem ipsum dolor sit amet, detraxit dignissim qui at. Duo ut modus malorum civibus, mel solet reprimique ne. Mea in eius nobis constituam. Cum unum labitur senserit te, dolorum noluisse consequat in ius. Nam ne illum verear, vel in quando utamur, verterem suscipiantur ex sit."},
+        {id: 3, name: "Recipe 3", comment: "Lorem ipsum dolor sit amet, detraxit dignissim qui at. Duo ut modus malorum civibus, mel solet reprimique ne. Mea in eius nobis constituam. Cum unum labitur senserit te, dolorum noluisse consequat in ius. Nam ne illum verear, vel in quando utamur, verterem suscipiantur ex sit."},
+        {id: 4, name: "Recipe 4", comment: "Lorem ipsum dolor sit amet, detraxit dignissim qui at. Duo ut modus malorum civibus, mel solet reprimique ne. Mea in eius nobis constituam. Cum unum labitur senserit te, dolorum noluisse consequat in ius. Nam ne illum verear, vel in quando utamur, verterem suscipiantur ex sit."},
+        {id: 5, name: "Recipe 5", comment: "Lorem ipsum dolor sit amet, detraxit dignissim qui at. Duo ut modus malorum civibus, mel solet reprimique ne. Mea in eius nobis constituam. Cum unum labitur senserit te, dolorum noluisse consequat in ius. Nam ne illum verear, vel in quando utamur, verterem suscipiantur ex sit."},
+    ];
 
-    //4. copy originalStudent to liquid. liquid will be bind to a form
-    $scope.liquid = angular.copy($scope.originalStudent);
+    $scope.getAllUserRecipes = function (userId) {
 
-    //5. create submitStudentForm() function. This will be called when user submits the form
-    $scope.submitStudnetForm = function () {
+        if ($scope.isLoggedIn()) {
+            // Save recipe
+            RecipeService.getMyRecipes(userId, function (status, data) {
 
-        var onSuccess = function (data, status, headers, config) {
-            alert('Student saved successfully.');
-        };
+                $scope.allUserRecipes = data;
 
-        var onError = function (data, status, headers, config) {
-            alert('Error occured.');
+                console.log({
+                    status: status,
+                    data:   data
+                });
+
+                if(status !== 200) {
+                    alert("Something went wrong, please try again.")
+                }
+            });
+        } else {
+            // Show popup.
+            $scope.loginWarning();
         }
 
-        $http.post('/liquid/submitData', { liquid:$scope.liquid })
-            .success(onSuccess)
-            .error(onError);
-
     };
 
-    //6. create resetForm() function. This will be called on Reset button click.
-    $scope.resetForm = function () {
-        $scope.liquid = angular.copy($scope.OriginalStudent);
+    $scope.loginWarning = function(){
+        // Open login warning modal
+        $uibModal.open({
+            controller: 'loginWarningCtrl',
+            templateUrl: 'app/modules/modals/login_warning/view.html',
+            // backdrop: false
+        })
+            .result.then(function(location){
+                if(location) {
+                    console.log("works", location);
+                    $window.location.href = '/' + location;
+                }
+            }, function(res){
+                console.log("ERROR", res);
+            }
+        );
     };
+
+    console.log($localStorage.currentUser);
+
+    // $scope.getAllUserRecipes();
+
 }]);

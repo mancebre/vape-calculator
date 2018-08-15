@@ -9,6 +9,7 @@
         let service = {};
 
         service.save = save;
+        service.getMyRecipes = getMyRecipes;
 
         return service;
 
@@ -31,6 +32,22 @@
                 vapeReady:          recipeData.vapeReady ? 1 : 0, // Because python will see it as a string
                 vg:                 recipeData.vg,
                 wvpga:              recipeData.wvpga
+            })
+                .then(function (response) {
+                    console.log('success', response);
+
+                    callback(response.status, response.data);
+                })
+                .catch(function(response) {
+                    console.log('error', response);
+                    callback(response.status, response.data);
+                });
+        }
+
+        function getMyRecipes(userId, callback) {
+            let apiUrl = $rootScope.apiUrl + 'recipes/';
+            $http.post(apiUrl, {
+                userId: userId,
             })
                 .then(function (response) {
                     console.log('success', response);
