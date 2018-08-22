@@ -22,11 +22,11 @@
                 comment:            recipeData.comment,
                 desired_strength:   recipeData.desired_strength,
                 flavor:             JSON.stringify(recipeData.flavor), // Because python
-                nicotine: JSON.stringify({ // Because python
-                    strength:   recipeData.nicotine.strength,
-                    pg:         recipeData.nicotine.pg,
-                    vg:         recipeData.nicotine.vg
-                }),
+                nicotine:           JSON.stringify({ // Because python
+                                        strength:   recipeData.nicotine.strength,
+                                        pg:         recipeData.nicotine.pg,
+                                        vg:         recipeData.nicotine.vg
+                                    }),
                 pg:                 recipeData.pg,
                 sleep_time:         recipeData.sleep_time,
                 vapeReady:          recipeData.vapeReady ? 1 : 0, // Because python will see it as a string

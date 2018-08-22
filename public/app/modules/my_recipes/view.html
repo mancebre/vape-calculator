@@ -1,3 +1,8 @@
+<style>
+    .checked {
+        color: orange;
+    }
+</style>
 
 <div class="col-sm-12">
     <table class="table">
@@ -5,12 +10,16 @@
         <tr>
             <th width="100px">Recipe Title</th>
             <th>Comment</th>
+            <th>Rating</th>
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="recipe in allUserRecipes">
             <td><a href="/recipe/{{recipe.id}}">{{recipe.name}}</a></td>
             <td>{{recipe.comment | limitTo: 120}}{{recipe.comment.length < 120 ? '' : '...'}}</td>
+            <td width="100">
+                <span ng-repeat="star in getStarArray() track by $index" ng-class="{checked: (recipe.rating >= star)}" class="fa fa-star"></span>
+            </td>
         </tr>
         </tbody>
     </table>
