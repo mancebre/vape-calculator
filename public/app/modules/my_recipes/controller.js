@@ -42,7 +42,7 @@ angular.module('gelApp.my_recipes').controller('my_recipesCtrl', ['$scope', '$ht
     $scope.getAllUserRecipes = function (userId) {
 
         if ($scope.isLoggedIn()) {
-            // Save recipe
+
             RecipeService.getMyRecipes(userId, function (status, data) {
 
                 $scope.allUserRecipes = data;

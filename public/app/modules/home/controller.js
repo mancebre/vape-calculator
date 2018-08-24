@@ -7,8 +7,6 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
     $scope.attentionPopup = false;
     $scope.history = [];
 
-    console.log("recipe ID", $routeParams.recipe_id);
-
     $scope.translateTootips = function () {
         $scope.tt = tooltipTranslations[$rootScope.selectedLang];
     };
@@ -522,4 +520,28 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
 
         return pgWeight + vgWeight;
     };
+
+    $scope.getRecipe = function (recipeId) {
+        RecipeService.getRecipe(recipeId, function (status, data) {
+
+            console.log({
+                status: status,
+                data:   data
+            });
+
+            if(status !== 200) {
+                alert("Something went wrong, please try again.")
+            }
+        });
+    };
+
+    if($routeParams.recipe_id !== undefined) {
+
+        let recipeId = $routeParams.recipe_id;
+
+        console.log("recipe ID", recipeId);
+
+        $scope.getRecipe(recipeId)
+
+    }
 }]);

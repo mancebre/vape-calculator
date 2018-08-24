@@ -10,6 +10,7 @@
 
         service.save = save;
         service.getMyRecipes = getMyRecipes;
+        service.getRecipe = getRecipe;
 
         return service;
 
@@ -47,6 +48,20 @@
         function getMyRecipes(userId, callback) {
             let apiUrl = $rootScope.apiUrl + 'recipes/';
             $http.get(apiUrl, { params: { userId: userId }})
+                .then(function (response) {
+                    console.log('success', response);
+
+                    callback(response.status, response.data);
+                })
+                .catch(function(response) {
+                    console.log('error', response);
+                    callback(response.status, response.data);
+                });
+        }
+
+        function getRecipe(id, callback) {
+            let apiUrl = $rootScope.apiUrl + 'recipe/';
+            $http.get(apiUrl, { params: { id: id }})
                 .then(function (response) {
                     console.log('success', response);
 
