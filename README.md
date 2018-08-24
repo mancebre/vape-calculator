@@ -17,7 +17,7 @@ Insturctions For beginners:
 
 `npm install`
 
-`bower install`
+`bower install` if there are any conflicts run ` bower install --force-latest`
 
 `grunt`
 
