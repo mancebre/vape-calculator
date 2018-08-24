@@ -231,26 +231,7 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
             $scope.loginWarning();
         }
 
-        // TODO I should probably made a service for this!
-        // let onSuccess = function (data, status, headers, config) {
-        //     alert('Student saved successfully.');
-        // };
-        //
-        // let onError = function (data, status, headers, config) {
-        //     alert('Error occured.');
-        // };
-        //
-        // $http.post('/liquid/submitData', { liquid:$scope.liquid })
-        //     .success(onSuccess)
-        //     .error(onError);
-
     };
-
-    //6. create resetForm() function. This will be called on Reset button click.
-    // Reset button is not working right, maybe I don't need it at all!
-    // $scope.resetForm = function () {
-    //     $scope.liquid = angular.copy($scope.originalLiquid);
-    // };
 
     /* Liquid calculator watcher */
 
