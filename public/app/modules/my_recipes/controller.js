@@ -88,8 +88,8 @@ angular.module('gelApp.my_recipes').controller('my_recipesCtrl', ['$scope', '$ht
         return result;
     };
 
-    console.log($localStorage.currentUser);
+    // console.log("User Data", $localStorage.currentUser);
 
-    // $scope.getAllUserRecipes();
+    $scope.getAllUserRecipes($localStorage.currentUser.user_id);
 
 }]);
