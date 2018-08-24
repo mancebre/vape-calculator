@@ -1,7 +1,7 @@
 angular.module('gelApp.home', []);
 
-angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$translate', '$uibModal', 'tooltipTranslations', '$rootScope', '$window', 'RecipeService', '$routeParams',
-    function ($scope, $http, $translate, $uibModal, tooltipTranslations, $rootScope, $window, RecipeService, $routeParams) {
+angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$translate', '$uibModal', 'tooltipTranslations', '$rootScope', '$location', 'RecipeService', '$routeParams',
+    function ($scope, $http, $translate, $uibModal, tooltipTranslations, $rootScope, $location, RecipeService, $routeParams) {
 
     // This is true when attention popup is open.
     $scope.attentionPopup = false;
@@ -34,8 +34,8 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
         })
             .result.then(function(location){
                 if(location) {
-                    console.log("works", location);
-                    $window.location.href = '/' + location;
+                    // console.log("works", location);
+                    $location.url('/' + location);
                 }
             }, function(res){
                 console.log("ERROR", res);
