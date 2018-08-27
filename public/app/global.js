@@ -16,10 +16,13 @@ App.run(function($rootScope, $http, $translate, $localStorage) {
         return $localStorage.currentUser ? true : false;
     };
 
+    $http.defaults.headers.common.Authorization = localStorage.getItem("Token");
+
     $rootScope.selectedLang = $translate.use(false);
 
     // // API url INTERNAL for testing only!
-    $rootScope.apiUrl = 'http://127.0.0.1:5000/';
+    // $rootScope.apiUrl = 'http://127.0.0.1:5000/';
+    $rootScope.apiUrl = 'http://localhost:8000/api/v1/';
     // API url EXTERNAL for testing only! Most of this do not work with external API :(
     // $rootScope.apiUrl = 'https://jsonplaceholder.typicode.com/posts';
 

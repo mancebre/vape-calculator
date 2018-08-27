@@ -15,6 +15,7 @@
         return service;
 
         function save(recipeData, callback) {
+            console.log("Token", $http.defaults.headers.common.Authorization);
             let apiUrl = $rootScope.apiUrl + 'recipe/';
             $http.post(apiUrl, {
                 name:               recipeData.name,
@@ -33,7 +34,9 @@
                 vapeReady:          recipeData.vapeReady ? 1 : 0, // Because python will see it as a string
                 vg:                 recipeData.vg,
                 wvpga:              recipeData.wvpga
-            })
+            },
+                // { headers:{ 'Authorization':  'Token ' + 123456} }
+                )
                 .then(function (response) {
                     console.log('success', response);
 

@@ -21,11 +21,14 @@
          * @constructor
          */
         function Login(email, password, callback) {
-            let apiUrl = $rootScope.apiUrl + 'user/';
-            $http.get(apiUrl, { params: { email: email, password: password } })
+            let apiUrl = $rootScope.apiUrl + 'auth/login/';
+            $http.post(apiUrl, {
+                email: email,
+                password: password
+            })
                 .then(function (response) {
 
-                    console.log(response.status);
+                    // console.log(response.status);
 
                     // login successful if there's a token in the response
                     if (response.data.token) {
@@ -43,6 +46,7 @@
 
                         // add jwt token to auth header for all requests made by the $http service
                         $http.defaults.headers.common.Authorization = 'Token ' + token;
+                        localStorage.setItem('Token', JSON.stringify('Token ' + token));
 
                         // execute callback with true to indicate successful login
                         callback(response.status);
