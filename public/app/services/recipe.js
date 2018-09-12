@@ -63,8 +63,8 @@
         }
 
         function getRecipe(id, callback) {
-            let apiUrl = $rootScope.apiUrl + 'recipe/';
-            $http.get(apiUrl, { params: { id: id }})
+            let apiUrl = $rootScope.apiUrl + 'recipe/' + id;
+            $http.get(apiUrl, {})
                 .then(function (response) {
                     console.log('success', response);
 
