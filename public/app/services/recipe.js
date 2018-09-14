@@ -49,7 +49,7 @@
         }
 
         function getMyRecipes(userId, callback) {
-            let apiUrl = $rootScope.apiUrl + 'recipes/';
+            let apiUrl = $rootScope.apiUrl + 'myRecipes/';
             $http.get(apiUrl, { params: { userId: userId }})
                 .then(function (response) {
                     console.log('success', response);
