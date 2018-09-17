@@ -1,7 +1,7 @@
 angular.module('gelApp.home', []);
 
-angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$translate', '$uibModal', 'tooltipTranslations', '$rootScope', '$location', 'RecipeService', '$routeParams',
-    function ($scope, $http, $translate, $uibModal, tooltipTranslations, $rootScope, $location, RecipeService, $routeParams) {
+angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$translate', '$uibModal', 'tooltipTranslations', '$rootScope', '$location', 'RecipeService', '$routeParams', '$timeout',
+    function ($scope, $http, $translate, $uibModal, tooltipTranslations, $rootScope, $location, RecipeService, $routeParams, $timeout) {
 
     // This is true when attention popup is open.
     $scope.attentionPopup = false;
@@ -92,6 +92,7 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
     };
 
     $scope.originalLiquid = {
+        id:                 false,
         name:               "",
         amount:             100,
         desired_strength:   6,
@@ -502,13 +503,39 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
         return pgWeight + vgWeight;
     };
 
-    $scope.getRecipe = function (recipeId) {
+    $scope.loadRecipe = function (recipeId) {
         RecipeService.getRecipe(recipeId, function (status, data) {
 
             console.log({
                 status: status,
                 data:   data
             });
+
+            $scope.vapeReady = data.vape_ready;
+            // I need timeout here because "vapeReady" var will break nicotine values.
+            $timeout( function(){
+                $scope.liquid.id = data.id;
+                $scope.liquid.name = data.name;
+                $scope.liquid.amount = data.amount;
+                $scope.liquid.desired_strength = data.desired_strength;
+                $scope.liquid.pg = data.pg;
+                $scope.liquid.vg = data.vg;
+                $scope.liquid.nicotine.strength = 70;
+                $scope.liquid.nicotine.pg = data.nicotine_pg;
+                $scope.liquid.nicotine.vg = data.nicotine_vg;
+                $scope.liquid.wvpga = data.wvpga;
+                $scope.liquid.sleep_time = data.sleep_time;
+                $scope.liquid.flavor = data.recipe_flavors;
+                $scope.liquid.comment = data.comment;
+
+                $scope.flavorFields = [];
+                $scope.flavorsCount = 0;
+
+                angular.forEach(data.recipe_flavors, function (flavor) {
+                    $scope.flavorsCount++;
+                    $scope.flavorFields.push($scope.flavorsCount);
+                })
+            }, 300 );
 
             if(status !== 200) {
                 alert("Something went wrong, please try again.")
@@ -519,10 +546,9 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
     if($routeParams.recipe_id !== undefined) {
 
         let recipeId = $routeParams.recipe_id;
-
         console.log("recipe ID", recipeId);
 
-        $scope.getRecipe(recipeId)
+        $scope.loadRecipe(recipeId)
 
     }
 }]);
