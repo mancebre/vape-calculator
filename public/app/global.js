@@ -21,15 +21,7 @@ App.run(function($rootScope, $http, $translate, $localStorage) {
     $rootScope.selectedLang = $translate.use(false);
 
     // // API url INTERNAL for testing only!
-    // $rootScope.apiUrl = 'http://127.0.0.1:5000/';
     $rootScope.apiUrl = 'http://localhost:8000/api/v1/';
-    // API url EXTERNAL for testing only! Most of this do not work with external API :(
-    // $rootScope.apiUrl = 'https://jsonplaceholder.typicode.com/posts';
-
-    // Basic API config
-    // $rootScope.apiConfig = {
-    //     headers: {'Authorization': 'Token token=xxxxYYYYZzzz'}
-    // };
 
     /* Loading animation */
     $rootScope.loading = false;
