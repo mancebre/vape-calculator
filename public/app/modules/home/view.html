@@ -12,7 +12,8 @@
                         <i class="fa fa-question-circle" tooltips tooltip-template="{{tt.vape_ready}}"></i>
                         <span translate="USE_VAPE_READY">Use vape-ready nicotine base </span>
                     </label>
-                    <input type="checkbox" name="fancy-checkbox-default" id="fancy-checkbox-default" autocomplete="off" ng-model="vapeReady" />
+                    <input type="checkbox" name="fancy-checkbox-default" id="fancy-checkbox-default" autocomplete="off"
+                           ng-model="vapeReady" ng-checked="vapeReady" />
                     <div class="col-sm-5 btn-group">
                         <label for="fancy-checkbox-default" class="btn btn-default">
                             <span class="glyphicon glyphicon-ok"></span>
@@ -37,7 +38,8 @@
                         <span translate="DESIRED_STRENGTH">Desired strength</span>
                     </label>
                     <div class="col-sm-5 recipe-input">
-                        <input type="number" max="100" min="0" id="desired_strength" class="form-control" ng-model="liquid.desired_strength" />
+                        <input type="number" max="100" min="0" id="desired_strength" class="form-control"
+                               ng-model="liquid.desired_strength" />
                         <span class="input-group-addon">mg</span>
                     </div>
 
@@ -82,7 +84,8 @@
 
                     </label>
                     <div class="col-sm-5 recipe-input">
-                        <input type="number" max="100" min="0" id="nicotine_strength" class="form-control" placeholder="%" ng-model="liquid.nicotine.strength" />
+                        <input type="number" max="100" min="0" id="nicotine_strength" class="form-control"
+                               placeholder="%" ng-model="liquid.nicotine.strength" />
                         <span class="input-group-addon">mg</span>
                     </div>
 
@@ -135,7 +138,8 @@
                         <span translate="SUGGESTED_STEP_TIME">Suggested steep time</span>
                     </label>
                     <div class="col-sm-5 recipe-input">
-                        <input type="number" id="sleep_time" class="form-control" placeholder="Days..." ng-model="liquid.sleep_time" />
+                        <input type="number" id="sleep_time" class="form-control" placeholder="Days..."
+                               ng-model="liquid.sleep_time" />
                         <span class="input-group-addon">days</span>
                     </div>
 
@@ -151,7 +155,8 @@
                             <span translate="NAME">Name</span>
                         </label>
                         <div class="col-sm-5">
-                            <input type="text" id="{{key}}_text" class="form-control" ng-model="liquid.flavor[key]['name']" placeholder="Flavor {{key}}" />
+                            <input type="text" id="{{key}}_text" class="form-control"
+                                   ng-model="liquid.flavor[key]['name']" placeholder="Flavor {{key}}" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -159,7 +164,8 @@
                             <!--<i class="fa fa-question-circle" tooltips tooltip-template="{{tt.test}}"></i>-->
                             <span translate="PERCENTAGE">Percentage</span>
                         </label>
-                        <div class="col-sm-5" ng-class="{attention: limitedSlider.options.maxLimit < liquid.flavor[key]['percentage']}">
+                        <div class="col-sm-5"
+                             ng-class="{attention: limitedSlider.options.maxLimit < liquid.flavor[key]['percentage']}">
                             <rzslider
                                     rz-slider-model="liquid.flavor[key]['percentage']"
                                     rz-slider-options="limitedSlider.options">
@@ -185,11 +191,13 @@
                 </fieldset>
             </div>
 
-            <button type="button" class="add-flavor btn btn-primary col-sm-offset-9" ng-click="addField();" translate="BUTTON_ADD_FLAVOR">Add flavor</button>
+            <button type="button" class="add-flavor btn btn-primary col-sm-offset-9" ng-click="addField();"
+                    translate="BUTTON_ADD_FLAVOR">Add flavor</button>
 
             <div class="col-sm-12 form-group">
                 <label for="comment">Comment:</label>
-                <textarea class="form-control" rows="5" id="comment" ng-model="liquid.comment" placeholder="Write everything relevant, like where to get the flavors."></textarea>
+                <textarea class="form-control" rows="5" id="comment" ng-model="liquid.comment"
+                          placeholder="Write everything relevant, like where to get the flavors."></textarea>
             </div>
 
             <input type="submit" value="Save" class="btn btn-primary col-sm-offset-9" />

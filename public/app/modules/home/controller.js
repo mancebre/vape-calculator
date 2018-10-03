@@ -215,6 +215,7 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
 
         // TODO If not logged in show popup with login and sign up button!
         if ($scope.isLoggedIn()) {
+            $scope.liquid.vapeReady = $scope.vapeReady;
             // Save recipe
             RecipeService.save($scope.liquid, function (status, data) {
 
@@ -225,6 +226,8 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
 
                 if(status !== 200) {
                     alert("Something went wrong, please try again.")
+                } else if (status === 200) {
+                    $location.url('/my_recipes');
                 }
             });
         } else {
@@ -511,7 +514,12 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
                 data:   data
             });
 
-            $scope.vapeReady = data.vape_ready;
+            if (data.vape_ready === 1) {
+                $scope.vapeReady = true;
+            } else {
+                $scope.vapeReady = false;
+            }
+
             // I need timeout here because "vapeReady" var will break nicotine values.
             $timeout( function(){
                 $scope.liquid.id = data.id;
