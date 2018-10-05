@@ -7,7 +7,8 @@
         <div class="form-group">
             <label class="control-label col-sm-4" for="email">Email:</label>
             <div class="col-sm-8">
-                <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" ng-model="loginCredentials.email" required
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter email"
+                       ng-model="loginCredentials.email" required
                        ng-class="(loginForm.email.$dirty && loginForm.email.$invalid) ? 'attention' : ''">
                 <p ng-show="loginForm.email.$invalid && !loginForm.email.$pristine" class="help-block">Enter a valid email.</p>
             </div>
@@ -15,8 +16,10 @@
         <div class="form-group">
             <label class="control-label col-sm-4" for="password" translate="PASSWORD">Password:</label>
             <div class="col-sm-8">
-                <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" ng-model="loginCredentials.password"
-                       ng-minlength="6" ng-maxlength="100" required ng-class="(loginForm.password.$dirty && loginForm.password.$invalid) ? 'attention' : ''">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter password"
+                       ng-model="loginCredentials.password"
+                       ng-minlength="6" ng-maxlength="100" required
+                       ng-class="(loginForm.password.$dirty && loginForm.password.$invalid) ? 'attention' : ''">
                 <p ng-show="loginForm.password.$error.minlength" class="help-block">Password is too short.</p>
                 <p ng-show="loginForm.password.$error.maxlength" class="help-block">Password is too long.</p>
             </div>
@@ -26,7 +29,8 @@
                 <span translate="REMEMBER_ME">Remember me</span>
             </label>
 
-            <input type="checkbox" name="fancy-checkbox-default" id="fancy-checkbox-default" autocomplete="off" ng-model="loginCredentials.rememberMe" />
+            <input type="checkbox" name="fancy-checkbox-default" id="fancy-checkbox-default" autocomplete="off"
+                   ng-model="loginCredentials.remember" ng-checked="loginCredentials.remember" />
             <div class="col-sm-5 btn-group">
                 <label for="fancy-checkbox-default" class="btn btn-default">
                     <span class="glyphicon glyphicon-ok"></span>

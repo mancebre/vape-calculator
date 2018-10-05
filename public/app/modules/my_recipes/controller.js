@@ -1,7 +1,7 @@
 angular.module('gelApp.my_recipes', []);
 
-angular.module('gelApp.my_recipes').controller('my_recipesCtrl', ['$scope', '$http', 'RecipeService', '$localStorage',
-    function ($scope, $http, RecipeService, $localStorage) {
+angular.module('gelApp.my_recipes').controller('my_recipesCtrl', ['$scope', '$http', 'RecipeService', '$sessionStorage',
+    function ($scope, $http, RecipeService, $sessionStorage) {
 
     $scope.maxRating = 5;
 
@@ -54,8 +54,8 @@ angular.module('gelApp.my_recipes').controller('my_recipesCtrl', ['$scope', '$ht
         return result;
     };
 
-    // console.log("User Data", $localStorage.currentUser);
+    // console.log("User Data", $sessionStorage.currentUser);
 
-    $scope.getAllUserRecipes($localStorage.currentUser.user_id);
+    $scope.getAllUserRecipes($sessionStorage.currentUser.user_id);
 
 }]);

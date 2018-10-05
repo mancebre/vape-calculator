@@ -1,7 +1,7 @@
 
 /* GLOBALS */
 
-App.run(function($rootScope, $http, $translate, $localStorage) {
+App.run(function($rootScope, $http, $translate, $sessionStorage) {
     $rootScope.testFunc = function () {
         if($rootScope.toggle) {
             $rootScope.something = ["one", "two"];
@@ -13,10 +13,10 @@ App.run(function($rootScope, $http, $translate, $localStorage) {
     };
 
     $rootScope.isLoggedIn = function() {
-        return $localStorage.currentUser ? true : false;
+        return $sessionStorage.currentUser ? true : false;
     };
 
-    $http.defaults.headers.common.Authorization = localStorage.getItem("Token");
+    $http.defaults.headers.common.Authorization = sessionStorage.getItem("Token");
 
     $rootScope.selectedLang = $translate.use(false);
 

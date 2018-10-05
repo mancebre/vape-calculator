@@ -6,9 +6,9 @@ App.factory('httpInterceptor', ['$q', '$window', '$injector',
             //     config.headers = config.headers || {};
             //
             //     // If you have a token in local storage for example:
-            //     if ($window.localStorage.token) {
+            //     if ($window.sessionStorage.token) {
             //         // Add the token to "Authorization" header in every request
-            //         config.headers.Authorization = 'Bearer ' + $window.localStorage.token;
+            //         config.headers.Authorization = 'Bearer ' + $window.sessionStorage.token;
             //         // In your server you can check if the token is valid and if it's not,
             //         // in responseError method you can take some action
             //     }

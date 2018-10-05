@@ -12,8 +12,8 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
     };
 
     // How many grams there is in 1 ml
-    if(localStorage.getItem('weights') !== null) {
-        $scope.weights = JSON.parse(localStorage.getItem('weights'));
+    if(sessionStorage.getItem('weights') !== null) {
+        $scope.weights = JSON.parse(sessionStorage.getItem('weights'));
     } else {
         // Default values
         $scope.weights = {
@@ -22,7 +22,7 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
             flavor: 1.04,
             diluent: 1
         };
-        localStorage.setItem('weights', JSON.stringify($scope.weights));
+        sessionStorage.setItem('weights', JSON.stringify($scope.weights));
     }
 
     $scope.loginWarning = function(){
