@@ -1,7 +1,7 @@
 angular.module('gelApp.my_recipes', []);
 
-angular.module('gelApp.my_recipes').controller('my_recipesCtrl', ['$scope', '$http', 'RecipeService', '$sessionStorage',
-    function ($scope, $http, RecipeService, $sessionStorage) {
+angular.module('gelApp.my_recipes').controller('my_recipesCtrl', ['$scope', '$http', 'RecipeService', '$sessionStorage', 'RatingsService',
+    function ($scope, $http, RecipeService, $sessionStorage, RatingsService) {
 
     $scope.maxRating = 5;
 
@@ -12,6 +12,20 @@ angular.module('gelApp.my_recipes').controller('my_recipesCtrl', ['$scope', '$ht
             RecipeService.getMyRecipes(userId, function (status, data) {
 
                 $scope.allUserRecipes = data;
+
+                angular.forEach($scope.allUserRecipes, function (recipe) {
+
+                    let totalRating = 0;
+                    let ratersCount = 0;
+
+                    angular.forEach(recipe.rating, function (rating) {
+                        totalRating += rating.rating;
+                        ratersCount += 1;
+                    });
+
+                    recipe.rated = Math.round(totalRating / ratersCount);
+                    recipe.rated = recipe.rated ? recipe.rated : 0;
+                });
 
                 console.log({
                     status: status,
@@ -52,6 +66,31 @@ angular.module('gelApp.my_recipes').controller('my_recipesCtrl', ['$scope', '$ht
         for (var i = 1; i <= $scope.maxRating; i++)
             result.push(i);
         return result;
+    };
+
+    $scope.setRating = function (recipe, rating)
+    {
+        let ratersIds = recipe.rating.map(function (val) {
+            return val['user_id'];
+        });
+
+        // Rate recipe or update rate if user already rated this recipe
+        if (ratersIds.indexOf($sessionStorage.currentUser.user_id) === -1) {
+            RatingsService.Rate(recipe.id, rating, function () {
+                $scope.getAllUserRecipes($sessionStorage.currentUser.user_id);
+                alert("Recipe rated successfully.")
+            });
+        } else {
+            // My ratings of this recipe.
+            let myRatings = recipe.rating.filter(function (val) {
+                return val.user_id === $sessionStorage.currentUser.user_id;
+            });
+            RatingsService.Update(myRatings[0].id, rating, function () {
+                $scope.getAllUserRecipes($sessionStorage.currentUser.user_id);
+                alert("Recipe updated successfully.")
+            });
+        }
+
     };
 
     // console.log("User Data", $sessionStorage.currentUser);

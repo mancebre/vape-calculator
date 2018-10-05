@@ -2,6 +2,15 @@
     .checked {
         color: orange;
     }
+    .stars .rating-star {
+        cursor: pointer;
+        font-size: 15px;
+    }
+    .stars :hover {
+        font-size: 18px;
+        color: #000;
+        background: #e7e7e7;
+    }
 </style>
 
 <div class="col-sm-12">
@@ -17,8 +26,9 @@
         <tr ng-repeat="recipe in allUserRecipes">
             <td><a href="/recipe/{{recipe.id}}">{{recipe.name}}</a></td>
             <td>{{recipe.comment | limitTo: 120}}{{recipe.comment.length < 120 ? '' : '...'}}</td>
-            <td width="100">
-                <span ng-repeat="star in getStarArray() track by $index" ng-class="{checked: (recipe.rating >= star)}" class="fa fa-star"></span>
+            <td class="stars" width="100">
+                <span ng-click="setRating(recipe, star)" ng-repeat="star in getStarArray() track by $index" ng-class="{checked: (recipe.rated >= star)}"
+                      class="fa fa-star rating-star"></span>
             </td>
         </tr>
         </tbody>
