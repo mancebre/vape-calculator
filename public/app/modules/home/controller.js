@@ -160,6 +160,7 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
     $scope.flavorFields = [];
     // Use vape-ready nicotine base
     $scope.vapeReady = false;
+    $scope.private = false;
 
     $scope.addField = function(){
         $scope.flavorFields.push($scope.flavorsCount);
@@ -216,6 +217,7 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
         // TODO If not logged in show popup with login and sign up button!
         if ($scope.isLoggedIn()) {
             $scope.liquid.vapeReady = $scope.vapeReady;
+            $scope.liquid.private = $scope.private;
             // Save recipe
             RecipeService.save($scope.liquid, function (status, data) {
 
@@ -518,6 +520,12 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
                 $scope.vapeReady = true;
             } else {
                 $scope.vapeReady = false;
+            }
+
+            if (data.private === 1) {
+                $scope.private = true;
+            } else {
+                $scope.private = false;
             }
 
             // I need timeout here because "vapeReady" var will break nicotine values.

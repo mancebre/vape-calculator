@@ -34,7 +34,8 @@
                         sleep_time:         recipeData.sleep_time,
                         vapeReady:          recipeData.vapeReady ? 1 : 0, // Because python will see it as a string
                         vg:                 recipeData.vg,
-                        wvpga:              recipeData.wvpga
+                        wvpga:              recipeData.wvpga,
+                        private:            recipeData.private
                     },
                     // { headers:{ 'Authorization':  'Token ' + 123456} }
                 )
@@ -64,7 +65,8 @@
                         sleep_time:         recipeData.sleep_time,
                         vapeReady:          recipeData.vapeReady ? 1 : 0, // Because python will see it as a string
                         vg:                 recipeData.vg,
-                        wvpga:              recipeData.wvpga
+                        wvpga:              recipeData.wvpga,
+                        private:            recipeData.private
                     },
                     // { headers:{ 'Authorization':  'Token ' + 123456} }
                 )

@@ -10,7 +10,8 @@ App.factory('tooltipTranslations', function() {
             nicotine_content: "The nicotine content in the nicotine base",
             nicotine_pg: "Percentage of propylene glycol in the nicotine base",
             nicotine_vg: "Percentage of glycerin in the nicotine base",
-            diluent: "Diluent: Water, vodka, PGA"
+            diluent: "Diluent: Water, vodka, PGA",
+            private_recipe: "If you tick this only you will be able to see this recipe"
         },
         rs: {
             test: "Ovo je samo test",
@@ -22,7 +23,8 @@ App.factory('tooltipTranslations', function() {
             nicotine_content: "Sadržaj nikotina u nikotinskoj bazi",
             nicotine_pg: "Procenat propilen glikola u nikotinskoj bazi",
             nicotine_vg: "Procenat glicerina u nikotinskoj bazi",
-            diluent: "Razređivač: voda, vodka, PGA"
+            diluent: "Razređivač: voda, vodka, PGA",
+            private_recipe: "Ako ovo označite samo ćete Vi moći da vidite ovaj recept"
         }
     };
 });

@@ -30,6 +30,8 @@ var translationsEN = {
     BAD_RECIPE_DIRECTIONS: "Click \"Close\" to continue, or click \"Fix\" to auto-fix recipe",
     CLOSE: "Close",
     FIX: "Fix",
+    PRIVACY: "Privacy",
+    PRIVATE_RECIPE: "Private recipe",
 
     PASSWORD: "Password:",
     REPASSWORD: "Re enter password:",
@@ -83,6 +85,8 @@ var translationsRS= {
     BAD_RECIPE_DIRECTIONS: "Kliknite \"Zatvori\" da nastavite, ili kliknite \"Ispravi\" za automatsko popravljanje recepta",
     CLOSE: "Zatvori",
     FIX: "Ispravi",
+    PRIVACY: "Privatnost",
+    PRIVATE_RECIPE: "Privatni recept",
 
     PASSWORD: "Lozinka:",
     REPASSWORD: "Ponovite lozinku:",

@@ -200,6 +200,25 @@
                           placeholder="Write everything relevant, like where to get the flavors."></textarea>
             </div>
 
+            <fieldset>
+                <legend translate="PRIVACY">Privacy</legend>
+                <div class="form-group">
+                    <label for="fancy-checkbox-default2" class="col-sm-7 control-label active">
+                        <i class="fa fa-question-circle" tooltips tooltip-template="{{tt.private_recipe}}"></i>
+                        <span translate="PRIVATE_RECIPE">Private recipe</span>
+                    </label>
+                    <input type="checkbox" name="fancy-checkbox-default2" id="fancy-checkbox-default2" autocomplete="off"
+                           ng-model="private" ng-checked="private" />
+                    <div class="col-sm-5 btn-group">
+                        <label for="fancy-checkbox-default2" class="btn btn-default">
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span> </span>
+                        </label>
+                    </div>
+                </div>
+
+            </fieldset>
+
             <input type="submit" value="Save" class="btn btn-primary col-sm-offset-9" />
             <!--<input type="reset" value="Reset" ng-click="resetForm()">-->
         </form>
