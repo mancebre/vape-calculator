@@ -32,7 +32,7 @@
                         }),
                         pg:                 recipeData.pg,
                         sleep_time:         recipeData.sleep_time,
-                        vapeReady:          recipeData.vapeReady ? 1 : 0, // Because python will see it as a string
+                        vapeReady:          recipeData.vapeReady,
                         vg:                 recipeData.vg,
                         wvpga:              recipeData.wvpga,
                         private:            recipeData.private
@@ -63,7 +63,7 @@
                         }),
                         pg:                 recipeData.pg,
                         sleep_time:         recipeData.sleep_time,
-                        vapeReady:          recipeData.vapeReady ? 1 : 0, // Because python will see it as a string
+                        vapeReady:          recipeData.vapeReady,
                         vg:                 recipeData.vg,
                         wvpga:              recipeData.wvpga,
                         private:            recipeData.private
