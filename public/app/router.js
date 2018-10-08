@@ -32,6 +32,10 @@ App.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
         title: 'My Recipes',
         controller: 'my_recipesCtrl',
         templateUrl: '/app/modules/my_recipes/view.html'
+    }).when('/search', {
+        title: 'Search',
+        controller: 'searchPageCtrl',
+        templateUrl: '/app/modules/search_page/view.html'
     }).otherwise({
         redirectTo: '/'
     });

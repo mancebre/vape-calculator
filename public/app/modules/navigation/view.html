@@ -37,6 +37,9 @@
                     <!--<button type="submit" class="btn btn-default">Submit</button>-->
                 <!--</form>-->
                 <ul class="nav navbar-nav navbar-right">
+                    <li ng-class="getClass('/search')">
+                        <a href="/search"><span translate="SEARCH"></span> <span class="glyphicon glyphicon-search"></span></a>
+                    </li>
                     <li ng-show="isLoggedIn()" ng-class="getClass('/my_recipes')">
                         <a href="/my_recipes"><span translate="MY_RECIPES"></span> <span class="glyphicon glyphicon-book"></span></a>
                     </li>

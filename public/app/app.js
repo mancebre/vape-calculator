@@ -17,6 +17,7 @@ var App = angular.module("gelApp", [
     'gelApp.editWeights',
     'gelApp.loginWarning',
     'gelApp.my_recipes',
+    'gelApp.searchPage',
     'ngStorage',
     'gelApp.openAttention'
 ]);
