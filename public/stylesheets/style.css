@@ -224,14 +224,29 @@ body .navbar-default .navbar-toggle .icon-bar {
 body .navbar-default .navbar-toggle:hover {
   background-color: grey;
 }
+/* line 209, style.scss */
+body .recipe-list .checked {
+  color: orange;
+}
+/* line 213, style.scss */
+body .recipe-list .stars .rating-star {
+  cursor: pointer;
+  font-size: 15px;
+}
+/* line 218, style.scss */
+body .recipe-list .stars :hover {
+  font-size: 18px;
+  color: #000;
+  background: #e7e7e7;
+}
 @media (min-width: 768px) {
-  /* line 208, style.scss */
+  /* line 226, style.scss */
   body .navbar {
     border-radius: 0;
   }
 }
 @media (min-width: 1200px) {
-  /* line 214, style.scss */
+  /* line 232, style.scss */
   body .user-form {
     padding: 0 350px;
   }

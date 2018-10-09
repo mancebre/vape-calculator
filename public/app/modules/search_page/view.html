@@ -1,4 +1,7 @@
 <style>
+    .stylish-input-group .input-group-addon button[disabled] {
+        color: #d4d4d4;
+    }
     .stylish-input-group .input-group-addon{
         background: white !important;
     }
@@ -15,11 +18,37 @@
 
 <div class="col-sm-12">
     <div class="input-group stylish-input-group">
-        <input type="text" class="form-control"  placeholder="Search" >
+        <input ng-model="searchTerm" type="text" class="form-control"  placeholder="Search" >
         <span class="input-group-addon">
-            <button type="submit">
+            <button ng-disabled="searchTerm < 3" ng-click="search()" type="submit">
                 <span class="glyphicon glyphicon-search"></span>
             </button>
         </span>
     </div>
+</div>
+
+<div class="col-sm-12">
+    <table class="table recipe-list">
+        <thead>
+        <tr>
+            <th width="30%">Recipe Title</th>
+            <th>Comment</th>
+            <th>Rating</th>
+            <th width="120px">Created by</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="recipe in allUserRecipes">
+            <td><a href="/recipe/{{recipe.id}}">{{recipe.name}}</a></td>
+            <td>{{recipe.comment | limitTo: 120}}{{recipe.comment.length < 120 ? '' : '...'}}</td>
+            <td class="stars" width="100">
+                <span ng-click="setRating(recipe, star)"
+                      ng-repeat="star in getStarArray() track by $index"
+                      ng-class="{checked: (recipe.rated >= star)}"
+                      class="fa fa-star rating-star"></span>
+            </td>
+            <td>{{recipe.createdBy}}</td>
+        </tr>
+        </tbody>
+    </table>
 </div>

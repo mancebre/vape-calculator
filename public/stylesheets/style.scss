@@ -204,6 +204,24 @@ body {
     }
   }
 
+  .recipe-list {
+
+    .checked {
+      color: orange;
+    }
+    .stars {
+      .rating-star {
+        cursor: pointer;
+        font-size: 15px;
+      }
+    }
+    .stars :hover {
+      font-size: 18px;
+      color: #000;
+      background: #e7e7e7;
+    }
+  }
+
   @media (min-width: 768px) {
     .navbar {
       border-radius: 0;

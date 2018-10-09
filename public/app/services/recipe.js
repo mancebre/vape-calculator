@@ -11,6 +11,7 @@
         service.save = save;
         service.getMyRecipes = getMyRecipes;
         service.getRecipe = getRecipe;
+        service.getAllRecipes = getAllRecipes;
 
         return service;
 
@@ -99,6 +100,24 @@
         function getRecipe(id, callback) {
             let apiUrl = $rootScope.apiUrl + 'recipe/' + id;
             $http.get(apiUrl, {})
+                .then(function (response) {
+                    console.log('success', response);
+
+                    callback(response.status, response.data);
+                })
+                .catch(function(response) {
+                    console.log('error', response);
+                    callback(response.status, response.data);
+                });
+        }
+
+        /**
+         * Get all public recipes.
+         */
+        function getAllRecipes(callback) {
+            let apiUrl = $rootScope.apiUrl + 'getAllRecipes/';
+            let params = {};
+            $http.get(apiUrl, {params})
                 .then(function (response) {
                     console.log('success', response);
 
