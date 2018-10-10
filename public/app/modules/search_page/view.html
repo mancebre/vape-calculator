@@ -14,11 +14,14 @@
         border:0;
         background:transparent;
     }
+    .click {
+        cursor: pointer;
+    }
 </style>
 
 <div class="col-sm-12">
     <div class="input-group stylish-input-group">
-        <input ng-model="searchTerm" type="text" class="form-control"  placeholder="Search" >
+        <input ng-model="searchTerm" ng-change="search()" type="text" class="form-control"  placeholder="Search" >
         <span class="input-group-addon">
             <button ng-disabled="searchTerm < 3" ng-click="search()" type="submit">
                 <span class="glyphicon glyphicon-search"></span>
@@ -31,14 +34,34 @@
     <table class="table recipe-list">
         <thead>
         <tr>
-            <th width="30%">Recipe Title</th>
-            <th>Comment</th>
-            <th>Rating</th>
-            <th width="120px">Created by</th>
+            <th class="click" ng-click="dynamicSort('name')" width="30%">
+                <span>Recipe Title</span>
+                <i ng-show="orderByValues.name === 0" class="fa fa-sort"></i>
+                <i ng-show="orderByValues.name === -1" class="fa fa-sort-up"></i>
+                <i ng-show="orderByValues.name === 1" class="fa fa-sort-down"></i>
+            </th>
+            <th class="click" ng-click="dynamicSort('comment')">
+                <span>Comment</span>
+                <i ng-show="orderByValues.comment === 0" class="fa fa-sort"></i>
+                <i ng-show="orderByValues.comment === -1" class="fa fa-sort-up"></i>
+                <i ng-show="orderByValues.comment === 1" class="fa fa-sort-down"></i>
+            </th>
+            <th class="click" ng-click="dynamicSort('rated')">
+                <span>Rating</span>
+                <i ng-show="orderByValues.rated === 0" class="fa fa-sort"></i>
+                <i ng-show="orderByValues.rated === -1" class="fa fa-sort-up"></i>
+                <i ng-show="orderByValues.rated === 1" class="fa fa-sort-down"></i>
+            </th>
+            <th class="click" ng-click="dynamicSort('createdBy')" width="120px">
+                <span>Created by</span>
+                <i ng-show="orderByValues.createdBy === 0" class="fa fa-sort"></i>
+                <i ng-show="orderByValues.createdBy === -1" class="fa fa-sort-up"></i>
+                <i ng-show="orderByValues.createdBy === 1" class="fa fa-sort-down"></i>
+            </th>
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="recipe in allUserRecipes">
+        <tr ng-repeat="recipe in allUserRecipes | orderBy:orderBy" ng-hide="recipe.hide">
             <td><a href="/recipe/{{recipe.id}}">{{recipe.name}}</a></td>
             <td>{{recipe.comment | limitTo: 120}}{{recipe.comment.length < 120 ? '' : '...'}}</td>
             <td class="stars" width="100">
