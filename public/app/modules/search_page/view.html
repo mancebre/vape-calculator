@@ -17,6 +17,14 @@
     .click {
         cursor: pointer;
     }
+    .load-more {
+        text-align: -webkit-center;
+        background-color: gray;
+        font-size: 20px;
+        font-weight: 600;
+        color: #fff;
+        cursor: pointer;
+    }
 </style>
 
 <div class="col-sm-12">
@@ -61,7 +69,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="recipe in allUserRecipes | orderBy:orderBy" ng-hide="recipe.hide">
+        <tr ng-repeat="recipe in allUserRecipes | orderBy:orderBy | limitTo:resultsLimit" ng-hide="recipe.hide">
             <td><a href="/recipe/{{recipe.id}}">{{recipe.name}}</a></td>
             <td>{{recipe.comment | limitTo: 120}}{{recipe.comment.length < 120 ? '' : '...'}}</td>
             <td class="stars" width="100">
@@ -71,6 +79,9 @@
                       class="fa fa-star rating-star"></span>
             </td>
             <td>{{recipe.createdBy}}</td>
+        </tr>
+        <tr>
+            <td ng-hide="hideLoadMore" ng-click="loadMore()" colspan="5" class="load-more">Load more</td>
         </tr>
         </tbody>
     </table>
