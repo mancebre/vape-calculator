@@ -219,7 +219,8 @@
 
             </fieldset>
 
-            <input type="submit" value="Save" class="btn btn-primary col-sm-offset-9" />
+            <input ng-show="liquid.owner" type="submit" value="Save" class="btn btn-primary col-sm-offset-9" />
+            <input ng-show="isLoggedIn() && !liquid.owner" ng-click="submitLiquidForm(true)" type="button" value="Clone" class="btn btn-primary col-sm-offset-9" />
             <!--<input type="reset" value="Reset" ng-click="resetForm()">-->
         </form>
     </div>

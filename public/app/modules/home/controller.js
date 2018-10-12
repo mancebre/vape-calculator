@@ -1,7 +1,7 @@
 angular.module('gelApp.home', []);
 
-angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$translate', '$uibModal', 'tooltipTranslations', '$rootScope', '$location', 'RecipeService', '$routeParams', '$timeout',
-    function ($scope, $http, $translate, $uibModal, tooltipTranslations, $rootScope, $location, RecipeService, $routeParams, $timeout) {
+angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$translate', '$uibModal', 'tooltipTranslations', '$rootScope', '$location', 'RecipeService', '$routeParams', '$timeout', '$sessionStorage',
+    function ($scope, $http, $translate, $uibModal, tooltipTranslations, $rootScope, $location, RecipeService, $routeParams, $timeout, $sessionStorage) {
 
     // This is true when attention popup is open.
     $scope.attentionPopup = false;
@@ -207,7 +207,7 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
     };
 
     //5. create submitStudentForm() function. This will be called when user submits the form
-    $scope.submitLiquidForm = function () {
+    $scope.submitLiquidForm = function (clone) {
         // TODO This data should be parsed in one level object.
         $scope.liquid.vapeReady = $scope.vapeReady;
 
@@ -218,20 +218,38 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
         if ($scope.isLoggedIn()) {
             $scope.liquid.vapeReady = $scope.vapeReady;
             $scope.liquid.private = $scope.private;
-            // Save recipe
-            RecipeService.save($scope.liquid, function (status, data) {
+            if (clone) {
+                // Clone recipe
+                $scope.liquid.id = false; // If id is false API will create new recipe.
+                RecipeService.save($scope.liquid, function (status, data) {
 
-                console.log({
-                    status: status,
-                    data:   data
+                    console.log({
+                        status: status,
+                        data:   data
+                    });
+
+                    if(status !== 200) {
+                        alert("Something went wrong, please try again.")
+                    } else if (status === 200) {
+                        $location.url('/my_recipes');
+                    }
                 });
+            } else {
+                // Save recipe
+                RecipeService.save($scope.liquid, function (status, data) {
 
-                if(status !== 200) {
-                    alert("Something went wrong, please try again.")
-                } else if (status === 200) {
-                    $location.url('/my_recipes');
-                }
-            });
+                    console.log({
+                        status: status,
+                        data:   data
+                    });
+
+                    if(status !== 200) {
+                        alert("Something went wrong, please try again.")
+                    } else if (status === 200) {
+                        $location.url('/my_recipes');
+                    }
+                });
+            }
         } else {
             // Show popup.
             $scope.loginWarning();
@@ -543,6 +561,7 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
                 $scope.liquid.sleep_time = data.sleep_time;
                 $scope.liquid.flavor = data.recipe_flavors;
                 $scope.liquid.comment = data.comment;
+                $scope.liquid.owner = data.user.id === $sessionStorage.currentUser.user_id; // Recipe owner
 
                 $scope.flavorFields = [];
                 $scope.flavorsCount = 0;
@@ -564,7 +583,7 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
         let recipeId = $routeParams.recipe_id;
         console.log("recipe ID", recipeId);
 
-        $scope.loadRecipe(recipeId)
+        $scope.loadRecipe(recipeId);
 
     }
 }]);
