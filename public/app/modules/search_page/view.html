@@ -43,25 +43,25 @@
         <thead>
         <tr>
             <th class="click" ng-click="dynamicSort('name')" width="30%">
-                <span>Recipe Title</span>
+                <span translate="RECIPE_TITLE">Recipe Title</span>
                 <i ng-show="orderByValues.name === 0" class="fa fa-sort"></i>
                 <i ng-show="orderByValues.name === -1" class="fa fa-sort-up"></i>
                 <i ng-show="orderByValues.name === 1" class="fa fa-sort-down"></i>
             </th>
             <th class="click" ng-click="dynamicSort('comment')">
-                <span>Comment</span>
+                <span translate="COMMENT">Comment</span>
                 <i ng-show="orderByValues.comment === 0" class="fa fa-sort"></i>
                 <i ng-show="orderByValues.comment === -1" class="fa fa-sort-up"></i>
                 <i ng-show="orderByValues.comment === 1" class="fa fa-sort-down"></i>
             </th>
             <th class="click" ng-click="dynamicSort('rated')">
-                <span>Rating</span>
+                <span translate="RATING">Rating</span>
                 <i ng-show="orderByValues.rated === 0" class="fa fa-sort"></i>
                 <i ng-show="orderByValues.rated === -1" class="fa fa-sort-up"></i>
                 <i ng-show="orderByValues.rated === 1" class="fa fa-sort-down"></i>
             </th>
             <th class="click" ng-click="dynamicSort('createdBy')" width="120px">
-                <span>Created by</span>
+                <span translate="CREATED_BY">Created by</span>
                 <i ng-show="orderByValues.createdBy === 0" class="fa fa-sort"></i>
                 <i ng-show="orderByValues.createdBy === -1" class="fa fa-sort-up"></i>
                 <i ng-show="orderByValues.createdBy === 1" class="fa fa-sort-down"></i>
@@ -81,7 +81,7 @@
             <td>{{recipe.createdBy}}</td>
         </tr>
         <tr>
-            <td ng-hide="hideLoadMore" ng-click="loadMore()" colspan="5" class="load-more">Load more</td>
+            <td ng-hide="hideLoadMore" ng-click="loadMore()" colspan="5" class="load-more" translate="LOAD_MORE">Load more</td>
         </tr>
         </tbody>
     </table>

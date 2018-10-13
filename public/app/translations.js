@@ -32,6 +32,9 @@ var translationsEN = {
     FIX: "Fix",
     PRIVACY: "Privacy",
     PRIVATE_RECIPE: "Private recipe",
+    GRAMS: "grams",
+    FLAVOR_NAME: "Flavor name",
+    FLAVOR: "Flavor",
 
     PASSWORD: "Password:",
     REPASSWORD: "Re enter password:",
@@ -50,7 +53,16 @@ var translationsEN = {
     WARNING: "Warning",
 
     MY_RECIPES: "My recipes",
-    SEARCH: "Search"
+    SEARCH: "Search",
+    SAVE: "Save",
+    CLONE: "Clone",
+
+    RECIPE_TITLE: "Recipe title",
+    COMMENT: "Comment",
+    RATING: "Rating",
+    CREATED_BY: "Created by",
+    LOAD_MORE: "Load more",
+    EDIT: "Edit",
 
 };
 
@@ -88,6 +100,9 @@ var translationsRS= {
     FIX: "Ispravi",
     PRIVACY: "Privatnost",
     PRIVATE_RECIPE: "Privatni recept",
+    GRAMS: "grami",
+    FLAVOR_NAME: "Ime arome",
+    FLAVOR: "Aroma",
 
     PASSWORD: "Lozinka:",
     REPASSWORD: "Ponovite lozinku:",
@@ -106,7 +121,16 @@ var translationsRS= {
     WARNING: "Obaveštenje",
 
     MY_RECIPES: "Moji recepti",
-    SEARCH: "Pretraga"
+    SEARCH: "Pretraga",
+    SAVE: "Sačuvaj",
+    CLONE: "Kloniraj",
+
+    RECIPE_TITLE: "Naziv recepta",
+    COMMENT: "Komentar",
+    RATING: "Rejting",
+    CREATED_BY: "Kreator",
+    LOAD_MORE: "Učitaj još",
+    EDIT: "Uredi",
 };
 
 angular.module('gelApp.home').config(['$translateProvider', function ($translateProvider) {

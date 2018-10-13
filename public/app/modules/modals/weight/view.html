@@ -1,32 +1,32 @@
 <div class="modal-header">
-    <h1>Edit:</h1>
+    <h1><span translate="EDIT">Edit</span>:</h1>
 </div>
 <div style="clear: both"></div>
 <div class="modal-body settings">
     <p class="col-sm-12">
         <span class="col-sm-6 name">PG 1ml = </span>
         <input class="col-sm-6" type="number" ng-model="item.pg" ng-class="{attention: (item.pg <= 0)}" />
-        <span class="col-sm-2">grams.</span>
+        <span class="col-sm-2" translate="GRAMS">grams</span>
     </p>
     <p class="col-sm-12">
         <span class="col-sm-6 name">VG 1ml = </span>
         <input class="col-sm-6" type="number" ng-model="item.vg" ng-class="{attention: (item.vg <= 0)}" />
-        <span class="col-sm-2">grams.</span>
+        <span class="col-sm-2" translate="GRAMS">grams</span>
     </p>
     <p class="col-sm-12">
-        <span class="col-sm-6 name">flavor 1ml = </span>
+        <span class="col-sm-6 name"><span translate="FLAVOR">flavor</span> 1ml = </span>
         <input class="col-sm-6" type="number" ng-model="item.flavor" ng-class="{attention: (item.flavor <= 0)}" />
-        <span class="col-sm-2">grams.</span>
+        <span class="col-sm-2" translate="GRAMS">grams</span>
     </p>
     <p class="col-sm-12">
-        <span class="col-sm-6 name">diluent 1ml = </span>
+        <span class="col-sm-6 name"><span translate="DILUENT">diluent</span> 1ml = </span>
         <input class="col-sm-6" type="number" ng-model="item.diluent" ng-class="{attention: (item.diluent <= 0)}" />
-        <span class="col-sm-2">grams.</span>
+        <span class="col-sm-2" translate="GRAMS">grams</span>
     </p>
 </div>
 <div style="clear: both"></div>
 <div class="modal-footer">
-    <button ng-click="save()" class="btn btn-primary" ng-disabled="disableSave" >Save</button>
-    <button ng-click="close()" class="btn" >close</button>
+    <button ng-click="save()" class="btn btn-primary" ng-disabled="disableSave" translate="SAVE">Save</button>
+    <button ng-click="close()" class="btn" translate="CLOSE">close</button>
 </div>
 <div style="clear: both"></div>

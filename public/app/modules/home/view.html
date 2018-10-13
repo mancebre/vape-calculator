@@ -1,3 +1,12 @@
+<style>
+    #privacy_fieldset div {
+        margin: 0;
+        padding: 0;
+    }
+    #comment {
+        border: none;
+    }
+</style>
 <!-- <h2 contenteditable="true" ng-model="liquid.name"></h2> -->
 <h2>{{liquid.name}}</h2>
 
@@ -194,11 +203,13 @@
             <button type="button" class="add-flavor btn btn-primary col-sm-offset-9" ng-click="addField();"
                     translate="BUTTON_ADD_FLAVOR">Add flavor</button>
 
-            <div class="col-sm-12 form-group">
-                <label for="comment">Comment:</label>
-                <textarea class="form-control" rows="5" id="comment" ng-model="liquid.comment"
-                          placeholder="Write everything relevant, like where to get the flavors."></textarea>
-            </div>
+            <fieldset id="privacy_fieldset">
+                <legend translate="COMMENT">Comment</legend>
+                <div class="col-sm-12 form-group">
+                    <textarea class="form-control" rows="5" id="comment" ng-model="liquid.comment"
+                              placeholder="Write everything relevant, like where to get the flavors."></textarea>
+                </div>
+            </fieldset>
 
             <fieldset>
                 <legend translate="PRIVACY">Privacy</legend>
@@ -219,8 +230,8 @@
 
             </fieldset>
 
-            <input ng-show="liquid.owner || !liquid.id" type="submit" value="Save" class="btn btn-primary col-sm-offset-9" />
-            <input ng-show="isLoggedIn() && !liquid.owner && liquid.id" ng-click="submitLiquidForm(true)" type="button" value="Clone" class="btn btn-primary col-sm-offset-9" />
+            <button ng-show="liquid.owner || !liquid.id" type="submit" translate="SAVE" class="btn btn-primary col-sm-offset-9" >Save</button>
+            <button ng-show="isLoggedIn() && !liquid.owner && liquid.id" ng-click="submitLiquidForm(true)" type="button" class="btn btn-primary col-sm-offset-9" translate="CLONE">Clone</button>
             <!--<input type="reset" value="Reset" ng-click="resetForm()">-->
         </form>
     </div>
@@ -230,7 +241,7 @@
             <legend translate="INGREDIENTS">Ingredients</legend>
             <table class="table">
                 <tr>
-                    <th translate="NAME">Name</th><th>ML</th><th>grams</th><th>%</th>
+                    <th translate="NAME">Name</th><th>ML</th><th translate="GRAMS">grams</th><th>%</th>
                 </tr>
                 <tr ng-show="vapeReady">
                     <td>{{ niceNames['base'] }} <br>(<span translate="NICOTINE">Nicotine</span>: {{liquid.nicotine.strength}} mg, PG/VG: {{liquid.nicotine.pg}}/{{liquid.nicotine.vg}})</td>
@@ -263,7 +274,7 @@
                     <td>{{ ingridients.wvpga.percentage | number : 2 }}</td>
                 </tr>
                 <tr ng-if="ingridients.flavor.length">
-                    <th>Flavor name</th><th>ML</th><th>grams</th><th>%</th>
+                    <th translate="FLAVOR_NAME">Flavor name</th><th>ML</th><th translate="GRAMS">grams</th><th>%</th>
                 </tr>
                 <tr ng-repeat="flavor in ingridients.flavor">
                     <td> {{ flavor.name }} </td>
