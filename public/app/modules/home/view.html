@@ -6,6 +6,10 @@
     #comment {
         border: none;
     }
+    .tool-buttons {
+        padding: 8px !important;
+        margin: 0 !important;
+    }
 </style>
 <!-- <h2 contenteditable="true" ng-model="liquid.name"></h2> -->
 <h2>{{liquid.name}}</h2>
@@ -200,8 +204,9 @@
                 </fieldset>
             </div>
 
-            <button type="button" class="add-flavor btn btn-primary col-sm-offset-9" ng-click="addField();"
-                    translate="BUTTON_ADD_FLAVOR">Add flavor</button>
+            <button type="button" class="add-flavor btn btn-default col-sm-offset-9" ng-click="addField();">
+                <span translate="BUTTON_ADD_FLAVOR">Add flavor</span> <i class="fa fa-plus"></i>
+            </button>
 
             <fieldset id="privacy_fieldset">
                 <legend translate="COMMENT">Comment</legend>
@@ -230,8 +235,8 @@
 
             </fieldset>
 
-            <button ng-show="liquid.owner || !liquid.id" type="submit" translate="SAVE" class="btn btn-primary col-sm-offset-9" >Save</button>
-            <button ng-show="isLoggedIn() && !liquid.owner && liquid.id" ng-click="submitLiquidForm(true)" type="button" class="btn btn-primary col-sm-offset-9" translate="CLONE">Clone</button>
+            <button ng-show="liquid.owner || !liquid.id" type="submit" class="btn btn-primary col-sm-offset-9" ><span translate="SAVE">Save</span> <i class="fa fa-save"></i></button>
+            <button ng-show="isLoggedIn() && !liquid.owner && liquid.id" ng-click="submitLiquidForm(true)" type="button" class="btn btn-primary col-sm-offset-9" translate="CLONE"><span>Clone</span> <i class="fa fa-clone"></i> </button>
             <!--<input type="reset" value="Reset" ng-click="resetForm()">-->
         </form>
     </div>
@@ -293,6 +298,27 @@
                 <i class="fa fa-cog" aria-hidden="true"></i>
             </div>
         </fieldset>
-        {{item}}
+        <fieldset class="tool-buttons">
+            <legend translate="TOOLS">Tools</legend>
+            <div>
+                <span class="btn-group">
+                    <button ng-show="liquid.owner || !liquid.id" type="submit" class="btn btn-primary col-sm-offset-9" >
+                        <span translate="SAVE">Save</span> <i class="fa fa-save"></i>
+                    </button>
+                    <button ng-show="isLoggedIn() && !liquid.owner && liquid.id"
+                            ng-click="submitLiquidForm(true)"
+                            type="button"
+                            class="btn btn-primary col-sm-offset-9"
+                            translate="CLONE">
+                        <span>Clone</span> <i class="fa fa-clone"></i>
+                    </button>
+                    <button type="button" class="add-flavor btn btn-default col-sm-offset-9" ng-click="addField();">
+                        <span translate="BUTTON_ADD_FLAVOR">Add flavor</span> <i class="fa fa-plus"></i>
+                    </button>
+                    <button ng-click="openPrintLabelModal()" class="btn btn-success col-sm-offset-9"><span translate="PRINT_LABEL">Print label</span> <i class="fa fa-print"></i></button>
+                    <button ng-show="liquid.id && liquid.owner" class="btn btn-danger col-sm-offset-9"><span translate="DELETE_RECIPE">Delete recipe</span> <i class="fa fa-trash"></i></button>
+                </span>
+            </div>
+        </fieldset>
     </div>
 </div>

@@ -35,6 +35,9 @@ var translationsEN = {
     GRAMS: "grams",
     FLAVOR_NAME: "Flavor name",
     FLAVOR: "Flavor",
+    PRINT_LABEL: "Print label",
+    DELETE_RECIPE: "Delete recipe",
+    PRINT: "Print",
 
     PASSWORD: "Password:",
     REPASSWORD: "Re enter password:",
@@ -103,6 +106,9 @@ var translationsRS= {
     GRAMS: "grami",
     FLAVOR_NAME: "Ime arome",
     FLAVOR: "Aroma",
+    PRINT_LABEL: "Štampaj nalepnicu",
+    DELETE_RECIPE: "Obriši recept",
+    PRINT: "Štampaj",
 
     PASSWORD: "Lozinka:",
     REPASSWORD: "Ponovite lozinku:",

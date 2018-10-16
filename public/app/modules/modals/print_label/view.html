@@ -1,0 +1,95 @@
+<style>
+    .template-1 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+    .template-1 div {
+        width: 90%;
+        margin: 5px;
+        text-align: center;
+    }
+
+    .font-size-1 {
+        font-size: 18px;
+    }
+    .font-size-2 {
+        font-size: 21px;
+    }
+    .font-size-3 {
+        font-size: 28px;
+    }
+    .font-size-4 {
+        font-size: 38px;
+    }
+    .font-size-5 {
+        font-size: 42px;
+    }
+    .font-size-6 {
+        font-size: 48px;
+    }
+
+
+    .choices {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+    .choices div {
+        width: 100%;
+        margin: 10px;
+        text-align: left;
+    }
+</style>
+<div class="modal-header">
+    <h1><span translate="PRINT_LABEL">Print_label</span>:</h1>
+</div>
+<div style="clear: both"></div>
+<div class="modal-body">
+    <div ng-class="{
+    'font-size-1': fontSize == 1,
+    'font-size-2': fontSize == 2,
+    'font-size-3': fontSize == 3,
+    'font-size-4': fontSize == 4,
+    'font-size-5': fontSize == 5,
+    'font-size-6': fontSize == 6,
+    }"
+         id="printMe" class="col-sm-12 template-1">
+        <div>
+            <span ng-repeat="flavor in flavors" ng-show="show.flavors[$index]">{{flavor}}, </span>
+            <span ng-show="show.pgVg">{{pg}} / {{vg}}, </span>
+            <span ng-show="show.desired_strength">{{desired_strength}} mg</span>
+        </div>
+    </div>
+</div>
+<div style="clear: both"></div>
+<div class="modal-footer">
+    <div class="choices">
+        <div id="selectData">
+            <h4>Select what to show:</h4>
+            <div ng-repeat="flavor in flavors" class="custom-control custom-checkbox">
+                <input ng-model="show.flavors[$index]" type="checkbox" name="show" value="{{$index}}" id="{{$index}}" class="custom-control-input">
+                <label for="{{$index}}" class="custom-control-label">{{flavor}}</label>
+            </div>
+            <div>
+                <input ng-model="show.pgVg" type="checkbox" name="show" value="pgVg" id="pgVg">
+                <label for="pgVg">PG / VG</label>
+            </div>
+            <div>
+                <input ng-model="show.desired_strength" type="checkbox" name="show" value="desired_strength" id="desired_strength">
+                <label for="desired_strength">Desired strength</label>
+            </div>
+        </div>
+        <div id="selectTextSize">
+            <h4>Select text size:</h4>
+            <input ng-model="fontSize" id="slider1" type="range" min="1" max="6" step="1" />
+        </div>
+    </div>
+    <button ng-click="print()" class="btn btn-primary" translate="PRINT">Print</button>
+    <button ng-click="close()" class="btn" translate="CLOSE">close</button>
+</div>
+<div style="clear: both"></div>

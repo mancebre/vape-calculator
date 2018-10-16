@@ -467,6 +467,29 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
         $scope.liquid.name += $scope.liquid.desired_strength + " mg";
     };
 
+    $scope.openPrintLabelModal = function() {
+
+        $uibModal.open({
+            controller: 'printLabelCtrl',
+            templateUrl: 'app/modules/modals/print_label/view.html',
+            backdrop: true,
+            resolve: {
+                item: function () {
+                    return $scope.liquid;
+                }
+            }
+        })
+            .result.then(function(location){
+                if(location) {
+                    // console.log("works", location);
+                    $location.url('/' + location);
+                }
+            }, function(res){
+                console.log("ERROR", res);
+            }
+        );
+    };
+
     /**
      * VAPE ONLY FUNCTIONS
      */
