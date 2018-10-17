@@ -315,8 +315,12 @@
                     <button type="button" class="add-flavor btn btn-default col-sm-offset-9" ng-click="addField();">
                         <span translate="BUTTON_ADD_FLAVOR">Add flavor</span> <i class="fa fa-plus"></i>
                     </button>
-                    <button ng-click="openPrintLabelModal()" class="btn btn-success col-sm-offset-9"><span translate="PRINT_LABEL">Print label</span> <i class="fa fa-print"></i></button>
-                    <button ng-show="liquid.id && liquid.owner" class="btn btn-danger col-sm-offset-9"><span translate="DELETE_RECIPE">Delete recipe</span> <i class="fa fa-trash"></i></button>
+                    <button ng-click="openPrintLabelModal()" class="btn btn-success col-sm-offset-9">
+                        <span translate="PRINT_LABEL">Print label</span> <i class="fa fa-print"></i>
+                    </button>
+                    <button ng-click="deleteRecipe()" ng-show="liquid.id && liquid.owner" class="btn btn-danger col-sm-offset-9">
+                        <span translate="DELETE_RECIPE">Delete recipe</span> <i class="fa fa-trash"></i>
+                    </button>
                 </span>
             </div>
         </fieldset>

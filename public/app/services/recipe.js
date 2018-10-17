@@ -11,6 +11,7 @@
         service.save = save;
         service.getMyRecipes = getMyRecipes;
         service.getRecipe = getRecipe;
+        service.deleteRecipe = deleteRecipe;
         service.getAllRecipes = getAllRecipes;
 
         return service;
@@ -100,6 +101,20 @@
         function getRecipe(id, callback) {
             let apiUrl = $rootScope.apiUrl + 'recipe/' + id;
             $http.get(apiUrl, {})
+                .then(function (response) {
+                    console.log('success', response);
+
+                    callback(response.status, response.data);
+                })
+                .catch(function(response) {
+                    console.log('error', response);
+                    callback(response.status, response.data);
+                });
+        }
+
+        function deleteRecipe(id, callback) {
+            let apiUrl = $rootScope.apiUrl + 'recipe/' + id;
+            $http.delete(apiUrl, {})
                 .then(function (response) {
                     console.log('success', response);
 
