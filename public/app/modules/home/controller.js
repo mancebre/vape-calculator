@@ -3,6 +3,8 @@ angular.module('gelApp.home', []);
 angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$translate', '$uibModal', 'tooltipTranslations', '$rootScope', '$location', 'RecipeService', '$routeParams', '$timeout', '$sessionStorage', 'MyNotify',
     function ($scope, $http, $translate, $uibModal, tooltipTranslations, $rootScope, $location, RecipeService, $routeParams, $timeout, $sessionStorage, MyNotify) {
 
+        $scope.duplicateFlavorNames = false;
+
         // This is true when attention popup is open.
         $scope.attentionPopup = false;
         $scope.history = [];
@@ -206,53 +208,68 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
             }
         };
 
+        $scope.checkIfFlavorNameExists = function(arr, newName) {
+            return arr.some(function(e) {
+                return e.name === newName;
+            });
+        };
+
         //5. create submitStudentForm() function. This will be called when user submits the form
         $scope.submitLiquidForm = function (clone) {
-            // TODO This data should be parsed in one level object.
-            $scope.liquid.vapeReady = $scope.vapeReady;
+            // Here I try to avoid duplicate flavor names.
+            let uniqueFlavors = $scope.liquid.flavor.filter((set => f => !set.has(f.name) && set.add(f.name))(new Set));
+            $scope.duplicateFlavorNames = uniqueFlavors.length !== $scope.liquid.flavor.length;
+            console.log(1111, $scope.duplicateFlavorNames);
 
-            console.log("logged in ??", $rootScope.isLoggedIn());
-            console.log($scope.liquid);
-
-            // TODO If not logged in show popup with login and sign up button!
-            if ($scope.isLoggedIn()) {
-                $scope.liquid.vapeReady = $scope.vapeReady;
-                $scope.liquid.private = $scope.private;
-                if (clone) {
-                    // Clone recipe
-                    $scope.liquid.id = false; // If id is false API will create new recipe.
-                    RecipeService.save($scope.liquid, function (status, data) {
-
-                        console.log({
-                            status: status,
-                            data:   data
-                        });
-
-                        if(status !== 200) {
-                            alert("Something went wrong, please try again.")
-                        } else if (status === 200) {
-                            $location.url('/my_recipes');
-                        }
-                    });
-                } else {
-                    // Save recipe
-                    RecipeService.save($scope.liquid, function (status, data) {
-
-                        console.log({
-                            status: status,
-                            data:   data
-                        });
-
-                        if(status !== 200) {
-                            alert("Something went wrong, please try again.")
-                        } else if (status === 200) {
-                            $location.url('/my_recipes');
-                        }
-                    });
-                }
+            if ($scope.duplicateFlavorNames) {
+                MyNotify.notify("You have duplicate flavor names, please change one of duplicated flavor names...", 400);
             } else {
-                // Show popup.
-                $scope.loginWarning();
+                // TODO This data should be parsed in one level object.
+                $scope.liquid.vapeReady = $scope.vapeReady;
+
+                console.log("logged in ??", $rootScope.isLoggedIn());
+                console.log($scope.liquid);
+
+                // TODO If not logged in show popup with login and sign up button!
+                if ($scope.isLoggedIn()) {
+                    $scope.liquid.vapeReady = $scope.vapeReady;
+                    $scope.liquid.private = $scope.private;
+                    if (clone) {
+                        // Clone recipe
+                        $scope.liquid.id = false; // If id is false API will create new recipe.
+                        RecipeService.save($scope.liquid, function (status, data) {
+
+                            console.log({
+                                status: status,
+                                data:   data
+                            });
+
+                            if(status !== 200) {
+                                alert("Something went wrong, please try again.")
+                            } else if (status === 200) {
+                                $location.url('/my_recipes');
+                            }
+                        });
+                    } else {
+                        // Save recipe
+                        RecipeService.save($scope.liquid, function (status, data) {
+
+                            console.log({
+                                status: status,
+                                data:   data
+                            });
+
+                            if(status !== 200) {
+                                alert("Something went wrong, please try again.")
+                            } else if (status === 200) {
+                                $location.url('/my_recipes');
+                            }
+                        });
+                    }
+                } else {
+                    // Show popup.
+                    $scope.loginWarning();
+                }
             }
 
         };

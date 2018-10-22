@@ -159,7 +159,7 @@
                 </div>
             </fieldset>
 
-            <div class="flavor-fields">
+            <div ng-class="{attention: duplicateFlavorNames}" class="flavor-fields">
                 <fieldset ng-repeat="(key, value) in liquid.flavor">
                     <legend>{{liquid.flavor[key]['name']}}</legend>
                     <div class="form-group">
