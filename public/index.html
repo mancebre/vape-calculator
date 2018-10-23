@@ -54,6 +54,7 @@
         <script type="text/javascript" src="app/services/recipe.js"></script>
         <script type="text/javascript" src="app/services/ratings.js"></script>
         <script type="text/javascript" src="app/services/notifications.js"></script>
+        <script type="text/javascript" src="app/services/issue_report.js"></script>
         <script type="text/javascript" src="app/global.js"></script>
         <script type="text/javascript" src="app/modules/home/controller.js"></script>
         <script type="text/javascript" src="app/modules/plans/controller.js"></script>
@@ -64,10 +65,12 @@
         <script type="text/javascript" src="app/modules/registration/controller.js"></script>
         <script type="text/javascript" src="app/modules/my_recipes/controller.js"></script>
         <script type="text/javascript" src="app/modules/search_page/controller.js"></script>
+        <script type="text/javascript" src="app/modules/footer/controller.js"></script>
         <script type="text/javascript" src="app/modules/modals/weight/controller.js"></script>
         <script type="text/javascript" src="app/modules/modals/attention/controller.js"></script>
         <script type="text/javascript" src="app/modules/modals/login_warning/controller.js"></script>
         <script type="text/javascript" src="app/modules/modals/print_label/controller.js"></script>
+        <script type="text/javascript" src="app/modules/modals/report_issue/controller.js"></script>
         <script type="text/javascript" src="app/translations.js"></script>
         <script type="text/javascript" src="app/config.js"></script>
         <script type="text/javascript" src="app/directives/equal.js"></script>
@@ -111,6 +114,9 @@
         <div ng-view>
         </div>
     </div>
+
+    <ng-include src="'app/modules/footer/view.html'"></ng-include>
+
         <script src="//localhost:35729/livereload.js"></script>
     </body>
 </html>

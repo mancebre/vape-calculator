@@ -1,0 +1,26 @@
+<div class="modal-header">
+    <h1 translate="Bur Report"></h1>
+</div>
+<div style="clear: both"></div>
+<form class="form-horizontal" role="form" ng-submit="saveIssueReport()">
+<div class="modal-body">
+    <div class="form-group">
+        <label for="reporter" class="col-lg-3 control-label">Email:</label>
+        <div class="col-lg-9">
+            <input ng-model="issueReport.reportBack" type="email" id="reporter" class="form-control" placeholder="Enter your email">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="text" class="col-lg-3 control-label">Describe bug:</label>
+        <div class="col-lg-9">
+            <textarea ng-model="issueReport.text" class="form-control" rows="5" id="text" required></textarea>
+        </div>
+    </div>
+</div>
+<div style="clear: both"></div>
+<div class="modal-footer">
+    <button type="submit" class="btn btn-primary" translate="SAVE">Save</button>
+    <button type="button" ng-click="close()" class="btn" TRANSLATE="CLOSE">Close</button>
+</div>
+</form>
+<div style="clear: both"></div>
