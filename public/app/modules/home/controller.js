@@ -216,10 +216,6 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
 
         //5. create submitStudentForm() function. This will be called when user submits the form
         $scope.submitLiquidForm = function (clone) {
-            // Here I try to avoid duplicate flavor names.
-            let uniqueFlavors = $scope.liquid.flavor.filter((set => f => !set.has(f.name) && set.add(f.name))(new Set));
-            $scope.duplicateFlavorNames = uniqueFlavors.length !== $scope.liquid.flavor.length;
-            console.log(1111, $scope.duplicateFlavorNames);
 
             if ($scope.duplicateFlavorNames) {
                 MyNotify.notify("You have duplicate flavor names, please change one of duplicated flavor names...", 400);
@@ -245,7 +241,7 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
                             });
 
                             if(status !== 200) {
-                                alert("Something went wrong, please try again.")
+                                MyNotify.notify("Something went wrong, please try again.", status);
                             } else if (status === 200) {
                                 $location.url('/my_recipes');
                             }
@@ -260,7 +256,7 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
                             });
 
                             if(status !== 200) {
-                                alert("Something went wrong, please try again.")
+                                MyNotify.notify("Something went wrong, please try again.", status);
                             } else if (status === 200) {
                                 $location.url('/my_recipes');
                             }
@@ -308,6 +304,14 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
 
         $scope.$watch('liquid', function(newVal, oldVal){
             $scope.recipeCalculation();
+
+            // Here I try to avoid duplicate flavor names.
+            let uniqueFlavors = $scope.liquid.flavor.filter((set => f => !set.has(f.name) && set.add(f.name))(new Set));
+            $scope.duplicateFlavorNames = uniqueFlavors.length !== $scope.liquid.flavor.length;
+
+            // if ($scope.duplicateFlavorNames) {
+            //     MyNotify.notify("You have duplicate flavor names, please change one of duplicated flavor names...", 400);
+            // }
         }, true);
 
         $scope.$watch('weights', function(newVal, oldVal){
@@ -625,7 +629,7 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
                 }, 300 );
 
                 if(status !== 200) {
-                    alert("Something went wrong, please try again.")
+                    MyNotify.notify("Something went wrong, please try again.", status);
                 }
             });
         };

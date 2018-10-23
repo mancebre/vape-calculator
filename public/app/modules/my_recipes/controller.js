@@ -1,7 +1,7 @@
 angular.module('gelApp.my_recipes', []);
 
-angular.module('gelApp.my_recipes').controller('my_recipesCtrl', ['$scope', '$http', 'RecipeService', '$sessionStorage', 'RatingsService',
-    function ($scope, $http, RecipeService, $sessionStorage, RatingsService) {
+angular.module('gelApp.my_recipes').controller('my_recipesCtrl', ['$scope', '$http', 'RecipeService', '$sessionStorage', 'RatingsService', 'MyNotify',
+    function ($scope, $http, RecipeService, $sessionStorage, RatingsService, MyNotify) {
 
     $scope.maxRating = 5;
 
@@ -78,7 +78,7 @@ angular.module('gelApp.my_recipes').controller('my_recipesCtrl', ['$scope', '$ht
         if (ratersIds.indexOf($sessionStorage.currentUser.user_id) === -1) {
             RatingsService.Rate(recipe.id, rating, function () {
                 $scope.getAllUserRecipes($sessionStorage.currentUser.user_id);
-                alert("Recipe rated successfully.")
+                MyNotify.notify("Recipe rated successfully.", 200);
             });
         } else {
             // My ratings of this recipe.
@@ -87,7 +87,7 @@ angular.module('gelApp.my_recipes').controller('my_recipesCtrl', ['$scope', '$ht
             });
             RatingsService.Update(myRatings[0].id, rating, function () {
                 $scope.getAllUserRecipes($sessionStorage.currentUser.user_id);
-                alert("Recipe updated successfully.")
+                MyNotify.notify("Recipe updated successfully.", 200);
             });
         }
 

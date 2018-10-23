@@ -36,6 +36,7 @@
             let divId = Math.floor(Math.random()*(9999+1));
             div.id = divId;
             document.getElementById("messages").appendChild(div);
+            $("html,body").animate({scrollTop: '0px'}, "slow");
 
             // Create timeout hide for alert
             setTimeout(function(){

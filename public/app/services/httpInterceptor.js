@@ -1,6 +1,6 @@
 
-App.factory('httpInterceptor', ['$q', '$window', '$injector',
-    function($q, $window, $injector) {
+App.factory('httpInterceptor', ['$q', '$window', '$injector', 'MyNotify',
+    function($q, $window, $injector, MyNotify) {
         return {
             // 'request': function(config) {
             //     config.headers = config.headers || {};
@@ -44,7 +44,7 @@ App.factory('httpInterceptor', ['$q', '$window', '$injector',
                     let AuthenticationService = $injector.get('AuthenticationService');
                     AuthenticationService.Logout();
 
-                    alert("Your session has expired, please login.");
+                    MyNotify("Your session has expired, please login.", 400);
                     $window.location.href = "/login";
                 }
 
