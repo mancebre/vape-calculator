@@ -8,14 +8,15 @@ angular.module('gelApp.reportIssue').controller('reportIssueCtrl', ['$scope', '$
         reportBack: null,
     };
 
-    $scope.close = function(location){
-        $uibModalInstance.close(location);
+    $scope.close = function(){
+        $uibModalInstance.close();
     };
 
     $scope.saveIssueReport = function () {
         console.log("save issue", $scope.issueReport);
         IssueReportService.save($scope.issueReport, function (status, data) {
             MyNotify.notify(data, status);
+            $uibModalInstance.close();
         })
     }
 }]);

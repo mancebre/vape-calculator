@@ -67,6 +67,10 @@ var translationsEN = {
     LOAD_MORE: "Load more",
     EDIT: "Edit",
 
+    BUG_REPORT: "Bug Report",
+    DESCRIBE_BUG: "Describe bug",
+    NOT_MANDATORY: "not mandatory",
+
 };
 
 var translationsRS= {
@@ -137,6 +141,10 @@ var translationsRS= {
     CREATED_BY: "Kreator",
     LOAD_MORE: "Učitaj još",
     EDIT: "Uredi",
+
+    BUG_REPORT: "Prijavi Grešku",
+    DESCRIBE_BUG: "Opiši grešku",
+    NOT_MANDATORY: "nije obavezno",
 };
 
 angular.module('gelApp.home').config(['$translateProvider', function ($translateProvider) {

@@ -65,6 +65,7 @@
             // remove user from local storage and clear http auth header
             delete $sessionStorage.currentUser;
             $http.defaults.headers.common.Authorization = '';
+            sessionStorage.removeItem("Token");
         }
     }
 })();

@@ -13,10 +13,13 @@
         return service;
 
         function save(report, callback) {
+            console.log($http.defaults.headers.common.Authorization)
             let apiUrl = $rootScope.apiUrl + 'issueReport/';
-            $http.post(apiUrl, {
-                report: report
-            })
+            let params = {
+                text: report.text,
+                reportBack: report.reportBack
+            };
+            $http.post(apiUrl, params)
                 .then(function (response) {
                     console.log('success', response);
 

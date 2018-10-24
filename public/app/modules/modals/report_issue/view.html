@@ -1,17 +1,17 @@
 <div class="modal-header">
-    <h1 translate="Bur Report"></h1>
+    <h1 translate="BUG_REPORT"></h1>
 </div>
 <div style="clear: both"></div>
 <form class="form-horizontal" role="form" ng-submit="saveIssueReport()">
 <div class="modal-body">
     <div class="form-group">
-        <label for="reporter" class="col-lg-3 control-label">Email:</label>
+        <label for="reporter" class="col-lg-3 control-label">Email:</label> (<span translate="NOT_MANDATORY"></span>)
         <div class="col-lg-9">
             <input ng-model="issueReport.reportBack" type="email" id="reporter" class="form-control" placeholder="Enter your email">
         </div>
     </div>
     <div class="form-group">
-        <label for="text" class="col-lg-3 control-label">Describe bug:</label>
+        <label for="text" class="col-lg-3 control-label"><span translate="DESCRIBE_BUG">Describe bug</span>:</label>
         <div class="col-lg-9">
             <textarea ng-model="issueReport.text" class="form-control" rows="5" id="text" required></textarea>
         </div>
