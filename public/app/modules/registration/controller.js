@@ -31,7 +31,7 @@ angular.module('gelApp.registration').controller('registrationCtrl', ['$scope', 
         };
 
         $scope.redirectToHome = function (status, message) {
-            if (status === 201) {
+            if (status >= 200 && status < 300) {
                 $scope.showError = false;
                 $scope.showBadCredentialsMsg = false;
                 $scope.showServerMsg = false;
@@ -61,7 +61,7 @@ angular.module('gelApp.registration').controller('registrationCtrl', ['$scope', 
         $scope.prepareData = function () {
             $scope.userData = angular.copy($scope.registration);
             delete $scope.userData.confirmPassword;
-            $scope.userData.password = md5.createHash($scope.registration.password);
+            // $scope.userData.password = md5.createHash($scope.registration.password);
         }
 
 }]);
