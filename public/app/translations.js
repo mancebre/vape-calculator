@@ -154,4 +154,5 @@ angular.module('gelApp.home').config(['$translateProvider', function ($translate
     $translateProvider.translations('rs', translationsRS);
     $translateProvider.fallbackLanguage('en');
     $translateProvider.preferredLanguage('rs');
+    $translateProvider.useSanitizeValueStrategy('sce');
 }]);
