@@ -23,7 +23,7 @@
             } else if (type >= 500) {
                 notificationClass = 'alert alert-danger';
             } else if (type < 0) {
-                notificationClass = 'alert alert-warning';
+                notificationClass = 'alert alert-danger';
                 notification = "Something went wrong, please try again.";
             }
 

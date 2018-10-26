@@ -4,8 +4,8 @@ angular.module('gelApp.registration', []);
 // TODO 1. Add password strength validator
 // TODO 2. Add username suggester, if username is taken suggest them new user name based on entered data
 
-angular.module('gelApp.registration').controller('registrationCtrl', ['$scope', '$window', 'md5', 'UserRegistration',
-    function ($scope, $window, md5, UserRegistration)
+angular.module('gelApp.registration').controller('registrationCtrl', ['$scope', '$window', 'md5', 'UserRegistration', 'MyNotify',
+    function ($scope, $window, md5, UserRegistration, MyNotify)
     {
         $scope.showError = false;
         $scope.showBadCredentialsMsg = false;
@@ -31,31 +31,39 @@ angular.module('gelApp.registration').controller('registrationCtrl', ['$scope', 
         };
 
         $scope.redirectToHome = function (status, message) {
-            if (status >= 200 && status < 300) {
-                $scope.showError = false;
-                $scope.showBadCredentialsMsg = false;
-                $scope.showServerMsg = false;
-                $scope.serverMessage = false;
+
+            if (status === 200) {
                 $scope.signupSussesfull = true;
-            } else if (status === 400) {
-                $scope.showError = false;
-                $scope.showBadCredentialsMsg = false;
-                $scope.showServerMsg = true;
-                $scope.serverMessage = message;
-                $scope.signupSussesfull = false;
-            } else if (status === 404) {
-                $scope.showError = false;
-                $scope.showBadCredentialsMsg = true;
-                $scope.showServerMsg = false;
-                $scope.serverMessage = false;
-                $scope.signupSussesfull = false;
             } else {
-                $scope.showError = true;
-                $scope.showBadCredentialsMsg = false;
-                $scope.showServerMsg = true;
-                $scope.serverMessage = message;
                 $scope.signupSussesfull = false;
+                MyNotify.notify(message, status);
             }
+
+            // if (status >= 200 && status < 300) {
+            //     $scope.showError = false;
+            //     $scope.showBadCredentialsMsg = false;
+            //     $scope.showServerMsg = false;
+            //     $scope.serverMessage = false;
+            //     $scope.signupSussesfull = true;
+            // } else if (status === 400) {
+            //     $scope.showError = false;
+            //     $scope.showBadCredentialsMsg = false;
+            //     $scope.showServerMsg = true;
+            //     $scope.serverMessage = message;
+            //     $scope.signupSussesfull = false;
+            // } else if (status === 404) {
+            //     $scope.showError = false;
+            //     $scope.showBadCredentialsMsg = true;
+            //     $scope.showServerMsg = false;
+            //     $scope.serverMessage = false;
+            //     $scope.signupSussesfull = false;
+            // } else {
+            //     $scope.showError = true;
+            //     $scope.showBadCredentialsMsg = false;
+            //     $scope.showServerMsg = true;
+            //     $scope.serverMessage = message;
+            //     $scope.signupSussesfull = false;
+            // }
         };
 
         $scope.prepareData = function () {
