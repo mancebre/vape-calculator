@@ -94,4 +94,61 @@ angular.module('gelApp.registration').controller('registrationCtrl', ['$scope', 
             // $scope.userData.password = md5.createHash($scope.registration.password);
         };
 
+        $scope.passwordStrength = function () {
+
+            //TextBox left blank.
+            if ($scope.registration.password !== undefined && $scope.registration.password.length == 0) {
+                $("#password_strength").html("");
+                return;
+            }
+
+            //Regular Expressions.
+            let regex = [];
+            regex.push("[A-Z]"); //Uppercase Alphabet.
+            regex.push("[a-z]"); //Lowercase Alphabet.
+            regex.push("[0-9]"); //Digit.
+            regex.push("[$@$!%*#?&]"); //Special Character.
+
+            let passed = 0;
+
+            //Validate for each Regular Expression.
+            for (let i = 0; i < regex.length; i++) {
+                if (new RegExp(regex[i]).test($scope.registration.password)) {
+                    passed++;
+                }
+            }
+
+
+            //Validate for length of Password.
+            if (passed > 2 && $scope.registration.password.length > 8) {
+                passed++;
+            }
+
+            //Display status.
+            let color = "";
+            let strength = "";
+            switch (passed) {
+                case 0:
+                case 1:
+                    strength = "Weak";
+                    color = "red";
+                    break;
+                case 2:
+                    strength = "Good";
+                    color = "darkorange";
+                    break;
+                case 3:
+                case 4:
+                    strength = "Strong";
+                    color = "green";
+                    break;
+                case 5:
+                    strength = "Very Strong";
+                    color = "darkgreen";
+                    break;
+            }
+
+            $("#password_strength").html(strength);
+            $("#password_strength").css("color", color);
+        }
 }]);
