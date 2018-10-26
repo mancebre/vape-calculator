@@ -12,17 +12,19 @@
         <div class="form-group">
             <label class="control-label col-sm-4" for="email">Email:</label>
             <div class="col-sm-8">
-                <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" ng-model="registration.email" required
-                       ng-class="(signupForm.email.$dirty && signupForm.email.$invalid) ? 'attention' : ''">
+                <input ng-blur="emailCheck()" type="email" class="form-control" id="email" name="email" placeholder="Enter email" ng-model="registration.email" required
+                       ng-class="((signupForm.email.$dirty && signupForm.email.$invalid) || emailInUse) ? 'attention' : ''">
                 <p ng-show="signupForm.email.$invalid && !signupForm.email.$pristine" class="help-block">Enter a valid email.</p>
+                <p ng-show="emailInUse" class="help-block">Email you entered is already in use.</p>
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-4" for="username" translate="USERNAME">Username:</label>
             <div class="col-sm-8">
-                <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" ng-model="registration.username" required
-                       ng-class="(signupForm.username.$dirty && signupForm.username.$invalid) ? 'attention' : ''">
+                <input ng-blur="usernameCheck()" type="text" class="form-control" id="username" name="username" placeholder="Enter username" ng-model="registration.username" required
+                       ng-class="((signupForm.username.$dirty && signupForm.username.$invalid) || usernameInUse) ? 'attention' : ''">
                 <p ng-show="signupForm.username.$invalid && !signupForm.username.$pristine" class="help-block">Enter a valid username.</p>
+                <p ng-show="usernameInUse" class="help-block">Username you entered is already in use.</p>
             </div>
         </div>
         <div class="form-group">
