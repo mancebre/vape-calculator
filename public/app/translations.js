@@ -38,6 +38,7 @@ var translationsEN = {
     PRINT_LABEL: "Print label",
     DELETE_RECIPE: "Delete recipe",
     PRINT: "Print",
+    NETWORKS: "Networks",
 
     PASSWORD: "Password:",
     REPASSWORD: "Re enter password:",
@@ -113,6 +114,7 @@ var translationsRS= {
     PRINT_LABEL: "Štampaj nalepnicu",
     DELETE_RECIPE: "Obriši recept",
     PRINT: "Štampaj",
+    NETWORKS: "Mreže",
 
     PASSWORD: "Lozinka:",
     REPASSWORD: "Ponovite lozinku:",

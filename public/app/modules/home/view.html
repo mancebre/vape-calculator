@@ -10,6 +10,17 @@
         padding: 8px !important;
         margin: 0 !important;
     }
+    .social-networks {
+        margin-top: 22px !important;
+    }
+    .social-media-list {
+        margin: 0;
+    }
+    .social-media-list li {
+        display: block;
+        float: left;
+        padding: 3px;
+    }
 </style>
 <!-- <h2 contenteditable="true" ng-model="liquid.name"></h2> -->
 <h2>{{liquid.name}}</h2>
@@ -300,30 +311,50 @@
         </fieldset>
         <fieldset class="tool-buttons">
             <legend translate="TOOLS">Tools</legend>
-            <div>
-                <span class="btn-group">
+            <div class="btn-group">
 
-                    <button ng-click="submitLiquidForm()" ng-show="liquid.owner || !liquid.id" type="button" class="btn btn-primary col-sm-offset-9" >
-                        <span translate="SAVE">Save</span> <i class="fa fa-save"></i>
-                    </button>
-                    <button ng-show="isLoggedIn() && !liquid.owner && liquid.id"
-                            ng-click="submitLiquidForm(true)"
-                            type="button"
-                            class="btn btn-primary col-sm-offset-9"
-                            translate="CLONE">
-                        <span>Clone</span> <i class="fa fa-clone"></i>
-                    </button>
-                    <button type="button" class="add-flavor btn btn-default col-sm-offset-9" ng-click="addField();">
-                        <span translate="BUTTON_ADD_FLAVOR">Add flavor</span> <i class="fa fa-plus"></i>
-                    </button>
-                    <button ng-click="openPrintLabelModal()" class="btn btn-success col-sm-offset-9">
-                        <span translate="PRINT_LABEL">Print label</span> <i class="fa fa-print"></i>
-                    </button>
-                    <button ng-click="deleteRecipe()" ng-show="liquid.id && liquid.owner" class="btn btn-danger col-sm-offset-9">
-                        <span translate="DELETE_RECIPE">Delete recipe</span> <i class="fa fa-trash"></i>
-                    </button>
-                </span>
+                <button ng-click="submitLiquidForm()" ng-show="liquid.owner || !liquid.id" type="button" class="btn btn-primary col-sm-offset-9" >
+                    <span translate="SAVE">Save</span> <i class="fa fa-save"></i>
+                </button>
+                <button ng-show="isLoggedIn() && !liquid.owner && liquid.id"
+                        ng-click="submitLiquidForm(true)"
+                        type="button"
+                        class="btn btn-primary col-sm-offset-9"
+                        translate="CLONE">
+                    <span>Clone</span> <i class="fa fa-clone"></i>
+                </button>
+                <button type="button" class="add-flavor btn btn-default col-sm-offset-9" ng-click="addField();">
+                    <span translate="BUTTON_ADD_FLAVOR">Add flavor</span> <i class="fa fa-plus"></i>
+                </button>
+                <button ng-click="openPrintLabelModal()" class="btn btn-success col-sm-offset-9">
+                    <span translate="PRINT_LABEL">Print label</span> <i class="fa fa-print"></i>
+                </button>
+                <button ng-click="deleteRecipe()" ng-show="liquid.id && liquid.owner" class="btn btn-danger col-sm-offset-9">
+                    <span translate="DELETE_RECIPE">Delete recipe</span> <i class="fa fa-trash"></i>
+                </button>
+                </div>
+        </fieldset>
+
+        <fieldset class="social-networks">
+            <legend translate="NETWORKS">Networks</legend>
+
+            <div class="nav-container2">
+                <ul class="social-media-list">
+                    <li>
+                        <span fb-like="socialNetworks.url"></span>
+                    </li>
+                    <li>
+                        <span google-plus="socialNetworks.url"></span>
+                    </li>
+                    <li>
+                        <span tweet="socialNetworks.name" tweet-url="socialNetworks.url"></span>
+                    </li>
+                    <li>
+                        <span pin-it="socialNetworks.name" pin-it-image="socialNetworks.image" pin-it-url="socialNetworks.url"></span>
+                    </li>
+                </ul>
             </div>
+
         </fieldset>
     </div>
 </div>

@@ -30,6 +30,8 @@ App.run(function($rootScope, $http, $translate, $sessionStorage) {
      */
     $rootScope.maintenanceMode = true;
 
+    $rootScope.facebookAppId = null; // TODO I need facebook app!!!
+
     // If there is any pending request keep loader open.
     $rootScope.$watch(function() {
         return $http.pendingRequests.length > 0;
