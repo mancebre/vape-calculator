@@ -645,7 +645,7 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
 
         $scope.socialNetworks = {
             url: window.location.href,
-            name: "THIS IS JUST FOR TEST",
+            name: "Check out my new vape recipe",
             image: "https://i.pinimg.com/736x/a5/c6/d4/a5c6d48a6dc682f42ea48109bcf33783.jpg"
         };
 
