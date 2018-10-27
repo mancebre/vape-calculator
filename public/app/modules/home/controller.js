@@ -617,7 +617,7 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
                     $scope.liquid.sleep_time = data.sleep_time;
                     $scope.liquid.flavor = data.recipe_flavors;
                     $scope.liquid.comment = data.comment;
-                    $scope.liquid.owner = data.user.id === $sessionStorage.currentUser.user_id; // Recipe owner
+                    $scope.liquid.owner = $scope.ownerOrNot(data.user.id); // Recipe owner
 
                     $scope.flavorFields = [];
                     $scope.flavorsCount = 0;
@@ -632,6 +632,16 @@ angular.module('gelApp.home').controller('homeCtrl', ['$scope', '$http', '$trans
                     MyNotify.notify("Something went wrong, please try again.", status);
                 }
             });
+        };
+
+        // Just return true or false
+        $scope.ownerOrNot = function (userId) {
+            // If user is not logged in than he can not be a owner of this recipe.
+            if ($sessionStorage.currentUser === undefined) {
+                return false;
+            } else {
+                return $sessionStorage.currentUser.user_id === userId;
+            }
         };
 
         if($routeParams.recipe_id !== undefined) {
