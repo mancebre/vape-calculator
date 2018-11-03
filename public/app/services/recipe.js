@@ -18,9 +18,9 @@
 
         function save(recipeData, callback) {
             console.log("Token", $http.defaults.headers.common.Authorization);
-            let apiUrl = $rootScope.apiUrl + 'recipe/';
+            let apiUrl = $rootScope.apiUrl + 'recipe';
             if(recipeData.id) {
-                $http.put(apiUrl + recipeData.id, {
+                $http.put(apiUrl + '/' + recipeData.id, {
                         name:               recipeData.name,
                         amount:             recipeData.amount,
                         base:               recipeData.base,
@@ -85,7 +85,7 @@
         }
 
         function getMyRecipes(userId, callback) {
-            let apiUrl = $rootScope.apiUrl + 'myRecipes/';
+            let apiUrl = $rootScope.apiUrl + 'myRecipes';
             $http.get(apiUrl, { params: { userId: userId }})
                 .then(function (response) {
                     console.log('success', response);
@@ -130,7 +130,7 @@
          * Get all public recipes.
          */
         function getAllRecipes(callback) {
-            let apiUrl = $rootScope.apiUrl + 'getAllRecipes/';
+            let apiUrl = $rootScope.apiUrl + 'getAllRecipes';
             let params = {};
             $http.get(apiUrl, {params})
                 .then(function (response) {

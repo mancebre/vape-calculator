@@ -14,7 +14,7 @@
         return service;
 
         function rate(recipeId, rating, callback) {
-            let apiUrl = $rootScope.apiUrl + 'rating/';
+            let apiUrl = $rootScope.apiUrl + 'rating';
             $http.post(apiUrl, {
                 recipe_id:  recipeId,
                 rating:     rating,
@@ -31,7 +31,7 @@
         }
         
         function update(id, rating, callback) {
-            let apiUrl = $rootScope.apiUrl + 'rating/' + id;
+            let apiUrl = $rootScope.apiUrl + 'rating' + id;
             $http.put(apiUrl, {
                 rating:     rating,
             })

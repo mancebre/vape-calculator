@@ -14,7 +14,7 @@
 
         function save(report, callback) {
             console.log($http.defaults.headers.common.Authorization)
-            let apiUrl = $rootScope.apiUrl + 'issueReport/';
+            let apiUrl = $rootScope.apiUrl + 'issueReport';
             let params = {
                 text: report.text,
                 reportBack: report.reportBack

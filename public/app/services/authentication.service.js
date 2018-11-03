@@ -21,7 +21,7 @@
          * @constructor
          */
         function Login(email, password, callback) {
-            let apiUrl = $rootScope.apiUrl + 'auth/login/';
+            let apiUrl = $rootScope.apiUrl + 'auth/login';
             $http.post(apiUrl, {
                 email: email,
                 password: password

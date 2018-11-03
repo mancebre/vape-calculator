@@ -15,7 +15,7 @@
         return service;
 
         function registerUser(userData, callback) {
-            let apiUrl = $rootScope.apiUrl + 'user/';
+            let apiUrl = $rootScope.apiUrl + 'user';
             $http.post(apiUrl, {
                 email:      userData.email,
                 firstname:  userData.firstname,
@@ -36,7 +36,7 @@
         }
 
         function emailCheck(email, callback) {
-            let apiUrl = $rootScope.apiUrl + 'emailCheck/';
+            let apiUrl = $rootScope.apiUrl + 'emailCheck';
             $http.post(apiUrl, {
                 email: email
             })
@@ -52,7 +52,7 @@
         }
 
         function usernameCheck(username, callback) {
-            let apiUrl = $rootScope.apiUrl + 'usernameCheck/';
+            let apiUrl = $rootScope.apiUrl + 'usernameCheck';
             $http.post(apiUrl, {
                 username: username
             })
