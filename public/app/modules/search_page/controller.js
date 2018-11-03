@@ -69,7 +69,7 @@ angular.module('gelApp.searchPage').controller('searchPageCtrl', ['$scope', '$ht
                         let ratersCount = 0;
 
                         angular.forEach(recipe.rating, function (rating) {
-                            totalRating += rating.rating;
+                            totalRating += parseInt(rating.rating);
                             ratersCount += 1;
                         });
 
@@ -92,7 +92,7 @@ angular.module('gelApp.searchPage').controller('searchPageCtrl', ['$scope', '$ht
         $scope.setRating = function (recipe, rating)
         {
             let ratersIds = recipe.rating.map(function (val) {
-                return val['user_id'];
+                return parseInt(val['user_id']);
             });
 
             if ($sessionStorage.currentUser !== undefined) {
@@ -105,7 +105,7 @@ angular.module('gelApp.searchPage').controller('searchPageCtrl', ['$scope', '$ht
                 } else {
                     // My ratings of this recipe.
                     let myRatings = recipe.rating.filter(function (val) {
-                        return val.user_id === $sessionStorage.currentUser.user_id;
+                        return parseInt(val.user_id) === $sessionStorage.currentUser.user_id;
                     });
                     RatingsService.Update(myRatings[0].id, rating, function () {
                         $scope.getAllRecipes();

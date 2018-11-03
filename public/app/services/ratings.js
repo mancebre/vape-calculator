@@ -31,7 +31,7 @@
         }
         
         function update(id, rating, callback) {
-            let apiUrl = $rootScope.apiUrl + 'rating' + id;
+            let apiUrl = $rootScope.apiUrl + 'rating/' + id;
             $http.put(apiUrl, {
                 rating:     rating,
             })

@@ -19,7 +19,7 @@ angular.module('gelApp.my_recipes').controller('my_recipesCtrl', ['$scope', '$ht
                     let ratersCount = 0;
 
                     angular.forEach(recipe.rating, function (rating) {
-                        totalRating += rating.rating;
+                        totalRating += parseInt(rating.rating);
                         ratersCount += 1;
                     });
 
@@ -71,10 +71,11 @@ angular.module('gelApp.my_recipes').controller('my_recipesCtrl', ['$scope', '$ht
     $scope.setRating = function (recipe, rating)
     {
         let ratersIds = recipe.rating.map(function (val) {
-            return val['user_id'];
+            return parseInt(val['user_id']);
         });
 
         // Rate recipe or update rate if user already rated this recipe
+        console.log(ratersIds.indexOf($sessionStorage.currentUser.user_id), ratersIds);
         if (ratersIds.indexOf($sessionStorage.currentUser.user_id) === -1) {
             RatingsService.Rate(recipe.id, rating, function () {
                 $scope.getAllUserRecipes($sessionStorage.currentUser.user_id);
@@ -83,7 +84,7 @@ angular.module('gelApp.my_recipes').controller('my_recipesCtrl', ['$scope', '$ht
         } else {
             // My ratings of this recipe.
             let myRatings = recipe.rating.filter(function (val) {
-                return val.user_id === $sessionStorage.currentUser.user_id;
+                return parseInt(val.user_id) === $sessionStorage.currentUser.user_id;
             });
             RatingsService.Update(myRatings[0].id, rating, function () {
                 $scope.getAllUserRecipes($sessionStorage.currentUser.user_id);
