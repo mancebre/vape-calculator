@@ -234,4 +234,22 @@ body {
     }
   }
 
+  @media (max-width: 320px) {
+    .table {
+      font-size: x-small;
+    }
+    .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+      padding: 3px;
+    }
+  }
+
+  @media (max-width: 360px) and (min-width: 321px) {
+    .table {
+      font-size: smaller;
+    }
+    .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+      padding: 3px;
+    }
+  }
+
 }
