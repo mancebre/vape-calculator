@@ -1,7 +1,8 @@
 angular.module('gelApp.DropdownController', []);
 
-angular.module('gelApp.DropdownController').controller('DropdownController', ['$scope', '$translate', '$rootScope', '$location', 'AuthenticationService',
-    function ($scope, $translate, $rootScope, $location, AuthenticationService) {
+angular.module('gelApp.DropdownController').controller('DropdownController', [
+    '$scope', '$translate', '$rootScope', '$location', 'AuthenticationService', '$window',
+    function ($scope, $translate, $rootScope, $location, AuthenticationService, $window) {
 
         /**
          * Delete local storage and redirect user to front page.
@@ -26,6 +27,7 @@ angular.module('gelApp.DropdownController').controller('DropdownController', ['$
         vm.status = {
             isopen: false
         };
+        vm.isMobile = $window.innerWidth < 768;
 
         $scope.vm = vm;
 

@@ -37,29 +37,29 @@
                     <!--<button type="submit" class="btn btn-default">Submit</button>-->
                 <!--</form>-->
                 <ul class="nav navbar-nav navbar-right">
-                    <li ng-click="vm.isCollapsed = !vm.isCollapsed" ng-class="getClass('/new_recipe')">
+                    <li ng-click="vm.isCollapsed = !vm.isCollapsed && vm.isMobile" ng-class="getClass('/new_recipe')">
                         <a href="/new_recipe"><span translate="NEW_RECIPE"></span> <span class="glyphicon glyphicon-plus"></span></a>
                     </li>
-                    <li ng-click="vm.isCollapsed = !vm.isCollapsed" ng-class="getClass('/search')">
+                    <li ng-click="vm.isCollapsed = !vm.isCollapsed && vm.isMobile" ng-class="getClass('/search')">
                         <a href="/search"><span translate="SEARCH"></span> <span class="glyphicon glyphicon-search"></span></a>
                     </li>
-                    <li ng-click="vm.isCollapsed = !vm.isCollapsed" ng-show="isLoggedIn()" ng-class="getClass('/my_recipes')">
+                    <li ng-click="vm.isCollapsed = !vm.isCollapsed && vm.isMobile" ng-show="isLoggedIn()" ng-class="getClass('/my_recipes')">
                         <a href="/my_recipes"><span translate="MY_RECIPES"></span> <span class="glyphicon glyphicon-book"></span></a>
                     </li>
-                    <li ng-click="vm.isCollapsed = !vm.isCollapsed" ng-hide="isLoggedIn()" ng-class="getClass('/registration')">
+                    <li ng-click="vm.isCollapsed = !vm.isCollapsed && vm.isMobile" ng-hide="isLoggedIn()" ng-class="getClass('/registration')">
                         <a href="/registration"><span translate="REGISTER"></span> <span class="glyphicon glyphicon-user"></span></a>
                     </li>
-                    <li ng-click="vm.isCollapsed = !vm.isCollapsed" ng-hide="isLoggedIn()" ng-class="getClass('/login')">
+                    <li ng-click="vm.isCollapsed = !vm.isCollapsed && vm.isMobile" ng-hide="isLoggedIn()" ng-class="getClass('/login')">
                         <a href="/login"><span translate="LOGIN"></span> <span class="glyphicon glyphicon-log-in"></span></a>
                     </li>
-                    <li ng-click="vm.isCollapsed = !vm.isCollapsed" ng-show="isLoggedIn()" ng-class="getClass('/logout')">
+                    <li ng-click="vm.isCollapsed = !vm.isCollapsed && vm.isMobile" ng-show="isLoggedIn()" ng-class="getClass('/logout')">
                         <a href="#" ng-click="logoutUser()"><span translate="LOGOUT"></span> <span class="glyphicon glyphicon-log-out"></span></a>
                     </li>
                     <li class="dropdown" uib-dropdown>
                         <a href="#" class="dropdown-toggle" uib-dropdown-toggle data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span translate="LANGUAGE">Language</span> <span class="caret"></span></a>
                         <ul class="dropdown-menu" uib-dropdown-menu>
-                            <li ng-click="vm.isCollapsed = !vm.isCollapsed"><a href="#" ng-click="changeLanguage('rs')" translate="BUTTON_LANG_RS">Action</a></li>
-                            <li ng-click="vm.isCollapsed = !vm.isCollapsed"><a href="#" ng-click="changeLanguage('en')" translate="BUTTON_LANG_EN">Action</a></li>
+                            <li ng-click="vm.isCollapsed = !vm.isCollapsed && vm.isMobile"><a href="#" ng-click="changeLanguage('rs')" translate="BUTTON_LANG_RS">Action</a></li>
+                            <li ng-click="vm.isCollapsed = !vm.isCollapsed && vm.isMobile"><a href="#" ng-click="changeLanguage('en')" translate="BUTTON_LANG_EN">Action</a></li>
                             <!--<li><a href="#">Action</a></li>-->
                             <!--<li><a href="#">Another action</a></li>-->
                             <!--<li><a href="#">Something else here</a></li>-->
