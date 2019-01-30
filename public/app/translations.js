@@ -56,6 +56,7 @@ var translationsEN = {
     LOGIN_WARNING: "You have to be logged in to save recipe.",
     WARNING: "Warning",
 
+    NEW_RECIPE: "New recipe",
     MY_RECIPES: "My recipes",
     SEARCH: "Search",
     SAVE: "Save",
@@ -132,6 +133,7 @@ var translationsRS= {
     LOGIN_WARNING: "Morate biti ulogovani da bi ste sačuvali recept.",
     WARNING: "Obaveštenje",
 
+    NEW_RECIPE: "Novi recept",
     MY_RECIPES: "Moji recepti",
     SEARCH: "Pretraga",
     SAVE: "Sačuvaj",
@@ -149,7 +151,7 @@ var translationsRS= {
     NOT_MANDATORY: "nije obavezno",
 };
 
-angular.module('gelApp.home').config(['$translateProvider', function ($translateProvider) {
+angular.module('gelApp.newRecipe').config(['$translateProvider', function ($translateProvider) {
     // add translation tables
     $translateProvider.useLocalStorage();
     $translateProvider.translations('en', translationsEN);

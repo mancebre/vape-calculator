@@ -2,12 +2,16 @@ App.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 
     $routeProvider.when('/', {
         title: 'Home',
-        controller: 'homeCtrl',
-        templateUrl: '/app/modules/home/view.html'
+        controller: 'searchPageCtrl',
+        templateUrl: '/app/modules/search_page/view.html'
+    }).when('/new_recipe', {
+        title: 'New Recipe',
+        controller: 'newRecipeCtrl',
+        templateUrl: '/app/modules/new_recipe/view.html'
     }).when('/recipe/:recipe_id', {
         title: 'Home',
-        controller: 'homeCtrl',
-        templateUrl: '/app/modules/home/view.html'
+        controller: 'newRecipeCtrl',
+        templateUrl: '/app/modules/new_recipe/view.html'
     }).when('/test', {
         title: 'Test',
         controller: 'testCtrl',

@@ -7,7 +7,7 @@ var App = angular.module("gelApp", [
     'rzModule',
     'angular-md5',
     '720kb.tooltips',
-    'gelApp.home',
+    'gelApp.newRecipe',
     'gelApp.user',
     'gelApp.registration',
     'gelApp.test',

@@ -37,6 +37,9 @@
                     <!--<button type="submit" class="btn btn-default">Submit</button>-->
                 <!--</form>-->
                 <ul class="nav navbar-nav navbar-right">
+                    <li ng-click="vm.isCollapsed = !vm.isCollapsed" ng-class="getClass('/new_recipe')">
+                        <a href="/new_recipe"><span translate="NEW_RECIPE"></span> <span class="glyphicon glyphicon-plus"></span></a>
+                    </li>
                     <li ng-click="vm.isCollapsed = !vm.isCollapsed" ng-class="getClass('/search')">
                         <a href="/search"><span translate="SEARCH"></span> <span class="glyphicon glyphicon-search"></span></a>
                     </li>
