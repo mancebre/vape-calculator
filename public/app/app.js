@@ -8,6 +8,7 @@ var App = angular.module("gelApp", [
     'angular-md5',
     '720kb.tooltips',
     'gelApp.newRecipe',
+    'gelApp.nicShot',
     'gelApp.user',
     'gelApp.registration',
     'gelApp.test',

@@ -8,6 +8,10 @@ App.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
         title: 'New Recipe',
         controller: 'newRecipeCtrl',
         templateUrl: '/app/modules/new_recipe/view.html'
+    }).when('/nic_shot', {
+        title: 'Nicotine Shot',
+        controller: 'nicShotCtrl',
+        templateUrl: '/app/modules/nic_shot/view.html'
     }).when('/recipe/:recipe_id', {
         title: 'Home',
         controller: 'newRecipeCtrl',

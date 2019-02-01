@@ -57,6 +57,7 @@ var translationsEN = {
     WARNING: "Warning",
 
     NEW_RECIPE: "New recipe",
+    NIC_SHOT: "Add nikotin",
     MY_RECIPES: "My recipes",
     SEARCH: "Search",
     SAVE: "Save",
@@ -134,6 +135,7 @@ var translationsRS= {
     WARNING: "Obaveštenje",
 
     NEW_RECIPE: "Novi recept",
+    NIC_SHOT: "Dodaj nikotin",
     MY_RECIPES: "Moji recepti",
     SEARCH: "Pretraga",
     SAVE: "Sačuvaj",
