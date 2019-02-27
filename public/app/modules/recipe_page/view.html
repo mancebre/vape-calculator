@@ -1,0 +1,360 @@
+<style>
+    #privacy_fieldset div {
+        margin: 0;
+        padding: 0;
+    }
+    #comment {
+        border: none;
+    }
+    .tool-buttons {
+        padding: 8px !important;
+        margin: 0 !important;
+    }
+    .social-networks {
+        margin-top: 22px !important;
+    }
+    .social-media-list {
+        margin: 0;
+    }
+    .social-media-list li {
+        display: block;
+        float: left;
+        padding: 3px;
+    }
+</style>
+<!-- <h2 contenteditable="true" ng-model="liquid.name"></h2> -->
+<h2>{{liquid.name}}</h2>
+
+<div class="col-sm-12">
+
+    <div class="col-sm-6">
+        <form class="form-horizontal ingredients-form" ng-submit="submitLiquidForm()" role="form">
+            <fieldset>
+                <legend translate="TARGET">Target</legend>
+                <div class="form-group">
+                    <label for="fancy-checkbox-default" class="col-sm-7 control-label active">
+                        <i class="fa fa-question-circle" tooltips tooltip-template="{{tt.vape_ready}}"></i>
+                        <span translate="USE_VAPE_READY">Use vape-ready nicotine base </span>
+                    </label>
+                    <input type="checkbox" name="fancy-checkbox-default" id="fancy-checkbox-default" autocomplete="off"
+                           ng-model="vapeReady" ng-checked="vapeReady" />
+                    <div class="col-sm-5 btn-group">
+                        <label for="fancy-checkbox-default" class="btn btn-default">
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span> </span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="amount" class="col-sm-7 control-label" title="Amount to make">
+                        <i class="fa fa-question-circle" tooltips tooltip-template="{{tt.amount}}"></i>
+                        <span translate="AMOUNT">Amount</span>
+                    </label>
+                    <div class="col-sm-5 recipe-input">
+                        <input type="number" id="amount" class="form-control" ng-model="liquid.amount" />
+                        <span class="input-group-addon">ml</span>
+                    </div>
+
+                </div>
+                <div class="form-group" ng-hide="vapeReady">
+                    <label for="desired_strength" class="col-sm-7 control-label">
+                        <i class="fa fa-question-circle" tooltips tooltip-template="{{tt.desired_strength}}"></i>
+                        <span translate="DESIRED_STRENGTH">Desired strength</span>
+                    </label>
+                    <div class="col-sm-5 recipe-input">
+                        <input type="number" max="100" min="0" id="desired_strength" class="form-control"
+                               ng-model="liquid.desired_strength" />
+                        <span class="input-group-addon">mg</span>
+                    </div>
+
+                </div>
+
+                <div class="form-group" ng-hide="vapeReady">
+                    <label class="col-sm-7 control-label">
+                        <i class="fa fa-question-circle" tooltips tooltip-template="{{tt.desired_pg}}"></i>
+                        <span translate="DESIRED_PG">Desired PG</span> (%)
+                    </label>
+                    <div class="col-sm-5">
+                        <rzslider
+                                rz-slider-model="liquid.pg"
+                                rz-slider-options="slider.options">
+
+                        </rzslider>
+                    </div>
+
+                </div>
+                <div class="form-group" ng-hide="vapeReady">
+                    <label class="col-sm-7 control-label">
+                        <i class="fa fa-question-circle" tooltips tooltip-template="{{tt.desired_vg}}"></i>
+                        <span translate="DESIRED_VG">Desired VG</span> (%)
+                    </label>
+                    <div class="col-sm-5">
+                        <rzslider
+                                rz-slider-model="liquid.vg"
+                                rz-slider-options="slider.options">
+
+                        </rzslider>
+                    </div>
+
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend translate="BASE">Base</legend>
+                <div class="form-group">
+                    <label for="nicotine_strength" class="col-sm-7 control-label">
+                        <i class="fa fa-question-circle" tooltips tooltip-template="{{tt.nicotine_content}}"></i>
+                        <span translate="NICOTINE_STRENGTH">Nicotine strength</span>
+
+                    </label>
+                    <div class="col-sm-5 recipe-input">
+                        <input type="number" max="100" min="0" id="nicotine_strength" class="form-control"
+                               placeholder="%" ng-model="liquid.nicotine.strength" />
+                        <span class="input-group-addon">mg</span>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-7 control-label">
+                        <i class="fa fa-question-circle" tooltips tooltip-template="{{tt.nicotine_pg}}"></i>
+                        <span translate="PG">PG-content of nicotinee</span> (%)
+                    </label>
+                    <div class="col-sm-5">
+                        <rzslider
+                                rz-slider-model="liquid.nicotine.pg"
+                                rz-slider-options="slider.options">
+
+                        </rzslider>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-7 control-label">
+                        <i class="fa fa-question-circle" tooltips tooltip-template="{{tt.nicotine_vg}}"></i>
+                        <span translate="VG">VG-content of nicotine</span> (%)
+                    </label>
+                    <div class="col-sm-5">
+                        <rzslider
+                                rz-slider-model="liquid.nicotine.vg"
+                                rz-slider-options="slider.options">
+
+                        </rzslider>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-7 control-label">
+                        <i class="fa fa-question-circle" tooltips tooltip-template="{{tt.diluent}}"></i>
+                        <span translate="DILUENT">Diluent</span> (%)
+                    </label>
+                    <div class="col-sm-5" ng-class="{attention: limitedSlider.options.maxLimit < liquid.wvpga}">
+                        <rzslider
+                                rz-slider-model="liquid.wvpga"
+                                rz-slider-options="limitedSlider.options">
+
+                        </rzslider>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label for="sleep_time" class="col-sm-7 control-label">
+                        <!--<i class="fa fa-question-circle" tooltips tooltip-template="{{tt.test}}"></i>-->
+                        <span translate="SUGGESTED_STEP_TIME">Suggested steep time</span>
+                    </label>
+                    <div class="col-sm-5 recipe-input">
+                        <input type="number" id="sleep_time" class="form-control" placeholder="Days..."
+                               ng-model="liquid.sleep_time" />
+                        <span class="input-group-addon">days</span>
+                    </div>
+
+                </div>
+            </fieldset>
+
+            <div ng-class="{attention: duplicateFlavorNames}" class="flavor-fields">
+                <fieldset ng-repeat="(key, value) in liquid.flavor">
+                    <legend>{{liquid.flavor[key]['name']}}</legend>
+                    <div class="form-group">
+                        <label class="col-sm-7 control-label">
+                            <!--<i class="fa fa-question-circle" tooltips tooltip-template="{{tt.test}}"></i>-->
+                            <span translate="NAME">Name</span>
+                        </label>
+                        <div class="col-sm-5">
+                            <input type="text" id="{{key}}_text" class="form-control"
+                                   ng-model="liquid.flavor[key]['name']" placeholder="Flavor {{key}}" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-7 control-label">
+                            <!--<i class="fa fa-question-circle" tooltips tooltip-template="{{tt.test}}"></i>-->
+                            <span translate="PERCENTAGE">Percentage</span>
+                        </label>
+                        <div class="col-sm-5"
+                             ng-class="{attention: limitedSlider.options.maxLimit < liquid.flavor[key]['percentage']}">
+                            <rzslider
+                                    rz-slider-model="liquid.flavor[key]['percentage']"
+                                    rz-slider-options="limitedSlider.options">
+
+                            </rzslider>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-7 control-label">
+                            <!--<i class="fa fa-question-circle" tooltips tooltip-template="{{tt.test}}"></i>-->
+                            <span translate="FLAVOR_TYPE">Flavor type</span>
+                        </label>
+                        <div class="col-sm-5">
+                            <select class="form-control" ng-model="liquid.flavor[key]['type']">
+                                <option value="pg">PG</option>
+                                <option value="vg">VG</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group link delete" ng-click="removeField(key, value);">
+                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    </div>
+                </fieldset>
+            </div>
+
+            <button type="button" class="add-flavor btn btn-default col-sm-12" ng-click="addField();">
+                <span translate="BUTTON_ADD_FLAVOR">Add flavor</span> <i class="fa fa-plus"></i>
+            </button>
+
+            <fieldset id="privacy_fieldset">
+                <legend translate="COMMENT">Comment</legend>
+                <div class="col-sm-12 form-group">
+                    <textarea class="form-control" rows="5" id="comment" ng-model="liquid.comment"
+                              placeholder="Write everything relevant, like where to get the flavors."></textarea>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend translate="PRIVACY">Privacy</legend>
+                <div class="form-group">
+                    <label for="fancy-checkbox-default2" class="col-sm-7 control-label active">
+                        <i class="fa fa-question-circle" tooltips tooltip-template="{{tt.private_recipe}}"></i>
+                        <span translate="PRIVATE_RECIPE">Private recipe</span>
+                    </label>
+                    <input type="checkbox" name="fancy-checkbox-default2" id="fancy-checkbox-default2" autocomplete="off"
+                           ng-model="private" ng-checked="private" />
+                    <div class="col-sm-5 btn-group">
+                        <label for="fancy-checkbox-default2" class="btn btn-default">
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span> </span>
+                        </label>
+                    </div>
+                </div>
+
+            </fieldset>
+
+            <button ng-show="liquid.owner || !liquid.id" type="submit" class="btn btn-primary col-sm-12" ><span translate="SAVE">Save</span> <i class="fa fa-save"></i></button>
+            <button ng-show="isLoggedIn() && !liquid.owner && liquid.id" ng-click="submitLiquidForm(true)" type="button" class="btn btn-primary col-sm-12" translate="CLONE"><span>Clone</span> <i class="fa fa-clone"></i> </button>
+            <!--<input type="reset" value="Reset" ng-click="resetForm()">-->
+        </form>
+    </div>
+
+    <div class="col-sm-6">
+        <fieldset class="recipe-result">
+            <legend translate="INGREDIENTS">Ingredients</legend>
+            <table class="table">
+                <tr>
+                    <th translate="NAME">Name</th><th>ML</th><th translate="GRAMS">grams</th><th>%</th>
+                </tr>
+                <tr ng-show="vapeReady">
+                    <td>{{ niceNames['base'] }} <br>(<span translate="NICOTINE">Nicotine</span>: {{liquid.nicotine.strength}} mg, PG/VG: {{liquid.nicotine.pg}}/{{liquid.nicotine.vg}})</td>
+                    <td>{{ ingridients.base.ml | number : 2 }}</td>
+                    <td>{{ ingridients.base.gr | number : 2 }}</td>
+                    <td>{{ ingridients.base.percentage | number : 2 }}</td>
+                </tr>
+                <tr ng-hide="vapeReady">
+                    <td translate="NICOTINE">{{ niceNames['nicotine_juice'] }}</td>
+                    <td>{{ ingridients.nicotine_juice.ml | number : 2 }}</td>
+                    <td>{{ ingridients.nicotine_juice.gr | number : 2 }}</td>
+                    <td>{{ ingridients.nicotine_juice.percentage | number : 2 }}</td>
+                </tr>
+                <tr ng-hide="vapeReady" ng-class="{attention: ingridients.pg_dilutant.ml < 0}">
+                    <td translate="PG">{{ niceNames['pg_dilutant'] }}</td>
+                    <td ng-class="{attention: ingridients.pg_dilutant.ml < 0}">{{ ingridients.pg_dilutant.ml | number : 2 }}</td>
+                    <td>{{ ingridients.pg_dilutant.gr | number : 2 }}</td>
+                    <td>{{ ingridients.pg_dilutant.percentage | number : 2 }}</td>
+                </tr>
+                <tr ng-hide="vapeReady" ng-class="{attention: ingridients.vg_dilutant.ml < 0}">
+                    <td translate="VG">{{ niceNames['vg_dilutant'] }}</td>
+                    <td>{{ ingridients.vg_dilutant.ml | number : 2 }}</td>
+                    <td>{{ ingridients.vg_dilutant.gr | number : 2 }}</td>
+                    <td>{{ ingridients.vg_dilutant.percentage | number : 2 }}</td>
+                </tr>
+                <tr>
+                    <td translate="DILUENT">{{ niceNames['wvpga'] }}</td>
+                    <td>{{ ingridients.wvpga.ml | number : 2 }}</td>
+                    <td>{{ ingridients.wvpga.gr | number : 2 }}</td>
+                    <td>{{ ingridients.wvpga.percentage | number : 2 }}</td>
+                </tr>
+                <tr ng-if="ingridients.flavor.length">
+                    <th translate="FLAVOR_NAME">Flavor name</th><th>ML</th><th translate="GRAMS">grams</th><th>%</th>
+                </tr>
+                <tr ng-repeat="flavor in ingridients.flavor">
+                    <td> {{ flavor.name }} </td>
+                    <td> {{ flavor.amount | number : 2 }} </td>
+                    <td> {{ flavor.grams | number : 2 }} </td>
+                    <td> {{ flavor.percentage | number : 2 }} </td>
+                </tr>
+                <tr>
+                    <td translate="TOTAL_AMOUNT">{{ niceNames['amount'] }}</td>
+                    <td>{{ ingridients.amount.ml | number : 2 }}</td>
+                    <td>{{ ingridients.amount.gr | number : 2 }}</td>
+                    <td>{{ ingridients.amount.percentage | number : 2 }}</td>
+                </tr>
+            </table>
+            <div class="form-group link" ng-click="editWeight(key, value);">
+                <i class="fa fa-cog" aria-hidden="true"></i>
+            </div>
+        </fieldset>
+        <fieldset class="tool-buttons">
+            <legend translate="TOOLS">Tools</legend>
+            <div class="btn-group">
+
+                <button ng-click="submitLiquidForm()" ng-show="liquid.owner || !liquid.id" type="button" class="btn btn-primary" >
+                    <span translate="SAVE">Save</span> <i class="fa fa-save"></i>
+                </button>
+                <button ng-show="isLoggedIn() && !liquid.owner && liquid.id"
+                        ng-click="submitLiquidForm(true)"
+                        type="button"
+                        class="btn btn-primary"
+                        translate="CLONE">
+                    <span>Clone</span> <i class="fa fa-clone"></i>
+                </button>
+                <button type="button" class="add-flavor btn btn-default" ng-click="addField();">
+                    <span translate="BUTTON_ADD_FLAVOR">Add flavor</span> <i class="fa fa-plus"></i>
+                </button>
+                <button ng-click="openPrintLabelModal()" class="btn btn-success">
+                    <span translate="PRINT_LABEL">Print label</span> <i class="fa fa-print"></i>
+                </button>
+                <button ng-click="deleteRecipe()" ng-show="liquid.id && liquid.owner" class="btn btn-danger">
+                    <span translate="DELETE_RECIPE">Delete recipe</span> <i class="fa fa-trash"></i>
+                </button>
+                </div>
+        </fieldset>
+
+        <fieldset class="social-networks">
+            <legend translate="NETWORKS">Networks</legend>
+
+            <div class="nav-container2">
+                <ul class="social-media-list">
+                    <li>
+                        <span fb-like="socialNetworks.url"></span>
+                    </li>
+                    <li>
+                        <span google-plus="socialNetworks.url"></span>
+                    </li>
+                    <li>
+                        <span tweet="socialNetworks.name" tweet-url="socialNetworks.url"></span>
+                    </li>
+                    <li>
+                        <span pin-it="socialNetworks.name" pin-it-image="socialNetworks.image" pin-it-url="socialNetworks.url"></span>
+                    </li>
+                </ul>
+            </div>
+
+        </fieldset>
+    </div>
+</div>
