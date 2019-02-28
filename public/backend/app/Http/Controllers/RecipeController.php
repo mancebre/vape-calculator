@@ -215,7 +215,7 @@ class RecipeController extends Controller {
 	public function destroy($id) {
 		$recipe = Recipe::find($id);
 //		$recipe->delete(); // Data is money!!!
-        $recipe->deleted = false;
+        $recipe->deleted = true;
         $recipe->save();
 		return response()->json('recipe removed successfully');
 	}
