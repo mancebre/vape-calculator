@@ -246,7 +246,7 @@
 
             </fieldset>
 
-            <p ng-show="disableSave" class="attention">Can't save when there are negative values in ingredients</p>
+            <p ng-show="disableSave && (liquid.owner || !liquid.id)" class="attention">Can't save when there are negative values in ingredients</p>
 
             <button ng-disabled="disableSave" ng-show="liquid.owner || !liquid.id" type="submit" class="btn btn-primary btn-block" ><span translate="SAVE">Save</span> <i class="fa fa-save"></i></button>
             <button ng-show="isLoggedIn() && !liquid.owner && liquid.id" ng-click="submitLiquidForm(true)" type="button" class="btn btn-primary btn-block" translate="CLONE"><span>Clone</span> <i class="fa fa-clone"></i> </button>
