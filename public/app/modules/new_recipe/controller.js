@@ -4,6 +4,7 @@ angular.module('gelApp.newRecipe').controller('newRecipeCtrl', ['$scope', '$http
     function ($scope, $http, $translate, $uibModal, tooltipTranslations, $rootScope, $location, RecipeService, $routeParams, $timeout, $sessionStorage, MyNotify) {
 
         $scope.duplicateFlavorNames = false;
+        $scope.disableSave = true;
 
         // This is true when attention popup is open.
         $scope.attentionPopup = false;
@@ -395,6 +396,10 @@ angular.module('gelApp.newRecipe').controller('newRecipeCtrl', ['$scope', '$http
                     liquid: tempLiquid,
                     time: new Date()
                 });
+
+                $scope.disableSave = false;
+            } else {
+                $scope.disableSave = true;
             }
 
             // Calculate vape-base
