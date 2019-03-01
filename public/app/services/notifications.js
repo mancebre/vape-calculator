@@ -41,7 +41,7 @@
             // Create timeout hide for alert
             setTimeout(function(){
                 document.getElementById(divId).remove();
-            }, 4000);
+            }, 400000);
 
         }
     }

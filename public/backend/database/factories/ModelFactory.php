@@ -24,6 +24,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'lastname' => $faker->lastname,
         'active' => rand(0, 1),
         'newsletter' => rand(0, 1),
+        'activation_key' => ''
     ];
 });
 

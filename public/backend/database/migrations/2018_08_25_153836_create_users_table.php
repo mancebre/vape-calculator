@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration {
 			$table->string('lastname');
 			$table->integer('active');
 			$table->integer('newsletter');
+            $table->string('activation_key');
 			$table->timestamps();
 		});
 	}

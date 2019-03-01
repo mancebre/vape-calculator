@@ -3,9 +3,11 @@ namespace App\Http\Controllers;
 use App\Recipe;
 use App\User;
 use App\UserRoles;
+use App\Mail\ActivationEmail;
 use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller {
 	/**
@@ -66,6 +68,7 @@ class UserController extends Controller {
             $user->lastname = $request->lastname;
             $user->active = 0;
             $user->newsletter = $request->newsletter;
+            $user->activation_key = substr(str_shuffle(MD5(microtime())), 0, 32);
 
             $user->save();
 
@@ -76,7 +79,10 @@ class UserController extends Controller {
                 ])
             ]);
 
-            return response()->make("Thank you. You have successfully redistricted new account.");
+            // Send activation email
+            Mail::to($request->email)->send(new ActivationEmail($user));
+
+            return response()->make("Thank you. You have successfully registered new account.");
         }
 	}
 
