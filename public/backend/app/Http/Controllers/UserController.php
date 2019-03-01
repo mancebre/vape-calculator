@@ -80,7 +80,9 @@ class UserController extends Controller {
             ]);
 
             // Send activation email
-            Mail::to($request->email)->send(new ActivationEmail($user));
+            // TODO We need URL somwhere in config
+            mail($request->email, "Activate your account",
+                "url_goes_here" . "/" . $user->activation_key);
 
             return response()->make("Thank you. You have successfully registered new account.");
         }
