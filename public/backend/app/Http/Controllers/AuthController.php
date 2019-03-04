@@ -77,6 +77,9 @@ class AuthController extends BaseController {
 		}
 		// Verify the password and generate the token
         if (Hash::check( $this->request->input('password'), $user->password)) {
+            if (!$user->active) {
+                return response()->make("Please activate your account", 400);
+            }
 			return response()->json([
 				'token' => $this->jwt($user),
 			], 200);
