@@ -22,7 +22,8 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'email' => $faker->unique()->email,
         'firstname' => $faker->firstname,
         'lastname' => $faker->lastname,
-        'active' => rand(0, 1),
+//        'active' => rand(0, 1),
+        'active' => 1,
         'newsletter' => rand(0, 1),
         'activation_key' => ''
     ];
