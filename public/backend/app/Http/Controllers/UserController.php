@@ -1,5 +1,7 @@
 <?php
 namespace App\Http\Controllers;
+
+use Log;
 use App\Recipe;
 use App\User;
 use App\UserRoles;
@@ -80,13 +82,32 @@ class UserController extends Controller {
             ]);
 
             // Send activation email
-            // TODO We need URL somwhere in config
-            mail($request->email, "Activate your account",
-                "url_goes_here" . "/" . $user->activation_key);
+            $activationEmail = $this->sendActivationEmail($user);
+            Log::info("Activation Email", $activationEmail);
 
             return response()->make("Thank you. You have successfully registered new account.");
         }
 	}
+
+    /**
+     * @param $user
+     * @return bool
+     */
+	private function sendActivationEmail($user)
+    {
+        $to      = $user->email;
+        $subject = 'Please activate your vaper cuisine account';
+        $message = "Hi " . $user->firstname . ", \n\n";
+        $message .= "Please click on link to activate your account \n\n\t";
+        $message .= "http://vaperscuisine.com/activation/" . $user->activation_key . " \n\n";
+        $message .= "Best regards, \n";
+        $message .= "vaperscuisine.com \n";
+        $headers = 'From: noreply@vaperscuisine.com' . "\r\n" .
+        'Reply-To: noreply@vaperscuisine.com' . "\r\n" .
+        'X-Mailer: PHP/' . phpversion();
+
+        return mail($to, $subject, $message, $headers);
+    }
 
     /**
      * @param $id
@@ -120,8 +141,8 @@ class UserController extends Controller {
 		if ($request->input('lastname')) {
 			$user->username = $request->input('lastname');
 		}
-		if ($request->input('active')) {
-			$user->username = $request->input('active');
+		if ($request->input('username')) {
+			$user->username = $request->input('username');
 		}
 		if ($request->input('newsletter')) {
 			$user->username = $request->input('newsletter');
@@ -140,4 +161,17 @@ class UserController extends Controller {
 		$user->delete();
 		return response()->json('user removed successfully');
 	}
+
+	public function activate($activation_key)
+    {
+        $user = User::where('activation_key', $activation_key)->first();
+        if ($user) {
+            $user->active = true;
+            $user->activation_key = "";
+            $user->save();
+            return response()->make("Account activated", 200);
+        } else {
+            return response()->make("", 404);
+        }
+    }
 }
