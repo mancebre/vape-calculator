@@ -73,6 +73,7 @@ var translationsEN = {
     BUG_REPORT: "Bug Report",
     DESCRIBE_BUG: "Describe bug",
     NOT_MANDATORY: "not mandatory",
+    ACTIVATE_ACCOUNT: "Account activation is in progress"
 
 };
 
@@ -151,6 +152,7 @@ var translationsRS= {
     BUG_REPORT: "Prijavi Grešku",
     DESCRIBE_BUG: "Opiši grešku",
     NOT_MANDATORY: "nije obavezno",
+    ACTIVATE_ACCOUNT: "U toku je aktivacija naloga"
 };
 
 angular.module('gelApp.newRecipe').config(['$translateProvider', function ($translateProvider) {

@@ -164,6 +164,7 @@ class UserController extends Controller {
 
 	public function activate($activation_key)
     {
+//        sleep(5);
         $user = User::where('activation_key', $activation_key)->first();
         if ($user) {
             $user->active = true;
@@ -171,7 +172,7 @@ class UserController extends Controller {
             $user->save();
             return response()->make("Account activated", 200);
         } else {
-            return response()->make("", 404);
+            return response()->make("Account activation failed, please try again.", 404);
         }
     }
 }
