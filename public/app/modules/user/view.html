@@ -2,7 +2,7 @@
 
 <div class="col-sm-12 user-form">
     <form class="form-horizontal" ng-submit="submitLoginForm()" role="form" name="loginForm" novalidate>
-        <p ng-show="showError" class="center-text attention" translate="SOMETHING_WENT_WRONG"></p>
+        <p ng-show="showError" class="center-text attention">{{errorTxt}}</p>
         <p ng-show="showBadCredentialsMsg" class="center-text attention" translate="BAD_CREDENTIALS"></p>
         <div class="form-group">
             <label class="control-label col-sm-4" for="email">Email:</label>

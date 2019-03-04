@@ -69,25 +69,21 @@ class AuthController extends BaseController {
 		if (!$user) {
 			// You wil probably have some sort of helpers or whatever
 			// to make sure that you have the same response format for
-			// differents kind of responses. But let's return the
+			// different kind of responses. But let's return the
 			// below respose for now.
-			return response()->json([
-				'error' => 'Email does not exist.',
-			], 400);
+			return response()->make("Email does not exist.", 400);
 		}
 		// Verify the password and generate the token
         if (Hash::check( $this->request->input('password'), $user->password)) {
             if (!$user->active) {
-                return response()->make("Please activate your account", 400);
+                return response()->make("Please activate your account.", 400);
             }
 			return response()->json([
 				'token' => $this->jwt($user),
 			], 200);
 		}
 		// Bad Request response
-		return response()->json([
-			'error' => 'Email or password is wrong.',
-		], 400);
+        return response()->make("Email or password is wrong.", 400);
 	}
 
     /**

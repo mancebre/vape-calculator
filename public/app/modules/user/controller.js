@@ -3,6 +3,7 @@ angular.module('gelApp.user', []);
 angular.module('gelApp.user').controller('userCtrl', ['$rootScope', '$scope', 'AuthenticationService', '$window', '$localStorage', '$sessionStorage', 'md5',
     function ($rootScope, $scope, AuthenticationService, $window, $localStorage, $sessionStorage, md5)
     {
+        $scope.errorTxt = "Something went wrong. Please try again";
         $scope.showError = false;
         $scope.showBadCredentialsMsg = false;
 
@@ -42,7 +43,7 @@ angular.module('gelApp.user').controller('userCtrl', ['$rootScope', '$scope', 'A
          *
          * @param result
          */
-        $scope.redirectToHome = function (result)
+        $scope.redirectToHome = function (result, message)
         {
             if (result === 200) {
                 // Remember the user if he choose so.
@@ -56,6 +57,7 @@ angular.module('gelApp.user').controller('userCtrl', ['$rootScope', '$scope', 'A
                 $scope.showBadCredentialsMsg = true;
             } else {
                 $scope.showError = true;
+                $scope.errorTxt = message;
             }
         }
 
