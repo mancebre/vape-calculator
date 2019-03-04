@@ -4,11 +4,16 @@ angular.module('gelApp.DropdownController').controller('DropdownController', [
     '$scope', '$translate', '$rootScope', '$location', 'AuthenticationService', '$window',
     function ($scope, $translate, $rootScope, $location, AuthenticationService, $window) {
 
+        $scope.redirectToLogin = function() {
+
+            $window.location.href = '/login';
+        };
+
         /**
          * Delete local storage and redirect user to front page.
          */
         $scope.logoutUser = function() {
-            AuthenticationService.Logout();
+            AuthenticationService.Logout($scope.redirectToLogin);
         };
 
         $scope.changeLanguage = function (langKey) {
@@ -31,4 +36,4 @@ angular.module('gelApp.DropdownController').controller('DropdownController', [
 
         $scope.vm = vm;
 
-}]);
+    }]);
