@@ -83,7 +83,11 @@ class UserController extends Controller {
 
             // Send activation email
             $activationEmail = $this->sendActivationEmail($user);
-            Log::info("Activation Email", $activationEmail);
+            $log = [
+                "Email_sent" => $activationEmail,
+                "user_data" => $user
+            ];
+            Log::info("Activation Email", $log);
 
             return response()->make("Thank you. You have successfully registered new account.");
         }
