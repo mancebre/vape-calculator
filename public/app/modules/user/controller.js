@@ -1,7 +1,8 @@
 angular.module('gelApp.user', []);
 
-angular.module('gelApp.user').controller('userCtrl', ['$rootScope', '$scope', 'AuthenticationService', '$window', '$localStorage', '$sessionStorage', 'md5',
-    function ($rootScope, $scope, AuthenticationService, $window, $localStorage, $sessionStorage, md5)
+angular.module('gelApp.user').controller('userCtrl',
+    ['$rootScope', '$scope', 'AuthenticationService', '$window', '$localStorage', '$sessionStorage', 'md5', '$uibModal',
+    function ($rootScope, $scope, AuthenticationService, $window, $localStorage, $sessionStorage, md5, $uibModal)
     {
         $scope.errorTxt = "Something went wrong. Please try again";
         $scope.showError = false;
@@ -59,6 +60,20 @@ angular.module('gelApp.user').controller('userCtrl', ['$rootScope', '$scope', 'A
                 $scope.showError = true;
                 $scope.errorTxt = message;
             }
+        };
+
+        $scope.openForgottenPassword = function () {
+            $uibModal.open({
+                controller: 'forgottenPasswordCtrl',
+                templateUrl: 'app/modules/modals/forgotten_password/view.html',
+                // backdrop: false
+            })
+                .result.then(function(){
+                console.log("works");
+                }, function(res){
+                    console.log("ERROR", res);
+                }
+            );
         }
 
 }]);

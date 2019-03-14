@@ -52,6 +52,7 @@ var translationsEN = {
     FIRST_NAME: "First name",
     LAST_NAME: "Last name",
     NEWSLETTER: "Keep me updated",
+    FORGOTTEN_PASSWORD: "Forgotten password",
 
     LOGIN_WARNING: "You have to be logged in to save recipe.",
     WARNING: "Warning",
@@ -131,6 +132,7 @@ var translationsRS= {
     FIRST_NAME: "Ime",
     LAST_NAME: "Prezime",
     NEWSLETTER: "Obaveštavaj me",
+    FORGOTTEN_PASSWORD: "Zaboravljena lozinka",
 
     LOGIN_WARNING: "Morate biti ulogovani da bi ste sačuvali recept.",
     WARNING: "Obaveštenje",
