@@ -489,8 +489,13 @@ angular.module('gelApp.newRecipe').controller('newRecipeCtrl', ['$scope', '$http
                 $scope.liquid.name += val.name + ", ";
             });
 
-            $scope.liquid.name += $scope.liquid.pg + "/" + $scope.liquid.vg + ", ";
-            $scope.liquid.name += $scope.liquid.desired_strength + " mg";
+            if($scope.vapeReady) {
+                $scope.liquid.name += $scope.liquid.nicotine.pg + "/" + $scope.liquid.nicotine.vg + ", ";
+                $scope.liquid.name += $scope.liquid.nicotine.strength + " mg";
+            } else {
+                $scope.liquid.name += $scope.liquid.pg + "/" + $scope.liquid.vg + ", ";
+                $scope.liquid.name += $scope.liquid.desired_strength + " mg";
+            }
         };
 
         $scope.openPrintLabelModal = function() {
