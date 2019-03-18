@@ -1,14 +1,28 @@
 angular.module('gelApp.forgottenPassword', []);
 
 angular.module('gelApp.forgottenPassword').controller('forgottenPasswordCtrl', [
-    '$scope', '$uibModalInstance', '$timeout',
-    function ($scope, $uibModalInstance, $timeout) {
+    '$scope', '$uibModalInstance', 'UserRegistration', 'MyNotify',
+    function ($scope, $uibModalInstance, UserRegistration, MyNotify) {
 
-    $scope.save = function() {
+    $scope.email = null;
+    $scope.showError = false;
+
+    $scope.close = function(){
         $uibModalInstance.close();
     };
 
-    $scope.close = function(){
-        $uibModalInstance.close(undefined);
+    $scope.runOnServiceEnd = function(status, data) {
+        if (status > 0) {
+            MyNotify.notify(data, status);
+            $scope.showError = false;
+            $scope.close();
+        } else {
+            $scope.showError = true;
+        }
     };
+
+    $scope.sendPasswordResetMail = function () {
+        console.log($scope.email);
+        UserRegistration.ResetPassword($scope.email, $scope.runOnServiceEnd)
+    }
 }]);

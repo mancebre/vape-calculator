@@ -113,6 +113,34 @@ class UserController extends Controller {
         return mail($to, $subject, $message, $headers);
     }
 
+    private function sendTemporaryPasswordEmail($user, $password)
+    {
+        $to      = $user->email;
+        $subject = 'Vaper cuisine temporary login credentials';
+        $message = "Hi " . $user->firstname . ", \n\n";
+        $message .= "This is your temporary password \n\n\t";
+        $message .= $password . " \n\n";
+        $message .= "Please change your password as soon as you login!" . " \n\n";
+        $message .= "Best regards, \n";
+        $message .= "vaperscuisine.com \n";
+        $headers = 'From: noreply@vaperscuisine.com' . "\r\n" .
+            'Reply-To: noreply@vaperscuisine.com' . "\r\n" .
+            'X-Mailer: PHP/' . phpversion();
+
+        return mail($to, $subject, $message, $headers);
+    }
+
+    private function generatePassword() {
+        $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        $pass = array(); //remember to declare $pass as an array
+        $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+        for ($i = 0; $i < 8; $i++) {
+            $n = rand(0, $alphaLength);
+            $pass[] = $alphabet[$n];
+        }
+        return implode($pass); //turn the array into a string
+    }
+
     /**
      * @param $id
      * @return \Illuminate\Http\JsonResponse
@@ -177,6 +205,30 @@ class UserController extends Controller {
             return response()->make("Account activated", 200);
         } else {
             return response()->make("Account activation failed, please try again.", 404);
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function resetPassword(Request $request)
+    {
+        $user = User::where('email', $request->email)->first();
+        if (!$user) {
+            return response()->make("Email not found", 400);
+        } else {
+            // Generate and save new password.
+            $password = $this->generatePassword();
+            $user->password = Hash::make($request->input('password'));
+            $user->save();
+
+            // Send new password to user.
+            if ($this->sendTemporaryPasswordEmail($user, $password)) {
+                return response()->make("Temporary password is sent to you email, please check your email.", 200);
+            } else {
+                return response()->make("Something went wrong, please try again", 500);
+            }
         }
     }
 }
