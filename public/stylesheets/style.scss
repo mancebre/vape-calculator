@@ -5,10 +5,30 @@ $navBackgroundColor1: #eee;
 $navBackgroundColor2: grey;
 $navColor: #464646;
 $errorRed: #d83b3b;
+$formWidth: 350px;
 
 body {
   .container {
     min-height: calc(100vh - 70px);
+
+    .left {
+      text-align: left;
+    }
+
+    .right {
+      text-align: right;
+    }
+
+    .blue-box {
+      margin-top: 40px;
+      border-radius: 5px;
+      background: #b7fcff;
+      padding: 20px;
+    }
+
+    .form-wrapper {
+      display: block;
+    }
   }
   .recipe-result {
     background-color: $navBackgroundColor1;
@@ -229,11 +249,23 @@ body {
     .navbar {
       border-radius: 0;
     }
-  }
 
-  @media (min-width: 1200px) {
     .user-form {
-      padding: 0 350px;
+      width: $formWidth;
+    }
+
+    .blue-box {
+      width: $formWidth;
+    }
+
+    .form-wrapper {
+      display: flex !important;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+      min-height: 100%;
+      padding: 20px;
     }
   }
 

@@ -32,6 +32,10 @@ App.run(function($rootScope, $http, $translate, $sessionStorage) {
 
     $rootScope.facebookAppId = null; // TODO I need facebook app!!!
 
+    $rootScope.hideHeaderFooter = ['/registration', '/login'];
+    $rootScope.showHeader = true;
+    $rootScope.showFooter = true;
+
     // If there is any pending request keep loader open.
     $rootScope.$watch(function() {
         return $http.pendingRequests.length > 0;

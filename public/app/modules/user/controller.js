@@ -7,6 +7,7 @@ angular.module('gelApp.user').controller('userCtrl',
         $scope.errorTxt = "Something went wrong. Please try again";
         $scope.showError = false;
         $scope.showBadCredentialsMsg = false;
+        $scope.step = 1; // step number.
 
         $scope.loginCredentials = {
             email: ($localStorage.credentials && $localStorage.credentials.email) ? atob($localStorage.credentials.email) : "",
@@ -74,6 +75,18 @@ angular.module('gelApp.user').controller('userCtrl',
                     console.log("ERROR", res);
                 }
             );
+        };
+
+        $scope.next = function () {
+            $scope.step++;
+        };
+
+        $scope.prev = function () {
+            $scope.step--;
+
+            if ($scope.step < 1) {
+                $scope.step = 1;
+            }
         }
 
 }]);

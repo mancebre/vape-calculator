@@ -42,8 +42,9 @@ var translationsEN = {
 
     PASSWORD: "Password:",
     REPASSWORD: "Re enter password:",
-    REMEMBER_ME: "Remember me:",
+    REMEMBER_ME: "Remember me",
     LOGIN: "Login",
+    NEXT: "Next",
     LOGOUT: "Log out",
     SOMETHING_WENT_WRONG: "Something went wrong. Please try again",
     BAD_CREDENTIALS: "Email or/and password you entered doesn't match with anything we have in the database. Please try again",
@@ -122,8 +123,9 @@ var translationsRS= {
 
     PASSWORD: "Lozinka:",
     REPASSWORD: "Ponovite lozinku:",
-    REMEMBER_ME: "Zapamti me:",
+    REMEMBER_ME: "Zapamti me",
     LOGIN: "Uloguj se",
+    NEXT: "Dalje",
     LOGOUT: "Izloguj se",
     SOMETHING_WENT_WRONG: "Nešto nije u redu. Molim vas, pokušajte ponovo",
     BAD_CREDENTIALS: "Email i / ili lozinka koju ste uneli ne odgovara ni čemu što imamo u bazi podataka. Molim vas, pokušajte ponovo",

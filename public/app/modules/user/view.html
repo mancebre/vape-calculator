@@ -1,48 +1,75 @@
 <h2 translate="LOGIN"></h2>
 
-<div class="col-sm-12 user-form">
-    <form class="form-horizontal" ng-submit="submitLoginForm()" role="form" name="loginForm" novalidate>
-        <p ng-show="showError" class="center-text attention">{{errorTxt}}</p>
-        <p ng-show="showBadCredentialsMsg" class="center-text attention" translate="BAD_CREDENTIALS"></p>
-        <div class="form-group">
-            <label class="control-label col-sm-4" for="email">Email:</label>
-            <div class="col-sm-8">
-                <input type="email" class="form-control" id="email" name="email" placeholder="Enter email"
-                       ng-model="loginCredentials.email" required
-                       ng-class="(loginForm.email.$dirty && loginForm.email.$invalid) ? 'attention' : ''">
-                <p ng-show="loginForm.email.$invalid && !loginForm.email.$pristine" class="help-block">Enter a valid email.</p>
+<div class="form-wrapper">
+    <div class="col-sm-12 user-form">
+        <div class="right col-sm-12"><a ng-click="prev()" href="#">Back</a> </div>
+        <form class="form-horizontal" ng-submit="submitLoginForm()" role="form" name="loginForm" novalidate>
+            <div class="col-sm-12">
+                <p ng-show="showError" class="center-text attention">{{errorTxt}}</p>
+                <p ng-show="showBadCredentialsMsg" class="center-text attention" translate="BAD_CREDENTIALS"></p>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-4" for="password" translate="PASSWORD">Password:</label>
-            <div class="col-sm-8">
-                <input type="password" class="form-control" id="password" name="password" placeholder="Enter password"
-                       ng-model="loginCredentials.password"
-                       ng-minlength="6" ng-maxlength="100" required
-                       ng-class="(loginForm.password.$dirty && loginForm.password.$invalid) ? 'attention' : ''">
-                <p ng-show="loginForm.password.$error.minlength" class="help-block">Password is too short.</p>
-                <p ng-show="loginForm.password.$error.maxlength" class="help-block">Password is too long.</p>
+            <div ng-show="step === 1" class="form-group">
+                <label class="col-sm-12" for="email">Email:</label>
+                <div class="col-sm-12">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email"
+                           ng-model="loginCredentials.email" required
+                           ng-class="(loginForm.email.$dirty && loginForm.email.$invalid) ? 'attention' : ''">
+                    <p ng-show="loginForm.email.$invalid && !loginForm.email.$pristine"
+                       class="help-block">Enter a valid email.</p>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="fancy-checkbox-default" class="control-label col-sm-4">
-                <span translate="REMEMBER_ME">Remember me</span>
-            </label>
+            <div ng-show="step === 2" class="form-group">
+                <label class="col-sm-12" for="password" translate="PASSWORD">Password:</label>
+                <div class="col-sm-12">
+                    <input type="password"
+                           class="form-control"
+                           id="password"
+                           name="password"
+                           placeholder="Enter password"
+                           ng-model="loginCredentials.password"
+                           ng-minlength="6" ng-maxlength="100" required
+                           ng-class="(loginForm.password.$dirty && loginForm.password.$invalid) ? 'attention' : ''">
+                    <p ng-show="loginForm.password.$error.minlength" class="help-block">Password is too short.</p>
+                    <p ng-show="loginForm.password.$error.maxlength" class="help-block">Password is too long.</p>
+                </div>
+            </div>
+            <div ng-show="step === 2" class="form-group col-sm-12">
+                <input type="checkbox" name="fancy-checkbox-default" id="fancy-checkbox-default" autocomplete="off"
+                       ng-model="loginCredentials.remember" ng-checked="loginCredentials.remember" />
+                <div class="btn-group">
+                    <label for="fancy-checkbox-default" class="btn btn-default">
+                        <span class="glyphicon glyphicon-ok"></span>
+                        <span> </span>
+                    </label>
+                </div>
 
-            <input type="checkbox" name="fancy-checkbox-default" id="fancy-checkbox-default" autocomplete="off"
-                   ng-model="loginCredentials.remember" ng-checked="loginCredentials.remember" />
-            <div class="col-sm-5 btn-group">
-                <label for="fancy-checkbox-default" class="btn btn-default">
-                    <span class="glyphicon glyphicon-ok"></span>
-                    <span> </span>
+                <label for="fancy-checkbox-default">
+                    <span translate="REMEMBER_ME">Remember me</span>
                 </label>
             </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-4 col-sm-8">
-                <button ng-disabled="loginForm.$invalid" type="submit" class="btn btn-primary" translate="LOGIN">Login</button>
-                <button ng-click="openForgottenPassword()" style="float: right" type="button" class="btn btn-warning" translate="FORGOTTEN_PASSWORD">Forgotten password</button>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <button ng-show="step === 2"
+                            ng-disabled="loginForm.$invalid"
+                            type="submit"
+                            class="btn btn-primary btn-block"
+                            translate="LOGIN">Login</button>
+                    <button ng-click="next()"
+                            ng-show="step === 1"
+                            ng-disabled="loginCredentials.email.length < 1
+                            || (loginForm.email.$invalid && !loginForm.email.$pristine)"
+                            type="button"
+                            class="btn btn-primary btn-block"
+                            translate="NEXT">Next</button>
+                    <a href="#" ng-click="openForgottenPassword()" translate="FORGOTTEN_PASSWORD">Forgotten password</a>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+        <a ng-click="prev()" href="/">home</a>
+    </div>
+
+    <div ng-show="step === 1" class="blue-box">
+        <h4>Don't have an account yet?</h4>
+        <a href="/registration">Create your account</a>
+    </div>
 </div>
