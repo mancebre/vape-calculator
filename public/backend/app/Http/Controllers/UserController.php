@@ -55,7 +55,7 @@ class UserController extends Controller {
 	public function create(Request $request) {
         // Check if this email is already in use.
         $emailCheck = User::where('email', $request->email)->first();
-        $usernameCheck = User::where('email', $request->username)->first();
+        $usernameCheck = User::where('username', $request->username)->first();
 
         if ($emailCheck) {
             return response()->make("Email you entered is already in use.", 400);

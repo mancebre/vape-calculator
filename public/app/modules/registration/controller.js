@@ -6,6 +6,7 @@ angular.module('gelApp.registration', []);
 angular.module('gelApp.registration').controller('registrationCtrl', ['$scope', '$window', 'md5', 'UserRegistration', 'MyNotify',
     function ($scope, $window, md5, UserRegistration, MyNotify)
     {
+        $scope.step = 1;
         $scope.showError = false;
         $scope.showBadCredentialsMsg = false;
         $scope.showServerMsg = false;
@@ -52,6 +53,19 @@ angular.module('gelApp.registration').controller('registrationCtrl', ['$scope', 
             }
         };
 
+        $scope.usernameEmailCheck = function (callback) {
+
+            UserRegistration.EmailCheck($scope.registration.email, function (status, data) {
+                $scope.emailInUse = status !== 200;
+
+                UserRegistration.UsernameCheck($scope.registration.username, function (status, data) {
+                    $scope.usernameInUse = status !== 200;
+
+                    callback();
+                })
+            })
+        };
+
         $scope.redirectToHome = function (status, message) {
 
             if (status === 200) {
@@ -60,32 +74,6 @@ angular.module('gelApp.registration').controller('registrationCtrl', ['$scope', 
                 $scope.signupSussesfull = false;
                 MyNotify.notify(message, status);
             }
-
-            // if (status >= 200 && status < 300) {
-            //     $scope.showError = false;
-            //     $scope.showBadCredentialsMsg = false;
-            //     $scope.showServerMsg = false;
-            //     $scope.serverMessage = false;
-            //     $scope.signupSussesfull = true;
-            // } else if (status === 400) {
-            //     $scope.showError = false;
-            //     $scope.showBadCredentialsMsg = false;
-            //     $scope.showServerMsg = true;
-            //     $scope.serverMessage = message;
-            //     $scope.signupSussesfull = false;
-            // } else if (status === 404) {
-            //     $scope.showError = false;
-            //     $scope.showBadCredentialsMsg = true;
-            //     $scope.showServerMsg = false;
-            //     $scope.serverMessage = false;
-            //     $scope.signupSussesfull = false;
-            // } else {
-            //     $scope.showError = true;
-            //     $scope.showBadCredentialsMsg = false;
-            //     $scope.showServerMsg = true;
-            //     $scope.serverMessage = message;
-            //     $scope.signupSussesfull = false;
-            // }
         };
 
         $scope.prepareData = function () {
@@ -150,5 +138,25 @@ angular.module('gelApp.registration').controller('registrationCtrl', ['$scope', 
 
             $("#password_strength").html(strength);
             $("#password_strength").css("color", color);
+        };
+
+        $scope.next = function () {
+            $scope.usernameEmailCheck(function () {
+                if ($scope.emailInUse || $scope.usernameInUse) {
+                    $scope.step = 1;
+                } else {
+                    $scope.step++;
+                }
+            });
+
+
+        };
+
+        $scope.prev = function () {
+            $scope.step--;
+
+            if ($scope.step < 1) {
+                $scope.step = 1;
+            }
         }
 }]);
