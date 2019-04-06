@@ -103,7 +103,7 @@ class UserController extends Controller {
         $subject = 'Please activate your vaper cuisine account';
         $message = "Hi " . $user->firstname . ", \n\n";
         $message .= "Please click on link to activate your account \n\n\t";
-        $message .= "http://vaperscuisine.com/activation/" . $user->activation_key . " \n\n";
+        $message .= "http://vaperscuisine.com/activate/" . $user->activation_key . " \n\n";
         $message .= "Best regards, \n";
         $message .= "vaperscuisine.com \n";
         $headers = 'From: noreply@vaperscuisine.com' . "\r\n" .
