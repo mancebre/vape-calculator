@@ -2,7 +2,7 @@
 
 <div class="form-wrapper">
     <div class="col-sm-12 user-form">
-        <div class="right col-sm-12"><a ng-click="prev()" href="#">Back</a> </div>
+        <div ng-show="step === 2" class="right col-sm-12"><a ng-click="prev()" href="#">Back</a> </div>
         <form class="form-horizontal" ng-submit="submitLoginForm()" role="form" name="loginForm" novalidate>
             <div class="col-sm-12">
                 <p ng-show="showError" class="center-text attention">{{errorTxt}}</p>
@@ -65,10 +65,8 @@
                 </div>
             </div>
         </form>
-        <div class="form-group">
-            <div class="col-sm-12">
-                <a href="/">Home</a>
-            </div>
+        <div>
+            <a href="/">Home</a>
         </div>
     </div>
 

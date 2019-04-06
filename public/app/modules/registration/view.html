@@ -9,7 +9,7 @@
             <p>Thank you, you have successfully signup!</p>
             <p>Click <a href="/">here</a> to go to vape calculator. </p>
         </div>
-        <div class="right col-sm-12"><a ng-click="prev()" href="#">Back</a> </div>
+        <div ng-show="step === 2" class="right col-sm-12"><a ng-click="prev()" href="#">Back</a> </div>
         <form ng-hide="signupSussesfull"
               class="form-horizontal"
               ng-submit="submitSignupForm()"
