@@ -23,6 +23,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="components/angularjs-slider/dist/rzslider.min.css">
         <link rel="stylesheet" href="components/angular-tooltips/dist/angular-tooltips.min.css">
+        <!--flag-icon-css-->
+        <link rel="stylesheet" href="components/flag-icon-css/css/flag-icon.css">
         <!-- endbuild -->
         <base href="/"> <!-- HTML 5 mode -->
 
@@ -104,20 +106,12 @@
     </head>
     <body>
 
-    <div class="container">
-        <div ng-show="loading" id="loader"></div>
+    <div ng-show="loading" id="loader"></div>
 
-        <ng-include src="'app/modules/navigation/view.html'"></ng-include>
+    <ng-include src="'app/modules/navigation/view.html'"></ng-include>
+    <div class="container">
 
         <div id="messages"></div>
-
-        <!--<h1>Landing page!</h1>-->
-        <!--<p>-->
-        <!--<a class="button" href="/">Home</a>-->
-        <!--<a class="button" href="plans">Plans</a>-->
-        <!--<a class="button" href="test">Test</a>-->
-        <!--<a class="button" href="contact">Contact</a>-->
-        <!--</p>-->
 
         <div ng-view>
         </div>

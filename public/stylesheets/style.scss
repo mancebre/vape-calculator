@@ -30,6 +30,13 @@ body {
       display: block;
     }
   }
+
+  footer {
+    #report_bug {
+      display: none;
+    }
+  }
+
   .recipe-result {
     background-color: $navBackgroundColor1;
   }
@@ -266,6 +273,12 @@ body {
       width: 100%;
       min-height: 100%;
       padding: 20px;
+    }
+
+    footer {
+      #report_bug {
+        display: inline-block;
+      }
     }
   }
 
