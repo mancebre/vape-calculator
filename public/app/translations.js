@@ -48,7 +48,7 @@ var translationsEN = {
     LOGOUT: "Log out",
     SOMETHING_WENT_WRONG: "Something went wrong. Please try again",
     BAD_CREDENTIALS: "Email or/and password you entered doesn't match with anything we have in the database. Please try again",
-    REGISTER: "Signup",
+    REGISTER: "Sign up",
     USERNAME: "Username",
     FIRST_NAME: "First name",
     LAST_NAME: "Last name",
@@ -75,7 +75,8 @@ var translationsEN = {
     BUG_REPORT: "Bug Report",
     DESCRIBE_BUG: "Describe bug",
     NOT_MANDATORY: "not mandatory",
-    ACTIVATE_ACCOUNT: "Account activation is in progress"
+    ACTIVATE_ACCOUNT: "Account activation is in progress",
+    MY_ACCOUNT: "My account"
 
 };
 
@@ -129,7 +130,7 @@ var translationsRS= {
     LOGOUT: "Izloguj se",
     SOMETHING_WENT_WRONG: "Nešto nije u redu. Molim vas, pokušajte ponovo",
     BAD_CREDENTIALS: "Email i / ili lozinka koju ste uneli ne odgovara ni čemu što imamo u bazi podataka. Molim vas, pokušajte ponovo",
-    REGISTER: "Prijavi se",
+    REGISTER: "Registracija",
     USERNAME: "Korisnicko ime",
     FIRST_NAME: "Ime",
     LAST_NAME: "Prezime",
@@ -156,7 +157,8 @@ var translationsRS= {
     BUG_REPORT: "Prijavi Grešku",
     DESCRIBE_BUG: "Opiši grešku",
     NOT_MANDATORY: "nije obavezno",
-    ACTIVATE_ACCOUNT: "U toku je aktivacija naloga"
+    ACTIVATE_ACCOUNT: "U toku je aktivacija naloga",
+    MY_ACCOUNT: "Moj nalog"
 };
 
 angular.module('gelApp.newRecipe').config(['$translateProvider', function ($translateProvider) {
