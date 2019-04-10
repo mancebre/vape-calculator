@@ -40,6 +40,9 @@ var translationsEN = {
     PRINT: "Print",
     NETWORKS: "Networks",
     RECIPES: "Recipes",
+    ADD_LIQUID_NAME: "Please add recipe name",
+    RECIPE_NAME: "Recipe name",
+    GENERATE_RECIPE_NAME: "Auto-generate recipe name",
 
     PASSWORD: "Password:",
     REPASSWORD: "Re enter password:",
@@ -122,6 +125,9 @@ var translationsRS= {
     DELETE_RECIPE: "Obriši recept",
     PRINT: "Štampaj",
     NETWORKS: "Mreže",
+    ADD_LIQUID_NAME: "Dodajte ime recepta",
+    RECIPE_NAME: "Ime recepta",
+    GENERATE_RECIPE_NAME: "Generisi ime recepta",
 
     PASSWORD: "Lozinka:",
     REPASSWORD: "Ponovite lozinku:",

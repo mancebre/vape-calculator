@@ -18,6 +18,7 @@ var App = angular.module("gelApp", [
     'gelApp.FooterController',
     'gelApp.editWeights',
     'gelApp.loginWarning',
+    'gelApp.addRecipeName',
     'gelApp.forgottenPassword',
     'gelApp.reportIssue',
     'gelApp.printLabel',

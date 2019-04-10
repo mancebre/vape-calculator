@@ -68,6 +68,29 @@ angular.module('gelApp.newRecipe').controller('newRecipeCtrl', ['$scope', '$http
             );
         };
 
+        $scope.openAddNameModal = function() {
+            $uibModal.open({
+                controller: 'addRecipeNameCtrl',
+                templateUrl: 'app/modules/modals/add_recipe_name/view.html',
+                backdrop: false,
+                resolve: {
+                    item: function () {
+                        return $scope.liquid;
+                    }
+                }
+            })
+                .result.then(function(result){
+                    if(result) {
+                        $scope.liquid.name = result;
+                        // When we have name we can save recipe.
+                        $scope.submitLiquidForm();
+                    }
+                }, function(res){
+                    console.log(res);
+                }
+            );
+        };
+
         /**
          * Opens "bad calculation" attention modal.
          */
@@ -217,6 +240,11 @@ angular.module('gelApp.newRecipe').controller('newRecipeCtrl', ['$scope', '$http
 
         //5. create submitStudentForm() function. This will be called when user submits the form
         $scope.submitLiquidForm = function (clone) {
+            // If name is not set open a popup for user to add a name and offer user to auto generate name.
+            if ($scope.liquid.name.length < 1) {
+                $scope.openAddNameModal();
+                return false;
+            }
 
             if ($scope.duplicateFlavorNames) {
                 MyNotify.notify("You have duplicate flavor names, please change one of duplicated flavor names...", 400);
@@ -479,7 +507,6 @@ angular.module('gelApp.newRecipe').controller('newRecipeCtrl', ['$scope', '$http
                 $scope.calculateGrams();
                 $scope.calculateTotal();
             }
-            $scope.generateLiquidName();
         };
 
         $scope.generateLiquidName = function() {
