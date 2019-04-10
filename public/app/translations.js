@@ -39,6 +39,7 @@ var translationsEN = {
     DELETE_RECIPE: "Delete recipe",
     PRINT: "Print",
     NETWORKS: "Networks",
+    RECIPES: "Recipes",
 
     PASSWORD: "Password:",
     REPASSWORD: "Re enter password:",
@@ -158,7 +159,8 @@ var translationsRS= {
     DESCRIBE_BUG: "Opiši grešku",
     NOT_MANDATORY: "nije obavezno",
     ACTIVATE_ACCOUNT: "U toku je aktivacija naloga",
-    MY_ACCOUNT: "Moj nalog"
+    MY_ACCOUNT: "Moj nalog",
+    RECIPES: "Recepti",
 };
 
 angular.module('gelApp.newRecipe').config(['$translateProvider', function ($translateProvider) {

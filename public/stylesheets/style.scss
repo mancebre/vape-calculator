@@ -1,15 +1,22 @@
-$primaryColor: #e2e2e2;
-$secondaryColor: #c0c600;
-$loader: '/app/images/loading.gif';
-$navBackgroundColor1: #eee;
-$navBackgroundColor2: grey;
-$navColor: #464646;
-$errorRed: #d83b3b;
+$loader: '/app/images/loading.gif';$primaryColor: #e2e2e2;
+
 $formWidth: 350px;
+
+$secondaryColor: #c0c600;
+$navBackgroundColor1: #eee;
+$navHoverColor: grey;
+$navColor: #464646;
+$navShadowColor: 0 1px 1px rgba(0, 0, 0, 0.175);
+$errorColor: #d83b3b;
+$attentionColor: pink;
+$sliderBackgroundColor: #eeeeee;
+$starsHoverColor: #e7e7e7;
+$checkedStarColor: orange;
+$blueBoxColor: b7fcff;
 
 body {
   .container {
-    min-height: calc(100vh - 70px);
+    min-height: calc(100vh - 150px);
 
     .left {
       text-align: left;
@@ -22,7 +29,7 @@ body {
     .blue-box {
       margin-top: 40px;
       border-radius: 5px;
-      background: #b7fcff;
+      background: $blueBoxColor;
       padding: 20px;
     }
 
@@ -53,11 +60,11 @@ body {
     text-align: center;
   }
   .help-block {
-    color: $errorRed;
+    color: $errorColor;
   }
   .attention {
     //border: solid 3px red;
-    background-color: pink;
+    background-color: $attentionColor;
   }
   .settings {
     text-align: center;
@@ -81,7 +88,7 @@ body {
     right: 20px;
   }
   .delete {
-    color: red;
+    color: $errorColor;
   }
   fieldset {
     border: 1px groove #ddd !important;
@@ -101,7 +108,7 @@ body {
 
     .rzslider {
       .rz-pointer {
-        background-color: #eeeeee;
+        background-color: $sliderBackgroundColor;
       }
     }
   }
@@ -171,19 +178,19 @@ body {
   .navbar-default {
     background-color: $navBackgroundColor1;
     border: none;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.175);
+    box-shadow: $navShadowColor;
     .btn-default {
       color: $navBackgroundColor1;
       &:hover {
-        background-color: $navBackgroundColor2;
+        background-color: $navHoverColor;
       }
     }
     .dropdown-menu {
       border: none;
-      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.175);
+      box-shadow: $navShadowColor;
       li > a {
         &:hover {
-          background-color: $navBackgroundColor2;
+          background-color: $navHoverColor;
         }
       }
     }
@@ -193,7 +200,7 @@ body {
         color: #000;
       }
       &:focus {
-        color: $navBackgroundColor2;
+        color: $navHoverColor;
       }
     }
     .navbar-nav > li > a {
@@ -209,7 +216,7 @@ body {
     }
     .navbar-nav > .active > a:hover {
       color: $navBackgroundColor1;
-      background-color: $navBackgroundColor2;
+      background-color: $navHoverColor;
     }
     .navbar-nav > .open > a {
       color: $navBackgroundColor1;
@@ -221,7 +228,7 @@ body {
     }
     .navbar-nav > .open > a:hover {
       color: $navBackgroundColor1;
-      background-color: $navBackgroundColor2;
+      background-color: $navHoverColor;
     }
     .navbar-toggle {
       border-color: $navColor;
@@ -229,7 +236,7 @@ body {
         background-color: $navColor;
       }
       &:hover {
-        background-color: $navBackgroundColor2;
+        background-color: $navHoverColor;
       }
     }
   }
@@ -237,7 +244,7 @@ body {
   .recipe-list {
 
     .checked {
-      color: orange;
+      color: $checkedStarColor;
     }
     .stars {
       .rating-star {
@@ -248,7 +255,7 @@ body {
     .stars :hover {
       font-size: 18px;
       color: #000;
-      background: #e7e7e7;
+      background: $starsHoverColor;
     }
   }
 
