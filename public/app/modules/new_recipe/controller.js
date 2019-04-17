@@ -622,6 +622,12 @@ angular.module('gelApp.newRecipe').controller('newRecipeCtrl', ['$scope', '$http
         $scope.loadRecipe = function (recipeId) {
             RecipeService.getRecipe(recipeId, function (status, data) {
 
+                if (status == 204) {
+                    console.log("Recipe is missing");
+                    $location.url('/');
+                    return false;
+                }
+
                 console.log({
                     status: status,
                     data:   data

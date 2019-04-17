@@ -105,7 +105,11 @@ class RecipeController extends Controller {
 		$recipe = Recipe::with('RecipeFlavors')->with('user')->find($id);
 		// Why do I have to do this??
 //		$recipe->flavors = RecipeFlavors::owned($id);
-		return response()->json($recipe);
+        if($recipe) {
+            return response()->json($recipe);
+        } else {
+            return response("Recipe does not exist", 204);
+        }
 	}
 
     /**
