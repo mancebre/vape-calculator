@@ -653,7 +653,7 @@ angular.module('gelApp.newRecipe').controller('newRecipeCtrl', ['$scope', '$http
                     $scope.liquid.desired_strength = data.desired_strength;
                     $scope.liquid.pg = data.pg;
                     $scope.liquid.vg = data.vg;
-                    $scope.liquid.nicotine.strength = 70;
+                    $scope.liquid.nicotine.strength = data.nicotine_strength;
                     $scope.liquid.nicotine.pg = data.nicotine_pg;
                     $scope.liquid.nicotine.vg = data.nicotine_vg;
                     $scope.liquid.wvpga = data.wvpga;
