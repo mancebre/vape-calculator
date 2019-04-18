@@ -158,30 +158,21 @@ class UserController extends Controller {
 	public function update(Request $request, $id) {
 		$user = User::find($id);
 
-		if ($request->input('username')) {
-			$user->username = $request->input('username');
-		}
-		if ($request->input('password')) {
-			$user->username = Hash::make($request->input('password'));
-		}
-		if ($request->input('email')) {
-			$user->username = $request->input('email');
-		}
-		if ($request->input('firstname')) {
-			$user->username = $request->input('firstname');
-		}
-		if ($request->input('lastname')) {
-			$user->username = $request->input('lastname');
-		}
-		if ($request->input('username')) {
-			$user->username = $request->input('username');
-		}
-		if ($request->input('newsletter')) {
-			$user->username = $request->input('newsletter');
-		}
+        $user->newsletter = $request->input('newsletter');
+        $user->lastname = $request->input('lastname');
+        $user->firstname = $request->input('firstname');
+
+
+//		if ($request->input('password')) {
+//			$user->password = Hash::make($request->input('password'));
+//		}
+//		// If email is updated send activation link end set account to active = 0.
+//		if ($request->input('email')) {
+//			$user->email = $request->input('email');
+//		}
 
 		$user->save();
-		return response()->json($user);
+		return response()->json("User updated successfully.");
 	}
 
     /**

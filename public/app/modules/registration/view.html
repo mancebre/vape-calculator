@@ -18,7 +18,13 @@
             <div ng-show="step === 1" class="form-group">
                 <label class="col-sm-12" for="email">Email:</label>
                 <div class="col-sm-12">
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" ng-model="registration.email" required
+                    <input type="email"
+                           class="form-control"
+                           id="email"
+                           name="email"
+                           placeholder="Enter email"
+                           ng-model="registration.email"
+                           required
                            ng-class="((signupForm.email.$dirty && signupForm.email.$invalid) || emailInUse) ? 'attention' : ''">
                     <p ng-show="signupForm.email.$invalid && !signupForm.email.$pristine" class="help-block">Enter a valid email.</p>
                     <p ng-show="emailInUse" class="help-block">Email you entered is already in use.</p>
@@ -36,8 +42,19 @@
             <div ng-show="step === 2" class="form-group">
                 <label class="col-sm-12" for="password" translate="PASSWORD">Password:</label>
                 <div class="col-sm-12">
-                    <input ng-keyup="passwordStrength()" type="password" class="form-control" id="password" name="password" placeholder="Enter password" ng-model="registration.password"
-                           ng-minlength="6" ng-maxlength="100" required ng-class="(signupForm.password.$dirty && signupForm.password.$invalid && signupForm.confirmPassword.$error.equal) ? 'attention' : ''">
+                    <input ng-keyup="passwordStrength()"
+                           type="password"
+                           class="form-control"
+                           id="password"
+                           name="password"
+                           placeholder="Enter password"
+                           ng-model="registration.password"
+                           ng-minlength="6"
+                           ng-maxlength="100"
+                           required
+                           ng-class="(signupForm.password.$dirty
+                           && signupForm.password.$invalid
+                           && signupForm.confirmPassword.$error.equal) ? 'attention' : ''">
                     <p ng-show="signupForm.password.$error.minlength" class="help-block">Password is too short.</p>
                     <p ng-show="signupForm.password.$error.maxlength" class="help-block">Password is too long.</p>
                     <p id="password_strength"></p>
@@ -46,8 +63,17 @@
             <div ng-show="step === 2" class="form-group">
                 <label class="col-sm-12" for="password" translate="REPASSWORD">Re enter password:</label>
                 <div class="col-sm-12">
-                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Re enter password" ng-model="registration.confirmPassword"
-                           ng-minlength="6" ng-maxlength="100" required equal="{{registration.password}}" ng-class="(signupForm.confirmPassword.$error.equal) ? 'attention' : ''">
+                    <input type="password"
+                           class="form-control"
+                           id="confirmPassword"
+                           name="confirmPassword"
+                           placeholder="Re enter password"
+                           ng-model="registration.confirmPassword"
+                           ng-minlength="6"
+                           ng-maxlength="100"
+                           required
+                           equal="{{registration.password}}"
+                           ng-class="(signupForm.confirmPassword.$error.equal) ? 'attention' : ''">
                     <p ng-show="signupForm.confirmPassword.$error.equal" class="help-block">Password and re password must be same.</p>
                 </div>
             </div>

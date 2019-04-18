@@ -13,7 +13,7 @@ angular.module('gelApp.forgottenPassword').controller('forgottenPasswordCtrl', [
 
     $scope.runOnServiceEnd = function(status, data) {
         if (status > 0) {
-            MyNotify.notify(data, status);
+            MyNotify.notify(status, data);
             $scope.showError = false;
             $scope.close();
         } else {

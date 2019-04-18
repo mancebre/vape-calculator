@@ -48,6 +48,10 @@ App.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
         title: 'Activate account',
         controller: 'activateAccountCtrl',
         templateUrl: '/app/modules/activate_account/view.html'
+    }).when('/my_account', {
+        title: 'My Account',
+        controller: 'myAccountCtrl',
+        templateUrl: '/app/modules/my_account/view.html'
     }).otherwise({
         redirectTo: '/'
     });

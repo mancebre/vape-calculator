@@ -12,6 +12,8 @@
         service.EmailCheck = emailCheck;
         service.UsernameCheck = usernameCheck;
         service.ResetPassword = resetPassword;
+        service.UpdateUser = updateUser;
+        service.GetUser = getUser;
 
         return service;
 
@@ -25,6 +27,38 @@
                 username:   userData.username,
                 newsletter: userData.newsletter ? 1 : 0,
             })
+                .then(function (response) {
+                    console.log('success', response);
+
+                    callback(response.status, response.data);
+                })
+                .catch(function(response) {
+                    console.log('error', response);
+                    callback(response.status, response.data);
+                });
+        }
+
+        function updateUser(userId, userData, callback) {
+            let apiUrl = $rootScope.apiUrl + 'user/' + userId;
+            $http.put(apiUrl, {
+                firstname:  userData.firstname,
+                lastname:   userData.lastname,
+                newsletter: userData.newsletter,
+            })
+                .then(function (response) {
+                    console.log('success', response);
+
+                    callback(response.status, response.data);
+                })
+                .catch(function(response) {
+                    console.log('error', response);
+                    callback(response.status, response.data);
+                });
+        }
+
+        function getUser(userId, callback) {
+            let apiUrl = $rootScope.apiUrl + 'user/' + userId;
+            $http.get(apiUrl, { params: { userId: userId }})
                 .then(function (response) {
                     console.log('success', response);
 

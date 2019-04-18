@@ -1,0 +1,169 @@
+<h2 translate="MY_ACCOUNT"></h2>
+
+<div class="col-sm-12">
+    <div class="col-sm-6">
+        <form class="form-horizontal" ng-submit="submitUserData()" role="form" name="userForm">
+            <fieldset>
+                <legend translate="MY_DATA">My Data</legend>
+
+                <div class="form-group">
+                    <label for="firstname" class="col-sm-4 control-label" title="First name">
+                        <span translate="FIRSTNAME">First name</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" id="firstname" class="form-control" ng-model="userData.firstname" required />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastname" class="col-sm-4 control-label" title="Last name">
+                        <span translate="LASTNAME">Last name</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" id="lastname" class="form-control" ng-model="userData.lastname" required />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="fancy-checkbox-default" class="col-sm-7 control-label active">
+                        <span translate="NEWSLETTER">NEWSLETTER </span>
+                    </label>
+                    <input type="checkbox" name="fancy-checkbox-default" id="fancy-checkbox-default" autocomplete="off"
+                           ng-model="userData.newsletter" ng-checked="userData.newsletter" />
+                    <div class="col-sm-5 btn-group">
+                        <label for="fancy-checkbox-default" class="btn btn-default">
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span> </span>
+                        </label>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <span translate="SAVE">Save</span>
+                    <i class="fa fa-save"></i>
+                </button>
+            </fieldset>
+        </form>
+    </div>
+
+    <div class="col-sm-6">
+        <form class="form-horizontal" ng-submit="submitEmail()" role="form" name="emailForm">
+            <fieldset>
+
+                <legend translate="EMAIL">Email</legend>
+
+                <div class="form-group">
+                    <label for="email" class="col-sm-4 control-label" title="Email">
+                        <span translate="EMAIL">Email</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="email"
+                               name="email"
+                               id="email"
+                               ng-keyup="emailCheck()"
+                               class="form-control"
+                               ng-model="userData.email"
+                               required
+                               ng-class="((emailForm.email.$dirty && emailForm.email.$invalid) || emailInUse) ? 'attention' : ''" />
+                        <p ng-show="emailInUse" class="help-block">Email you entered is already in use.</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="col-sm-4 control-label" title="Re-email">
+                        <span translate="CONFIRM_EMAIL">Confirm email</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="email"
+                               name="re_email"
+                               id="re_email"
+                               class="form-control"
+                               ng-model="userData.re_email"
+                               required
+                               equal="{{userData.email}}"
+                               ng-class="(emailForm.re_email.$dirty && emailForm.re_email.$invalid && emailForm.re_email.$error.equal)
+                               ? 'attention' : ''" />
+                        <p ng-show="emailForm.re_email.$error.equal" class="help-block">Email and confirm email must be same.</p>
+                    </div>
+                </div>
+
+                <button ng-disabled="(userData.email !== userData.re_email) || emailInUse" type="submit" class="btn btn-primary">
+                    <span translate="SAVE">Save</span>
+                    <i class="fa fa-save"></i>
+                </button>
+            </fieldset>
+        </form>
+
+    </div>
+
+    <div class="col-sm-6">
+        <form class="form-horizontal" ng-submit="submitPassword()" role="form" name="passwordForm">
+            <fieldset>
+
+                <legend translate="CHANGE_PASSWORD">Change Password</legend>
+
+                <div class="form-group">
+                    <label for="current_password" class="col-sm-4 control-label" title="Current Password">
+                        <span translate="CURRENT_PASSWORD">Current Password</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="password"
+                               class="form-control"
+                               id="current_password"
+                               name="password"
+                               ng-model="userData.currentPassword"
+                               required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="col-sm-4 control-label" title="Password">
+                        <span translate="NEW_PASSWORD">New Password</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input ng-keyup="passwordStrength()"
+                               type="password"
+                               class="form-control"
+                               id="password"
+                               name="password"
+                               ng-model="userData.password"
+                               ng-minlength="6"
+                               ng-maxlength="100"
+                               required
+                               ng-class="(passwordForm.password.$dirty
+                           && passwordForm.password.$invalid
+                           && passwordForm.confirmPassword.$error.equal) ? 'attention' : ''">
+                        <p ng-show="passwordForm.password.$error.minlength" class="help-block">Password is too short.</p>
+                        <p ng-show="passwordForm.password.$error.maxlength" class="help-block">Password is too long.</p>
+                        <p id="password_strength"></p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword" class="col-sm-4 control-label" title="Re-password">
+                        <span translate="REPASSWORD">REPASSWORD</span>
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="password"
+                               class="form-control"
+                               id="confirmPassword"
+                               name="confirmPassword"
+                               ng-model="userData.confirmPassword"
+                               ng-minlength="6"
+                               ng-maxlength="100"
+                               required
+                               equal="{{userData.password}}"
+                               ng-class="(passwordForm.confirmPassword.$error.equal) ? 'attention' : ''">
+                        <p ng-show="passwordForm.confirmPassword.$error.equal" class="help-block">Password and re password must be same.</p>
+                    </div>
+                </div>
+
+                <button ng-disabled="userData.password !== userData.confirmPassword" type="submit" class="btn btn-primary">
+                    <span translate="SAVE">Save</span>
+                    <i class="fa fa-save"></i>
+                </button>
+            </fieldset>
+        </form>
+
+    </div>
+
+</div>

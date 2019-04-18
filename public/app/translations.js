@@ -80,7 +80,16 @@ var translationsEN = {
     DESCRIBE_BUG: "Describe bug",
     NOT_MANDATORY: "not mandatory",
     ACTIVATE_ACCOUNT: "Account activation is in progress",
-    MY_ACCOUNT: "My account"
+    MY_ACCOUNT: "My account",
+
+    MY_DATA: "My data",
+    EMAIL: "Email",
+    FIRSTNAME: "First name",
+    LASTNAME: "Last name",
+    CHANGE_PASSWORD: "Change password",
+    CONFIRM_EMAIL: "Confirm email",
+    CURRENT_PASSWORD: "Current password",
+    NEW_PASSWORD: "Nova lozinka",
 
 };
 
@@ -167,6 +176,16 @@ var translationsRS= {
     ACTIVATE_ACCOUNT: "U toku je aktivacija naloga",
     MY_ACCOUNT: "Moj nalog",
     RECIPES: "Recepti",
+
+    MY_DATA: "Moji podaci",
+    EMAIL: "Email",
+    FIRSTNAME: "Ime",
+    LASTNAME: "Prezime",
+    CHANGE_PASSWORD: "Promeni lozinku",
+    CONFIRM_EMAIL: "Potvrdi email",
+    CURRENT_PASSWORD: "Trenutna lozinka",
+    NEW_PASSWORD: "Nova lozinka",
+
 };
 
 angular.module('gelApp.newRecipe').config(['$translateProvider', function ($translateProvider) {

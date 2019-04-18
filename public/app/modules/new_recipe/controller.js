@@ -247,7 +247,7 @@ angular.module('gelApp.newRecipe').controller('newRecipeCtrl', ['$scope', '$http
             }
 
             if ($scope.duplicateFlavorNames) {
-                MyNotify.notify("You have duplicate flavor names, please change one of duplicated flavor names...", 400);
+                MyNotify.notify(400, "You have duplicate flavor names, please change one of duplicated flavor names...");
             } else {
                 // TODO This data should be parsed in one level object.
                 $scope.liquid.vapeReady = $scope.vapeReady;
@@ -270,7 +270,7 @@ angular.module('gelApp.newRecipe').controller('newRecipeCtrl', ['$scope', '$http
                             });
 
                             if(status !== 200) {
-                                MyNotify.notify("Something went wrong, please try again.", status);
+                                MyNotify.notify(status, "Something went wrong, please try again.");
                             } else if (status === 200) {
                                 $location.url('/my_recipes');
                             }
@@ -285,7 +285,7 @@ angular.module('gelApp.newRecipe').controller('newRecipeCtrl', ['$scope', '$http
                             });
 
                             if(status !== 200) {
-                                MyNotify.notify("Something went wrong, please try again.", status);
+                                MyNotify.notify(status, "Something went wrong, please try again.");
                             } else if (status === 200) {
                                 $location.url('/my_recipes');
                             }
@@ -552,7 +552,7 @@ angular.module('gelApp.newRecipe').controller('newRecipeCtrl', ['$scope', '$http
             let isConfirmed = confirm("Are you sure to delete this record ?");
             if (isConfirmed && $scope.liquid.id) {
                 RecipeService.deleteRecipe($scope.liquid.id, function (status, data) {
-                    MyNotify.notify(data, status);
+                    MyNotify.notify(status, data);
                     $location.url('/my_recipes');
                 });
             } else {
@@ -672,7 +672,7 @@ angular.module('gelApp.newRecipe').controller('newRecipeCtrl', ['$scope', '$http
                 }, 300 );
 
                 if(status !== 200) {
-                    MyNotify.notify("Something went wrong, please try again.", status);
+                    MyNotify.notify(status, "Something went wrong, please try again.");
                 }
             });
         };

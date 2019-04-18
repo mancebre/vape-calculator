@@ -26,5 +26,6 @@ var App = angular.module("gelApp", [
     'gelApp.searchPage',
     'ngStorage',
     'gelApp.activateAccount',
+    'gelApp.myAccount',
     'gelApp.openAttention'
 ]);

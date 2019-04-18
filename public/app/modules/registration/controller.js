@@ -72,7 +72,7 @@ angular.module('gelApp.registration').controller('registrationCtrl', ['$scope', 
                 $scope.signupSussesfull = true;
             } else {
                 $scope.signupSussesfull = false;
-                MyNotify.notify(message, status);
+                MyNotify.notify(status, message);
             }
         };
 

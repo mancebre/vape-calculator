@@ -79,7 +79,7 @@ angular.module('gelApp.my_recipes').controller('my_recipesCtrl', ['$scope', '$ht
         if (ratersIds.indexOf($sessionStorage.currentUser.user_id) === -1) {
             RatingsService.Rate(recipe.id, rating, function () {
                 $scope.getAllUserRecipes($sessionStorage.currentUser.user_id);
-                MyNotify.notify("Recipe rated successfully.", 200);
+                MyNotify.notify(200, "Recipe rated successfully.");
             });
         } else {
             // My ratings of this recipe.
@@ -88,7 +88,7 @@ angular.module('gelApp.my_recipes').controller('my_recipesCtrl', ['$scope', '$ht
             });
             RatingsService.Update(myRatings[0].id, rating, function () {
                 $scope.getAllUserRecipes($sessionStorage.currentUser.user_id);
-                MyNotify.notify("Recipe updated successfully.", 200);
+                MyNotify.notify(200, "Recipe updated successfully.");
             });
         }
 
