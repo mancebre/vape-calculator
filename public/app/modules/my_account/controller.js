@@ -1,8 +1,8 @@
 angular.module('gelApp.myAccount', []);
 
 angular.module('gelApp.myAccount').controller('myAccountCtrl',
-    ['$rootScope', '$scope', '$uibModal', 'UserRegistration', 'MyNotify', '$sessionStorage',
-    function ($rootScope, $scope, $uibModal, UserRegistration, MyNotify, $sessionStorage)
+    ['$rootScope', '$scope', '$uibModal', 'UserRegistration', 'MyNotify', '$sessionStorage', 'AuthenticationService', '$localStorage', '$window',
+    function ($rootScope, $scope, $uibModal, UserRegistration, MyNotify, $sessionStorage, AuthenticationService, $localStorage, $window)
     {
         $scope.userId = $sessionStorage.currentUser.user_id;
         $scope.emailInUse = null;
@@ -29,7 +29,38 @@ angular.module('gelApp.myAccount').controller('myAccountCtrl',
             };
             console.log("submitUserData", userData);
 
-            UserRegistration.UpdateUser($scope.userId, userData, MyNotify.notify);
+            UserRegistration.UpdateUser($scope.userId, userData, $scope.refreshToken);
+        };
+
+        $scope.refreshToken = function(status, data) {
+            MyNotify.notify(status, data);
+
+            if ($localStorage.credentials) {
+                AuthenticationService.Login(atob($localStorage.credentials.email), atob($localStorage.credentials.password), function (status) {
+                    if (status !== 200) {
+                        console.log(status)
+                    }
+                });
+            } else {
+                $scope.openLoginAgainNotification();
+            }
+        };
+
+        $scope.openLoginAgainNotification = function () {
+            $uibModal.open({
+                controller: 'loginAgainNotificationCtrl',
+                templateUrl: 'app/modules/modals/login_again_notification/view.html',
+                // backdrop: false
+            })
+                .result.then(function(location){
+                    console.log("works");
+                    if (location) {
+                        $window.location.href = '/' + location;
+                    }
+                }, function(res){
+                    console.log("ERROR", res);
+                }
+            );
         };
 
         $scope.submitEmail = function () {

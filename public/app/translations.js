@@ -90,6 +90,7 @@ var translationsEN = {
     CONFIRM_EMAIL: "Confirm email",
     CURRENT_PASSWORD: "Current password",
     NEW_PASSWORD: "Nova lozinka",
+    LOGIN_LOGOUT_WARNING: "Data you just changed will be updated when you login next time.",
 
 };
 
@@ -185,6 +186,7 @@ var translationsRS= {
     CONFIRM_EMAIL: "Potvrdi email",
     CURRENT_PASSWORD: "Trenutna lozinka",
     NEW_PASSWORD: "Nova lozinka",
+    LOGIN_LOGOUT_WARNING: "Podaci koje ste upravo promenili biće ažurirani kada se prijavite sledeći put.",
 
 };
 

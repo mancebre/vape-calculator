@@ -27,5 +27,6 @@ var App = angular.module("gelApp", [
     'ngStorage',
     'gelApp.activateAccount',
     'gelApp.myAccount',
-    'gelApp.openAttention'
+    'gelApp.openAttention',
+    'gelApp.loginAgainNotification'
 ]);
