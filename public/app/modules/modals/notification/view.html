@@ -1,0 +1,32 @@
+<div class="modal-header">
+    <h1 translate="WARNING"></h1>
+</div>
+<div style="clear: both"></div>
+<div class="modal-body">
+    <h4 ng-show="notificationText === 'LOGIN_LOGOUT_WARNING'"
+        class="center-text"
+        translate="LOGIN_LOGOUT_WARNING">Data you just changed will be updated when you login next time.</h4>
+    <h4 ng-show="notificationText === 'CHANGE_EMAIL_WARNING'"
+        class="center-text"
+        translate="CHANGE_EMAIL_WARNING">Data you just changed will be updated when you login next time.</h4>
+    <h4 ng-show="notificationText === 'CHANGE_EMAIL_NOTIFICATION'"
+        class="center-text"
+        translate="CHANGE_EMAIL_NOTIFICATION">Data you just changed will be updated when you login next time.</h4>
+</div>
+<div class="modal-body">
+    <h3 ng-show="notificationText === 'CHANGE_EMAIL_WARNING'"
+        translate="STILL_SAVE_EMAIL">Do you still want to save a new email address</h3>
+</div>
+<div style="clear: both"></div>
+<div ng-show="notificationText === 'LOGIN_LOGOUT_WARNING'" class="modal-footer">
+    <button ng-click="close(null)" class="btn btn-primary" translate="CLOSE">Close</button>
+    <button ng-click="close('login')" class="btn" TRANSLATE="LOGIN">Login</button>
+</div>
+<div ng-show="notificationText === 'CHANGE_EMAIL_WARNING'" class="modal-footer">
+    <button ng-click="close('save_email')" class="btn btn-primary" translate="YES">Yes</button>
+    <button ng-click="close(null)" class="btn" TRANSLATE="NO">No</button>
+</div>
+<div ng-show="notificationText === 'CHANGE_EMAIL_NOTIFICATION'" class="modal-footer">
+    <button ng-click="close('email_saved')" class="btn btn-primary" translate="CLOSE">Close</button>
+</div>
+<div style="clear: both"></div>

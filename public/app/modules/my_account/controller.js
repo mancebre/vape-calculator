@@ -6,6 +6,7 @@ angular.module('gelApp.myAccount').controller('myAccountCtrl',
     {
         $scope.userId = $sessionStorage.currentUser.user_id;
         $scope.emailInUse = null;
+        $scope.notificationText = null;
 
         $scope.userData = {
             username:           $sessionStorage.currentUser.username,
@@ -42,20 +43,37 @@ angular.module('gelApp.myAccount').controller('myAccountCtrl',
                     }
                 });
             } else {
-                $scope.openLoginAgainNotification();
+                $scope.notificationText = "LOGIN_LOGOUT_WARNING";
+                $scope.openNotification();
             }
         };
 
-        $scope.openLoginAgainNotification = function () {
+        $scope.openNotification = function () {
             $uibModal.open({
                 controller: 'loginAgainNotificationCtrl',
-                templateUrl: 'app/modules/modals/login_again_notification/view.html',
-                // backdrop: false
+                templateUrl: 'app/modules/modals/notification/view.html',
+                backdrop: false,
+                resolve: {
+                    notificationText: function () {
+                        return $scope.notificationText;
+                    }
+                }
             })
-                .result.then(function(location){
+                .result.then(function(result){
                     console.log("works");
-                    if (location) {
-                        $window.location.href = '/' + location;
+                    switch (result) {
+                        case "login": {
+                            $window.location.href = '/login';
+                            break;
+                        }
+                        case "save_email": {
+                            $scope.submitEmail();
+                            break;
+                        }
+                        case "email_saved": {
+                            $window.location.href = '/login';
+                            break;
+                        }
                     }
                 }, function(res){
                     console.log("ERROR", res);
@@ -63,8 +81,21 @@ angular.module('gelApp.myAccount').controller('myAccountCtrl',
             );
         };
 
+        $scope.saveEmail = function() {
+            $scope.notificationText = "CHANGE_EMAIL_WARNING";
+            $scope.openNotification();
+        };
+
         $scope.submitEmail = function () {
             console.log("submitUserData", $scope.userData.email);
+            UserRegistration.UpdateEmail($scope.userData.email, $scope.userId, function (status, data) {
+                AuthenticationService.Logout(function () {
+                    MyNotify.notify(status, data)
+                })
+            });
+
+            $scope.notificationText = "CHANGE_EMAIL_NOTIFICATION";
+            $scope.openNotification();
         };
 
         $scope.submitPassword = function () {

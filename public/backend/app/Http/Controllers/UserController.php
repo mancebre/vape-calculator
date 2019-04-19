@@ -222,4 +222,38 @@ class UserController extends Controller {
             }
         }
     }
+
+    public function updateEmail(Request $request, $id) {
+
+        // Check is this right user.
+        $currentUser = AuthController::getCurrentUser($request);
+        if ($currentUser->user_id !== (int)$id) {
+            return response()->make("Bad user", 400);
+        }
+        // Check is mail valid
+
+        // Get user
+        $user = User::find($id);
+        // Set email
+        $user->email = $request->input('email');
+
+        // Set user account active = 0
+        // Set activation link
+        // Update user
+        $user->active = 0;
+        $user->activation_key = substr(str_shuffle(MD5(microtime())), 0, 32);
+
+        $user->save();
+
+        // Send activation email
+        $activationEmail = $this->sendActivationEmail($user);
+        $log = [
+            "Email_sent" => $activationEmail,
+            "user_data" => $user
+        ];
+        Log::info("Activation Email after email change", $log);
+
+
+        return response()->make("Email updated, activation link sent", 200);
+    }
 }

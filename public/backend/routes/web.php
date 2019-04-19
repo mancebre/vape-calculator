@@ -43,6 +43,7 @@ $router->group(
         $router->get('/user/{id}', 'UserController@show');
         $router->put('/user/{id}', 'UserController@update');
         $router->delete('/user/{id}', 'UserController@destroy');
+        $router->put('/email/{id}', 'UserController@updateEmail');
 
         /**
          * Recipe

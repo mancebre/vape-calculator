@@ -14,6 +14,7 @@
         service.ResetPassword = resetPassword;
         service.UpdateUser = updateUser;
         service.GetUser = getUser;
+        service.UpdateEmail = updateEmail;
 
         return service;
 
@@ -106,6 +107,22 @@
             let apiUrl = $rootScope.apiUrl + 'resetPassword';
             $http.post(apiUrl, {
                 email: email
+            })
+                .then(function (response) {
+                    console.log('success', response);
+
+                    callback(response.status, response.data);
+                })
+                .catch(function(response) {
+                    console.log('error', response);
+                    callback(response.status, response.data);
+                });
+        }
+
+        function updateEmail(email, userId, callback) {
+            let apiUrl = $rootScope.apiUrl + 'email/' + userId;
+            $http.put(apiUrl, {
+                email:  email,
             })
                 .then(function (response) {
                     console.log('success', response);

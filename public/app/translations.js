@@ -91,6 +91,14 @@ var translationsEN = {
     CURRENT_PASSWORD: "Current password",
     NEW_PASSWORD: "Nova lozinka",
     LOGIN_LOGOUT_WARNING: "Data you just changed will be updated when you login next time.",
+    CHANGE_EMAIL_WARNING: "After you change your email you will be logged out and your account will be deactivated.\n" +
+        "You will have to go to your newly added email and click to activation link to re-activate your account,\n" +
+        "Just like when you created your account first time.",
+    CHANGE_EMAIL_NOTIFICATION: "You are now unsubscribed and your account is temporarily disabled.\n" +
+        "Go to the recently added email and reactivate your account",
+    STILL_SAVE_EMAIL: "Do you still want to save a new email address",
+    YES: "Yes",
+    NO: "No",
 
 };
 
@@ -187,6 +195,13 @@ var translationsRS= {
     CURRENT_PASSWORD: "Trenutna lozinka",
     NEW_PASSWORD: "Nova lozinka",
     LOGIN_LOGOUT_WARNING: "Podaci koje ste upravo promenili biće ažurirani kada se prijavite sledeći put.",
+    CHANGE_EMAIL_WARNING: "Nakon što promijenite e-poštu, odjavit ćete se i vaš račun će biti deaktiviran.\n" +
+        "Morat ćete otići na vašu nedavno dodanu e-poštu i kliknite na link za aktivaciju da biste ponovo aktivirali svoj račun,",
+    CHANGE_EMAIL_NOTIFICATION: "Sada ste odjavljeni i vaš nalog je privremeno deaktiviran.\n" +
+        "Idite na nedavno dodatu e-poštu i ponovo aktivirajte svoj nalog",
+    STILL_SAVE_EMAIL: "Da li idalje želite da sačuvate novu email adresu",
+    YES: "Da",
+    NO: "Ne",
 
 };
 

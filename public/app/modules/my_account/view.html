@@ -46,7 +46,7 @@
     </div>
 
     <div class="col-sm-6">
-        <form class="form-horizontal" ng-submit="submitEmail()" role="form" name="emailForm">
+        <form class="form-horizontal" ng-submit="saveEmail()" role="form" name="emailForm">
             <fieldset>
 
                 <legend translate="EMAIL">Email</legend>
@@ -59,7 +59,7 @@
                         <input type="email"
                                name="email"
                                id="email"
-                               ng-keyup="emailCheck()"
+                               ng-change="emailCheck()"
                                class="form-control"
                                ng-model="userData.email"
                                required
