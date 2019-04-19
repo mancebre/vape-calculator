@@ -253,7 +253,29 @@ class UserController extends Controller {
         ];
         Log::info("Activation Email after email change", $log);
 
-
         return response()->make("Email updated, activation link sent", 200);
+    }
+
+    public function updatePassword(Request $request, $id) {
+
+        // Check is this right user.
+        $currentUser = AuthController::getCurrentUser($request);
+        if ($currentUser->user_id !== (int)$id) {
+            return response()->make("Bad user", 400);
+        }
+
+        // Get user
+        $user = User::find($id);
+
+        // Check old password.
+        if (!Hash::check($request->input('oldPass'), $user->password)) {
+            return response()->make("Bad password.", 400);
+        }
+
+        // Update password.
+        $user->password = Hash::make($request->input('newPass'));
+        $user->save();
+
+        return response()->make("Password updated.", 200);
     }
 }

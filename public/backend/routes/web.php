@@ -44,6 +44,7 @@ $router->group(
         $router->put('/user/{id}', 'UserController@update');
         $router->delete('/user/{id}', 'UserController@destroy');
         $router->put('/email/{id}', 'UserController@updateEmail');
+        $router->put('/user/password/{id}', 'UserController@updatePassword');
 
         /**
          * Recipe

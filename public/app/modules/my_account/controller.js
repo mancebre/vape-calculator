@@ -28,7 +28,7 @@ angular.module('gelApp.myAccount').controller('myAccountCtrl',
                 lastname:       $scope.userData.lastname,
                 newsletter:     $scope.userData.newsletter,
             };
-            console.log("submitUserData", userData);
+            // console.log("submitUserData", userData);
 
             UserRegistration.UpdateUser($scope.userId, userData, $scope.refreshToken);
         };
@@ -60,7 +60,7 @@ angular.module('gelApp.myAccount').controller('myAccountCtrl',
                 }
             })
                 .result.then(function(result){
-                    console.log("works");
+                    // console.log("works");
                     switch (result) {
                         case "login": {
                             $window.location.href = '/login';
@@ -104,6 +104,22 @@ angular.module('gelApp.myAccount').controller('myAccountCtrl',
                 newPassword:    $scope.userData.password
             };
             console.log("submitUserData", changePassword);
+
+            UserRegistration.UpdatePassword(
+                    $scope.userData.currentPassword, 
+                    $scope.userData.password, 
+                    $scope.userId,
+                    MyNotify.notify
+                );
+
+            // Update localy stored password if we have it.
+            if($localStorage.credentials) {
+                $localStorage.credentials.password = btoa($scope.userData.password);
+            }
+            // Empty input fields.
+            $scope.userData.password = null;
+            $scope.userData.confirmPassword = null;
+            $scope.userData.currentPassword = null;
         };
 
         $scope.passwordStrength = function () {
@@ -174,7 +190,7 @@ angular.module('gelApp.myAccount').controller('myAccountCtrl',
         };
 
         $scope.setUser = function(status, data){
-            console.log($sessionStorage.currentUser, data);
+            // console.log($sessionStorage.currentUser, data);
 
         };
 

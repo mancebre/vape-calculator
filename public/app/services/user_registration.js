@@ -15,6 +15,7 @@
         service.UpdateUser = updateUser;
         service.GetUser = getUser;
         service.UpdateEmail = updateEmail;
+        service.UpdatePassword = updatePassword;
 
         return service;
 
@@ -123,6 +124,24 @@
             let apiUrl = $rootScope.apiUrl + 'email/' + userId;
             $http.put(apiUrl, {
                 email:  email,
+            })
+                .then(function (response) {
+                    console.log('success', response);
+
+                    callback(response.status, response.data);
+                })
+                .catch(function(response) {
+                    console.log('error', response);
+                    callback(response.status, response.data);
+                });
+        }
+
+        function updatePassword(oldPass, newPass, userId, callback) {
+            let apiUrl = $rootScope.apiUrl + 'user/password/' + userId;
+            $http.put(apiUrl, {
+                oldPass:  oldPass,
+                newPass:  newPass,
+                userId:  userId,
             })
                 .then(function (response) {
                     console.log('success', response);
