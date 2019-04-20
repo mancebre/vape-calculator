@@ -99,6 +99,7 @@ var translationsEN = {
     STILL_SAVE_EMAIL: "Do you still want to save a new email address",
     YES: "Yes",
     NO: "No",
+    WELCOME: "Welcome"
 
 };
 
@@ -202,6 +203,7 @@ var translationsRS= {
     STILL_SAVE_EMAIL: "Da li idalje želite da sačuvate novu email adresu",
     YES: "Da",
     NO: "Ne",
+    WELCOME: "Dobrodošli"
 
 };
 

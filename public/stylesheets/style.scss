@@ -15,6 +15,9 @@ $checkedStarColor: orange;
 $blueBoxColor: b7fcff;
 
 body {
+  .pad-10 {
+    padding: 10px;
+  }
   .container {
     min-height: calc(100vh - 150px);
 

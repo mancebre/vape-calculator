@@ -1,6 +1,22 @@
 <h2 translate="MY_ACCOUNT"></h2>
 
 <div class="col-sm-12">
+    <div class="col-sm-12">
+        <fieldset>
+            <legend translate="WELCOME">Welcome</legend>
+            <div class="col-sm-12">
+                <div class="col-sm-6 pad-10">
+                    <span translate="HI">Hi</span>
+                    <b> {{userData.username}}</b>,
+                    <span>welcome to Vapers Cuisine. This is your profile page, here you can edit you data.</span>
+                </div>
+                <div class="col-sm-6 pad-10">
+                    <span>In the left bottom corner of this page, you can find the bug report button <i class="fa fa-bug"></i>. Please do not hesitate to write any suggestion, remark, complain, bug report, etc.</span>
+                </div>
+
+            </div>
+        </fieldset>
+    </div>
     <div class="col-sm-6">
         <form class="form-horizontal" ng-submit="submitUserData()" role="form" name="userForm">
             <fieldset>
