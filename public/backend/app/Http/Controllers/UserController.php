@@ -211,7 +211,7 @@ class UserController extends Controller {
         } else {
             // Generate and save new password.
             $password = $this->generatePassword();
-            $user->password = Hash::make($request->input('password'));
+            $user->password = Hash::make($password);
             $user->save();
 
             // Send new password to user.
