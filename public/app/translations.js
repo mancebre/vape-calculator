@@ -99,7 +99,11 @@ var translationsEN = {
     STILL_SAVE_EMAIL: "Do you still want to save a new email address",
     YES: "Yes",
     NO: "No",
-    WELCOME: "Welcome"
+    WELCOME: "Welcome",
+    WELCOME_TO: "welcome to Vapers Cuisine. This is your profile page, here you can edit your data.",
+    HI: "Hi",
+    IN_LEFT_CORNER: "In the left bottom corner of this page, you can find the bug report button",
+    IN_LEFT_CORNER2: "Use it to write any suggestion, remark, complain, bug report, etc."
 
 };
 
@@ -203,7 +207,11 @@ var translationsRS= {
     STILL_SAVE_EMAIL: "Da li idalje želite da sačuvate novu email adresu",
     YES: "Da",
     NO: "Ne",
-    WELCOME: "Dobrodošli"
+    WELCOME: "Dobrodošli",
+    WELCOME_TO: "dobrodošli na Vapers Cuisine. Ovo je Vaša profilna stranica gde možete izmeniti svoje podatke",
+    HI: "Zdravo",
+    IN_LEFT_CORNER: "U donjem levom uglu ove strane, možete videti \"prijavi grešku\" dugme",
+    IN_LEFT_CORNER2: "Koristite ga da biste napisali bilo koji predlog, primedbu, žalbu, izveštaj o grešci itd."
 
 };
 
