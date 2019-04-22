@@ -1,8 +1,11 @@
 <div class="modal-header">
-    <h1><span translate="EDIT">Edit</span>:</h1>
+    <h1>
+        <span ng-show="notificationType == 'forgotten_password'" translate="FORGOTTEN_PASSWORD">Edit</span>
+        <span ng-show="notificationType == 'resend_activation'" translate="RESEND_ACTIVATION">Edit</span>
+    </h1>
 </div>
 <div style="clear: both"></div>
-<form class="form-horizontal" role="form" ng-submit="sendPasswordResetMail()()">
+<form class="form-horizontal" role="form" ng-submit="send()">
     <div class="modal-body">
         <p ng-show="showError" class="center-text attention" translate="SOMETHING_WENT_WRONG"></p>
         <div class="form-group">

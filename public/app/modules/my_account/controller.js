@@ -1,9 +1,16 @@
 angular.module('gelApp.myAccount', []);
 
 angular.module('gelApp.myAccount').controller('myAccountCtrl',
-    ['$rootScope', '$scope', '$uibModal', 'UserRegistration', 'MyNotify', '$sessionStorage', 'AuthenticationService', '$localStorage', '$window',
-    function ($rootScope, $scope, $uibModal, UserRegistration, MyNotify, $sessionStorage, AuthenticationService, $localStorage, $window)
+    ['$rootScope', '$scope', '$uibModal', 'UserRegistration', 'MyNotify', '$sessionStorage', 'AuthenticationService', '$localStorage', '$location',
+    function ($rootScope, $scope, $uibModal, UserRegistration, MyNotify, $sessionStorage, AuthenticationService, $localStorage, $location)
     {
+
+        // Redirect to login if not logged in
+        if(!$sessionStorage.currentUser) {
+            $rootScope.preLoginRoute = $location.url();
+            $location.url("/login");
+        }
+
         $scope.userId = $sessionStorage.currentUser.user_id;
         $scope.emailInUse = null;
         $scope.notificationText = null;
@@ -63,7 +70,7 @@ angular.module('gelApp.myAccount').controller('myAccountCtrl',
                     // console.log("works");
                     switch (result) {
                         case "login": {
-                            $window.location.href = '/login';
+                            $location.url("/login");
                             break;
                         }
                         case "save_email": {
@@ -71,7 +78,7 @@ angular.module('gelApp.myAccount').controller('myAccountCtrl',
                             break;
                         }
                         case "email_saved": {
-                            $window.location.href = '/login';
+                            $location.url("/login");
                             break;
                         }
                     }

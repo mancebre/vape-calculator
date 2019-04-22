@@ -58,6 +58,8 @@ var translationsEN = {
     LAST_NAME: "Last name",
     NEWSLETTER: "Keep me updated",
     FORGOTTEN_PASSWORD: "Forgotten password",
+    AUTH_YOUR_ACCOUNT: "Please activate your account.",
+    RESEND_ACTIVATION: "Resend activation link",
 
     LOGIN_WARNING: "You have to be logged in to save recipe.",
     WARNING: "Warning",
@@ -166,6 +168,8 @@ var translationsRS= {
     LAST_NAME: "Prezime",
     NEWSLETTER: "Obaveštavaj me",
     FORGOTTEN_PASSWORD: "Zaboravljena lozinka",
+    AUTH_YOUR_ACCOUNT: "Aktivirajte svoj nalog.",
+    RESEND_ACTIVATION: "Ponovo pošalji link za aktivaciju",
 
     LOGIN_WARNING: "Morate biti ulogovani da bi ste sačuvali recept.",
     WARNING: "Obaveštenje",
