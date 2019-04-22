@@ -53,7 +53,12 @@ angular.module('gelApp.user').controller('userCtrl',
 
                 $scope.showError = false;
                 $scope.showBadCredentialsMsg = false;
-                $window.location.href = '/';
+
+                if($rootScope.preLoginRoute) {
+                    $window.location.href = $rootScope.preLoginRoute;
+                } else {
+                    $window.location.href = '/';
+                }
             } else if (result === 404) {
                 $scope.showError = false;
                 $scope.showBadCredentialsMsg = true;

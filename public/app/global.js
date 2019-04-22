@@ -2,15 +2,8 @@
 /* GLOBALS */
 
 App.run(function($rootScope, $http, $translate, $sessionStorage) {
-    $rootScope.testFunc = function () {
-        if($rootScope.toggle) {
-            $rootScope.something = ["one", "two"];
-            $rootScope.toggle = false;
-        } else {
-            $rootScope.something = [1, 2, 3];
-            $rootScope.toggle = true;
-        }
-    };
+
+    $rootScope.preLoginRoute = null;
 
     $rootScope.isLoggedIn = function() {
         return $sessionStorage.currentUser ? true : false;
