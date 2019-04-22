@@ -82,6 +82,7 @@ $router->group(
         $router->post('/emailCheck', 'UserController@emailCheck');
         $router->get('/activate/{key}', 'UserController@activate');
         $router->post('/resetPassword', 'UserController@resetPassword');
+        $router->put('/user/resend_activation', 'UserController@resendActivation');
 
         $router->get('/getAllRecipes', 'RecipeController@getAllRecipes');
         $router->get('/recipe/{id}', 'RecipeController@show');

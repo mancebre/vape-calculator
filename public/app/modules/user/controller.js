@@ -8,6 +8,7 @@ angular.module('gelApp.user').controller('userCtrl',
         $scope.showError = false;
         $scope.showBadCredentialsMsg = false;
         $scope.step = 1; // step number.
+        $scope.notificationType = null;
 
         $scope.loginCredentials = {
             email: ($localStorage.credentials && $localStorage.credentials.email) ? atob($localStorage.credentials.email) : "",
@@ -69,13 +70,39 @@ angular.module('gelApp.user').controller('userCtrl',
         };
 
         $scope.openForgottenPassword = function () {
+            $scope.notificationType = 'forgotten_password';
             $uibModal.open({
                 controller: 'forgottenPasswordCtrl',
                 templateUrl: 'app/modules/modals/forgotten_password/view.html',
-                // backdrop: false
+                // backdrop: false,
+                resolve: {
+                    notificationType: function () {
+                        return $scope.notificationType;
+                    }
+                }
             })
                 .result.then(function(){
                 console.log("works");
+                }, function(res){
+                    console.log("ERROR", res);
+                }
+            );
+        };
+
+        $scope.resendActivationLink = function () {
+            $scope.notificationType = 'resend_activation';
+            $uibModal.open({
+                controller: 'forgottenPasswordCtrl',
+                templateUrl: 'app/modules/modals/forgotten_password/view.html',
+                // backdrop: false,
+                resolve: {
+                    notificationType: function () {
+                        return $scope.notificationType;
+                    }
+                }
+            })
+                .result.then(function(){
+                    console.log("works");
                 }, function(res){
                     console.log("ERROR", res);
                 }
@@ -92,6 +119,6 @@ angular.module('gelApp.user').controller('userCtrl',
             if ($scope.step < 1) {
                 $scope.step = 1;
             }
-        }
+        };
 
 }]);

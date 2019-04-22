@@ -278,4 +278,27 @@ class UserController extends Controller {
 
         return response()->make("Password updated.", 200);
     }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function resendActivation(Request $request)
+    {
+        $user = User::where('email', $request->email)->first();
+        if (!$user) {
+            return response()->make("Email not found", 400);
+        } else {
+
+            // Send activation email
+            $activationEmail = $this->sendActivationEmail($user);
+            $log = [
+                "Email_sent" => $activationEmail,
+                "user_data" => $user
+            ];
+            Log::info("Activation Email", $log);
+
+            return response()->make("Activation email sent.");
+        }
+    }
 }
