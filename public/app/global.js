@@ -13,18 +13,8 @@ App.run(function($rootScope, $http, $translate, $sessionStorage) {
 
     $rootScope.selectedLang = $translate.use(false);
 
-    // // API url LOCAL for testing only!
-    $rootScope.apiUrl = 'http://localhost:8000/api/v1/';
-
-    // // API url TESTING for testing only!
-    // $rootScope.apiUrl = 'http://test.vaperscuisine.com/backend/public/api/v1/';
-
     /* Loading animation */
     $rootScope.loading = false;
-    /**
-     * Maintenance mode
-     */
-    $rootScope.maintenanceMode = true;
 
     $rootScope.facebookAppId = null; // TODO I need facebook app!!!
 
