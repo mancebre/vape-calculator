@@ -122,7 +122,7 @@
         }
 
         function resendActivation(email, callback) {
-            let apiUrl = $rootScope.apiUrl + 'user/resend_activation';
+            let apiUrl = $rootScope.apiUrl + 'resend_activation';
             $http.put(apiUrl, {
                 email: email
             })
@@ -154,7 +154,7 @@
         }
 
         function updatePassword(oldPass, newPass, userId, callback) {
-            let apiUrl = $rootScope.apiUrl + 'user/password/' + userId;
+            let apiUrl = $rootScope.apiUrl + 'password/' + userId;
             $http.put(apiUrl, {
                 oldPass:  oldPass,
                 newPass:  newPass,

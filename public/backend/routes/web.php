@@ -44,7 +44,7 @@ $router->group(
         $router->put('/user/{id}', 'UserController@update');
         $router->delete('/user/{id}', 'UserController@destroy');
         $router->put('/email/{id}', 'UserController@updateEmail');
-        $router->put('/user/password/{id}', 'UserController@updatePassword');
+        $router->put('/password/{id}', 'UserController@updatePassword');
 
         /**
          * Recipe
@@ -82,7 +82,7 @@ $router->group(
         $router->post('/emailCheck', 'UserController@emailCheck');
         $router->get('/activate/{key}', 'UserController@activate');
         $router->post('/resetPassword', 'UserController@resetPassword');
-        $router->put('/user/resend_activation', 'UserController@resendActivation');
+        $router->put('/resend_activation', 'UserController@resendActivation');
 
         $router->get('/getAllRecipes', 'RecipeController@getAllRecipes');
         $router->get('/recipe/{id}', 'RecipeController@show');
