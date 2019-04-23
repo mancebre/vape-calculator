@@ -43,6 +43,8 @@ var translationsEN = {
     ADD_LIQUID_NAME: "Please add recipe name",
     RECIPE_NAME: "Recipe name",
     GENERATE_RECIPE_NAME: "Auto-generate recipe name",
+    DAYS: "days",
+    RATIO: "Ratio",
 
     PASSWORD: "Password:",
     REPASSWORD: "Re enter password:",
@@ -153,6 +155,8 @@ var translationsRS= {
     ADD_LIQUID_NAME: "Dodajte ime recepta",
     RECIPE_NAME: "Ime recepta",
     GENERATE_RECIPE_NAME: "Generisi ime recepta",
+    DAYS: "dana",
+    RATIO: "Ratio",
 
     PASSWORD: "Lozinka:",
     REPASSWORD: "Ponovite lozinku:",

@@ -10,6 +10,8 @@ angular.module('gelApp.newRecipe').controller('newRecipeCtrl', ['$scope', '$http
         $scope.attentionPopup = false;
         $scope.history = [];
 
+        $scope.editable = false;
+
         $scope.translateTootips = function () {
             $scope.tt = tooltipTranslations[$rootScope.selectedLang];
         };

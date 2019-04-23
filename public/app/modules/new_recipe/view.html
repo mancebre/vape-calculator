@@ -27,7 +27,7 @@
 
 <div class="col-sm-12">
 
-    <div class="col-sm-6">
+    <div ng-hide="editable" class="col-sm-6">
         <form class="form-horizontal ingredients-form" ng-submit="submitLiquidForm()" role="form">
             <fieldset>
                 <legend translate="TARGET">Target</legend>
@@ -254,7 +254,7 @@
         </form>
     </div>
 
-    <div class="col-sm-6">
+    <div ng-class="{'col-sm-12': editable, 'col-sm-6': !editable}">
         <fieldset class="recipe-result">
             <legend translate="INGREDIENTS">Ingredients</legend>
             <table class="table">
@@ -305,6 +305,28 @@
                     <td>{{ ingridients.amount.ml | number : 2 }}</td>
                     <td>{{ ingridients.amount.gr | number : 2 }}</td>
                     <td>{{ ingridients.amount.percentage | number : 2 }}</td>
+                </tr>
+                <tr>
+                    <td colspan="4"></td>
+                </tr>
+                <tr>
+                    <td translate="DESIRED_STRENGTH"></td>
+                    <td>{{liquid.desired_strength}}</td>
+                    <td colspan="2">mg</td>
+                </tr>
+                <tr>
+                    <td translate="SUGGESTED_STEP_TIME">Suggested steep time</td>
+                    <td>{{liquid.sleep_time}}</td>
+                    <td colspan="2" translate="DAYS">days</td>
+                </tr>
+                <tr ng-hide="vapeReady">
+                    <td>PG/VG</td>
+                    <td colspan="2">{{liquid.pg}} / {{liquid.vg}}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td width="30%" translate="COMMENT">Comment</td>
+                    <td colspan="3">{{liquid.comment}}</td>
                 </tr>
             </table>
             <div class="form-group link" ng-click="editWeight(key, value);">
