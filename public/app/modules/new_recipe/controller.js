@@ -12,6 +12,10 @@ angular.module('gelApp.newRecipe').controller('newRecipeCtrl', ['$scope', '$http
 
         $scope.editable = false;
 
+        $scope.editRecipe = function() {
+            $scope.editable = !$scope.editable;
+        };
+
         $scope.translateTootips = function () {
             $scope.tt = tooltipTranslations[$rootScope.selectedLang];
         };
@@ -670,7 +674,11 @@ angular.module('gelApp.newRecipe').controller('newRecipeCtrl', ['$scope', '$http
                     angular.forEach(data.recipe_flavors, function (flavor) {
                         $scope.flavorsCount++;
                         $scope.flavorFields.push($scope.flavorsCount);
-                    })
+                    });
+
+                    // if ($scope.liquid.owner) {
+                    //     $scope.editable = true;
+                    // }
                 }, 300 );
 
                 if(status !== 200) {
@@ -695,7 +703,8 @@ angular.module('gelApp.newRecipe').controller('newRecipeCtrl', ['$scope', '$http
             console.log("recipe ID", recipeId);
 
             $scope.loadRecipe(recipeId);
-
+        } else {
+            $scope.editable = true;
         }
 
         $scope.socialNetworks = {

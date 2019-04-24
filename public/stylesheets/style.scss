@@ -90,6 +90,13 @@ body {
     top: 15px;
     right: 20px;
   }
+  .edit-recipe {
+    cursor: pointer;
+    text-align: right;
+    position: absolute;
+    top: 15px;
+    right: 40px;
+  }
   .delete {
     color: $errorColor;
   }
