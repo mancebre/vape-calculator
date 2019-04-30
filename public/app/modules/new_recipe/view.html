@@ -22,8 +22,8 @@
         padding: 3px;
     }
 </style>
- <h2 contenteditable="true" ng-model="liquid.name"></h2>
-<!--<h2>{{liquid.name}}</h2>-->
+<h2 ng-show="editable" contenteditable="true" ng-model="liquid.name"></h2>
+<h2 ng-hide="editable">{{liquid.name}}</h2>
 
 <div class="col-sm-12">
 
@@ -353,7 +353,10 @@
             <legend translate="TOOLS">Tools</legend>
             <div class="btn-group">
 
-                <button ng-click="submitLiquidForm()" ng-show="liquid.owner || !liquid.id" type="button" class="btn btn-primary" >
+                <button ng-click="submitLiquidForm()"
+                        ng-show="liquid.owner || !liquid.id"
+                        type="button"
+                        class="btn btn-primary" >
                     <span translate="SAVE">Save</span> <i class="fa fa-save"></i>
                 </button>
                 <button ng-show="isLoggedIn() && !liquid.owner && liquid.id"
@@ -363,7 +366,7 @@
                         translate="CLONE">
                     <span>Clone</span> <i class="fa fa-clone"></i>
                 </button>
-                <button type="button" class="add-flavor btn btn-default" ng-click="addField();">
+                <button ng-show="editable" type="button" class="add-flavor btn btn-default" ng-click="addField();">
                     <span translate="BUTTON_ADD_FLAVOR">Add flavor</span> <i class="fa fa-plus"></i>
                 </button>
                 <button ng-click="openPrintLabelModal()" class="btn btn-success">
