@@ -1,2 +1,3 @@
 backend/.env
 app/config.js
+backend/storage/logs
