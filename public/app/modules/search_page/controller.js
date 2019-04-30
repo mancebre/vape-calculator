@@ -112,6 +112,8 @@ angular.module('gelApp.searchPage').controller('searchPageCtrl', ['$scope', '$ht
                         MyNotify.notify(200, "Recipe updated successfully.");
                     });
                 }
+            } else {
+                MyNotify.notify(400, "You must be logged in to rate a recipe.");
             }
 
 
