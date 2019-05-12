@@ -1,16 +1,18 @@
 <!-- Footer -->
-<footer ng-controller="FooterController" class="panel-footer">
+<footer ng-show="showFooter" ng-controller="FooterController" class="panel-footer">
 
     <!-- Footer Elements -->
     <div class="col-lg-12">
         <span class="col-lg-4">
-            <button ng-click="reportIssue()" class="btn btn-info" translate="BUG_REPORT">Report a bug <i class="fa fa-bug"></i></button>
+            <button ng-click="reportIssue()" class="btn btn-info">
+                <span id="report_bug" translate="BUG_REPORT">Report a bug</span> <i class="fa fa-bug"></i>
+            </button>
         </span>
     </div>
     <!-- Footer Elements -->
 
     <!-- Copyright -->
-    <div class="text-center copyright">© 2018 Copyright:
+    <div class="text-center copyright">© 2019 Copyright:
         <a href="http://vaperscuisine.com"> vaperscuisine.com</a>
     </div>
     <!-- Copyright -->

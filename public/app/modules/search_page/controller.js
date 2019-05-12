@@ -100,7 +100,7 @@ angular.module('gelApp.searchPage').controller('searchPageCtrl', ['$scope', '$ht
                 if (ratersIds.indexOf($sessionStorage.currentUser.user_id) === -1) {
                     RatingsService.Rate(recipe.id, rating, function () {
                         $scope.getAllRecipes();
-                        MyNotify.notify("Recipe rated successfully.", 200);
+                        MyNotify.notify(200, "Recipe rated successfully.");
                     });
                 } else {
                     // My ratings of this recipe.
@@ -109,9 +109,11 @@ angular.module('gelApp.searchPage').controller('searchPageCtrl', ['$scope', '$ht
                     });
                     RatingsService.Update(myRatings[0].id, rating, function () {
                         $scope.getAllRecipes();
-                        MyNotify.notify("Recipe updated successfully.", 200);
+                        MyNotify.notify(200, "Recipe updated successfully.");
                     });
                 }
+            } else {
+                MyNotify.notify(400, "You must be logged in to rate a recipe.");
             }
 
 

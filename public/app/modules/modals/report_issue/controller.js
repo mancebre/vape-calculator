@@ -15,7 +15,7 @@ angular.module('gelApp.reportIssue').controller('reportIssueCtrl', ['$scope', '$
     $scope.saveIssueReport = function () {
         console.log("save issue", $scope.issueReport);
         IssueReportService.save($scope.issueReport, function (status, data) {
-            MyNotify.notify(data, status);
+            MyNotify.notify(status, data);
             $uibModalInstance.close();
         })
     }

@@ -1,10 +1,14 @@
 angular.module('gelApp.user', []);
 
-angular.module('gelApp.user').controller('userCtrl', ['$rootScope', '$scope', 'AuthenticationService', '$window', '$localStorage', '$sessionStorage', 'md5',
-    function ($rootScope, $scope, AuthenticationService, $window, $localStorage, $sessionStorage, md5)
+angular.module('gelApp.user').controller('userCtrl',
+    ['$rootScope', '$scope', 'AuthenticationService', '$window', '$localStorage', '$sessionStorage', 'md5', '$uibModal',
+    function ($rootScope, $scope, AuthenticationService, $window, $localStorage, $sessionStorage, md5, $uibModal)
     {
+        $scope.errorTxt = "Something went wrong. Please try again";
         $scope.showError = false;
         $scope.showBadCredentialsMsg = false;
+        $scope.step = 1; // step number.
+        $scope.notificationType = null;
 
         $scope.loginCredentials = {
             email: ($localStorage.credentials && $localStorage.credentials.email) ? atob($localStorage.credentials.email) : "",
@@ -42,7 +46,7 @@ angular.module('gelApp.user').controller('userCtrl', ['$rootScope', '$scope', 'A
          *
          * @param result
          */
-        $scope.redirectToHome = function (result)
+        $scope.redirectToHome = function (result, message)
         {
             if (result === 200) {
                 // Remember the user if he choose so.
@@ -50,13 +54,71 @@ angular.module('gelApp.user').controller('userCtrl', ['$rootScope', '$scope', 'A
 
                 $scope.showError = false;
                 $scope.showBadCredentialsMsg = false;
-                $window.location.href = '/';
+
+                if($rootScope.preLoginRoute) {
+                    $window.location.href = $rootScope.preLoginRoute;
+                } else {
+                    $window.location.href = '/';
+                }
             } else if (result === 404) {
                 $scope.showError = false;
                 $scope.showBadCredentialsMsg = true;
             } else {
                 $scope.showError = true;
+                $scope.errorTxt = message;
             }
-        }
+        };
+
+        $scope.openForgottenPassword = function () {
+            $scope.notificationType = 'forgotten_password';
+            $uibModal.open({
+                controller: 'forgottenPasswordCtrl',
+                templateUrl: 'app/modules/modals/forgotten_password/view.html',
+                // backdrop: false,
+                resolve: {
+                    notificationType: function () {
+                        return $scope.notificationType;
+                    }
+                }
+            })
+                .result.then(function(){
+                console.log("works");
+                }, function(res){
+                    console.log("ERROR", res);
+                }
+            );
+        };
+
+        $scope.resendActivationLink = function () {
+            $scope.notificationType = 'resend_activation';
+            $uibModal.open({
+                controller: 'forgottenPasswordCtrl',
+                templateUrl: 'app/modules/modals/forgotten_password/view.html',
+                // backdrop: false,
+                resolve: {
+                    notificationType: function () {
+                        return $scope.notificationType;
+                    }
+                }
+            })
+                .result.then(function(){
+                    console.log("works");
+                }, function(res){
+                    console.log("ERROR", res);
+                }
+            );
+        };
+
+        $scope.next = function () {
+            $scope.step++;
+        };
+
+        $scope.prev = function () {
+            $scope.step--;
+
+            if ($scope.step < 1) {
+                $scope.step = 1;
+            }
+        };
 
 }]);

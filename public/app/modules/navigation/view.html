@@ -1,4 +1,4 @@
-<header ng-controller="DropdownController as vm">
+<header ng-show="showHeader" ng-controller="DropdownController as vm">
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -37,37 +37,105 @@
                     <!--<button type="submit" class="btn btn-default">Submit</button>-->
                 <!--</form>-->
                 <ul class="nav navbar-nav navbar-right">
-                    <li ng-click="vm.isCollapsed = !vm.isCollapsed && vm.isMobile" ng-class="getClass('/new_recipe')">
-                        <a href="/new_recipe"><span translate="NEW_RECIPE"></span> <span class="glyphicon glyphicon-plus"></span></a>
+                    <li ng-click="vm.isCollapsed = !vm.isCollapsed && vm.isMobile"
+                        ng-class="getClass('/new_recipe')">
+                        <a href="/new_recipe">
+                            <span class="glyphicon glyphicon-plus"></span>
+                            <span translate="NEW_RECIPE"></span>
+                        </a>
                     </li>
-                    <li ng-click="vm.isCollapsed = !vm.isCollapsed && vm.isMobile" ng-class="getClass('/nic_shot')">
-                        <a href="/nic_shot"><span translate="NIC_SHOT"></span> <span class="glyphicon glyphicon-leaf"></span></a>
+                    <!--<li ng-click="vm.isCollapsed = !vm.isCollapsed && vm.isMobile" ng-class="getClass('/nic_shot')">-->
+                        <!--<a href="/nic_shot"><span translate="NIC_SHOT"></span> <span class="glyphicon glyphicon-leaf"></span></a>-->
+                    <!--</li>-->
+                    <li ng-click="vm.isCollapsed = !vm.isCollapsed && vm.isMobile"
+                        ng-class="getClass('/search')">
+                        <a href="/search">
+                            <span class="glyphicon glyphicon-search"></span>
+                            <span translate="SEARCH"></span>
+                        </a>
                     </li>
-                    <li ng-click="vm.isCollapsed = !vm.isCollapsed && vm.isMobile" ng-class="getClass('/search')">
-                        <a href="/search"><span translate="SEARCH"></span> <span class="glyphicon glyphicon-search"></span></a>
+                    <li ng-click="vm.isCollapsed = !vm.isCollapsed && vm.isMobile"
+                        ng-hide="isLoggedIn()"
+                        ng-class="getClass('/registration')">
+                        <a href="/registration">
+                            <span translate="REGISTER"></span>
+                        </a>
                     </li>
-                    <li ng-click="vm.isCollapsed = !vm.isCollapsed && vm.isMobile" ng-show="isLoggedIn()" ng-class="getClass('/my_recipes')">
-                        <a href="/my_recipes"><span translate="MY_RECIPES"></span> <span class="glyphicon glyphicon-book"></span></a>
-                    </li>
-                    <li ng-click="vm.isCollapsed = !vm.isCollapsed && vm.isMobile" ng-hide="isLoggedIn()" ng-class="getClass('/registration')">
-                        <a href="/registration"><span translate="REGISTER"></span> <span class="glyphicon glyphicon-user"></span></a>
-                    </li>
-                    <li ng-click="vm.isCollapsed = !vm.isCollapsed && vm.isMobile" ng-hide="isLoggedIn()" ng-class="getClass('/login')">
-                        <a href="/login"><span translate="LOGIN"></span> <span class="glyphicon glyphicon-log-in"></span></a>
-                    </li>
-                    <li ng-click="vm.isCollapsed = !vm.isCollapsed && vm.isMobile" ng-show="isLoggedIn()" ng-class="getClass('/logout')">
-                        <a href="#" ng-click="logoutUser()"><span translate="LOGOUT"></span> <span class="glyphicon glyphicon-log-out"></span></a>
+                    <li ng-click="vm.isCollapsed = !vm.isCollapsed && vm.isMobile"
+                        ng-hide="isLoggedIn()"
+                        ng-class="getClass('/login')">
+                        <a href="/login">
+                            <span class="glyphicon glyphicon-log-in"></span>
+                            <span translate="LOGIN"></span>
+                        </a>
                     </li>
                     <li class="dropdown" uib-dropdown>
-                        <a href="#" class="dropdown-toggle" uib-dropdown-toggle data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span translate="LANGUAGE">Language</span> <span class="caret"></span></a>
+                        <a href="#"
+                           class="dropdown-toggle"
+                           uib-dropdown-toggle
+                           data-toggle="dropdown"
+                           role="button"
+                           aria-haspopup="true"
+                           aria-expanded="false">
+                            <span ng-class="selectedLangClass"></span>
+                            <span class="caret"></span>
+                        </a>
+                        <ul style="min-width: unset" class="dropdown-menu" uib-dropdown-menu>
+                            <li ng-click="vm.isCollapsed = !vm.isCollapsed && vm.isMobile">
+                                <a href="#" ng-click="changeLanguage('rs')"><span class="flag-icon flag-icon-rs"></span></a>
+                            </li>
+                            <li ng-click="vm.isCollapsed = !vm.isCollapsed && vm.isMobile">
+                                <a href="#" ng-click="changeLanguage('en')"><span class="flag-icon flag-icon-gb"></span></a>
+                            </li>
+                            <!--<li><a href="#"><span class="flag-icon flag-icon-gr"></span></a></li>-->
+                            <!--<li><a href="#"><span class="flag-icon flag-icon-gr flag-icon-squared"></span></a></li>-->
+                            <!--<li><a href="#">Something else here</a></li>-->
+                            <!--<li role="separator" class="divider"></li>-->
+                            <!--<li><a href="#">Separated link</a></li>-->
+                        </ul>
+                    </li>
+                    <li ng-show="isLoggedIn()" class="dropdown" uib-dropdown>
+                        <a href="#"
+                           class="dropdown-toggle"
+                           uib-dropdown-toggle
+                           data-toggle="dropdown"
+                           role="button"
+                           aria-haspopup="true"
+                           aria-expanded="false">
+                            <i class="glyphicon glyphicon-user"></i>
+                            <span class="caret"></span>
+                        </a>
                         <ul class="dropdown-menu" uib-dropdown-menu>
-                            <li ng-click="vm.isCollapsed = !vm.isCollapsed && vm.isMobile"><a href="#" ng-click="changeLanguage('rs')" translate="BUTTON_LANG_RS">Action</a></li>
-                            <li ng-click="vm.isCollapsed = !vm.isCollapsed && vm.isMobile"><a href="#" ng-click="changeLanguage('en')" translate="BUTTON_LANG_EN">Action</a></li>
+                            <li ng-class="getClass('/my_account')">
+                                <a href="/my_account">
+                                    <i class="glyphicon glyphicon-user"></i>
+                                    <span translate="MY_ACCOUNT"></span>
+                                </a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li ng-click="vm.isCollapsed = !vm.isCollapsed && vm.isMobile"
+                                ng-show="isLoggedIn()"
+                                ng-class="getClass('/my_recipes')">
+                                <a href="/my_recipes">
+                                    <span class="glyphicon glyphicon-book"></span>
+                                    <span translate="MY_RECIPES"></span>
+                                </a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li role="separator" class="divider"></li>
+                            <li ng-click="vm.isCollapsed = !vm.isCollapsed && vm.isMobile" ng-show="isLoggedIn()">
+                                <a href="#" ng-click="logoutUser()">
+                                    <span class="glyphicon glyphicon-log-out"></span>
+                                    <span translate="LOGOUT"></span>
+                                </a>
+                            </li>
                             <!--<li><a href="#">Action</a></li>-->
                             <!--<li><a href="#">Another action</a></li>-->
                             <!--<li><a href="#">Something else here</a></li>-->
                             <!--<li role="separator" class="divider"></li>-->
                             <!--<li><a href="#">Separated link</a></li>-->
+                            <!--<li role="separator" class="divider"></li>-->
+                            <!--<li><a href="#">One more separated link</a></li>-->
                         </ul>
                     </li>
                 </ul>

@@ -1,55 +1,82 @@
-/* line 9, style.scss */
+/* line 17, style.scss */
 body {
   background: #e2e2e2;
 }
-/* line 10, style.scss */
-body .container {
-  min-height: calc(100vh - 70px);
+/* line 18, style.scss */
+body .pad-10 {
+  padding: 10px;
 }
-/* line 13, style.scss */
+/* line 21, style.scss */
+body .container {
+  min-height: calc(100vh - 150px);
+}
+/* line 24, style.scss */
+body .container .left {
+  text-align: left;
+}
+/* line 28, style.scss */
+body .container .right {
+  text-align: right;
+}
+/* line 32, style.scss */
+body .container .blue-box {
+  margin-top: 40px;
+  border-radius: 5px;
+  background: b7fcff;
+  padding: 20px;
+}
+/* line 39, style.scss */
+body .container .form-wrapper {
+  display: block;
+}
+/* line 45, style.scss */
+body footer #report_bug {
+  display: none;
+}
+/* line 50, style.scss */
 body .recipe-result {
   background-color: #eee;
 }
-/* line 16, style.scss */
+/* line 53, style.scss */
 body .ingredients-form {
   padding-bottom: 25px;
 }
-/* line 19, style.scss */
+/* line 56, style.scss */
 body .notification {
   border-radius: 25px;
   background: #cdf0ce;
   padding: 20px;
   margin-bottom: 15px;
 }
-/* line 25, style.scss */
+/* line 62, style.scss */
 body .center-text {
   text-align: center;
 }
-/* line 28, style.scss */
+/* line 65, style.scss */
 body .help-block {
   color: #d83b3b;
 }
-/* line 31, style.scss */
+/* line 68, style.scss */
 body .attention {
   background-color: pink;
 }
-/* line 35, style.scss */
+/* line 72, style.scss */
 body .settings {
   text-align: center;
 }
-/* line 37, style.scss */
+/* line 74, style.scss */
 body .settings input {
   width: 100px;
 }
-/* line 41, style.scss */
+/* line 78, style.scss */
 body .add-flavor {
   margin-bottom: 25px;
 }
-/* line 45, style.scss */
+/* line 82, style.scss */
 body .flavor-fields fieldset {
   position: relative;
 }
-/* line 49, style.scss */
+/* line 86, style.scss */
 body .link {
   cursor: pointer;
   text-align: right;
@@ -57,11 +84,19 @@ body .link {
   top: 15px;
   right: 20px;
 }
-/* line 56, style.scss */
-body .delete {
-  color: red;
+/* line 93, style.scss */
+body .edit-recipe {
+  cursor: pointer;
+  text-align: right;
+  position: absolute;
+  top: 15px;
+  right: 40px;
 }
-/* line 59, style.scss */
+/* line 100, style.scss */
+body .delete {
+  color: #d83b3b;
+}
+/* line 103, style.scss */
 body fieldset {
   border: 1px groove #ddd !important;
   padding: 0 1.4em 1.4em 1.4em !important;
@@ -69,7 +104,7 @@ body fieldset {
   -webkit-box-shadow: 0px 0px 0px 0px #000;
   box-shadow: 0px 0px 0px 0px #000;
 }
-/* line 66, style.scss */
+/* line 110, style.scss */
 body fieldset legend {
   font-size: 1.2em !important;
   font-weight: bold !important;
@@ -78,29 +113,29 @@ body fieldset legend {
   padding: 0 10px;
   border-bottom: none;
 }
-/* line 76, style.scss */
+/* line 120, style.scss */
 body fieldset .rzslider .rz-pointer {
   background-color: #eeeeee;
 }
-/* line 81, style.scss */
+/* line 125, style.scss */
 body h2 {
   text-align: center;
 }
-/* line 85, style.scss */
+/* line 129, style.scss */
 body .flavor-fields .col-sm-4 {
   padding-left: 6px;
   padding-right: 6px;
 }
-/* line 90, style.scss */
+/* line 134, style.scss */
 body .input-group-addon {
   font-size: 12px;
   padding: 6px 5px;
 }
-/* line 94, style.scss */
+/* line 138, style.scss */
 body .recipe-input {
   display: table;
 }
-/* line 98, style.scss */
+/* line 142, style.scss */
 body .button {
   display: inline-block;
   width: 115px;
@@ -111,166 +146,182 @@ body .button {
   color: white;
   font-weight: bold;
 }
-/* line 109, style.scss */
+/* line 153, style.scss */
 body #loader {
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 999;
+  z-index: 1100;
   width: 100%;
   height: 100%;
   overflow: visible;
   opacity: 0.7;
   background: #333 url("/app/images/loading.gif") no-repeat center center;
 }
-/* line 122, style.scss */
+/* line 166, style.scss */
 body .form-group input[type="checkbox"] {
   display: none;
 }
-/* line 125, style.scss */
+/* line 169, style.scss */
 body .form-group input[type="checkbox"] + .btn-group > label span {
   width: 20px;
 }
-/* line 128, style.scss */
+/* line 172, style.scss */
 body .form-group input[type="checkbox"] + .btn-group > label span:first-child {
   display: none;
 }
-/* line 131, style.scss */
+/* line 175, style.scss */
 body .form-group input[type="checkbox"] + .btn-group > label span:last-child {
   display: inline-block;
 }
-/* line 134, style.scss */
+/* line 178, style.scss */
 body .form-group input[type="checkbox"]:checked + .btn-group > label span:first-child {
   display: inline-block;
 }
-/* line 137, style.scss */
+/* line 181, style.scss */
 body .form-group input[type="checkbox"]:checked + .btn-group > label span:last-child {
   display: none;
 }
-/* line 144, style.scss */
+/* line 188, style.scss */
 body .navbar-default {
   background-color: #eee;
   border: none;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.175);
 }
-/* line 148, style.scss */
+/* line 192, style.scss */
 body .navbar-default .btn-default {
   color: #eee;
 }
-/* line 150, style.scss */
+/* line 194, style.scss */
 body .navbar-default .btn-default:hover {
   background-color: grey;
 }
-/* line 154, style.scss */
+/* line 198, style.scss */
 body .navbar-default .dropdown-menu {
   border: none;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.175);
 }
-/* line 158, style.scss */
+/* line 202, style.scss */
 body .navbar-default .dropdown-menu li > a:hover {
   background-color: grey;
 }
-/* line 163, style.scss */
+/* line 207, style.scss */
 body .navbar-default .navbar-brand {
   color: #464646;
 }
-/* line 165, style.scss */
+/* line 209, style.scss */
 body .navbar-default .navbar-brand:hover {
   color: #000;
 }
-/* line 168, style.scss */
+/* line 212, style.scss */
 body .navbar-default .navbar-brand:focus {
   color: grey;
 }
-/* line 172, style.scss */
+/* line 216, style.scss */
 body .navbar-default .navbar-nav > li > a {
   color: #464646;
 }
-/* line 175, style.scss */
+/* line 219, style.scss */
 body .navbar-default .navbar-nav > .active > a {
   color: #eee;
   background-color: #464646;
 }
-/* line 179, style.scss */
+/* line 223, style.scss */
 body .navbar-default .navbar-nav > .active > a:focus {
   color: #eee;
   background-color: #464646;
 }
-/* line 183, style.scss */
+/* line 227, style.scss */
 body .navbar-default .navbar-nav > .active > a:hover {
   color: #eee;
   background-color: grey;
 }
-/* line 187, style.scss */
+/* line 231, style.scss */
 body .navbar-default .navbar-nav > .open > a {
   color: #eee;
   background-color: #464646;
 }
-/* line 191, style.scss */
+/* line 235, style.scss */
 body .navbar-default .navbar-nav > .open > a:focus {
   color: #eee;
   background-color: #464646;
 }
-/* line 195, style.scss */
+/* line 239, style.scss */
 body .navbar-default .navbar-nav > .open > a:hover {
   color: #eee;
   background-color: grey;
 }
-/* line 199, style.scss */
+/* line 243, style.scss */
 body .navbar-default .navbar-toggle {
   border-color: #464646;
 }
-/* line 201, style.scss */
+/* line 245, style.scss */
 body .navbar-default .navbar-toggle .icon-bar {
   background-color: #464646;
 }
-/* line 204, style.scss */
+/* line 248, style.scss */
 body .navbar-default .navbar-toggle:hover {
   background-color: grey;
 }
-/* line 212, style.scss */
+/* line 256, style.scss */
 body .recipe-list .checked {
   color: orange;
 }
-/* line 216, style.scss */
+/* line 260, style.scss */
 body .recipe-list .stars .rating-star {
   cursor: pointer;
   font-size: 15px;
 }
-/* line 221, style.scss */
+/* line 265, style.scss */
 body .recipe-list .stars :hover {
   font-size: 18px;
   color: #000;
   background: #e7e7e7;
 }
 @media (min-width: 768px) {
-  /* line 229, style.scss */
+  /* line 273, style.scss */
   body .navbar {
     border-radius: 0;
   }
-}
-@media (min-width: 1200px) {
-  /* line 235, style.scss */
+  /* line 277, style.scss */
   body .user-form {
-    padding: 0 350px;
+    width: 350px;
+  }
+  /* line 281, style.scss */
+  body .blue-box {
+    width: 350px;
+  }
+  /* line 285, style.scss */
+  body .form-wrapper {
+    display: flex !important;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    min-height: 100%;
+    padding: 20px;
+  }
+  /* line 296, style.scss */
+  body footer #report_bug {
+    display: inline-block;
   }
 }
 @media (max-width: 320px) {
-  /* line 241, style.scss */
+  /* line 303, style.scss */
   body .table {
     font-size: x-small;
   }
-  /* line 244, style.scss */
+  /* line 306, style.scss */
   body .table > tbody > tr > td, body .table > tbody > tr > th, body .table > tfoot > tr > td, body .table > tfoot > tr > th, body .table > thead > tr > td, body .table > thead > tr > th {
     padding: 3px;
   }
 }
 @media (max-width: 360px) and (min-width: 321px) {
-  /* line 250, style.scss */
+  /* line 312, style.scss */
   body .table {
     font-size: smaller;
   }
-  /* line 253, style.scss */
+  /* line 315, style.scss */
   body .table > tbody > tr > td, body .table > tbody > tr > th, body .table > tfoot > tr > td, body .table > tfoot > tr > th, body .table > thead > tr > td, body .table > thead > tr > th {
     padding: 3px;
   }

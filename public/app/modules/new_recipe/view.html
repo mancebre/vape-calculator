@@ -22,12 +22,12 @@
         padding: 3px;
     }
 </style>
-<!-- <h2 contenteditable="true" ng-model="liquid.name"></h2> -->
-<h2>{{liquid.name}}</h2>
+<h2 ng-show="editable" contenteditable="true" ng-model="liquid.name"></h2>
+<h2 ng-hide="editable">{{liquid.name}}</h2>
 
 <div class="col-sm-12">
 
-    <div class="col-sm-6">
+    <div ng-show="editable" class="col-sm-6">
         <form class="form-horizontal ingredients-form" ng-submit="submitLiquidForm()" role="form">
             <fieldset>
                 <legend translate="TARGET">Target</legend>
@@ -215,7 +215,7 @@
                 </fieldset>
             </div>
 
-            <button type="button" class="add-flavor btn btn-default col-sm-12" ng-click="addField();">
+            <button type="button" class="add-flavor btn btn-default btn-block" ng-click="addField();">
                 <span translate="BUTTON_ADD_FLAVOR">Add flavor</span> <i class="fa fa-plus"></i>
             </button>
 
@@ -246,13 +246,25 @@
 
             </fieldset>
 
-            <button ng-show="liquid.owner || !liquid.id" type="submit" class="btn btn-primary col-sm-12" ><span translate="SAVE">Save</span> <i class="fa fa-save"></i></button>
-            <button ng-show="isLoggedIn() && !liquid.owner && liquid.id" ng-click="submitLiquidForm(true)" type="button" class="btn btn-primary col-sm-12" translate="CLONE"><span>Clone</span> <i class="fa fa-clone"></i> </button>
+            <p ng-show="disableSave && (liquid.owner || !liquid.id)" class="attention">Can't save when there are negative values in ingredients</p>
+
+            <button ng-disabled="disableSave"
+                    ng-show="liquid.owner || !liquid.id"
+                    type="submit" class="btn btn-primary btn-block" >
+                <span translate="SAVE">Save</span> <i class="fa fa-save"></i>
+            </button>
+            <button ng-show="isLoggedIn() && !liquid.owner && liquid.id"
+                    ng-click="submitLiquidForm(true)"
+                    type="button"
+                    class="btn btn-primary btn-block"
+                    translate="CLONE">
+                <span>Clone</span> <i class="fa fa-clone"></i>
+            </button>
             <!--<input type="reset" value="Reset" ng-click="resetForm()">-->
         </form>
     </div>
 
-    <div class="col-sm-6">
+    <div ng-class="{'col-sm-12': !editable, 'col-sm-6': editable}">
         <fieldset class="recipe-result">
             <legend translate="INGREDIENTS">Ingredients</legend>
             <table class="table">
@@ -304,16 +316,47 @@
                     <td>{{ ingridients.amount.gr | number : 2 }}</td>
                     <td>{{ ingridients.amount.percentage | number : 2 }}</td>
                 </tr>
+                <tr>
+                    <td colspan="4"></td>
+                </tr>
+                <tr>
+                    <td translate="DESIRED_STRENGTH"></td>
+                    <td>{{liquid.desired_strength}}</td>
+                    <td colspan="2">mg</td>
+                </tr>
+                <tr>
+                    <td translate="SUGGESTED_STEP_TIME">Suggested steep time</td>
+                    <td>{{liquid.sleep_time}}</td>
+                    <td colspan="2" translate="DAYS">days</td>
+                </tr>
+                <tr ng-hide="vapeReady">
+                    <td>PG/VG</td>
+                    <td colspan="2">{{liquid.pg}} / {{liquid.vg}}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td width="30%" translate="COMMENT">Comment</td>
+                    <td colspan="3">{{liquid.comment}}</td>
+                </tr>
             </table>
             <div class="form-group link" ng-click="editWeight(key, value);">
                 <i class="fa fa-cog" aria-hidden="true"></i>
+            </div>
+            <div ng-hide="editable" class="form-group edit-recipe" ng-click="editRecipe();">
+                <i class="fa fa-edit" aria-hidden="true"></i>
+            </div>
+            <div ng-show="editable" class="form-group edit-recipe" ng-click="editRecipe();">
+                <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
             </div>
         </fieldset>
         <fieldset class="tool-buttons">
             <legend translate="TOOLS">Tools</legend>
             <div class="btn-group">
 
-                <button ng-click="submitLiquidForm()" ng-show="liquid.owner || !liquid.id" type="button" class="btn btn-primary" >
+                <button ng-click="submitLiquidForm()"
+                        ng-show="liquid.owner || !liquid.id"
+                        type="button"
+                        class="btn btn-primary" >
                     <span translate="SAVE">Save</span> <i class="fa fa-save"></i>
                 </button>
                 <button ng-show="isLoggedIn() && !liquid.owner && liquid.id"
@@ -323,7 +366,7 @@
                         translate="CLONE">
                     <span>Clone</span> <i class="fa fa-clone"></i>
                 </button>
-                <button type="button" class="add-flavor btn btn-default" ng-click="addField();">
+                <button ng-show="editable" type="button" class="add-flavor btn btn-default" ng-click="addField();">
                     <span translate="BUTTON_ADD_FLAVOR">Add flavor</span> <i class="fa fa-plus"></i>
                 </button>
                 <button ng-click="openPrintLabelModal()" class="btn btn-success">

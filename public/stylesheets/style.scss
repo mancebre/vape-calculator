@@ -1,15 +1,52 @@
-$primaryColor: #e2e2e2;
+$loader: '/app/images/loading.gif';$primaryColor: #e2e2e2;
+
+$formWidth: 350px;
+
 $secondaryColor: #c0c600;
-$loader: '/app/images/loading.gif';
 $navBackgroundColor1: #eee;
-$navBackgroundColor2: grey;
+$navHoverColor: grey;
 $navColor: #464646;
-$errorRed: #d83b3b;
+$navShadowColor: 0 1px 1px rgba(0, 0, 0, 0.175);
+$errorColor: #d83b3b;
+$attentionColor: pink;
+$sliderBackgroundColor: #eeeeee;
+$starsHoverColor: #e7e7e7;
+$checkedStarColor: orange;
+$blueBoxColor: b7fcff;
 
 body {
-  .container {
-    min-height: calc(100vh - 70px);
+  .pad-10 {
+    padding: 10px;
   }
+  .container {
+    min-height: calc(100vh - 150px);
+
+    .left {
+      text-align: left;
+    }
+
+    .right {
+      text-align: right;
+    }
+
+    .blue-box {
+      margin-top: 40px;
+      border-radius: 5px;
+      background: $blueBoxColor;
+      padding: 20px;
+    }
+
+    .form-wrapper {
+      display: block;
+    }
+  }
+
+  footer {
+    #report_bug {
+      display: none;
+    }
+  }
+
   .recipe-result {
     background-color: $navBackgroundColor1;
   }
@@ -26,11 +63,11 @@ body {
     text-align: center;
   }
   .help-block {
-    color: $errorRed;
+    color: $errorColor;
   }
   .attention {
     //border: solid 3px red;
-    background-color: pink;
+    background-color: $attentionColor;
   }
   .settings {
     text-align: center;
@@ -53,8 +90,15 @@ body {
     top: 15px;
     right: 20px;
   }
+  .edit-recipe {
+    cursor: pointer;
+    text-align: right;
+    position: absolute;
+    top: 15px;
+    right: 40px;
+  }
   .delete {
-    color: red;
+    color: $errorColor;
   }
   fieldset {
     border: 1px groove #ddd !important;
@@ -74,7 +118,7 @@ body {
 
     .rzslider {
       .rz-pointer {
-        background-color: #eeeeee;
+        background-color: $sliderBackgroundColor;
       }
     }
   }
@@ -110,7 +154,7 @@ body {
     position: fixed;
     left: 0;
     top: 0;
-    z-index: 999;
+    z-index: 1100;
     width: 100%;
     height: 100%;
     overflow: visible;
@@ -144,19 +188,19 @@ body {
   .navbar-default {
     background-color: $navBackgroundColor1;
     border: none;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.175);
+    box-shadow: $navShadowColor;
     .btn-default {
       color: $navBackgroundColor1;
       &:hover {
-        background-color: $navBackgroundColor2;
+        background-color: $navHoverColor;
       }
     }
     .dropdown-menu {
       border: none;
-      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.175);
+      box-shadow: $navShadowColor;
       li > a {
         &:hover {
-          background-color: $navBackgroundColor2;
+          background-color: $navHoverColor;
         }
       }
     }
@@ -166,7 +210,7 @@ body {
         color: #000;
       }
       &:focus {
-        color: $navBackgroundColor2;
+        color: $navHoverColor;
       }
     }
     .navbar-nav > li > a {
@@ -182,7 +226,7 @@ body {
     }
     .navbar-nav > .active > a:hover {
       color: $navBackgroundColor1;
-      background-color: $navBackgroundColor2;
+      background-color: $navHoverColor;
     }
     .navbar-nav > .open > a {
       color: $navBackgroundColor1;
@@ -194,7 +238,7 @@ body {
     }
     .navbar-nav > .open > a:hover {
       color: $navBackgroundColor1;
-      background-color: $navBackgroundColor2;
+      background-color: $navHoverColor;
     }
     .navbar-toggle {
       border-color: $navColor;
@@ -202,7 +246,7 @@ body {
         background-color: $navColor;
       }
       &:hover {
-        background-color: $navBackgroundColor2;
+        background-color: $navHoverColor;
       }
     }
   }
@@ -210,7 +254,7 @@ body {
   .recipe-list {
 
     .checked {
-      color: orange;
+      color: $checkedStarColor;
     }
     .stars {
       .rating-star {
@@ -221,7 +265,7 @@ body {
     .stars :hover {
       font-size: 18px;
       color: #000;
-      background: #e7e7e7;
+      background: $starsHoverColor;
     }
   }
 
@@ -229,11 +273,29 @@ body {
     .navbar {
       border-radius: 0;
     }
-  }
 
-  @media (min-width: 1200px) {
     .user-form {
-      padding: 0 350px;
+      width: $formWidth;
+    }
+
+    .blue-box {
+      width: $formWidth;
+    }
+
+    .form-wrapper {
+      display: flex !important;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+      min-height: 100%;
+      padding: 20px;
+    }
+
+    footer {
+      #report_bug {
+        display: inline-block;
+      }
     }
   }
 

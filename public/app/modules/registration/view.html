@@ -1,83 +1,119 @@
 <h2 translate="REGISTER"></h2>
 
-<div class="col-sm-12 user-form">
-    <p ng-show="showError" class="center-text attention" translate="SOMETHING_WENT_WRONG"></p>
-    <p ng-show="showBadCredentialsMsg" class="center-text attention" translate="BAD_CREDENTIALS"></p>
-    <p ng-show="showServerMsg" class="center-text attention">{{serverMessage}}</p>
-    <div ng-show="signupSussesfull" class="center-text notification">
-        <p>Thank you, you have successfully signup!</p>
-        <p>Click <a href="/">here</a> to go to vape calculator. </p>
-    </div>
-    <form ng-hide="signupSussesfull" class="form-horizontal" ng-submit="submitSignupForm()" role="form" name="signupForm" novalidate>
-        <div class="form-group">
-            <label class="control-label col-sm-4" for="email">Email:</label>
-            <div class="col-sm-8">
-                <input ng-blur="emailCheck()" type="email" class="form-control" id="email" name="email" placeholder="Enter email" ng-model="registration.email" required
-                       ng-class="((signupForm.email.$dirty && signupForm.email.$invalid) || emailInUse) ? 'attention' : ''">
-                <p ng-show="signupForm.email.$invalid && !signupForm.email.$pristine" class="help-block">Enter a valid email.</p>
-                <p ng-show="emailInUse" class="help-block">Email you entered is already in use.</p>
-            </div>
+<div class="form-wrapper">
+    <div class="col-sm-12 user-form">
+        <p ng-show="showError" class="center-text attention" translate="SOMETHING_WENT_WRONG"></p>
+        <p ng-show="showBadCredentialsMsg" class="center-text attention" translate="BAD_CREDENTIALS"></p>
+        <p ng-show="showServerMsg" class="center-text attention">{{serverMessage}}</p>
+        <div ng-show="signupSussesfull" class="center-text notification">
+            <p>Thank you, you have successfully signup!</p>
+            <p>Click <a href="/">here</a> to go to vape calculator. </p>
         </div>
-        <div class="form-group">
-            <label class="control-label col-sm-4" for="username" translate="USERNAME">Username:</label>
-            <div class="col-sm-8">
-                <input ng-blur="usernameCheck()" type="text" class="form-control" id="username" name="username" placeholder="Enter username" ng-model="registration.username" required
-                       ng-class="((signupForm.username.$dirty && signupForm.username.$invalid) || usernameInUse) ? 'attention' : ''">
-                <p ng-show="signupForm.username.$invalid && !signupForm.username.$pristine" class="help-block">Enter a valid username.</p>
-                <p ng-show="usernameInUse" class="help-block">Username you entered is already in use.</p>
+        <div ng-show="step === 2" class="right col-sm-12"><a ng-click="prev()" href="#">Back</a> </div>
+        <form ng-hide="signupSussesfull"
+              class="form-horizontal"
+              ng-submit="submitSignupForm()"
+              role="form" name="signupForm"
+              novalidate>
+            <div ng-show="step === 1" class="form-group">
+                <label class="col-sm-12" for="email">Email:</label>
+                <div class="col-sm-12">
+                    <input type="email"
+                           class="form-control"
+                           id="email"
+                           name="email"
+                           placeholder="Enter email"
+                           ng-model="registration.email"
+                           required
+                           ng-class="((signupForm.email.$dirty && signupForm.email.$invalid) || emailInUse) ? 'attention' : ''">
+                    <p ng-show="signupForm.email.$invalid && !signupForm.email.$pristine" class="help-block">Enter a valid email.</p>
+                    <p ng-show="emailInUse" class="help-block">Email you entered is already in use.</p>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-4" for="firstname" translate="FIRST_NAME">First name:</label>
-            <div class="col-sm-8">
-                <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter first name" ng-model="registration.firstname"
-                       ng-class="(signupForm.firstname.$dirty && signupForm.firstname.$invalid) ? 'attention' : ''">
-                <p ng-show="signupForm.firstname.$invalid && !signupForm.firstname.$pristine" class="help-block">Enter a valid first name.</p>
+            <div ng-show="step === 1" class="form-group">
+                <label class="col-sm-12" for="username" translate="USERNAME">Username:</label>
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" ng-model="registration.username" required
+                           ng-class="((signupForm.username.$dirty && signupForm.username.$invalid) || usernameInUse) ? 'attention' : ''">
+                    <p ng-show="signupForm.username.$invalid && !signupForm.username.$pristine" class="help-block">Enter a valid username.</p>
+                    <p ng-show="usernameInUse" class="help-block">Username you entered is already in use.</p>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-4" for="lastname" translate="LAST_NAME">Last name:</label>
-            <div class="col-sm-8">
-                <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Enter last name" ng-model="registration.lastname"
-                       ng-class="(signupForm.lastname.$dirty && signupForm.lastname.$invalid) ? 'attention' : ''">
-                <p ng-show="signupForm.lastname.$invalid && !signupForm.lastname.$pristine" class="help-block">Enter a valid first name.</p>
+            <div ng-show="step === 2" class="form-group">
+                <label class="col-sm-12" for="password" translate="PASSWORD">Password:</label>
+                <div class="col-sm-12">
+                    <input ng-keyup="passwordStrength()"
+                           type="password"
+                           class="form-control"
+                           id="password"
+                           name="password"
+                           placeholder="Enter password"
+                           ng-model="registration.password"
+                           ng-minlength="6"
+                           ng-maxlength="100"
+                           required
+                           ng-class="(signupForm.password.$dirty
+                           && signupForm.password.$invalid
+                           && signupForm.confirmPassword.$error.equal) ? 'attention' : ''">
+                    <p ng-show="signupForm.password.$error.minlength" class="help-block">Password is too short.</p>
+                    <p ng-show="signupForm.password.$error.maxlength" class="help-block">Password is too long.</p>
+                    <p id="password_strength"></p>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-4" for="password" translate="PASSWORD">Password:</label>
-            <div class="col-sm-8">
-                <input ng-keyup="passwordStrength()" type="password" class="form-control" id="password" name="password" placeholder="Enter password" ng-model="registration.password"
-                       ng-minlength="6" ng-maxlength="100" required ng-class="(signupForm.password.$dirty && signupForm.password.$invalid && signupForm.confirmPassword.$error.equal) ? 'attention' : ''">
-                <p ng-show="signupForm.password.$error.minlength" class="help-block">Password is too short.</p>
-                <p ng-show="signupForm.password.$error.maxlength" class="help-block">Password is too long.</p>
-                <p id="password_strength"></p>
+            <div ng-show="step === 2" class="form-group">
+                <label class="col-sm-12" for="password" translate="REPASSWORD">Re enter password:</label>
+                <div class="col-sm-12">
+                    <input type="password"
+                           class="form-control"
+                           id="confirmPassword"
+                           name="confirmPassword"
+                           placeholder="Re enter password"
+                           ng-model="registration.confirmPassword"
+                           ng-minlength="6"
+                           ng-maxlength="100"
+                           required
+                           equal="{{registration.password}}"
+                           ng-class="(signupForm.confirmPassword.$error.equal) ? 'attention' : ''">
+                    <p ng-show="signupForm.confirmPassword.$error.equal" class="help-block">Password and re password must be same.</p>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-4" for="password" translate="REPASSWORD">Re enter password:</label>
-            <div class="col-sm-8">
-                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Re enter password" ng-model="registration.confirmPassword"
-                       ng-minlength="6" ng-maxlength="100" required equal="{{registration.password}}" ng-class="(signupForm.confirmPassword.$error.equal) ? 'attention' : ''">
-                <p ng-show="signupForm.confirmPassword.$error.equal" class="help-block">Password and re password must be same.</p>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="fancy-checkbox-default" class="control-label col-sm-4">
-                <span translate="NEWSLETTER">Keep me updated</span>
-            </label>
-
-            <input type="checkbox" name="fancy-checkbox-default" id="fancy-checkbox-default" autocomplete="off" ng-model="registration.newsletter" />
-            <div class="col-sm-5 btn-group">
-                <label for="fancy-checkbox-default" class="btn btn-default">
-                    <span class="glyphicon glyphicon-ok"></span>
-                    <span> </span>
+            <div ng-show="step === 2" class="form-group">
+                <label for="fancy-checkbox-default" class="control-label col-sm-8">
+                    <span translate="NEWSLETTER">Keep me updated</span>
                 </label>
+
+                <input type="checkbox" name="fancy-checkbox-default" id="fancy-checkbox-default" autocomplete="off" ng-model="registration.newsletter" />
+                <div class="col-sm-4 btn-group">
+                    <label for="fancy-checkbox-default" class="btn btn-default">
+                        <span class="glyphicon glyphicon-ok"></span>
+                        <span> </span>
+                    </label>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-4 col-sm-8">
-                <button ng-disabled="signupForm.$invalid" type="submit" class="btn btn-default" translate="REGISTER">Signup</button>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <button ng-show="step === 2"
+                            ng-disabled="signupForm.$invalid"
+                            type="submit"
+                            class="btn btn-primary btn-block"
+                            translate="REGISTER">Signup</button>
+                    <button ng-click="next()"
+                            ng-show="step === 1"
+                            ng-disabled="registration.email.length < 1
+                            || (signupForm.email.$invalid && !signupForm.email.$pristine)"
+                            type="button"
+                            class="btn btn-primary btn-block"
+                            translate="NEXT">Next</button>
+                </div>
             </div>
-        </div>
-    </form>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <a href="/">Home</a>
+                </div>
+                <div class="col-sm-12">
+                    <a href="/login">Login</a>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>

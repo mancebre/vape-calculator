@@ -10,6 +10,7 @@
 
         service.Login = Login;
         service.Logout = Logout;
+        service.ActivateAccount = ActivateAccount;
 
         return service;
 
@@ -57,15 +58,38 @@
                 })
                 .catch(function(response) {
                     console.log('error', response);
-                    callback(response.status);
+                    callback(response.status, response.data);
             });
         }
 
-        function Logout() {
+        /**
+         *
+         * @constructor
+         */
+        function Logout(callback) {
             // remove user from local storage and clear http auth header
             delete $sessionStorage.currentUser;
             $http.defaults.headers.common.Authorization = '';
             sessionStorage.removeItem("Token");
+            callback();
+        }
+
+        /**
+         *
+         * @param accountKey
+         * @param callback
+         * @constructor
+         */
+        function ActivateAccount(accountKey, callback) {
+            let apiUrl = $rootScope.apiUrl + 'activate/' + accountKey;
+            $http.get(apiUrl, {})
+                .then(function (response) {
+                    callback(response.status, response.data);
+                })
+                .catch(function(response) {
+                    console.log('error', response);
+                    callback(response.status, response.data);
+                });
         }
     }
 })();

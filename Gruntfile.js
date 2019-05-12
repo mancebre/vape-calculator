@@ -1,5 +1,7 @@
 module.exports = function(grunt) {
 
+    var history = require('connect-history-api-fallback');
+
 	grunt.initConfig({
 		jshint: {
 			files: ['Gruntfile.js']
@@ -7,6 +9,10 @@ module.exports = function(grunt) {
 		connect: {
 			server: {
 				options: {
+                    middleware: function(connect, options, middleware) {
+                        middleware.unshift(history());
+                        return middleware;
+                    },
 					port: 9002,
 					base: './public/',
 					open: true

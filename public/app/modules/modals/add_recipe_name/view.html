@@ -1,0 +1,21 @@
+<div class="modal-header">
+    <h2><span translate="RECIPE_NAME">Recipe Name</span></h2>
+</div>
+<div style="clear: both"></div>
+<div class="modal-body">
+    <div class="col-sm-12">
+        <div class="col-sm-7">
+            <input ng-model="liquidName" type="text" id="liquidName" class="form-control">
+        </div>
+        <div class="col-sm-5">
+            <button ng-click="generateLiquidName()" class="btn btn-success btn-block" translate="GENERATE_RECIPE_NAME">Generate</button>
+        </div>
+    </div>
+    <div style="clear: both"></div>
+</div>
+<div style="clear: both"></div>
+<div class="modal-footer">
+    <button ng-click="save()" class="btn btn-primary" ng-disabled="liquidName < 3" translate="SAVE">Save</button>
+    <button ng-click="close()" class="btn" translate="CLOSE">close</button>
+</div>
+<div style="clear: both"></div>

@@ -12,7 +12,7 @@
 
         return service;
 
-        function notify(notification, type) {
+        function notify(type, notification) {
             let notificationClass;
             if (type > 0 && type < 200) {
                 notificationClass = 'alert alert-info';

@@ -4,10 +4,17 @@ angular.module('gelApp.newRecipe').controller('newRecipeCtrl', ['$scope', '$http
     function ($scope, $http, $translate, $uibModal, tooltipTranslations, $rootScope, $location, RecipeService, $routeParams, $timeout, $sessionStorage, MyNotify) {
 
         $scope.duplicateFlavorNames = false;
+        $scope.disableSave = true;
 
         // This is true when attention popup is open.
         $scope.attentionPopup = false;
         $scope.history = [];
+
+        $scope.editable = false;
+
+        $scope.editRecipe = function() {
+            $scope.editable = !$scope.editable;
+        };
 
         $scope.translateTootips = function () {
             $scope.tt = tooltipTranslations[$rootScope.selectedLang];
@@ -60,6 +67,29 @@ angular.module('gelApp.newRecipe').controller('newRecipeCtrl', ['$scope', '$http
                 .result.then(function(result){
                     if(result) {
                         $scope.weights = result;
+                    }
+                }, function(res){
+                    console.log(res);
+                }
+            );
+        };
+
+        $scope.openAddNameModal = function() {
+            $uibModal.open({
+                controller: 'addRecipeNameCtrl',
+                templateUrl: 'app/modules/modals/add_recipe_name/view.html',
+                backdrop: false,
+                resolve: {
+                    item: function () {
+                        return $scope.liquid;
+                    }
+                }
+            })
+                .result.then(function(result){
+                    if(result) {
+                        $scope.liquid.name = result;
+                        // When we have name we can save recipe.
+                        $scope.submitLiquidForm();
                     }
                 }, function(res){
                     console.log(res);
@@ -216,9 +246,14 @@ angular.module('gelApp.newRecipe').controller('newRecipeCtrl', ['$scope', '$http
 
         //5. create submitStudentForm() function. This will be called when user submits the form
         $scope.submitLiquidForm = function (clone) {
+            // If name is not set open a popup for user to add a name and offer user to auto generate name.
+            if ($scope.liquid.name.length < 1) {
+                $scope.openAddNameModal();
+                return false;
+            }
 
             if ($scope.duplicateFlavorNames) {
-                MyNotify.notify("You have duplicate flavor names, please change one of duplicated flavor names...", 400);
+                MyNotify.notify(400, "You have duplicate flavor names, please change one of duplicated flavor names...");
             } else {
                 // TODO This data should be parsed in one level object.
                 $scope.liquid.vapeReady = $scope.vapeReady;
@@ -241,7 +276,7 @@ angular.module('gelApp.newRecipe').controller('newRecipeCtrl', ['$scope', '$http
                             });
 
                             if(status !== 200) {
-                                MyNotify.notify("Something went wrong, please try again.", status);
+                                MyNotify.notify(status, "Something went wrong, please try again.");
                             } else if (status === 200) {
                                 $location.url('/my_recipes');
                             }
@@ -256,7 +291,7 @@ angular.module('gelApp.newRecipe').controller('newRecipeCtrl', ['$scope', '$http
                             });
 
                             if(status !== 200) {
-                                MyNotify.notify("Something went wrong, please try again.", status);
+                                MyNotify.notify(status, "Something went wrong, please try again.");
                             } else if (status === 200) {
                                 $location.url('/my_recipes');
                             }
@@ -395,6 +430,10 @@ angular.module('gelApp.newRecipe').controller('newRecipeCtrl', ['$scope', '$http
                     liquid: tempLiquid,
                     time: new Date()
                 });
+
+                $scope.disableSave = false;
+            } else {
+                $scope.disableSave = true;
             }
 
             // Calculate vape-base
@@ -474,7 +513,6 @@ angular.module('gelApp.newRecipe').controller('newRecipeCtrl', ['$scope', '$http
                 $scope.calculateGrams();
                 $scope.calculateTotal();
             }
-            $scope.generateLiquidName();
         };
 
         $scope.generateLiquidName = function() {
@@ -484,8 +522,13 @@ angular.module('gelApp.newRecipe').controller('newRecipeCtrl', ['$scope', '$http
                 $scope.liquid.name += val.name + ", ";
             });
 
-            $scope.liquid.name += $scope.liquid.pg + "/" + $scope.liquid.vg + ", ";
-            $scope.liquid.name += $scope.liquid.desired_strength + " mg";
+            if($scope.vapeReady) {
+                $scope.liquid.name += $scope.liquid.nicotine.pg + "/" + $scope.liquid.nicotine.vg + ", ";
+                $scope.liquid.name += $scope.liquid.nicotine.strength + " mg";
+            } else {
+                $scope.liquid.name += $scope.liquid.pg + "/" + $scope.liquid.vg + ", ";
+                $scope.liquid.name += $scope.liquid.desired_strength + " mg";
+            }
         };
 
         $scope.openPrintLabelModal = function() {
@@ -515,7 +558,7 @@ angular.module('gelApp.newRecipe').controller('newRecipeCtrl', ['$scope', '$http
             let isConfirmed = confirm("Are you sure to delete this record ?");
             if (isConfirmed && $scope.liquid.id) {
                 RecipeService.deleteRecipe($scope.liquid.id, function (status, data) {
-                    MyNotify.notify(data, status);
+                    MyNotify.notify(status, data);
                     $location.url('/my_recipes');
                 });
             } else {
@@ -585,6 +628,12 @@ angular.module('gelApp.newRecipe').controller('newRecipeCtrl', ['$scope', '$http
         $scope.loadRecipe = function (recipeId) {
             RecipeService.getRecipe(recipeId, function (status, data) {
 
+                if (status == 204) {
+                    console.log("Recipe is missing");
+                    $location.url('/');
+                    return false;
+                }
+
                 console.log({
                     status: status,
                     data:   data
@@ -610,7 +659,7 @@ angular.module('gelApp.newRecipe').controller('newRecipeCtrl', ['$scope', '$http
                     $scope.liquid.desired_strength = data.desired_strength;
                     $scope.liquid.pg = data.pg;
                     $scope.liquid.vg = data.vg;
-                    $scope.liquid.nicotine.strength = 70;
+                    $scope.liquid.nicotine.strength = data.nicotine_strength;
                     $scope.liquid.nicotine.pg = data.nicotine_pg;
                     $scope.liquid.nicotine.vg = data.nicotine_vg;
                     $scope.liquid.wvpga = data.wvpga;
@@ -625,11 +674,15 @@ angular.module('gelApp.newRecipe').controller('newRecipeCtrl', ['$scope', '$http
                     angular.forEach(data.recipe_flavors, function (flavor) {
                         $scope.flavorsCount++;
                         $scope.flavorFields.push($scope.flavorsCount);
-                    })
+                    });
+
+                    // if ($scope.liquid.owner) {
+                    //     $scope.editable = true;
+                    // }
                 }, 300 );
 
                 if(status !== 200) {
-                    MyNotify.notify("Something went wrong, please try again.", status);
+                    MyNotify.notify(status, "Something went wrong, please try again.");
                 }
             });
         };
@@ -650,7 +703,8 @@ angular.module('gelApp.newRecipe').controller('newRecipeCtrl', ['$scope', '$http
             console.log("recipe ID", recipeId);
 
             $scope.loadRecipe(recipeId);
-
+        } else {
+            $scope.editable = true;
         }
 
         $scope.socialNetworks = {

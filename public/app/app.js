@@ -18,10 +18,15 @@ var App = angular.module("gelApp", [
     'gelApp.FooterController',
     'gelApp.editWeights',
     'gelApp.loginWarning',
+    'gelApp.addRecipeName',
+    'gelApp.forgottenPassword',
     'gelApp.reportIssue',
     'gelApp.printLabel',
     'gelApp.my_recipes',
     'gelApp.searchPage',
     'ngStorage',
-    'gelApp.openAttention'
+    'gelApp.activateAccount',
+    'gelApp.myAccount',
+    'gelApp.openAttention',
+    'gelApp.loginAgainNotification'
 ]);
