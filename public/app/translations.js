@@ -93,7 +93,7 @@ var translationsEN = {
     CHANGE_PASSWORD: "Change password",
     CONFIRM_EMAIL: "Confirm email",
     CURRENT_PASSWORD: "Current password",
-    NEW_PASSWORD: "Nova lozinka",
+    NEW_PASSWORD: "New password",
     LOGIN_LOGOUT_WARNING: "Data you just changed will be updated when you login next time.",
     CHANGE_EMAIL_WARNING: "After you change your email you will be logged out and your account will be deactivated.\n" +
         "You will have to go to your newly added email and click to activation link to re-activate your account,\n" +
