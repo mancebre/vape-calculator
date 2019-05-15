@@ -2,19 +2,27 @@ angular.module('gelApp.nicShot', []);
 
 angular.module('gelApp.nicShot').controller('nicShotCtrl', ['$scope', function ($scope) {
 	$scope.juice = {
-        totalMl: 50,
-        nicConcentration: 0, // ml/mg
-        concentrationOfNicShot: 20, // ml/mg
-        desiredStrength: 10, // ml/mg
-        resultMl: 50
+        totalMl: null,
+        nicConcentration: null, // ml/mg
+        concentrationOfNicShot: null, // ml/mg
+        desiredStrength: null, // ml/mg
+        resultMl: null
     };
 
-	// TODO koncentracija nikotina trenutne tecnosti fali u jednacini!!!
+    $scope.calculate = function() {
+        if($scope.juice.totalMl !== null
+            && $scope.juice.nicConcentration !== null
+            && $scope.juice.concentrationOfNicShot !== null
+            && $scope.juice.desiredStrength !== null) {
+                
+                // TODO Need more validation!!!
+                $scope.juice.resultMl = ($scope.juice.desiredStrength - $scope.juice.nicConcentration)
+                / ($scope.juice.concentrationOfNicShot - $scope.juice.desiredStrength) * $scope.juice.totalMl;
+                $scope.juice.resultMl = $scope.juice.resultMl.toFixed(2);
+        }
+    }
 
 	$scope.$watch('juice', function (newVal, oldVal) {
-        $scope.juice.resultMl = ($scope.juice.desiredStrength * $scope.juice.totalMl) / 20;
+        $scope.calculate();
     }, true);
-        /**
-         * resultMl = desiredStrength * 0.05 * totalMl
-         */
 }]);
