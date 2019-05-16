@@ -67,7 +67,7 @@ var translationsEN = {
     WARNING: "Warning",
 
     NEW_RECIPE: "New recipe",
-    NIC_SHOT: "Add nikotin",
+    NIC_SHOT: "Nikotin shot",
     MY_RECIPES: "My recipes",
     SEARCH: "Search",
     SAVE: "Save",

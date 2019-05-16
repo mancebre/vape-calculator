@@ -1,43 +1,62 @@
 <h2>Nicotine Shot Calculator</h2>
 
 
-<div class="col-sm-12  user-form">
+<div class="col-sm-6">
     <form class="form-horizontal" ng-submit="submitSignupForm()" role="form" name="signupForm" novalidate>
-        <div class="form-group">
-            <label class="control-label col-sm-8" for="totalMl">Amount of liquid in ML:</label>
-            <div class="col-sm-4 recipe-input">
-                <input type="number" class="form-control" id="totalMl" name="totalMl" ng-model="juice.totalMl">
-                <span class="input-group-addon">mg/ml</span>
+        <fieldset>
+            <legend translate="NIC_SHOT">Nicotine shot</legend>
+            <div class="form-group">
+                <label class="control-label col-sm-8" for="totalMl">Amount of liquid in ML:</label>
+                <div class="col-sm-4 recipe-input">
+                    <input type="number" 
+                    class="form-control" 
+                    id="totalMl" 
+                    name="totalMl" 
+                    ng-model="juice.totalMl">
+                    <span class="input-group-addon">mg/ml</span>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-8" for="nicConcentration">Current concentration of nicotine:</label>
-            <div class="col-sm-4 recipe-input">
-                <input type="number" class="form-control" id="nicConcentration" name="nicConcentration" ng-model="juice.nicConcentration">
-                <span class="input-group-addon">mg/ml</span>
+            <div class="form-group">
+                <label class="control-label col-sm-8" for="nicConcentration">Current concentration of nicotine:</label>
+                <div class="col-sm-4 recipe-input">
+                    <input type="number" 
+                    class="form-control" 
+                    id="nicConcentration" 
+                    name="nicConcentration" 
+                    ng-model="juice.nicConcentration">
+                    <span class="input-group-addon">mg/ml</span>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-8" for="concentrationOfNicShot">Concentration of nicotine shot:</label>
-            <div class="col-sm-4 recipe-input">
-                <input type="number" class="form-control" id="concentrationOfNicShot" name="concentrationOfNicShot" ng-model="juice.concentrationOfNicShot">
-                <span class="input-group-addon">mg/ml</span>
+            <div class="form-group">
+                <label class="control-label col-sm-8" for="concentrationOfNicShot">Concentration of nicotine shot:</label>
+                <div class="col-sm-4 recipe-input">
+                    <input type="number" 
+                    class="form-control" 
+                    id="concentrationOfNicShot" 
+                    name="concentrationOfNicShot" 
+                    ng-model="juice.concentrationOfNicShot">
+                    <span class="input-group-addon">mg/ml</span>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-8" for="desiredStrength">Desired strength:</label>
-            <div class="col-sm-4 recipe-input">
-                <input type="number" class="form-control" id="desiredStrength" name="desiredStrength" ng-model="juice.desiredStrength">
-                <span class="input-group-addon">mg/ml</span>
+            <div class="form-group">
+                <label class="control-label col-sm-8" for="desiredStrength">Desired strength:</label>
+                <div class="col-sm-4 recipe-input">
+                    <input type="number" 
+                    class="form-control" 
+                    id="desiredStrength" 
+                    name="desiredStrength" 
+                    ng-model="juice.desiredStrength">
+                    <span class="input-group-addon">mg/ml</span>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-8" for="resultMl">Add to juice:</label>
-            <div class="col-sm-4 recipe-input">
-                <input type="number" class="form-control" id="resultMl" name="resultMl" ng-model="juice.resultMl">
-                <span class="input-group-addon">mg/ml</span>
-            </div>
-        </div>
-        <div class="form-group">{{juice}}</div>
+        </fieldset>
     </form>
+</div>
+
+<div class="col-sm-6">
+    <fieldset>
+        <legend>Add to juice (result)</legend>
+        <h2 ng-show="juice.resultMl !== null">{{juice.resultMl}} ml</h2>
+        <h2 ng-show="juice.resultMl === null">?</h2>
+    </fieldset>
 </div>
