@@ -1,3 +1,4 @@
 backend/.env
 app/config.js
 backend/storage/logs
+deploy_to_*
