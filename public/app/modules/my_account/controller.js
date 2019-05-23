@@ -1,8 +1,8 @@
 angular.module('gelApp.myAccount', []);
 
 angular.module('gelApp.myAccount').controller('myAccountCtrl',
-    ['$rootScope', '$scope', '$uibModal', 'UserRegistration', 'MyNotify', '$sessionStorage', 'AuthenticationService', '$localStorage', '$location',
-    function ($rootScope, $scope, $uibModal, UserRegistration, MyNotify, $sessionStorage, AuthenticationService, $localStorage, $location)
+    ['$rootScope', '$scope', '$uibModal', 'UserRegistration', 'MyNotify', '$localStorage', 'AuthenticationService', '$localStorage', '$location',
+    function ($rootScope, $scope, $uibModal, UserRegistration, MyNotify, $localStorage, AuthenticationService, $localStorage, $location)
     {
 
         // Redirect to login if not logged in

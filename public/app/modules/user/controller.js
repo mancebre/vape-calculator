@@ -1,8 +1,8 @@
 angular.module('gelApp.user', []);
 
 angular.module('gelApp.user').controller('userCtrl',
-    ['$rootScope', '$scope', 'AuthenticationService', '$window', '$localStorage', '$sessionStorage', 'md5', '$uibModal',
-    function ($rootScope, $scope, AuthenticationService, $window, $localStorage, $sessionStorage, md5, $uibModal)
+    ['$rootScope', '$scope', 'AuthenticationService', '$window', '$localStorage', '$localStorage', 'md5', '$uibModal',
+    function ($rootScope, $scope, AuthenticationService, $window, $localStorage, $localStorage, md5, $uibModal)
     {
         $scope.errorTxt = "Something went wrong. Please try again";
         $scope.showError = false;

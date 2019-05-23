@@ -1,8 +1,8 @@
 angular.module('gelApp.my_recipes', []);
 
 angular.module('gelApp.my_recipes').controller('my_recipesCtrl', [
-    '$rootScope', '$scope', '$http', 'RecipeService', '$sessionStorage', 'RatingsService', 'MyNotify', '$uibModal', '$location', '$localStorage',
-    function ($rootScope, $scope, $http, RecipeService, $sessionStorage, RatingsService, MyNotify, $uibModal, $location, $localStorage) {
+    '$rootScope', '$scope', '$http', 'RecipeService', '$localStorage', 'RatingsService', 'MyNotify', '$uibModal', '$location', '$localStorage',
+    function ($rootScope, $scope, $http, RecipeService, $localStorage, RatingsService, MyNotify, $uibModal, $location, $localStorage) {
 
         // Redirect to login if not logged in
         if(!$localStorage.currentUser) {

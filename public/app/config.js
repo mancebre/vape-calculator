@@ -9,7 +9,7 @@ App.config(['tooltipsConfProvider', function configConf(tooltipsConfProvider) {
     });
 }]);
 
-App.run(function($rootScope, $http, $translate, $sessionStorage) {
+App.run(function($rootScope, $http, $translate, $localStorage) {
 
     // // API url LOCAL for testing only!
     $rootScope.apiUrl = 'http://localhost:8000/api/v1/';

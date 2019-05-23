@@ -47,7 +47,7 @@
 
                         // add jwt token to auth header for all requests made by the $http service
                         $http.defaults.headers.common.Authorization = 'Token ' + token;
-                        sessionStorage.setItem('Token', JSON.stringify('Token ' + token));
+                        localStorage.setItem('Token', JSON.stringify('Token ' + token));
 
                         // execute callback with true to indicate successful login
                         callback(response.status);
@@ -70,7 +70,7 @@
             // remove user from local storage and clear http auth header
             delete $localStorage.currentUser;
             $http.defaults.headers.common.Authorization = '';
-            sessionStorage.removeItem("Token");
+            localStorage.removeItem("Token");
             callback();
         }
 

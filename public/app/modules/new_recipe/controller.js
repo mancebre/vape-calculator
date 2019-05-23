@@ -21,8 +21,8 @@ angular.module('gelApp.newRecipe').controller('newRecipeCtrl', ['$scope', '$http
         };
 
         // How many grams there is in 1 ml
-        if(sessionStorage.getItem('weights') !== null) {
-            $scope.weights = JSON.parse(sessionStorage.getItem('weights'));
+        if(localStorage.getItem('weights') !== null) {
+            $scope.weights = JSON.parse(localStorage.getItem('weights'));
         } else {
             // Default values
             $scope.weights = {
@@ -31,7 +31,7 @@ angular.module('gelApp.newRecipe').controller('newRecipeCtrl', ['$scope', '$http
                 flavor: 1.04,
                 diluent: 1
             };
-            sessionStorage.setItem('weights', JSON.stringify($scope.weights));
+            localStorage.setItem('weights', JSON.stringify($scope.weights));
         }
 
         $scope.loginWarning = function(){

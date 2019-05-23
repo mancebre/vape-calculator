@@ -9,7 +9,7 @@ App.run(function($rootScope, $http, $translate, $localStorage) {
         return $localStorage.currentUser ? true : false;
     };
 
-    $http.defaults.headers.common.Authorization = sessionStorage.getItem("Token") ? sessionStorage.getItem("Token") : '';
+    $http.defaults.headers.common.Authorization = localStorage.getItem("Token") ? localStorage.getItem("Token") : '';
 
     $rootScope.selectedLang = $translate.use(false);
 

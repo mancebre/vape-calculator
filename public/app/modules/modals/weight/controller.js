@@ -8,7 +8,7 @@ angular.module('gelApp.editWeights').controller('editWeightsCtrl', ['$scope', 'i
     $scope.item = angular.copy(item);
 
     $scope.save = function() {
-        sessionStorage.setItem('weights', JSON.stringify($scope.item));
+        localStorage.setItem('weights', JSON.stringify($scope.item));
 
         $uibModalInstance.close($scope.item);
     };
