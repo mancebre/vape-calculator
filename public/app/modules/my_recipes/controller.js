@@ -1,11 +1,11 @@
 angular.module('gelApp.my_recipes', []);
 
 angular.module('gelApp.my_recipes').controller('my_recipesCtrl', [
-    '$rootScope', '$scope', '$http', 'RecipeService', '$sessionStorage', 'RatingsService', 'MyNotify', '$uibModal', '$location',
-    function ($rootScope, $scope, $http, RecipeService, $sessionStorage, RatingsService, MyNotify, $uibModal, $location) {
+    '$rootScope', '$scope', '$http', 'RecipeService', '$sessionStorage', 'RatingsService', 'MyNotify', '$uibModal', '$location', '$localStorage',
+    function ($rootScope, $scope, $http, RecipeService, $sessionStorage, RatingsService, MyNotify, $uibModal, $location, $localStorage) {
 
         // Redirect to login if not logged in
-        if(!$sessionStorage.currentUser) {
+        if(!$localStorage.currentUser) {
             $rootScope.preLoginRoute = $location.url();
             $location.url("/login");
         }
@@ -75,26 +75,26 @@ angular.module('gelApp.my_recipes').controller('my_recipesCtrl', [
             });
 
             // Rate recipe or update rate if user already rated this recipe
-            console.log(ratersIds.indexOf($sessionStorage.currentUser.user_id), ratersIds);
-            if (ratersIds.indexOf($sessionStorage.currentUser.user_id) === -1) {
+            console.log(ratersIds.indexOf($localStorage.currentUser.user_id), ratersIds);
+            if (ratersIds.indexOf($localStorage.currentUser.user_id) === -1) {
                 RatingsService.Rate(recipe.id, rating, function () {
-                    $scope.getAllUserRecipes($sessionStorage.currentUser.user_id);
+                    $scope.getAllUserRecipes($localStorage.currentUser.user_id);
                     MyNotify.notify(200, "Recipe rated successfully.");
                 });
             } else {
                 // My ratings of this recipe.
                 let myRatings = recipe.rating.filter(function (val) {
-                    return parseInt(val.user_id) === $sessionStorage.currentUser.user_id;
+                    return parseInt(val.user_id) === $localStorage.currentUser.user_id;
                 });
                 RatingsService.Update(myRatings[0].id, rating, function () {
-                    $scope.getAllUserRecipes($sessionStorage.currentUser.user_id);
+                    $scope.getAllUserRecipes($localStorage.currentUser.user_id);
                     MyNotify.notify(200, "Recipe updated successfully.");
                 });
             }
 
         };
 
-        // console.log("User Data", $sessionStorage.currentUser);
+        // console.log("User Data", $localStorage.currentUser);
 
         $scope.getAllUserRecipes();
 

@@ -1,12 +1,12 @@
 
 /* GLOBALS */
 
-App.run(function($rootScope, $http, $translate, $sessionStorage) {
+App.run(function($rootScope, $http, $translate, $localStorage) {
 
     $rootScope.preLoginRoute = null;
 
     $rootScope.isLoggedIn = function() {
-        return $sessionStorage.currentUser ? true : false;
+        return $localStorage.currentUser ? true : false;
     };
 
     $http.defaults.headers.common.Authorization = sessionStorage.getItem("Token") ? sessionStorage.getItem("Token") : '';

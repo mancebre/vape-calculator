@@ -5,7 +5,7 @@
         .module('gelApp')
         .factory('AuthenticationService', Service);
 
-    function Service($http, $sessionStorage, $rootScope) {
+    function Service($http, $localStorage, $rootScope) {
         let service = {};
 
         service.Login = Login;
@@ -43,7 +43,7 @@
                         // Let's use "atob" to decode payload
                         let userData = angular.fromJson(atob(tokenArr[1]));
                         // Store user to local storage
-                        $sessionStorage.currentUser = userData;
+                        $localStorage.currentUser = userData;
 
                         // add jwt token to auth header for all requests made by the $http service
                         $http.defaults.headers.common.Authorization = 'Token ' + token;
@@ -68,7 +68,7 @@
          */
         function Logout(callback) {
             // remove user from local storage and clear http auth header
-            delete $sessionStorage.currentUser;
+            delete $localStorage.currentUser;
             $http.defaults.headers.common.Authorization = '';
             sessionStorage.removeItem("Token");
             callback();

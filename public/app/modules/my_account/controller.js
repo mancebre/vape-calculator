@@ -6,24 +6,24 @@ angular.module('gelApp.myAccount').controller('myAccountCtrl',
     {
 
         // Redirect to login if not logged in
-        if(!$sessionStorage.currentUser) {
+        if(!$localStorage.currentUser) {
             $rootScope.preLoginRoute = $location.url();
             $location.url("/login");
         }
 
-        $scope.userId = $sessionStorage.currentUser.user_id;
+        $scope.userId = $localStorage.currentUser.user_id;
         $scope.emailInUse = null;
         $scope.notificationText = null;
 
         $scope.userData = {
-            username:           $sessionStorage.currentUser.username,
-            email:              $sessionStorage.currentUser.email,
+            username:           $localStorage.currentUser.username,
+            email:              $localStorage.currentUser.email,
             re_email:           null,
-            firstname:          $sessionStorage.currentUser.firstname,
-            lastname:           $sessionStorage.currentUser.lastname,
-            newsletter:         $sessionStorage.currentUser.newsletter,
-            created_at:         $sessionStorage.currentUser.created_at,
-            updated_at:         $sessionStorage.currentUser.updated_at,
+            firstname:          $localStorage.currentUser.firstname,
+            lastname:           $localStorage.currentUser.lastname,
+            newsletter:         $localStorage.currentUser.newsletter,
+            created_at:         $localStorage.currentUser.created_at,
+            updated_at:         $localStorage.currentUser.updated_at,
             password:           null,
             confirmPassword:    null,
             currentPassword:    null
@@ -197,7 +197,7 @@ angular.module('gelApp.myAccount').controller('myAccountCtrl',
         };
 
         $scope.setUser = function(status, data){
-            // console.log($sessionStorage.currentUser, data);
+            // console.log($localStorage.currentUser, data);
 
         };
 

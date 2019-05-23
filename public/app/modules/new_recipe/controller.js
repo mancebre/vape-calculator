@@ -1,7 +1,7 @@
 angular.module('gelApp.newRecipe', []);
 
-angular.module('gelApp.newRecipe').controller('newRecipeCtrl', ['$scope', '$http', '$translate', '$uibModal', 'tooltipTranslations', '$rootScope', '$location', 'RecipeService', '$routeParams', '$timeout', '$sessionStorage', 'MyNotify',
-    function ($scope, $http, $translate, $uibModal, tooltipTranslations, $rootScope, $location, RecipeService, $routeParams, $timeout, $sessionStorage, MyNotify) {
+angular.module('gelApp.newRecipe').controller('newRecipeCtrl', ['$scope', '$http', '$translate', '$uibModal', 'tooltipTranslations', '$rootScope', '$location', 'RecipeService', '$routeParams', '$timeout', '$localStorage', 'MyNotify',
+    function ($scope, $http, $translate, $uibModal, tooltipTranslations, $rootScope, $location, RecipeService, $routeParams, $timeout, $localStorage, MyNotify) {
 
         $scope.duplicateFlavorNames = false;
         $scope.disableSave = true;
@@ -690,10 +690,10 @@ angular.module('gelApp.newRecipe').controller('newRecipeCtrl', ['$scope', '$http
         // Just return true or false
         $scope.ownerOrNot = function (userId) {
             // If user is not logged in than he can not be a owner of this recipe.
-            if ($sessionStorage.currentUser === undefined) {
+            if ($localStorage.currentUser === undefined) {
                 return false;
             } else {
-                return $sessionStorage.currentUser.user_id === userId;
+                return $localStorage.currentUser.user_id === userId;
             }
         };
 

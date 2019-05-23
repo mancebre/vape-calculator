@@ -1,7 +1,7 @@
 angular.module('gelApp.searchPage', []);
 
-angular.module('gelApp.searchPage').controller('searchPageCtrl', ['$scope', '$http', 'RecipeService', '$sessionStorage', 'RatingsService', 'MyNotify',
-    function ($scope, $http, RecipeService, $sessionStorage, RatingsService, MyNotify) {
+angular.module('gelApp.searchPage').controller('searchPageCtrl', ['$scope', '$http', 'RecipeService', '$localStorage', 'RatingsService', 'MyNotify',
+    function ($scope, $http, RecipeService, $localStorage, RatingsService, MyNotify) {
 
         $scope.maxRating = 5;
         $scope.resultsLimit = 10;
@@ -95,9 +95,9 @@ angular.module('gelApp.searchPage').controller('searchPageCtrl', ['$scope', '$ht
                 return parseInt(val['user_id']);
             });
 
-            if ($sessionStorage.currentUser !== undefined) {
+            if ($localStorage.currentUser !== undefined) {
                 // Rate recipe or update rate if user already rated this recipe
-                if (ratersIds.indexOf($sessionStorage.currentUser.user_id) === -1) {
+                if (ratersIds.indexOf($localStorage.currentUser.user_id) === -1) {
                     RatingsService.Rate(recipe.id, rating, function () {
                         $scope.getAllRecipes();
                         MyNotify.notify(200, "Recipe rated successfully.");
@@ -105,7 +105,7 @@ angular.module('gelApp.searchPage').controller('searchPageCtrl', ['$scope', '$ht
                 } else {
                     // My ratings of this recipe.
                     let myRatings = recipe.rating.filter(function (val) {
-                        return parseInt(val.user_id) === $sessionStorage.currentUser.user_id;
+                        return parseInt(val.user_id) === $localStorage.currentUser.user_id;
                     });
                     RatingsService.Update(myRatings[0].id, rating, function () {
                         $scope.getAllRecipes();
