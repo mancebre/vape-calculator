@@ -41,6 +41,7 @@ class AuthController extends BaseController {
 			'lastname' => $user->lastname,
 			'username' => $user->username,
 			'email' => $user->email,
+			'newsletter' => $user->newsletter === 1 ? true : false,
 			'roles' => $User->getUserRoles($user->id),
 			'iat' => time(), // Time when JWT was issued.
             'exp' => time() + 60 * 60 * 24, // Expiration time
