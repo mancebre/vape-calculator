@@ -28,4 +28,9 @@ App.run(function($rootScope, $http, $translate, $localStorage) {
     }, function(hasPending) {
         $rootScope.loading = !!hasPending;
     });
+
+    // Load gapi.auth2 so users can logout from google anywhere.
+    gapi.load('auth2', function() {
+        gapi.auth2.init();
+    });
 });
