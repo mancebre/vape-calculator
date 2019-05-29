@@ -29,7 +29,7 @@ class AuthController extends BaseController {
 	 * @param  \App\User   $user
 	 * @return string
 	 */
-	protected function jwt(User $user) {
+	protected function jwt(User $user, GoogleToken $googleToken = null) {
 
         $User = new UserRolesController;
 
@@ -44,8 +44,8 @@ class AuthController extends BaseController {
 			'newsletter' => $user->newsletter === 1 ? true : false,
 			'roles' => $User->getUserRoles($user->id),
 			'iat' => time(), // Time when JWT was issued.
-            'exp' => time() + 60 * 60 * 24, // Expiration time
-//            'exp' => time() + 60, // Expiration time
+			'exp' => time() + 60 * 60 * 24, // Expiration time
+			'google_token' => $googleToken
 		];
 
 		// As you can see we are passing `JWT_SECRET` as the second parameter that will
@@ -98,5 +98,27 @@ class AuthController extends BaseController {
         $token = str_replace('"', '', $token);
 
         return $token ? JWT::decode($token, env('JWT_SECRET'), ['HS256']) : null;
-    }
+	}
+	
+	/************* Google Sign-in******************/
+
+	public function googleAuth() {
+		// Get $id_token via HTTPS POST.
+
+		$client = new Google_Client(['client_id' => $CLIENT_ID]);  // Specify the CLIENT_ID of the app that accesses the backend
+		$payload = $client->verifyIdToken($id_token);
+		if ($payload) {
+			$userid = $payload['sub'];
+			// If request specified a G Suite domain:
+			//$domain = $payload['hd'];
+
+			// TODO 
+			// If user don't exist in database create it, I'l need user controller here
+			// Generate JWT from database user object
+			// Return JWT.
+		} else {
+			// Invalid ID token
+        return response()->make("Invalid ID token.", 400);
+		}
+	}
 }

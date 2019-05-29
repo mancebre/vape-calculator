@@ -48,6 +48,8 @@ class UserController extends Controller {
         }
     }
 
+    // TODO Add "create google user"
+
     /**
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
