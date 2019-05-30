@@ -16,8 +16,8 @@ App.directive('googleSignInButton', function() {
                 'height': 35,
                 'longtitle': true,
                 'theme': 'light',
-                'onsuccess': scope.options.onSuccess,
-                'onfailure': scope.options.onFailure
+                'onsuccess': scope.options().onSuccess,
+                'onfailure': scope.options().onFailure
             }); //render a google button, first argument is an id, second options
         }
     };

@@ -11,6 +11,7 @@
         service.Login = Login;
         service.Logout = Logout;
         service.ActivateAccount = ActivateAccount;
+        service.GoogleSignInOptions = GoogleSignInOptions;
 
         return service;
 

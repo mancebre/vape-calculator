@@ -76,6 +76,8 @@ $router->group(
     function () use ($router) {
         // Login
         $router->post('auth/login', 'AuthController@authenticate');
+        // Google login
+        $router->post('auth/google_login', 'AuthController@googleAuth');
         // Register
         $router->post('/user', 'UserController@create');
         $router->post('/usernameCheck', 'UserController@usernameCheck');

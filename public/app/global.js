@@ -30,7 +30,15 @@ App.run(function($rootScope, $http, $translate, $localStorage) {
     });
 
     // Load gapi.auth2 so users can logout from google anywhere.
-    gapi.load('auth2', function() {
-        gapi.auth2.init();
-    });
+    if(typeof gapi !== "undefined") {
+        gapi.load('auth2', function() {
+            gapi.auth2.init();
+        });
+    } else {
+        setTimeout(function() {
+            gapi.load('auth2', function() {
+                gapi.auth2.init();
+            });
+        }, 800);
+    }
 });
