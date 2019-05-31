@@ -80,6 +80,7 @@ class UserController extends Controller {
                 "firstname"     => $request->firstname, 
                 "lastname"      => $request->lastname, 
                 "newsletter"    => $request->newsletter, 
+                "active"        => 0, 
             ];
 
             $this->addNewUser($newUser);
@@ -97,7 +98,7 @@ class UserController extends Controller {
         $user->email = $newUser->email;
         $user->firstname = $newUser->firstname;
         $user->lastname = $newUser->lastname;
-        $user->active = 0;
+        $user->active = $newUser->active;
         $user->newsletter = $newUser->newsletter;
         $user->activation_key = substr(str_shuffle(MD5(microtime())), 0, 32);
 

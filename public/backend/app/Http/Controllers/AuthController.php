@@ -114,14 +114,11 @@ class AuthController extends BaseController {
 		if ($payload) {
 			$userid = $payload['sub'];
 			// Find the user by email
-			$user = User::where('email', $this->request->input('email'))->first();
+			$user = User::where('email', $payload["email"])->first();
 
-			// If user don't exist in database create it, I'l need user controller here
+			// If user don't exist in database create it.
 			if(!$user) {
-				// return response()->json($payload);
-
-				// TODO 
-				// Create username generator to generate unique username.
+				// Generate unique username.
 				$User = new UserController;
 				$username = $User->generateUsername($payload);
 
@@ -132,11 +129,13 @@ class AuthController extends BaseController {
 					"firstname"     => $payload["given_name"], 
 					"lastname"      => $payload["family_name"], 
 					"newsletter"    => true, // ?? 
+					"active"    	=> true,
 				];
 				$User->addNewUser($newUser, false);
 
 				$user = User::where('email', $newUser->email)->first();
 
+				// Return user token
 				return response()->json([
 					'token' => $this->jwt($user, $payload),
 				], 200);
