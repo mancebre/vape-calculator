@@ -1,11 +1,11 @@
 <?php
 namespace App\Http\Controllers;
 use App\User;
+use App\UserRoles;
 use Firebase\JWT\JWT;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Lumen\Routing\Controller as BaseController;
-use App\UserRoles;
 use Google_Client;
 
 class AuthController extends BaseController {
@@ -103,23 +103,43 @@ class AuthController extends BaseController {
 	
 	/************* Google Sign-in******************/
 
-	public function googleAuth() {
+	public function googleAuth(User $user) {
+		$this->validate($this->request, [
+			'id_token' => 'required',
+		]);
 		// Get $id_token via HTTPS POST.
 
 		$client = new Google_Client(['client_id' => "138913641202-4bl5olli3737uqaaoshfu9iaaj49omdo.apps.googleusercontent.com"]);  // Specify the CLIENT_ID of the app that accesses the backend
-		$payload = $client->verifyIdToken($id_token);
+		$payload = $client->verifyIdToken($this->request->input('id_token'));
 		if ($payload) {
 			$userid = $payload['sub'];
-			// If request specified a G Suite domain:
-			//$domain = $payload['hd'];
+			// Find the user by email
+			$user = User::where('email', $this->request->input('email'))->first();
 
-			// TODO 
 			// If user don't exist in database create it, I'l need user controller here
-			// Generate JWT from database user object
-			// Return JWT.
+			if(!$user) {
+				return response()->json($payload);
+
+				// TODO 
+				// Create username generator to generate unique username 
+				// for new user. Username will be generated with data 
+				// available in google profile.
+				// Do not send activation email to user created from 
+				// google profile!!!
+
+				$User = new UserController;
+
+				$User->addNewUser();
+			} else {
+				// Generate JWT from database user object
+				// Return JWT.
+				return response()->json([
+					'token' => $this->jwt($user, $payload),
+				], 200);
+			}
 		} else {
 			// Invalid ID token
-        return response()->make("Invalid ID token.", 400);
+        	return response()->make("Invalid ID token.", 400);
 		}
 	}
 }

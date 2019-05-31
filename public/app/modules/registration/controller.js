@@ -3,8 +3,9 @@ angular.module('gelApp.registration', []);
 // TODO 1. Add password strength validator
 // TODO 2. Add username suggester, if username is taken suggest them new user name based on entered data
 
-angular.module('gelApp.registration').controller('registrationCtrl', ['$scope', '$window', 'md5', 'UserRegistration', 'MyNotify',
-    function ($scope, $window, md5, UserRegistration, MyNotify)
+angular.module('gelApp.registration').controller('registrationCtrl', 
+    ['$scope', '$window', 'md5', 'UserRegistration', 'MyNotify', 'AuthenticationService', 
+    function ($scope, $window, md5, UserRegistration, MyNotify, AuthenticationService)
     {
         $scope.step = 1;
         $scope.showError = false;

@@ -64,36 +64,53 @@ class UserController extends Controller {
         } elseif ($usernameCheck) {
             return response()->make("Username you entered is already in use.", 400);
         } else {
-            $user = new User;
-            $user->username = $request->username;
-            $user->password = Hash::make($request->password);
-            $user->email = $request->email;
-            $user->firstname = $request->firstname;
-            $user->lastname = $request->lastname;
-            $user->active = 0;
-            $user->newsletter = $request->newsletter;
-            $user->activation_key = substr(str_shuffle(MD5(microtime())), 0, 32);
-
-            $user->save();
-
-            $user->userRoles()->saveMany([
-                new UserRoles([
-                    "user_id"=>$user->id,
-                    "role_id"=>3, // Regular user.
-                ])
-            ]);
-
-            // Send activation email
-            $activationEmail = $this->sendActivationEmail($user);
-            $log = [
-                "Email_sent" => $activationEmail,
-                "user_data" => $user
+            $newUser = (object) [
+                "username"      => $request->username, 
+                "password"      => $request->password, 
+                "email"         => $request->email, 
+                "firstname"     => $request->firstname, 
+                "lastname"      => $request->lastname, 
+                "newsletter"    => $request->newsletter, 
             ];
-            Log::info("Activation Email", $log);
 
-            return response()->make("Thank you. You have successfully registered new account.");
+            $this->addNewUser($newUser);
         }
-	}
+    }
+    
+    /**
+     * Create new user
+     */
+    public function addNewUser($newUser) {
+
+        $user = new User;
+        $user->username = $newUser->username;
+        $user->password = Hash::make($newUser->password);
+        $user->email = $newUser->email;
+        $user->firstname = $newUser->firstname;
+        $user->lastname = $newUser->lastname;
+        $user->active = 0;
+        $user->newsletter = $newUser->newsletter;
+        $user->activation_key = substr(str_shuffle(MD5(microtime())), 0, 32);
+
+        $user->save();
+
+        $user->userRoles()->saveMany([
+            new UserRoles([
+                "user_id"=>$user->id,
+                "role_id"=>3, // Regular user.
+            ])
+        ]);
+
+        // Send activation email
+        $activationEmail = $this->sendActivationEmail($user);
+        $log = [
+            "Email_sent" => $activationEmail,
+            "user_data" => $user
+        ];
+        Log::info("Activation Email", $log);
+
+        return response()->make("Thank you. You have successfully registered new account.");
+    }
 
     /**
      * @param $user

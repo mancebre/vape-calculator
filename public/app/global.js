@@ -21,6 +21,7 @@ App.run(function($rootScope, $http, $translate, $localStorage) {
     $rootScope.hideHeaderFooter = ['/registration', '/login'];
     $rootScope.showHeader = true;
     $rootScope.showFooter = true;
+    $rootScope.googleIdToken = null;
 
     // If there is any pending request keep loader open.
     $rootScope.$watch(function() {

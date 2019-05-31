@@ -12,6 +12,7 @@
         service.Logout = Logout;
         service.ActivateAccount = ActivateAccount;
         service.GoogleSignInOptions = GoogleSignInOptions;
+        service.VerifyGoogleAccount = VerifyGoogleAccount;
 
         return service;
 
@@ -87,11 +88,52 @@
             });
         }
 
+        function VerifyGoogleAccount(idToken, callback) {
+            let apiUrl = $rootScope.apiUrl + 'auth/google_login';
+            $http.post(apiUrl, {
+                id_token: idToken,
+            })
+                .then(function (response) {
+
+                    // console.log(response.status);
+
+                    // login successful if there's a token in the response
+                    if (response.data.token) {
+
+                        // // Get user data from token
+                        // let token = response.data.token;
+                        // // Token has 3 parts separated by "."
+                        // // header.payload.signature we need payload
+                        // let tokenArr = token.split(".");
+                        // // Payload is base64 encoded json
+                        // // Let's use "atob" to decode payload
+                        // let userData = angular.fromJson(atob(tokenArr[1]));
+                        // // Store user to local storage
+                        // $localStorage.currentUser = userData;
+
+                        // // add jwt token to auth header for all requests made by the $http service
+                        // $http.defaults.headers.common.Authorization = 'Token ' + token;
+                        // localStorage.setItem('Token', JSON.stringify('Token ' + token));
+
+                        // execute callback with true to indicate successful login
+                        callback(response.status);
+                    } else {
+                        // execute callback with false to indicate failed login
+                        callback(response.status);
+                    }
+                })
+                .catch(function(response) {
+                    console.log('error', response);
+                    callback(response.status, response.data);
+            });
+        }
+
         function GoogleSignInOptions() {
             return {
                 'onSuccess': function(response) {
                   console.log(response);
-                  var profile = response.getBasicProfile();
+                  let profile = response.getBasicProfile();
+                  $rootScope.googleIdToken = response.getAuthResponse().id_token;
                   console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
                   console.log('Name: ' + profile.getName());
                   console.log('Image URL: ' + profile.getImageUrl());
@@ -99,6 +141,7 @@
                 },
                 'onFailure': function(response) {
                     console.log("GOOGLE SIGN-IN FAIL", response);
+                    $rootScope.googleProfile = false;
                 }
             }
         }
