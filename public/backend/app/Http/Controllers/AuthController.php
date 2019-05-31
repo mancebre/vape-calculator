@@ -30,7 +30,7 @@ class AuthController extends BaseController {
 	 * @param  \App\User   $user
 	 * @return string
 	 */
-	protected function jwt(User $user, GoogleToken $googleToken = null) {
+	protected function jwt(User $user, $googleToken = null) {
 
         $User = new UserRolesController;
 
@@ -118,18 +118,28 @@ class AuthController extends BaseController {
 
 			// If user don't exist in database create it, I'l need user controller here
 			if(!$user) {
-				return response()->json($payload);
+				// return response()->json($payload);
 
 				// TODO 
-				// Create username generator to generate unique username 
-				// for new user. Username will be generated with data 
-				// available in google profile.
-				// Do not send activation email to user created from 
-				// google profile!!!
-
+				// Create username generator to generate unique username.
 				$User = new UserController;
+				$username = $User->generateUsername($payload);
 
-				$User->addNewUser();
+				$newUser = (object) [
+					"username"      => $username, 
+					"password"      => $User->generatePassword(), 
+					"email"         => $payload["email"], 
+					"firstname"     => $payload["given_name"], 
+					"lastname"      => $payload["family_name"], 
+					"newsletter"    => true, // ?? 
+				];
+				$User->addNewUser($newUser, false);
+
+				$user = User::where('email', $newUser->email)->first();
+
+				return response()->json([
+					'token' => $this->jwt($user, $payload),
+				], 200);
 			} else {
 				// Generate JWT from database user object
 				// Return JWT.

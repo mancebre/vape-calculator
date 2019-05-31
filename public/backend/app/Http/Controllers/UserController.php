@@ -27,12 +27,21 @@ class UserController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function usernameCheck(Request $request) {
-        $usernameCheck = User::where('username', $request->username)->first();
-        if ($usernameCheck) {
+        $username = $request->username;
+        if ($this->usernameCheckInternal($username)) {
             return response()->make("Username you entered is already in use.", 400);
         } else {
             return response()->make("");
         }
+    }
+
+    /**
+     * Check if username exists.
+     */
+    private function usernameCheckInternal($username) {
+        $user = User::where('username', $username)->first();
+
+        return $user ? true : false;
     }
 
     /**
@@ -80,7 +89,7 @@ class UserController extends Controller {
     /**
      * Create new user
      */
-    public function addNewUser($newUser) {
+    public function addNewUser($newUser, $sendActivationMail = true) {
 
         $user = new User;
         $user->username = $newUser->username;
@@ -101,13 +110,15 @@ class UserController extends Controller {
             ])
         ]);
 
-        // Send activation email
-        $activationEmail = $this->sendActivationEmail($user);
-        $log = [
-            "Email_sent" => $activationEmail,
-            "user_data" => $user
-        ];
-        Log::info("Activation Email", $log);
+        if($sendActivationMail) {
+            // Send activation email
+            $activationEmail = $this->sendActivationEmail($user);
+            $log = [
+                "Email_sent" => $activationEmail,
+                "user_data" => $user
+            ];
+            Log::info("Activation Email", $log);
+        }
 
         return response()->make("Thank you. You have successfully registered new account.");
     }
@@ -149,7 +160,7 @@ class UserController extends Controller {
         return mail($to, $subject, $message, $headers);
     }
 
-    private function generatePassword() {
+    public function generatePassword() {
         $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
         $pass = array(); //remember to declare $pass as an array
         $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
@@ -318,6 +329,26 @@ class UserController extends Controller {
             Log::info("Activation Email", $log);
 
             return response()->make("Activation email sent.");
+        }
+    }
+
+    public function generateUsername($googleData) {
+        // First try: first name and first letter of last name
+        // Secound try: last name and first letter of first name
+        // other tries: first name and different random numbers untill we found right username.
+
+        $rand = rand(1, 999);
+
+        if(isset($googleData["given_name"])) {
+            $username = strtolower($googleData["given_name"]) . $rand;
+        } else {
+            $username = substr($googleData["name"], 0, 4) . $rand;
+        }
+
+        if(!$this->usernameCheckInternal($username)) {
+            return $username;
+        } else {
+            $this->generateUsername($googleData);
         }
     }
 }
