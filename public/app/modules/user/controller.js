@@ -126,10 +126,4 @@ angular.module('gelApp.user').controller('userCtrl',
          */
         $scope.options = AuthenticationService.GoogleSignInOptions();
 
-        $scope.verifyGoogle = function() {
-            
-            let idToken = $rootScope.googleIdToken;
-            AuthenticationService.VerifyGoogleAccount(idToken, console.log);
-        }
-
 }]);

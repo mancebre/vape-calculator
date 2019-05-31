@@ -5,8 +5,9 @@
         .module('gelApp')
         .factory('AuthenticationService', Service);
 
-    function Service($http, $localStorage, $rootScope) {
+    function Service($http, $localStorage, $rootScope, $window, MyNotify) {
         let service = {};
+        let googleIdToken;
 
         service.Login = Login;
         service.Logout = Logout;
@@ -100,20 +101,20 @@
                     // login successful if there's a token in the response
                     if (response.data.token) {
 
-                        // // Get user data from token
-                        // let token = response.data.token;
-                        // // Token has 3 parts separated by "."
-                        // // header.payload.signature we need payload
-                        // let tokenArr = token.split(".");
-                        // // Payload is base64 encoded json
-                        // // Let's use "atob" to decode payload
-                        // let userData = angular.fromJson(atob(tokenArr[1]));
-                        // // Store user to local storage
-                        // $localStorage.currentUser = userData;
+                        // Get user data from token
+                        let token = response.data.token;
+                        // Token has 3 parts separated by "."
+                        // header.payload.signature we need payload
+                        let tokenArr = token.split(".");
+                        // Payload is base64 encoded json
+                        // Let's use "atob" to decode payload
+                        let userData = angular.fromJson(atob(tokenArr[1]));
+                        // Store user to local storage
+                        $localStorage.currentUser = userData;
 
-                        // // add jwt token to auth header for all requests made by the $http service
-                        // $http.defaults.headers.common.Authorization = 'Token ' + token;
-                        // localStorage.setItem('Token', JSON.stringify('Token ' + token));
+                        // add jwt token to auth header for all requests made by the $http service
+                        $http.defaults.headers.common.Authorization = 'Token ' + token;
+                        localStorage.setItem('Token', JSON.stringify('Token ' + token));
 
                         // execute callback with true to indicate successful login
                         callback(response.status);
@@ -131,18 +132,27 @@
         function GoogleSignInOptions() {
             return {
                 'onSuccess': function(response) {
-                  console.log(response);
-                  let profile = response.getBasicProfile();
-                  $rootScope.googleIdToken = response.getAuthResponse().id_token;
-                  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-                  console.log('Name: ' + profile.getName());
-                  console.log('Image URL: ' + profile.getImageUrl());
-                  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+                //   let profile = response.getBasicProfile();
+                    googleIdToken = response.getAuthResponse().id_token;
+                    service.VerifyGoogleAccount(googleIdToken, redirectToHome);
                 },
                 'onFailure': function(response) {
+                    MyNotify.notify(500, "Google sign-in fail. Please refresh page and try again");
                     console.log("GOOGLE SIGN-IN FAIL", response);
                     $rootScope.googleProfile = false;
                 }
+            }
+        }
+
+        function redirectToHome(result, message) {
+            if(result === 200) {
+                if($rootScope.preLoginRoute) {
+                    $window.location.href = $rootScope.preLoginRoute;
+                } else {
+                    $window.location.href = '/';
+                }
+            } else {
+                MyNotify.notify(500, "Google sign-in fail. Please refresh page and try again");
             }
         }
 
