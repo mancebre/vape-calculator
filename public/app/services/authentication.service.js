@@ -39,18 +39,7 @@
 
                         // Get user data from token
                         let token = response.data.token;
-                        // Token has 3 parts separated by "."
-                        // header.payload.signature we need payload
-                        let tokenArr = token.split(".");
-                        // Payload is base64 encoded json
-                        // Let's use "atob" to decode payload
-                        let userData = angular.fromJson(atob(tokenArr[1]));
-                        // Store user to local storage
-                        $localStorage.currentUser = userData;
-
-                        // add jwt token to auth header for all requests made by the $http service
-                        $http.defaults.headers.common.Authorization = 'Token ' + token;
-                        localStorage.setItem('Token', JSON.stringify('Token ' + token));
+                        sortToken(token);
 
                         // execute callback with true to indicate successful login
                         callback(response.status);
@@ -103,18 +92,7 @@
 
                         // Get user data from token
                         let token = response.data.token;
-                        // Token has 3 parts separated by "."
-                        // header.payload.signature we need payload
-                        let tokenArr = token.split(".");
-                        // Payload is base64 encoded json
-                        // Let's use "atob" to decode payload
-                        let userData = angular.fromJson(atob(tokenArr[1]));
-                        // Store user to local storage
-                        $localStorage.currentUser = userData;
-
-                        // add jwt token to auth header for all requests made by the $http service
-                        $http.defaults.headers.common.Authorization = 'Token ' + token;
-                        localStorage.setItem('Token', JSON.stringify('Token ' + token));
+                        sortToken(token);
 
                         // execute callback with true to indicate successful login
                         callback(response.status);
@@ -154,6 +132,21 @@
             } else {
                 MyNotify.notify(500, "Google sign-in fail. Please refresh page and try again");
             }
+        }
+
+        function sortToken(token) {
+            // Token has 3 parts separated by "."
+            // header.payload.signature we need payload
+            let tokenArr = token.split(".");
+            // Payload is base64 encoded json
+            // Let's use "atob" to decode payload
+            let userData = angular.fromJson(atob(tokenArr[1]));
+            // Store user to local storage
+            $localStorage.currentUser = userData;
+
+            // add jwt token to auth header for all requests made by the $http service
+            $http.defaults.headers.common.Authorization = 'Token ' + token;
+            localStorage.setItem('Token', JSON.stringify('Token ' + token));
         }
 
         /**
