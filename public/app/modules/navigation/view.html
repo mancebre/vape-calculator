@@ -46,25 +46,26 @@
                         ng-class="getClass('/new_recipe')">
                         <a href="/new_recipe">
                             <span class="glyphicon glyphicon-plus"></span>
-                            <span translate="NEW_RECIPE"></span>
+                            <span class="hideForIpad" translate="NEW_RECIPE"></span>
                         </a>
                     </li>
                     <li ng-click="vm.isCollapsed = !vm.isCollapsed && vm.isMobile" ng-class="getClass('/nic_shot')">
                         <a href="/nic_shot">
                             <i class="fas fa-syringe"></i>
-                            <span translate="NIC_SHOT"></span>
+                            <span class="hideForIpad" translate="NIC_SHOT"></span>
                         </a>
                     </li>
                     <li ng-click="vm.isCollapsed = !vm.isCollapsed && vm.isMobile"
                         ng-class="getClass('/search')">
                         <a href="/search">
                             <span class="glyphicon glyphicon-search"></span>
-                            <span translate="SEARCH"></span>
+                            <span class="hideForIpad" translate="SEARCH"></span>
                         </a>
                     </li>
                     <li ng-click="vm.isCollapsed = !vm.isCollapsed && vm.isMobile"
                         ng-hide="isLoggedIn()"
-                        ng-class="getClass('/registration')">
+                        ng-class="getClass('/registration')"
+                        class="highlighted">
                         <a href="/registration">
                             <span translate="REGISTER"></span>
                         </a>
@@ -72,9 +73,9 @@
                     <li ng-click="vm.isCollapsed = !vm.isCollapsed && vm.isMobile"
                         ng-hide="isLoggedIn()"
                         ng-class="getClass('/login')">
-                        <a href="/login">
+                        <a ng-hide="vm.hideForIpad" href="/login">
                             <span class="glyphicon glyphicon-log-in"></span>
-                            <span translate="LOGIN"></span>
+                            <span class="hideForIpad" translate="LOGIN"></span>
                         </a>
                     </li>
                     <li class="dropdown" uib-dropdown>

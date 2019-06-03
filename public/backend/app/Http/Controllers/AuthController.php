@@ -109,7 +109,9 @@ class AuthController extends BaseController {
 		]);
 		// Get $id_token via HTTPS POST.
 
-		$client = new Google_Client(['client_id' => "138913641202-4bl5olli3737uqaaoshfu9iaaj49omdo.apps.googleusercontent.com"]);  // Specify the CLIENT_ID of the app that accesses the backend
+		$client = new Google_Client([
+			'client_id' => app()->environment("GOOGLE_CLIENT_ID")
+		]);  // Specify the CLIENT_ID of the app that accesses the backend
 		$payload = $client->verifyIdToken($this->request->input('id_token'));
 		if ($payload) {
 			$userid = $payload['sub'];

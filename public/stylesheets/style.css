@@ -222,76 +222,83 @@ body .navbar-default .navbar-nav > li > a {
   color: #464646;
 }
 /* line 219, style.scss */
+body .navbar-default .navbar-nav > .highlighted > a > span {
+  border-radius: 7px;
+  padding: 7px;
+  background: #30a629;
+  color: #fff;
+}
+/* line 225, style.scss */
 body .navbar-default .navbar-nav > .active > a {
   color: #eee;
   background-color: #464646;
 }
-/* line 223, style.scss */
+/* line 229, style.scss */
 body .navbar-default .navbar-nav > .active > a:focus {
   color: #eee;
   background-color: #464646;
 }
-/* line 227, style.scss */
+/* line 233, style.scss */
 body .navbar-default .navbar-nav > .active > a:hover {
   color: #eee;
   background-color: grey;
 }
-/* line 231, style.scss */
+/* line 237, style.scss */
 body .navbar-default .navbar-nav > .open > a {
   color: #eee;
   background-color: #464646;
 }
-/* line 235, style.scss */
+/* line 241, style.scss */
 body .navbar-default .navbar-nav > .open > a:focus {
   color: #eee;
   background-color: #464646;
 }
-/* line 239, style.scss */
+/* line 245, style.scss */
 body .navbar-default .navbar-nav > .open > a:hover {
   color: #eee;
   background-color: grey;
 }
-/* line 243, style.scss */
+/* line 249, style.scss */
 body .navbar-default .navbar-toggle {
   border-color: #464646;
 }
-/* line 245, style.scss */
+/* line 251, style.scss */
 body .navbar-default .navbar-toggle .icon-bar {
   background-color: #464646;
 }
-/* line 248, style.scss */
+/* line 254, style.scss */
 body .navbar-default .navbar-toggle:hover {
   background-color: grey;
 }
-/* line 256, style.scss */
+/* line 262, style.scss */
 body .recipe-list .checked {
   color: orange;
 }
-/* line 260, style.scss */
+/* line 266, style.scss */
 body .recipe-list .stars .rating-star {
   cursor: pointer;
   font-size: 15px;
 }
-/* line 265, style.scss */
+/* line 271, style.scss */
 body .recipe-list .stars :hover {
   font-size: 18px;
   color: #000;
   background: #e7e7e7;
 }
 @media (min-width: 768px) {
-  /* line 273, style.scss */
+  /* line 279, style.scss */
   body .navbar {
     border-radius: 0;
   }
-  /* line 277, style.scss */
+  /* line 283, style.scss */
   body .user-form {
     width: 350px;
   }
-  /* line 281, style.scss */
+  /* line 287, style.scss */
   body .blue-box {
     width: 350px;
   }
-  /* line 285, style.scss */
+  /* line 291, style.scss */
   body .form-wrapper {
     display: flex !important;
     align-items: center;
@@ -301,28 +308,34 @@ body .recipe-list .stars :hover {
     min-height: 100%;
     padding: 20px;
   }
-  /* line 296, style.scss */
+  /* line 302, style.scss */
   body footer #report_bug {
     display: inline-block;
   }
 }
 @media (max-width: 320px) {
-  /* line 303, style.scss */
+  /* line 309, style.scss */
   body .table {
     font-size: x-small;
   }
-  /* line 306, style.scss */
+  /* line 312, style.scss */
   body .table > tbody > tr > td, body .table > tbody > tr > th, body .table > tfoot > tr > td, body .table > tfoot > tr > th, body .table > thead > tr > td, body .table > thead > tr > th {
     padding: 3px;
   }
 }
 @media (max-width: 360px) and (min-width: 321px) {
-  /* line 312, style.scss */
+  /* line 318, style.scss */
   body .table {
     font-size: smaller;
   }
-  /* line 315, style.scss */
+  /* line 321, style.scss */
   body .table > tbody > tr > td, body .table > tbody > tr > th, body .table > tfoot > tr > td, body .table > tfoot > tr > th, body .table > thead > tr > td, body .table > thead > tr > th {
     padding: 3px;
+  }
+}
+@media (max-width: 788px) and (min-width: 768px) {
+  /* line 327, style.scss */
+  body .hideForIpad {
+    display: none;
   }
 }
