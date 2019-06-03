@@ -21,6 +21,7 @@ App.run(function($rootScope, $http, $translate, $localStorage) {
     $rootScope.hideHeaderFooter = ['/registration', '/login'];
     $rootScope.showHeader = true;
     $rootScope.showFooter = true;
+    $rootScope.googleIdToken = null;
 
     // If there is any pending request keep loader open.
     $rootScope.$watch(function() {
@@ -28,4 +29,17 @@ App.run(function($rootScope, $http, $translate, $localStorage) {
     }, function(hasPending) {
         $rootScope.loading = !!hasPending;
     });
+
+    // Load gapi.auth2 so users can logout from google anywhere.
+    if(typeof gapi !== "undefined") {
+        gapi.load('auth2', function() {
+            gapi.auth2.init();
+        });
+    } else {
+        setTimeout(function() {
+            gapi.load('auth2', function() {
+                gapi.auth2.init();
+            });
+        }, 800);
+    }
 });

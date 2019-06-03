@@ -1,11 +1,12 @@
 <?php
 namespace App\Http\Controllers;
 use App\User;
+use App\UserRoles;
 use Firebase\JWT\JWT;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Lumen\Routing\Controller as BaseController;
-use App\UserRoles;
+use Google_Client;
 
 class AuthController extends BaseController {
 	/**
@@ -29,7 +30,7 @@ class AuthController extends BaseController {
 	 * @param  \App\User   $user
 	 * @return string
 	 */
-	protected function jwt(User $user) {
+	protected function jwt(User $user, $googleToken = null) {
 
         $User = new UserRolesController;
 
@@ -44,8 +45,8 @@ class AuthController extends BaseController {
 			'newsletter' => $user->newsletter === 1 ? true : false,
 			'roles' => $User->getUserRoles($user->id),
 			'iat' => time(), // Time when JWT was issued.
-            'exp' => time() + 60 * 60 * 24, // Expiration time
-//            'exp' => time() + 60, // Expiration time
+			'exp' => time() + 60 * 60 * 24, // Expiration time
+			'google_token' => $googleToken
 		];
 
 		// As you can see we are passing `JWT_SECRET` as the second parameter that will
@@ -98,5 +99,58 @@ class AuthController extends BaseController {
         $token = str_replace('"', '', $token);
 
         return $token ? JWT::decode($token, env('JWT_SECRET'), ['HS256']) : null;
-    }
+	}
+	
+	/************* Google Sign-in******************/
+
+	public function googleAuth(User $user) {
+		$this->validate($this->request, [
+			'id_token' => 'required',
+		]);
+		// Get $id_token via HTTPS POST.
+
+		$client = new Google_Client([
+			'client_id' => app()->environment("GOOGLE_CLIENT_ID")
+		]);  // Specify the CLIENT_ID of the app that accesses the backend
+		$payload = $client->verifyIdToken($this->request->input('id_token'));
+		if ($payload) {
+			$userid = $payload['sub'];
+			// Find the user by email
+			$user = User::where('email', $payload["email"])->first();
+
+			// If user don't exist in database create it.
+			if(!$user) {
+				// Generate unique username.
+				$User = new UserController;
+				$username = $User->generateUsername($payload);
+
+				$newUser = (object) [
+					"username"      => $username, 
+					"password"      => $User->generatePassword(), 
+					"email"         => $payload["email"], 
+					"firstname"     => $payload["given_name"], 
+					"lastname"      => $payload["family_name"], 
+					"newsletter"    => true, // ?? 
+					"active"    	=> true,
+				];
+				$User->addNewUser($newUser, false);
+
+				$user = User::where('email', $newUser->email)->first();
+
+				// Return user token
+				return response()->json([
+					'token' => $this->jwt($user, $payload),
+				], 200);
+			} else {
+				// Generate JWT from database user object
+				// Return JWT.
+				return response()->json([
+					'token' => $this->jwt($user, $payload),
+				], 200);
+			}
+		} else {
+			// Invalid ID token
+        	return response()->make("Invalid ID token.", 400);
+		}
+	}
 }

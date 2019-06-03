@@ -216,6 +216,12 @@ body {
     .navbar-nav > li > a {
       color: $navColor;
     }
+    .navbar-nav > .highlighted > a > span {
+      border-radius: 7px;
+      padding: 7px;
+      background: #30a629;
+      color: #fff;
+    }
     .navbar-nav > .active > a {
       color: $navBackgroundColor1;
       background-color: $navColor;
@@ -314,6 +320,12 @@ body {
     }
     .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
       padding: 3px;
+    }
+  }
+
+  @media (max-width: 788px) and (min-width: 768px) {
+    .hideForIpad {
+      display: none;
     }
   }
 

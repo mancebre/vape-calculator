@@ -3,7 +3,12 @@
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" ng-click="vm.isCollapsed = !vm.isCollapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <button type="button" 
+                class="navbar-toggle collapsed" 
+                ng-click="vm.isCollapsed = !vm.isCollapsed" 
+                data-toggle="collapse" 
+                data-target="#bs-example-navbar-collapse-1" 
+                aria-expanded="false">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -41,25 +46,26 @@
                         ng-class="getClass('/new_recipe')">
                         <a href="/new_recipe">
                             <span class="glyphicon glyphicon-plus"></span>
-                            <span translate="NEW_RECIPE"></span>
+                            <span class="hideForIpad" translate="NEW_RECIPE"></span>
                         </a>
                     </li>
                     <li ng-click="vm.isCollapsed = !vm.isCollapsed && vm.isMobile" ng-class="getClass('/nic_shot')">
                         <a href="/nic_shot">
-                            <span class="glyphicon glyphicon-leaf"></span>
-                            <span translate="NIC_SHOT"></span>
+                            <i class="fas fa-syringe"></i>
+                            <span class="hideForIpad" translate="NIC_SHOT"></span>
                         </a>
                     </li>
                     <li ng-click="vm.isCollapsed = !vm.isCollapsed && vm.isMobile"
                         ng-class="getClass('/search')">
                         <a href="/search">
                             <span class="glyphicon glyphicon-search"></span>
-                            <span translate="SEARCH"></span>
+                            <span class="hideForIpad" translate="SEARCH"></span>
                         </a>
                     </li>
                     <li ng-click="vm.isCollapsed = !vm.isCollapsed && vm.isMobile"
                         ng-hide="isLoggedIn()"
-                        ng-class="getClass('/registration')">
+                        ng-class="getClass('/registration')"
+                        class="highlighted">
                         <a href="/registration">
                             <span translate="REGISTER"></span>
                         </a>
@@ -67,9 +73,9 @@
                     <li ng-click="vm.isCollapsed = !vm.isCollapsed && vm.isMobile"
                         ng-hide="isLoggedIn()"
                         ng-class="getClass('/login')">
-                        <a href="/login">
+                        <a ng-hide="vm.hideForIpad" href="/login">
                             <span class="glyphicon glyphicon-log-in"></span>
-                            <span translate="LOGIN"></span>
+                            <span class="hideForIpad" translate="LOGIN"></span>
                         </a>
                     </li>
                     <li class="dropdown" uib-dropdown>

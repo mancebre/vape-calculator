@@ -1,4 +1,5 @@
 backend/.env
 app/config.js
 backend/storage/logs
+backend/vendor
 deploy_to_*

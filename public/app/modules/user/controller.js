@@ -120,5 +120,10 @@ angular.module('gelApp.user').controller('userCtrl',
                 $scope.step = 1;
             }
         };
+        
+        /**
+         * Google sign-in
+         */
+        $scope.options = AuthenticationService.GoogleSignInOptions();
 
 }]);

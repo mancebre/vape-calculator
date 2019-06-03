@@ -27,12 +27,21 @@ class UserController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function usernameCheck(Request $request) {
-        $usernameCheck = User::where('username', $request->username)->first();
-        if ($usernameCheck) {
+        $username = $request->username;
+        if ($this->usernameCheckInternal($username)) {
             return response()->make("Username you entered is already in use.", 400);
         } else {
             return response()->make("");
         }
+    }
+
+    /**
+     * Check if username exists.
+     */
+    private function usernameCheckInternal($username) {
+        $user = User::where('username', $username)->first();
+
+        return $user ? true : false;
     }
 
     /**
@@ -48,6 +57,8 @@ class UserController extends Controller {
         }
     }
 
+    // TODO Add "create google user"
+
     /**
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
@@ -62,25 +73,45 @@ class UserController extends Controller {
         } elseif ($usernameCheck) {
             return response()->make("Username you entered is already in use.", 400);
         } else {
-            $user = new User;
-            $user->username = $request->username;
-            $user->password = Hash::make($request->password);
-            $user->email = $request->email;
-            $user->firstname = $request->firstname;
-            $user->lastname = $request->lastname;
-            $user->active = 0;
-            $user->newsletter = $request->newsletter;
-            $user->activation_key = substr(str_shuffle(MD5(microtime())), 0, 32);
+            $newUser = (object) [
+                "username"      => $request->username, 
+                "password"      => $request->password, 
+                "email"         => $request->email, 
+                "firstname"     => $request->firstname, 
+                "lastname"      => $request->lastname, 
+                "newsletter"    => $request->newsletter, 
+                "active"        => 0, 
+            ];
 
-            $user->save();
+            $this->addNewUser($newUser);
+        }
+    }
+    
+    /**
+     * Create new user
+     */
+    public function addNewUser($newUser, $sendActivationMail = true) {
 
-            $user->userRoles()->saveMany([
-                new UserRoles([
-                    "user_id"=>$user->id,
-                    "role_id"=>3, // Regular user.
-                ])
-            ]);
+        $user = new User;
+        $user->username = $newUser->username;
+        $user->password = Hash::make($newUser->password);
+        $user->email = $newUser->email;
+        $user->firstname = $newUser->firstname;
+        $user->lastname = $newUser->lastname;
+        $user->active = $newUser->active;
+        $user->newsletter = $newUser->newsletter;
+        $user->activation_key = substr(str_shuffle(MD5(microtime())), 0, 32);
 
+        $user->save();
+
+        $user->userRoles()->saveMany([
+            new UserRoles([
+                "user_id"=>$user->id,
+                "role_id"=>3, // Regular user.
+            ])
+        ]);
+
+        if($sendActivationMail) {
             // Send activation email
             $activationEmail = $this->sendActivationEmail($user);
             $log = [
@@ -88,10 +119,10 @@ class UserController extends Controller {
                 "user_data" => $user
             ];
             Log::info("Activation Email", $log);
-
-            return response()->make("Thank you. You have successfully registered new account.");
         }
-	}
+
+        return response()->make("Thank you. You have successfully registered new account.");
+    }
 
     /**
      * @param $user
@@ -130,7 +161,7 @@ class UserController extends Controller {
         return mail($to, $subject, $message, $headers);
     }
 
-    private function generatePassword() {
+    public function generatePassword() {
         $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
         $pass = array(); //remember to declare $pass as an array
         $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
@@ -299,6 +330,26 @@ class UserController extends Controller {
             Log::info("Activation Email", $log);
 
             return response()->make("Activation email sent.");
+        }
+    }
+
+    public function generateUsername($googleData) {
+        // First try: first name and first letter of last name
+        // Secound try: last name and first letter of first name
+        // other tries: first name and different random numbers untill we found right username.
+
+        $rand = rand(1, 999);
+
+        if(isset($googleData["given_name"])) {
+            $username = strtolower($googleData["given_name"]) . $rand;
+        } else {
+            $username = substr($googleData["name"], 0, 4) . $rand;
+        }
+
+        if(!$this->usernameCheckInternal($username)) {
+            return $username;
+        } else {
+            $this->generateUsername($googleData);
         }
     }
 }
