@@ -4,7 +4,6 @@
 
 - Nodejs.
 - Grunt Cli gloabally `npm install grunt-cli -g`
-- Bower globally `npm install bower -g`
 
 
 ###Usage instructions.
@@ -15,9 +14,7 @@ Insturctions For beginners:
 - Go inside folder
 - Run commands in following order
 
-`npm install`
-
-`bower install` if there are any conflicts run ` bower install --force-latest`
+`yarn install`
 
 `grunt`
 

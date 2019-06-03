@@ -1,9 +1,10 @@
 {
   "name": "VapersCuisine",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "postinstall": "node -e \"try { require('fs').copyFileSync(require('path').resolve('node_modules/@bower_components'), 'public/components', COPYFILE_EXCL) } catch (e) { }\""
   },
   "devDependencies": {
     "connect-history-api-fallback": "^1.6.0",
@@ -20,6 +21,27 @@
   },
   "dependencies": {
     "animate-sass": "^0.6.6",
-    "grunt-contrib-compass": "^1.1.1"
+    "grunt-contrib-compass": "^1.1.1",
+    "@bower_components/angular": "angular/bower-angular#~1.6.9",
+    "@bower_components/angular-animate": "angular/bower-angular-animate#^1.6.10",
+    "@bower_components/angular-bootstrap": "angular-ui/bootstrap-bower#^2.5.0",
+    "@bower_components/angular-cookies": "angular/bower-angular-cookies#>=1.2.26 <1.8",
+    "@bower_components/angular-md5": "gdi2290/angular-md5#^0.1.10",
+    "@bower_components/angular-route": "angular/bower-angular-route#~1.4.8",
+    "@bower_components/angular-tooltips": "720kb/angular-tooltips#^1.2.2",
+    "@bower_components/angular-translate": "PascalPrecht/bower-angular-translate#^2.17.1",
+    "@bower_components/angular-translate-storage-cookie": "PascalPrecht/bower-angular-translate-storage-cookie#^2.18.1",
+    "@bower_components/angular-translate-storage-local": "PascalPrecht/bower-angular-translate-storage-local#^2.18.1",
+    "@bower_components/angularjs-slider": "rzajac/angularjs-slider#^6.5.1",
+    "@bower_components/bower": "theshock/atomjs#*",
+    "@bower_components/components-font-awesome": "components/font-awesome#^5.4.2",
+    "@bower_components/flag-icon-css": "lipis/flag-icon-css#^3.3.0",
+    "@bower_components/font-awesome": "FortAwesome/Font-Awesome#^4.6.3",
+    "@bower_components/install": "tombigel/detect-zoom#^1.0.4",
+    "@bower_components/jquery": "jquery/jquery-dist#~2.1.4",
+    "@bower_components/ngstorage": "gsklee/ngStorage#^0.3.11"
+  },
+  "engines": {
+    "yarn": ">= 1.0.0"
   }
 }
