@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Lumen\Routing\Controller as BaseController;
 use Google_Client;
+use Log;
 
 class AuthController extends BaseController {
 	/**
@@ -80,6 +81,15 @@ class AuthController extends BaseController {
             if (!$user->active) {
                 return response()->make("Please activate your account.", 400);
             }
+
+			$log = [
+				"login_type" => "email",
+				"user" => $user,
+				"time" => date('d-m-Y h:i:s a', time())
+
+			];
+			Log::info("User login", $log);
+
 			return response()->json([
 				'token' => $this->jwt($user),
 			], 200);
@@ -137,11 +147,27 @@ class AuthController extends BaseController {
 
 				$user = User::where('email', $newUser->email)->first();
 
+				$log = [
+					"login_type" => "google",
+					"user" => $user,
+					"time" => date('d-m-Y h:i:s a', time())
+
+				];
+				Log::info("User login", $log);
+
 				// Return user token
 				return response()->json([
 					'token' => $this->jwt($user, $payload),
 				], 200);
 			} else {
+				$log = [
+					"login_type" => "google",
+					"user" => $user,
+					"time" => date('d-m-Y h:i:s a', time())
+
+				];
+				Log::info("User login", $log);
+
 				// Generate JWT from database user object
 				// Return JWT.
 				return response()->json([
