@@ -1,7 +1,9 @@
-$loader: '/app/images/loading.gif';$primaryColor: #e2e2e2;
+$loader: '/app/images/loading.gif';
+$logo: '/app/images/logo.png';
 
 $formWidth: 350px;
 
+$primaryColor: #e2e2e2;
 $secondaryColor: #c0c600;
 $navBackgroundColor1: #eee;
 $navHoverColor: grey;
@@ -18,7 +20,19 @@ body {
   .pad-10 {
     padding: 10px;
   }
+  header {
+    nav {
+      #logo {
+        padding: 8px 15px;
+      }
+
+      img {
+        height: 35px;
+      }
+    }
+  }
   .container {
+
     min-height: calc(100vh - 150px);
 
     .left {
@@ -323,7 +337,7 @@ body {
     }
   }
 
-  @media (max-width: 788px) and (min-width: 768px) {
+  @media (max-width: 840px) and (min-width: 768px) {
     .hideForIpad {
       display: none;
     }
