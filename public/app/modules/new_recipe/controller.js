@@ -655,15 +655,15 @@ angular.module('gelApp.newRecipe').controller('newRecipeCtrl', ['$scope', '$http
                 $timeout( function(){
                     $scope.liquid.id = data.id;
                     $scope.liquid.name = data.name;
-                    $scope.liquid.amount = data.amount;
-                    $scope.liquid.desired_strength = data.desired_strength;
-                    $scope.liquid.pg = data.pg;
-                    $scope.liquid.vg = data.vg;
-                    $scope.liquid.nicotine.strength = data.nicotine_strength;
-                    $scope.liquid.nicotine.pg = data.nicotine_pg;
-                    $scope.liquid.nicotine.vg = data.nicotine_vg;
-                    $scope.liquid.wvpga = data.wvpga;
-                    $scope.liquid.sleep_time = data.sleep_time;
+                    $scope.liquid.amount = parseInt(data.amount);
+                    $scope.liquid.desired_strength = parseInt(data.desired_strength);
+                    $scope.liquid.pg = parseInt(data.pg);
+                    $scope.liquid.vg = parseInt(data.vg);
+                    $scope.liquid.nicotine.strength = parseInt(data.nicotine_strength);
+                    $scope.liquid.nicotine.pg = parseInt(data.nicotine_pg);
+                    $scope.liquid.nicotine.vg = parseInt(data.nicotine_vg);
+                    $scope.liquid.wvpga = parseInt(data.wvpga);
+                    $scope.liquid.sleep_time = parseInt(data.sleep_time);
                     $scope.liquid.flavor = data.recipe_flavors;
                     $scope.liquid.comment = data.comment;
                     $scope.liquid.owner = $scope.ownerOrNot(data.user.id); // Recipe owner
