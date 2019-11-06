@@ -233,8 +233,8 @@ angular.module('gelApp.newRecipe').controller('newRecipeCtrl', ['$scope', '$http
         $scope.limitedSlider = {
             options: {
                 floor: 0,
-                ceil: 35,
-                maxLimit: 35
+                ceil: 100,
+                // maxLimit: 35
             }
         };
 
@@ -714,4 +714,8 @@ angular.module('gelApp.newRecipe').controller('newRecipeCtrl', ['$scope', '$http
         };
 
         console.log("networks", $scope.socialNetworks);
+
+        // setTimeout(function(){
+        //     $scope.$broadcast('rzSliderForceRender');
+        // },500)
     }]);
